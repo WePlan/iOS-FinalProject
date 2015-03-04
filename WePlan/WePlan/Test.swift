@@ -11,6 +11,8 @@ import Foundation
 class KanGou {
     // s b zhang zhao nan
     func test() {
-        
+        fjsdalkjfaslkdjf
+        fjasdlkfjalsdkjf
+        fjdalksdjfl
     }
 }
