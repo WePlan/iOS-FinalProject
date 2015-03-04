@@ -17,4 +17,8 @@ class GlobalColors {
         let blue: Float
         let alpha: Float
     }
+    
+    func nothing () {
+        
+    }
 }
