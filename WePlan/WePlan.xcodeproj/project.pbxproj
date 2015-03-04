@@ -14,6 +14,7 @@
 		66E5757B1AA7C19B00F0890A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66E575791AA7C19B00F0890A /* LaunchScreen.xib */; };
 		66E575871AA7C19B00F0890A /* WePlanTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E575861AA7C19B00F0890A /* WePlanTests.swift */; };
 		66E575911AA7C25800F0890A /* GlobalColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E575901AA7C25800F0890A /* GlobalColors.swift */; };
+		C5E198471AA7C6F4007D6066 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E198461AA7C6F4007D6066 /* Test.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,7 @@
 		66E575851AA7C19B00F0890A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		66E575861AA7C19B00F0890A /* WePlanTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WePlanTests.swift; sourceTree = "<group>"; };
 		66E575901AA7C25800F0890A /* GlobalColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalColors.swift; sourceTree = "<group>"; };
+		C5E198461AA7C6F4007D6066 /* Test.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +88,7 @@
 				66E575791AA7C19B00F0890A /* LaunchScreen.xib */,
 				66E5756E1AA7C19B00F0890A /* Supporting Files */,
 				66E575901AA7C25800F0890A /* GlobalColors.swift */,
+				C5E198461AA7C6F4007D6066 /* Test.swift */,
 			);
 			path = WePlan;
 			sourceTree = "<group>";
@@ -216,6 +219,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				66E575731AA7C19B00F0890A /* ViewController.swift in Sources */,
+				C5E198471AA7C6F4007D6066 /* Test.swift in Sources */,
 				66E575911AA7C25800F0890A /* GlobalColors.swift in Sources */,
 				66E575711AA7C19B00F0890A /* AppDelegate.swift in Sources */,
 			);
@@ -411,6 +415,7 @@
 				66E5758C1AA7C19B00F0890A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		66E5758D1AA7C19B00F0890A /* Build configuration list for PBXNativeTarget "WePlanTests" */ = {
 			isa = XCConfigurationList;
@@ -419,6 +424,7 @@
 				66E5758F1AA7C19B00F0890A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
