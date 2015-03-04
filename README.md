@@ -1,2 +1,2 @@
 # iOS-FinalProject
-Gruop for iOS final
+Group for iOS final
