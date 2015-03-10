@@ -4,13 +4,14 @@ Group for iOS final
 Project: WePlan
 
 Teammates:
-Kan Chen
 
-Xi Su
+Kan Chen (kc2386@nyu.edu)
 
-Zhaonan Zhang
+Xi Su (suxi.suzie@gmail.com)
 
-Huibo Li
+Zhaonan Zhang (zz724@nyu.edu)
+
+Huibo Li (hl1487@nyu.edu)
 
 Prototype link:
 http://invis.io/3Q2E2L95X
