@@ -7,18 +7,12 @@
 //
 
 import Foundation
-
+import UIKit
 // Class store all colors we will use
-class GlobalColors {
-    struct RGBA {
-        let name: String
-        let red: Float
-        let green: Float
-        let blue: Float
-        let alpha: Float
-    }
+class WePlanColors {
     
-    func nothing () {
-        
+    
+    class func navigationBarColor() -> UIColor {
+        return UIColor(red: 0, green: 122/255.0, blue: 1, alpha: 1)
     }
 }

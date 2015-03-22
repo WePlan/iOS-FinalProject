@@ -22,15 +22,19 @@ class TabBarViewController: UITabBarController {
         
         let vc1: UIViewController = settingsSB.instantiateViewControllerWithIdentifier("SettingsBar") as UIViewController
         let vc2: UIViewController = friendsSB.instantiateViewControllerWithIdentifier("FriendsBar") as UIViewController
-        let vc3: UIViewController = taskSB.instantiateViewControllerWithIdentifier("MainBar") as UIViewController
+//        let vc3: UIViewController = taskSB.instantiateViewControllerWithIdentifier("MainBar") as UIViewController
+        let vc3: UIViewController = taskSB.instantiateViewControllerWithIdentifier("TasksEntry") as UINavigationController
         let vc4: UIViewController = groupSB.instantiateViewControllerWithIdentifier("GroupsBar") as UIViewController
+
         
         vcs.append(vc3)
         vcs.append(vc2)
         vcs.append(vc4)
         vcs.append(vc1)
         self.setViewControllers(vcs, animated: false)
-        self.selectedIndex = 2
+        self.selectedIndex = 0
+        
+        
     }
 
     override func didReceiveMemoryWarning() {

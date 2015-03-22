@@ -7,13 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6689E50C1ABCA23E0079C8ED /* AddTaskItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6689E50B1ABCA23E0079C8ED /* AddTaskItemViewController.swift */; };
+		6689E50E1ABCA3680079C8ED /* TaskListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6689E50D1ABCA3680079C8ED /* TaskListTableViewController.swift */; };
+		6689E5101ABCCD120079C8ED /* TaskItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6689E50F1ABCCD120079C8ED /* TaskItem.swift */; };
 		66E575711AA7C19B00F0890A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E575701AA7C19B00F0890A /* AppDelegate.swift */; };
 		66E575731AA7C19B00F0890A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E575721AA7C19B00F0890A /* ViewController.swift */; };
 		66E575761AA7C19B00F0890A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 66E575741AA7C19B00F0890A /* Main.storyboard */; };
 		66E575781AA7C19B00F0890A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66E575771AA7C19B00F0890A /* Images.xcassets */; };
 		66E5757B1AA7C19B00F0890A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66E575791AA7C19B00F0890A /* LaunchScreen.xib */; };
 		66E575871AA7C19B00F0890A /* WePlanTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E575861AA7C19B00F0890A /* WePlanTests.swift */; };
-		66E575911AA7C25800F0890A /* GlobalColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E575901AA7C25800F0890A /* GlobalColors.swift */; };
+		66E575911AA7C25800F0890A /* WePlanColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E575901AA7C25800F0890A /* WePlanColors.swift */; };
 		66E575931AA8100400F0890A /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 66E575921AA8100400F0890A /* Setting.storyboard */; };
 		66E575951AA91E3400F0890A /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E575941AA91E3400F0890A /* TabBarViewController.swift */; };
 		66E575991AABBF0F00F0890A /* Friends.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 66E575981AABBF0F00F0890A /* Friends.storyboard */; };
@@ -33,6 +36,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6689E50B1ABCA23E0079C8ED /* AddTaskItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTaskItemViewController.swift; sourceTree = "<group>"; };
+		6689E50D1ABCA3680079C8ED /* TaskListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskListTableViewController.swift; sourceTree = "<group>"; };
+		6689E50F1ABCCD120079C8ED /* TaskItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskItem.swift; sourceTree = "<group>"; };
 		66E5756B1AA7C19B00F0890A /* WePlan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WePlan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		66E5756F1AA7C19B00F0890A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		66E575701AA7C19B00F0890A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -43,7 +49,7 @@
 		66E575801AA7C19B00F0890A /* WePlanTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WePlanTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		66E575851AA7C19B00F0890A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		66E575861AA7C19B00F0890A /* WePlanTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WePlanTests.swift; sourceTree = "<group>"; };
-		66E575901AA7C25800F0890A /* GlobalColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalColors.swift; sourceTree = "<group>"; };
+		66E575901AA7C25800F0890A /* WePlanColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WePlanColors.swift; sourceTree = "<group>"; };
 		66E575921AA8100400F0890A /* Setting.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
 		66E575941AA91E3400F0890A /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		66E575981AABBF0F00F0890A /* Friends.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Friends.storyboard; sourceTree = "<group>"; };
@@ -70,6 +76,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6689E5111ABCCD840079C8ED /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6689E50F1ABCCD120079C8ED /* TaskItem.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		66E575621AA7C19A00F0890A = {
 			isa = PBXGroup;
 			children = (
@@ -91,18 +105,18 @@
 		66E5756D1AA7C19B00F0890A /* WePlan */ = {
 			isa = PBXGroup;
 			children = (
-				66E575701AA7C19B00F0890A /* AppDelegate.swift */,
 				66E575721AA7C19B00F0890A /* ViewController.swift */,
 				66E575741AA7C19B00F0890A /* Main.storyboard */,
 				66E575941AA91E3400F0890A /* TabBarViewController.swift */,
-				66E575921AA8100400F0890A /* Setting.storyboard */,
 				66E5759A1AABCAC000F0890A /* Tasks.storyboard */,
+				6689E50D1ABCA3680079C8ED /* TaskListTableViewController.swift */,
+				6689E50B1ABCA23E0079C8ED /* AddTaskItemViewController.swift */,
 				66E575981AABBF0F00F0890A /* Friends.storyboard */,
 				66E5759C1AABCACB00F0890A /* Groups.storyboard */,
-				66E575771AA7C19B00F0890A /* Images.xcassets */,
-				66E575791AA7C19B00F0890A /* LaunchScreen.xib */,
+				66E575921AA8100400F0890A /* Setting.storyboard */,
+				6689E5111ABCCD840079C8ED /* Model */,
 				66E5756E1AA7C19B00F0890A /* Supporting Files */,
-				66E575901AA7C25800F0890A /* GlobalColors.swift */,
+				66E575901AA7C25800F0890A /* WePlanColors.swift */,
 				C5E198461AA7C6F4007D6066 /* Test.swift */,
 			);
 			path = WePlan;
@@ -111,6 +125,9 @@
 		66E5756E1AA7C19B00F0890A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				66E575791AA7C19B00F0890A /* LaunchScreen.xib */,
+				66E575771AA7C19B00F0890A /* Images.xcassets */,
+				66E575701AA7C19B00F0890A /* AppDelegate.swift */,
 				66E5756F1AA7C19B00F0890A /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -239,8 +256,11 @@
 			files = (
 				66E575731AA7C19B00F0890A /* ViewController.swift in Sources */,
 				C5E198471AA7C6F4007D6066 /* Test.swift in Sources */,
-				66E575911AA7C25800F0890A /* GlobalColors.swift in Sources */,
+				66E575911AA7C25800F0890A /* WePlanColors.swift in Sources */,
+				6689E5101ABCCD120079C8ED /* TaskItem.swift in Sources */,
 				66E575951AA91E3400F0890A /* TabBarViewController.swift in Sources */,
+				6689E50C1ABCA23E0079C8ED /* AddTaskItemViewController.swift in Sources */,
+				6689E50E1ABCA3680079C8ED /* TaskListTableViewController.swift in Sources */,
 				66E575711AA7C19B00F0890A /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
