@@ -8,8 +8,8 @@
         <scene sceneID="3ov-7d-BIt">
             <objects>
                 <tabBarController storyboardIdentifier="TabBarEntry" id="7Kd-Ew-dIq" customClass="TabBarViewController" customModule="WePlan" customModuleProvider="target" sceneMemberID="viewController">
-                    <nil key="simulatedBottomBarMetrics"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="Rtx-O2-ao2">
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" translucent="NO" id="Rtx-O2-ao2">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>

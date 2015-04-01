@@ -1,51 +1,28 @@
 //
-//  TaskListTableViewController.swift
+//  SettingsTableVC.swift
 //  WePlan
 //
-//  Created by Kan Chen on 3/20/15.
+//  Created by Kan Chen on 3/30/15.
 //  Copyright (c) 2015 WP Group. All rights reserved.
 //
 
 import UIKit
 
-class TaskListTableViewController: UITableViewController {
-    var tasks:[TaskItem] = []
-    
-    @IBAction func unwindTaskList (segue: UIStoryboardSegue){
-        var src = segue.sourceViewController as AddTaskItemViewController
-        var task = src.newTask
-        if task != nil {
-            tasks.append(task!)
-            self.tableView.reloadData()
-        }
-    }
-    
-    private func initialUISettings() {
-        DefaultSetting.setNavigationBar(self.navigationController!)
-        
-        self.tabBarItem = UITabBarItem.init(title: "as", image: UIImage.init(named: "Home"), selectedImage: UIImage.init(named: "Home"))
-//        self.tabBarController?.tabBar.tintColor = UIColor.redColor()
-        
-//        self.tabBarController?.tabBar.backgroundColor = UIColor.purpleColor()
-        
-        self.view.backgroundColor = UIColor.whiteColor()
-        
-    }
-    // MARK: - Lifecycle
+class SettingsTableVC: UITableViewController {
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
-    
+
     override func viewWillAppear(animated: Bool) {
-        initialUISettings()
+        DefaultSetting.setNavigationBar(self.navigationController!)
     }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -54,34 +31,24 @@ class TaskListTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // Return the number of sections.
         return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // #warning Incomplete method implementation.
         // Return the number of rows in the section.
-        return tasks.count
+        return 0
     }
 
-    
+    /*
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("taskCellPrototype", forIndexPath: indexPath) as TasksTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as UITableViewCell
 
         // Configure the cell...
-        var item = tasks[indexPath.row]
-        
-        cell.checkState = item.checked
-        cell.taskTitle.text = item.taskName
-//        (cell.contentView.viewWithTag(11) as UILabel).text = item.taskName
+
         return cell
     }
-    
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        var tappedItem = tasks[indexPath.row]
-        tappedItem.checked = !tappedItem.checked
-        tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
-    }
+    */
 
     /*
     // Override to support conditional editing of the table view.

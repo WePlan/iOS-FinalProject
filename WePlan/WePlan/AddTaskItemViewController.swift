@@ -16,16 +16,20 @@ class AddTaskItemViewController: UIViewController {
     @IBOutlet weak var addButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
     }
-
+    
+    override func viewWillAppear(animated: Bool) {
+        DefaultSetting.setNavigationBar(self.navigationController!)
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-
+    override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
+        taskTitleTextField.resignFirstResponder()
+    }
     
     // MARK: - Navigation
 
@@ -37,7 +41,7 @@ class AddTaskItemViewController: UIViewController {
             return
         }
         if countElements(taskTitleTextField.text) > 0 {
-            newTask = TaskItem(name: taskTitleTextField.text)
+            newTask = TaskItem(name: taskTitleTextField.text, tagcolor: "")
         }
     }
     

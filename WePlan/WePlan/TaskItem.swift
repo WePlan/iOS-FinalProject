@@ -10,8 +10,14 @@ import Foundation
 
 class TaskItem {
     var taskName: String
-    
-    init (name: String){
+    var dueTime: NSDate
+    var tagColorName: String
+    var checked: Bool
+    init (name: String, tagcolor: String){
         taskName = name
+        dueTime = NSDate()
+        tagColorName = tagcolor
+        checked = false
     }
+    
 }
