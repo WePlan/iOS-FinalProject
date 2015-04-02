@@ -8,22 +8,33 @@
 
 import UIKit
 
+protocol TasksTableViewCellDelegate {
+    func checkButtonPressed(index: NSIndexPath)
+}
+
 class TasksTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var checkMark: UIImageView!
     @IBOutlet weak var taskTitle: UILabel!
+    @IBOutlet weak var checkButton: UIButton!
     
     var checkState: Bool? {
         didSet{
             if checkState != nil && checkState!{
-                checkMark.image = UIImage(named: "checked")
+                checkButton.setBackgroundImage(UIImage(named: "checked"), forState: UIControlState())
             }else {
-                checkMark.image = UIImage(named: "unchecked")
+                checkButton.setBackgroundImage(UIImage(named: "unchecked"), forState: UIControlState())
             }
         }
     }
     
-   
+    var index: NSIndexPath?
+    var delegate: TasksTableViewCellDelegate?
+    
+    @IBAction func clickCheckButton(sender: AnyObject) {
+        if delegate != nil {
+            self.delegate!.checkButtonPressed(self.index!)
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()

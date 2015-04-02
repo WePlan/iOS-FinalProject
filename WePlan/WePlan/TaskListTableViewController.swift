@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TaskListTableViewController: UITableViewController {
+class TaskListTableViewController: UITableViewController, TasksTableViewCellDelegate {
     var tasks:[TaskItem] = []
     
     @IBAction func unwindTaskList (segue: UIStoryboardSegue){
@@ -16,6 +16,25 @@ class TaskListTableViewController: UITableViewController {
         var task = src.newTask
         if task != nil {
             tasks.append(task!)
+            self.tableView.reloadData()
+            ParseAction.addTaskItem(task!.taskName)
+        }
+    }
+    
+    private func getInitialDataFromParse() {
+        var query = PFQuery(className: "TaskItems")
+        query.whereKeyExists("TaskTitle")
+        query.findObjectsInBackgroundWithBlock { (objects: [AnyObject]!, error: NSError!) -> Void in
+            if error == nil {
+                //the find succeeded.
+                if let objects = objects as? [PFObject] {
+                    for object in objects {
+                        self.tasks.append(TaskItem(name: object.objectForKey("TaskTitle") as String, tagcolor: ""))
+                    }
+                }
+            }else {
+                println("Error \(error)     \(error.userInfo)")
+            }
             self.tableView.reloadData()
         }
     }
@@ -34,7 +53,14 @@ class TaskListTableViewController: UITableViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        getInitialDataFromParse()
+//        let qos = Int(QOS_CLASS_BACKGROUND.value)
+//        dispatch_async(dispatch_get_global_queue(qos, 0), { () -> Void in
+//            ParseAction.getTaskItemsFromParse(&self.tasks)
+//            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+//                self.tableView.reloadData()
+//            })
+//        })
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -52,7 +78,10 @@ class TaskListTableViewController: UITableViewController {
     }
 
     // MARK: - Table view data source
-
+    private struct TaskTableViewConstant {
+        static let cellHeight: CGFloat = 60
+    }
+    
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // Return the number of sections.
         return 1
@@ -63,6 +92,9 @@ class TaskListTableViewController: UITableViewController {
         return tasks.count
     }
 
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return TaskTableViewConstant.cellHeight
+    }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("taskCellPrototype", forIndexPath: indexPath) as TasksTableViewCell
@@ -72,17 +104,30 @@ class TaskListTableViewController: UITableViewController {
         
         cell.checkState = item.checked
         cell.taskTitle.text = item.taskName
-//        (cell.contentView.viewWithTag(11) as UILabel).text = item.taskName
+
+        cell.selectionStyle = UITableViewCellSelectionStyle.None
+        cell.index = indexPath
+        cell.delegate = self
         return cell
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        var tappedItem = tasks[indexPath.row]
-        tappedItem.checked = !tappedItem.checked
-        tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+        tableView.deselectRowAtIndexPath(indexPath, animated: false)
     }
-
+    
+    func checkButtonPressed(index: NSIndexPath) {
+        var tappedItem = tasks[index.row]
+        tappedItem.checked = !tappedItem.checked
+        tableView.reloadRowsAtIndexPaths([index], withRowAnimation: UITableViewRowAnimation.Automatic)
+    }
+    
+        override func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
+        return UITableViewCellEditingStyle.Delete
+    }
+    
+    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
     /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {

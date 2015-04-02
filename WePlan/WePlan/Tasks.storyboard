@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -30,24 +30,18 @@
         <scene sceneID="hYL-Fa-roS">
             <objects>
                 <tableViewController storyboardIdentifier="MainWindow" useStoryboardIdentifierAsRestorationIdentifier="YES" id="QCe-Hq-JYz" customClass="TaskListTableViewController" customModule="WePlan" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" id="Zsg-Uf-pkz">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Zsg-Uf-pkz">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="taskCellPrototype" rowHeight="60" id="mGe-fM-Qsl" customClass="TasksTableViewCell" customModule="WePlan" customModuleProvider="target">
+                            <tableViewCell contentMode="scaleToFill" verticalHuggingPriority="300" verticalCompressionResistancePriority="800" selectionStyle="none" indentationWidth="10" reuseIdentifier="taskCellPrototype" rowHeight="60" id="mGe-fM-Qsl" customClass="TasksTableViewCell" customModule="WePlan" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mGe-fM-Qsl" id="dVd-5Z-jug">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="O0r-P3-gJT">
-                                            <rect key="frame" x="18" y="13" width="34" height="34"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" secondItem="O0r-P3-gJT" secondAttribute="height" multiplier="1:1" id="AV8-RW-tjo"/>
-                                            </constraints>
-                                        </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" tag="11" contentMode="left" horizontalHuggingPriority="240" verticalHuggingPriority="251" horizontalCompressionResistancePriority="740" misplaced="YES" restorationIdentifier="11" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ulm-3S-etZ">
-                                            <rect key="frame" x="67" y="21" width="460" height="20"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="11" contentMode="left" horizontalHuggingPriority="240" verticalHuggingPriority="251" horizontalCompressionResistancePriority="740" restorationIdentifier="11" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ulm-3S-etZ">
+                                            <rect key="frame" x="67" y="20" width="460" height="20"/>
                                             <color key="tintColor" red="0.2470588235" green="0.50980392159999999" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -59,28 +53,34 @@
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                         </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f8I-np-2TP">
+                                            <rect key="frame" x="18" y="13" width="34" height="34"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="f8I-np-2TP" secondAttribute="height" multiplier="1:1" id="y3U-64-n45"/>
+                                            </constraints>
+                                            <state key="normal">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="clickCheckButton:" destination="mGe-fM-Qsl" eventType="touchUpInside" id="EYb-lx-ugn"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <constraints>
-                                        <constraint firstAttribute="bottomMargin" secondItem="O0r-P3-gJT" secondAttribute="bottom" constant="5" id="7To-Kv-Ftj"/>
-                                        <constraint firstItem="O0r-P3-gJT" firstAttribute="top" secondItem="dVd-5Z-jug" secondAttribute="topMargin" constant="5" id="88q-KB-T1l"/>
+                                        <constraint firstItem="Ulm-3S-etZ" firstAttribute="centerY" secondItem="f8I-np-2TP" secondAttribute="centerY" id="7nf-Sw-VOJ"/>
                                         <constraint firstAttribute="centerY" secondItem="27b-wo-iAo" secondAttribute="centerY" id="HyI-Ke-h1T"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="Ulm-3S-etZ" secondAttribute="trailing" id="JiR-Rm-HRE"/>
                                         <constraint firstItem="27b-wo-iAo" firstAttribute="leading" secondItem="Ulm-3S-etZ" secondAttribute="trailing" constant="8" symbolic="YES" id="Q7N-kr-hmR"/>
-                                        <constraint firstItem="Ulm-3S-etZ" firstAttribute="top" secondItem="dVd-5Z-jug" secondAttribute="topMargin" constant="5" id="THV-R6-U2V"/>
-                                        <constraint firstItem="Ulm-3S-etZ" firstAttribute="leading" secondItem="O0r-P3-gJT" secondAttribute="trailing" constant="15" id="ceZ-p7-5Qg"/>
-                                        <constraint firstItem="O0r-P3-gJT" firstAttribute="leading" secondItem="dVd-5Z-jug" secondAttribute="leadingMargin" constant="10" id="foN-b3-Dfg"/>
-                                        <constraint firstItem="Ulm-3S-etZ" firstAttribute="centerY" secondItem="O0r-P3-gJT" secondAttribute="centerY" id="lcb-XQ-Kj6"/>
+                                        <constraint firstItem="Ulm-3S-etZ" firstAttribute="leading" secondItem="f8I-np-2TP" secondAttribute="trailing" constant="15" id="Xbj-3h-Gis"/>
+                                        <constraint firstItem="f8I-np-2TP" firstAttribute="leading" secondItem="dVd-5Z-jug" secondAttribute="leadingMargin" constant="10" id="bPp-It-f1W"/>
+                                        <constraint firstItem="f8I-np-2TP" firstAttribute="top" secondItem="dVd-5Z-jug" secondAttribute="topMargin" constant="5" id="qua-Da-yX7"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="27b-wo-iAo" secondAttribute="trailing" constant="10" id="rWd-GP-fKY"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="f8I-np-2TP" secondAttribute="bottom" constant="5" id="vJd-5L-WWb"/>
                                     </constraints>
-                                    <variation key="default">
-                                        <mask key="constraints">
-                                            <exclude reference="JiR-Rm-HRE"/>
-                                            <exclude reference="THV-R6-U2V"/>
-                                        </mask>
-                                    </variation>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
-                                    <outlet property="checkMark" destination="O0r-P3-gJT" id="mBA-RU-SPu"/>
+                                    <outlet property="checkButton" destination="f8I-np-2TP" id="uOz-be-paU"/>
                                     <outlet property="taskTitle" destination="Ulm-3S-etZ" id="ska-5a-fMo"/>
                                 </connections>
                             </tableViewCell>

@@ -9,10 +9,14 @@
 import UIKit
 
 class FriendsTableVC: UITableViewController {
-
+    
+    var Titles: [String] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        Titles.append("Frinds jin")
+        Titles.append("Friends fuck")
+        self.tableView.rowHeight = 60
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -31,27 +35,52 @@ class FriendsTableVC: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Potentially incomplete method implementation.
-        // Return the number of sections.
-        return 0
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
-        return 0
+        return Titles.count
     }
 
-    /*
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as UITableViewCell
-
+        let cellIdentifier = "friendCellPrototype"
+        var cell: SWTableViewCell? = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as? SWTableViewCell
+        
         // Configure the cell...
+        if cell == nil {
+            cell = SWTableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: cellIdentifier)
+            
+//            cell = [[SWTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
+            cell!.rightUtilityButtons = self.rightButtons()
+            cell!.setRightUtilityButtons(cell!.rightUtilityButtons, withButtonWidth: 40)
+    //        cell.leftUtilityButtons = self.leftButtons()
+    //        cell.setLeftUtilityButtons(cell.leftUtilityButtons, withButtonWidth: 20)
+                //        cell.delegate = self
+        }
+        cell!.textLabel?.text = Titles[indexPath.row]
 
-        return cell
+        return cell!
     }
-    */
-
+    
+    func rightButtons() -> NSArray {
+        var rightUtilityButtons: NSMutableArray = []
+        
+        rightUtilityButtons.sw_addUtilityButtonWithColor(UIColor.blueColor(), icon: UIImage(named: "deleteIcon"))
+        
+        return rightUtilityButtons
+    }
+    
+    func leftButtons() -> NSArray {
+        var leftUtilityButtons: NSMutableArray = []
+        leftUtilityButtons.sw_addUtilityButtonWithColor(UIColor.blueColor(), icon: UIImage(named: "deleteIcon"))
+        
+        return leftUtilityButtons
+    }
+    
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
