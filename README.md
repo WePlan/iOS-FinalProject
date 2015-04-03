@@ -24,15 +24,13 @@ Project Progress:
 
 3. ParseAction.swift: 和parse相关的方法, 详细要求见文件内注释
 
-very important: Parse 的 query 貌似会自己开个线程运行的在controller里我可以调回主线程， 如果是外部方法，那么怎么接收 结果 和 UI 传值？ 我再研究
-
 4. Friend 和 group 的tableviewcell 可以设计dynamic prototype 在storyboard里直接设计就可以了
 
 Settings 的 table view 用静态的 设计就可以了
 
 5.  在每个storyboard里加入相关的viewcontroller： 比如好友的详细界面  添加界面等， 也可以写相关的功能方法
 
-6. 需要的图片: appicon 优先级比较高， 其他的可以先不考虑， 用涂鸦占位， 做好storyboard先
+6. 现在需要的图片: appicon , Tabbar icon 优先级比较高， 其他的可以先不考虑， 用涂鸦占位， 做好storyboard先
 
 7. Tableview的相关质料：
 
