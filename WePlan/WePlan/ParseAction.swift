@@ -9,7 +9,7 @@
 import Foundation
 import Parse
 
-class ParseAction {
+class ParseAction : ParseLogin {
     
     class func addTaskItem(taskname: String)  {
         var taskItems = PFObject(className: "TaskItems")
@@ -22,9 +22,13 @@ class ParseAction {
             }
         }
     }
-    
-    class func getTaskItemsFromParse(inout tasks: [TaskItem]) {
+    class func deleteTaskItem() {
         
+    
+    }
+    
+    class func getInitialDataFromParse(completion: ([TaskItem]) -> Void) {
+        var data:[TaskItem] = []
         var query = PFQuery(className: "TaskItems")
         query.whereKeyExists("TaskTitle")
         query.findObjectsInBackgroundWithBlock { (objects: [AnyObject]!, error: NSError!) -> Void in
@@ -32,17 +36,32 @@ class ParseAction {
                 //the find succeeded.
                 if let objects = objects as? [PFObject] {
                     for object in objects {
-                        tasks.append(TaskItem(name: object.objectForKey("TaskTitle") as String, tagcolor: ""))
+                        var item = TaskItem(name: object.objectForKey("TaskTitle") as String, tagcolor: "")
+                        
+                        data.append(item)
                     }
+                    completion(data)
                 }
             }else {
                 println("Error \(error)     \(error.userInfo)")
             }
         }
-//        println("Data is ready")
+    }
+
+    
+    class func signIn(email: String, password: String, completion: (result: String) -> Void) {
+        completion(result: "success")
+        
     }
     
-    // MARK: - Login
+    class func signUp(email: String, username: String, password: String, completion: (result: String) -> Void) {
+    
+    }
+    
+}
+
+
+protocol ParseLogin {
     /**
     Send a new user request
     
@@ -50,13 +69,14 @@ class ParseAction {
     
     :returns: result
     */
-    class func signUp (email: String, username: String, password: String) -> String {
-        var result:String = ""
-        // result: "ok","invalid email","invalid username","invalid pwd",etc.
-        // TODO: newUserSignUp
-        
-        return result
-    }
+    class func signUp (email: String, username: String, password: String, completion: (result: String) -> Void)
+//    {
+//    var result:String = ""
+//    // result: "ok","invalid email","invalid username","invalid pwd",etc.
+//    // TODO: newUserSignUp
+//    
+//    return result
+//    }
     
     /**
     Sign in
@@ -65,16 +85,25 @@ class ParseAction {
     
     :returns: result
     */
-    class func signIn(email: String, password:String) -> String {
-        var result:String = ""
-        //result:"ok","timeout",etc.
-        // TODO: User SignUp
-        
-        return result
-    }
+    class func signIn(email: String, password:String, completion: (result: String) -> Void )
+//    {
+//    var result:String = ""
+//    //result:"ok","timeout",etc.
+//    // TODO: User SignUp
+//    
+//    return result
+//    }
+
+}
+
+protocol ParseTask {
+    class func deleteItem()
+}
+
+protocol ParseFriend {
     
-    // MARK: - TaskItems
-    /**
+}
+
+protocol ParseGroup {
     
-    */
 }

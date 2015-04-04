@@ -21,46 +21,26 @@ class TaskListTableViewController: UITableViewController, TasksTableViewCellDele
         }
     }
     
-    private func getInitialDataFromParse() {
-        var query = PFQuery(className: "TaskItems")
-        query.whereKeyExists("TaskTitle")
-        query.findObjectsInBackgroundWithBlock { (objects: [AnyObject]!, error: NSError!) -> Void in
-            if error == nil {
-                //the find succeeded.
-                if let objects = objects as? [PFObject] {
-                    for object in objects {
-                        self.tasks.append(TaskItem(name: object.objectForKey("TaskTitle") as String, tagcolor: ""))
-                    }
-                }
-            }else {
-                println("Error \(error)     \(error.userInfo)")
-            }
-            self.tableView.reloadData()
-        }
-    }
-    
     private func initialUISettings() {
         DefaultSetting.setNavigationBar(self.navigationController!)
         
         self.tabBarItem = UITabBarItem.init(title: "as", image: UIImage.init(named: "Home"), selectedImage: UIImage.init(named: "Home"))
 //        self.tabBarController?.tabBar.tintColor = UIColor.redColor()
-        
 //        self.tabBarController?.tabBar.backgroundColor = UIColor.purpleColor()
         
         self.view.backgroundColor = UIColor.whiteColor()
         
     }
+    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        getInitialDataFromParse()
-//        let qos = Int(QOS_CLASS_BACKGROUND.value)
-//        dispatch_async(dispatch_get_global_queue(qos, 0), { () -> Void in
-//            ParseAction.getTaskItemsFromParse(&self.tasks)
-//            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-//                self.tableView.reloadData()
-//            })
-//        })
+
+        ParseAction.getInitialDataFromParse { (data) -> Void in
+            self.tasks = data
+            self.tableView.reloadData()
+        }
+
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
