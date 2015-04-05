@@ -41,7 +41,7 @@ class AddTaskItemViewController: UIViewController {
             return
         }
         if countElements(taskTitleTextField.text) > 0 {
-            newTask = TaskItem(name: taskTitleTextField.text, tagcolor: "")
+            newTask = TaskItem(name: taskTitleTextField.text, id: "", tagcolor: "")
         }
     }
     

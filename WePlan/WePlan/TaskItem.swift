@@ -14,15 +14,17 @@ class TaskItem {
     var descript: String = ""
     var tagColorName: String
     var checked: Bool
+    var uniqueId: String
     
     var kind: String = ""
     var owner: String = ""
     
-    init (name: String, tagcolor: String){
+    init (name: String, id: String ,tagcolor: String){
         taskName = name
         dueTime = NSDate()
         tagColorName = tagcolor
         checked = false
+        uniqueId = id
     }
     
 }

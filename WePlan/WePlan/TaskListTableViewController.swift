@@ -17,7 +17,9 @@ class TaskListTableViewController: UITableViewController, TasksTableViewCellDele
         if task != nil {
             tasks.append(task!)
             self.tableView.reloadData()
-            ParseAction.addTaskItem(task!.taskName)
+            ParseAction.addTaskItem(task!.taskName, completion: { (resultId: String) -> Void in
+                task!.uniqueId = resultId
+            })
         }
     }
     
@@ -33,9 +35,11 @@ class TaskListTableViewController: UITableViewController, TasksTableViewCellDele
     }
     
     // MARK: - Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.tableView.allowsMultipleSelectionDuringEditing = false
+        
         ParseAction.getInitialDataFromParse { (data) -> Void in
             self.tasks = data
             self.tableView.reloadData()
@@ -58,6 +62,7 @@ class TaskListTableViewController: UITableViewController, TasksTableViewCellDele
     }
 
     // MARK: - Table view data source
+    
     private struct TaskTableViewConstant {
         static let cellHeight: CGFloat = 60
     }
@@ -105,28 +110,27 @@ class TaskListTableViewController: UITableViewController, TasksTableViewCellDele
         return UITableViewCellEditingStyle.Delete
     }
     
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return true
-    }
-    /*
+   
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         // Return NO if you do not want the specified item to be editable.
         return true
     }
-    */
+    
 
-    /*
+    
     // Override to support editing the table view.
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             // Delete the row from the data source
+            ParseAction.deleteItem(self.tasks[indexPath.row].uniqueId)
+            self.tasks.removeAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         } else if editingStyle == .Insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
-    */
+    
 
     /*
     // Override to support rearranging the table view.

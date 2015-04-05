@@ -15,7 +15,7 @@ class FriendsTableVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         Titles.append("Frinds jin")
-        Titles.append("Friends fuck")
+        Titles.append("Friends")
         self.tableView.rowHeight = 60
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
