@@ -40,6 +40,11 @@ class TasksTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
 //        self.backgroundView = UIImageView(image: UIImage(named: "CellBackground"))
+        var swipe: UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: "swipe")
+        swipe.direction = UISwipeGestureRecognizerDirection.Right
+        swipe.numberOfTouchesRequired = 1
+        self.addGestureRecognizer(swipe)
+//        swipe.state =
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
@@ -47,5 +52,20 @@ class TasksTableViewCell: UITableViewCell {
         
         // Configure the view for the selected state
     }
+    
+    func swipe() {
+        println("swiped!")
+        if delegate != nil {
+            self.delegate!.checkButtonPressed(self.index!)
+        }
+    }
+    
+//    func swipe2(gesture: UISwipeGestureRecognizer) {
+//        switch gesture.state {
+//            case .
+//        }
+//    }
+    
+    
 
 }
