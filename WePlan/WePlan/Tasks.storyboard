@@ -151,16 +151,39 @@
                                     <segue destination="mDd-Fu-u89" kind="unwind" unwindAction="unwindTaskList:" id="v05-oZ-TBs"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Due Time:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wY8-cB-mDO">
+                                <rect key="frame" x="66" y="151" width="78" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4xV-cs-2ak">
+                                <rect key="frame" x="152" y="151" width="39" height="21"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="5" translatesAutoresizingMaskIntoConstraints="NO" id="caf-5L-k4k">
+                                <rect key="frame" x="16" y="180" width="568" height="162"/>
+                                <date key="date" timeIntervalSinceReferenceDate="450122958.33506602">
+                                    <!--2015-04-07 18:09:18 +0000-->
+                                </date>
+                            </datePicker>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="caf-5L-k4k" secondAttribute="trailing" id="3eo-AB-G2i"/>
                             <constraint firstItem="SHz-Hp-az5" firstAttribute="width" secondItem="pbb-mb-nb8" secondAttribute="width" id="65A-Al-kBm"/>
                             <constraint firstItem="c66-TE-97s" firstAttribute="centerY" secondItem="ZFJ-VW-JQn" secondAttribute="centerY" id="761-S5-fpy"/>
                             <constraint firstItem="SHz-Hp-az5" firstAttribute="bottom" secondItem="c66-TE-97s" secondAttribute="bottom" id="BQ8-aL-ngN"/>
+                            <constraint firstItem="wY8-cB-mDO" firstAttribute="centerY" secondItem="4xV-cs-2ak" secondAttribute="centerY" id="Dhy-38-dGG"/>
                             <constraint firstAttribute="trailingMargin" secondItem="09O-cN-4jo" secondAttribute="trailing" id="EZl-rs-T7T"/>
                             <constraint firstAttribute="centerY" secondItem="ZFJ-VW-JQn" secondAttribute="centerY" constant="-156" id="ImA-o6-Oae"/>
                             <constraint firstAttribute="trailingMargin" secondItem="SHz-Hp-az5" secondAttribute="trailing" id="K1o-7U-lsR"/>
+                            <constraint firstItem="4xV-cs-2ak" firstAttribute="leading" secondItem="wY8-cB-mDO" secondAttribute="trailing" constant="8" symbolic="YES" id="MwL-Kr-p9y"/>
                             <constraint firstItem="c66-TE-97s" firstAttribute="leading" secondItem="ZFJ-VW-JQn" secondAttribute="trailing" constant="100" id="Nlh-MT-c0Q"/>
+                            <constraint firstItem="wY8-cB-mDO" firstAttribute="leading" secondItem="uq6-HR-59y" secondAttribute="leadingMargin" constant="50" id="PBg-jy-BSU"/>
+                            <constraint firstItem="caf-5L-k4k" firstAttribute="top" secondItem="wY8-cB-mDO" secondAttribute="bottom" constant="8" symbolic="YES" id="PWW-ZQ-NpC"/>
                             <constraint firstItem="ZFJ-VW-JQn" firstAttribute="bottom" secondItem="pbb-mb-nb8" secondAttribute="bottom" id="Wun-Op-q0e"/>
                             <constraint firstItem="SHz-Hp-az5" firstAttribute="top" secondItem="c66-TE-97s" secondAttribute="top" id="anw-bd-Kfn"/>
                             <constraint firstItem="ZFJ-VW-JQn" firstAttribute="top" secondItem="pbb-mb-nb8" secondAttribute="top" id="eFx-Zz-hZP"/>
@@ -171,6 +194,8 @@
                             <constraint firstItem="ZFJ-VW-JQn" firstAttribute="leading" secondItem="pbb-mb-nb8" secondAttribute="trailing" constant="8" symbolic="YES" id="iMX-08-5sy"/>
                             <constraint firstItem="Kyk-vv-xsl" firstAttribute="top" secondItem="JeU-I6-pAB" secondAttribute="bottom" constant="8" symbolic="YES" id="jKl-xY-OKb"/>
                             <constraint firstItem="SHz-Hp-az5" firstAttribute="leading" secondItem="c66-TE-97s" secondAttribute="trailing" constant="8" symbolic="YES" id="osl-Xf-jiA"/>
+                            <constraint firstItem="caf-5L-k4k" firstAttribute="leading" secondItem="uq6-HR-59y" secondAttribute="leadingMargin" id="rUL-VN-nZQ"/>
+                            <constraint firstItem="wY8-cB-mDO" firstAttribute="top" secondItem="09O-cN-4jo" secondAttribute="bottom" constant="20" id="rrR-mx-Dd3"/>
                             <constraint firstItem="09O-cN-4jo" firstAttribute="leading" secondItem="uq6-HR-59y" secondAttribute="leadingMargin" id="w2d-v0-8NK"/>
                         </constraints>
                         <variation key="default">
@@ -189,6 +214,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="addButton" destination="c66-TE-97s" id="oaV-27-x9R"/>
+                        <outlet property="dateLabel" destination="4xV-cs-2ak" id="oFj-kH-h6S"/>
+                        <outlet property="datePicker" destination="caf-5L-k4k" id="qbc-WA-iHU"/>
                         <outlet property="taskTitleTextField" destination="09O-cN-4jo" id="oeF-68-DtP"/>
                     </connections>
                 </viewController>

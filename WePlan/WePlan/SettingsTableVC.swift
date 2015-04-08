@@ -10,9 +10,11 @@ import UIKit
 
 class SettingsTableVC: UITableViewController {
 
+    @IBOutlet weak var usernameid: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        usernameid.text = PFUser.currentUser().username + PFUser.currentUser().objectId
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -37,7 +39,7 @@ class SettingsTableVC: UITableViewController {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
-        return 0
+        return 7
     }
 
     /*

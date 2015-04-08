@@ -14,9 +14,38 @@ class AddTaskItemViewController: UIViewController {
     @IBOutlet weak var taskTitleTextField: UITextField!
     
     @IBOutlet weak var addButton: UIButton!
+    @IBOutlet weak var datePicker: UIDatePicker!
+    @IBOutlet weak var dateLabel: UILabel!
+    
+    
+    var format: NSDateFormatter = NSDateFormatter()
+    
+    func datePickerDateChanged(datepicker: UIDatePicker) {
+        dateLabel.text = format.stringFromDate(datePicker.date)
+    }
+    
+    private func prepareDatePicker() {
+        let now = NSDate()
+        let oneYearTime: NSTimeInterval = 365*24*60*60
+        
+        let oneYearFromNow = now.dateByAddingTimeInterval(oneYearTime)
+        datePicker.minimumDate = now
+        datePicker.maximumDate = oneYearFromNow
+        
+        datePicker.addTarget(self, action: "datePickerDateChanged:", forControlEvents: .ValueChanged)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        prepareDatePicker()
+        
+        
+        format.timeStyle = NSDateFormatterStyle.ShortStyle
+        format.dateStyle = NSDateFormatterStyle.MediumStyle
+    
+        let current = datePicker.date
+        dateLabel.text = format.stringFromDate(current)
     }
     
     override func viewWillAppear(animated: Bool) {

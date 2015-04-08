@@ -13,12 +13,20 @@ import Parse
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    
+    private struct ParseKey {
+        static let appKey = "iFko0h7dIreumEvZQwTKQxejAsOObunUSU37f1up"
+        //COMpsvCZLaqeAK424QPBfgUpZlYvUqk33RV5Z4su
+        static let clientKey = "bzEclgVBmYZVEQndtW9ummVpOcgtmYawLA03bNrb"
+//        ucOzGCY4seQMi4LLH2Wooa0rKrYMcAjNqGr5ZMXh
+    }
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         Parse.enableLocalDatastore()
-        Parse.setApplicationId("COMpsvCZLaqeAK424QPBfgUpZlYvUqk33RV5Z4su", clientKey: "ucOzGCY4seQMi4LLH2Wooa0rKrYMcAjNqGr5ZMXh")
+        
+        Parse.setApplicationId(ParseKey.appKey, clientKey: ParseKey.clientKey)
+        
         return true
     }
 

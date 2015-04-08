@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Settings-->
@@ -26,6 +27,24 @@
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lfe-41-A1M" id="696-em-tVi">
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bgt-zd-3Fy">
+                                                    <rect key="frame" x="8" y="8" width="584" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="bgt-zd-3Fy" firstAttribute="top" secondItem="696-em-tVi" secondAttribute="topMargin" id="84k-Zf-2t1"/>
+                                                <constraint firstItem="bgt-zd-3Fy" firstAttribute="leading" secondItem="696-em-tVi" secondAttribute="leadingMargin" id="bhe-6h-4dL"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="bgt-zd-3Fy" secondAttribute="trailing" id="eZA-fk-1n5"/>
+                                            </constraints>
+                                            <variation key="heightClass=compact-widthClass=compact">
+                                                <mask key="subviews">
+                                                    <include reference="bgt-zd-3Fy"/>
+                                                </mask>
+                                            </variation>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
@@ -74,10 +93,13 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Settings" id="31p-Vp-yss"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="usernameid" destination="bgt-zd-3Fy" id="b5l-VG-5Su"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jtw-pF-nkx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1911" y="-1561.5"/>
+            <point key="canvasLocation" x="2284.5" y="-1276.5"/>
         </scene>
         <!--Set-->
         <scene sceneID="5XA-nJ-m0L">

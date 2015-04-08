@@ -9,7 +9,7 @@
 import Foundation
 import Parse
 
-class ParseAction : ParseLogin, ParseTask{
+class ParseAction : ParseTask{
     private struct ParseConstants {
         static let taskClass = "TaskItems"
         static let taskTitle = "TaskTitle"
@@ -64,53 +64,8 @@ class ParseAction : ParseLogin, ParseTask{
         }
     }
 
-    
-    class func signIn(email: String, password: String, completion: (result: String) -> Void) {
-        completion(result: "success")
-        
-    }
-    
-    class func signUp(email: String, username: String, password: String, completion: (result: String) -> Void) {
-    
-    }
-    
 }
 
-
-protocol ParseLogin {
-    /**
-    Send a new user request
-    
-    :param: email,username,password
-    
-    :returns: result
-    */
-    class func signUp (email: String, username: String, password: String, completion: (result: String) -> Void)
-//    {
-//    var result:String = ""
-//    // result: "ok","invalid email","invalid username","invalid pwd",etc.
-//    // TODO: newUserSignUp
-//    
-//    return result
-//    }
-    
-    /**
-    Sign in
-    
-    :param: email,password
-    
-    :returns: result
-    */
-    class func signIn(email: String, password:String, completion: (result: String) -> Void )
-//    {
-//    var result:String = ""
-//    //result:"ok","timeout",etc.
-//    // TODO: User SignUp
-//    
-//    return result
-//    }
-
-}
 
 protocol ParseTask {
     class func deleteItem(objectId: String)
