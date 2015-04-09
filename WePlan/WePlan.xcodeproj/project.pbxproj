@@ -54,6 +54,7 @@
 		66E5759B1AABCAC000F0890A /* Tasks.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 66E5759A1AABCAC000F0890A /* Tasks.storyboard */; };
 		66E5759D1AABCACB00F0890A /* Groups.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 66E5759C1AABCACB00F0890A /* Groups.storyboard */; };
 		66FC89E61AD7173000A9017A /* FriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FC89E51AD7173000A9017A /* FriendTableViewCell.swift */; };
+		C5276B311AD71BC200D260F3 /* ParseFriend.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5276B301AD71BC200D260F3 /* ParseFriend.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -125,6 +126,7 @@
 		66E5759A1AABCAC000F0890A /* Tasks.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Tasks.storyboard; sourceTree = "<group>"; };
 		66E5759C1AABCACB00F0890A /* Groups.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Groups.storyboard; sourceTree = "<group>"; };
 		66FC89E51AD7173000A9017A /* FriendTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendTableViewCell.swift; sourceTree = "<group>"; };
+		C5276B301AD71BC200D260F3 /* ParseFriend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseFriend.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -231,6 +233,7 @@
 				663053E21ACCC2180073FB96 /* Friend.swift */,
 				663053E61ACCC4320073FB96 /* Group.swift */,
 				663053C91ACBB36C0073FB96 /* ParseAction.swift */,
+				C5276B301AD71BC200D260F3 /* ParseFriend.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -456,6 +459,7 @@
 				66D7464B1ACA5A1C0077290A /* GroupsTableVC.swift in Sources */,
 				663053E01ACC83BF0073FB96 /* SWUtilityButtonTapGestureRecognizer.m in Sources */,
 				663053CA1ACBB36C0073FB96 /* ParseAction.swift in Sources */,
+				C5276B311AD71BC200D260F3 /* ParseFriend.swift in Sources */,
 				663053E51ACCC28A0073FB96 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
