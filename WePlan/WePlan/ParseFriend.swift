@@ -63,7 +63,7 @@ class ParseFriendAction : ParseFriend {
         }
     }
     
-    class func getFriendList (complete : [User] -> Void) {
+    class func getFriendList (complete : ([User]) -> Void) {
         var friendList : [User] = []
         var userIDList : [String] = []
         var first_query = PFQuery(className: FriendConstants.friendClass)
