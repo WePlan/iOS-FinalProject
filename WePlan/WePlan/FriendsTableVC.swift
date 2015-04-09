@@ -10,13 +10,10 @@ import UIKit
 
 class FriendsTableVC: UITableViewController {
     
-    var Titles: [String] = []
+    var FriendList: [User] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        Titles.append("Frinds jin")
-        Titles.append("Friends")
-        self.tableView.rowHeight = 60
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -27,11 +24,7 @@ class FriendsTableVC: UITableViewController {
     override func viewWillAppear(animated: Bool) {
         DefaultSetting.setNavigationBar(self.navigationController!)
     }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
+    
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -41,45 +34,18 @@ class FriendsTableVC: UITableViewController {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
-        return Titles.count
+        return 0
     }
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cellIdentifier = "friendCellPrototype"
-        var cell: SWTableViewCell? = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as? SWTableViewCell
+        var cell: FriendTableViewCell? = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as? FriendTableViewCell
         
         // Configure the cell...
-        if cell == nil {
-            cell = SWTableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: cellIdentifier)
-            
-//            cell = [[SWTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
-            cell!.rightUtilityButtons = self.rightButtons()
-            cell!.setRightUtilityButtons(cell!.rightUtilityButtons, withButtonWidth: 40)
-    //        cell.leftUtilityButtons = self.leftButtons()
-    //        cell.setLeftUtilityButtons(cell.leftUtilityButtons, withButtonWidth: 20)
-                //        cell.delegate = self
-        }
-        cell!.textLabel?.text = Titles[indexPath.row]
 
         return cell!
     }
-    
-    func rightButtons() -> NSArray {
-        var rightUtilityButtons: NSMutableArray = []
-        
-        rightUtilityButtons.sw_addUtilityButtonWithColor(UIColor.blueColor(), icon: UIImage(named: "deleteIcon"))
-        
-        return rightUtilityButtons
-    }
-    
-    func leftButtons() -> NSArray {
-        var leftUtilityButtons: NSMutableArray = []
-        leftUtilityButtons.sw_addUtilityButtonWithColor(UIColor.blueColor(), icon: UIImage(named: "deleteIcon"))
-        
-        return leftUtilityButtons
-    }
-    
     
     /*
     // Override to support conditional editing of the table view.
