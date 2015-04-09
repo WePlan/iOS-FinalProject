@@ -9,19 +9,22 @@
 import Foundation
 
 class TaskItem {
+    //attributes
     var taskName: String
     var dueTime: NSDate
+    var location: String = ""
     var descript: String = ""
-    var tagColorName: String
-    var checked: Bool
-    var uniqueId: String
-    
     var kind: String = ""
     var owner: String = ""
+    //ui attributes
+    var checked: Bool
+    var tagColorName: String
     
-    init (name: String, id: String ,tagcolor: String){
+    var uniqueId: String
+    
+    init (name: String, id: String ,due: NSDate,tagcolor: String){
         taskName = name
-        dueTime = NSDate()
+        dueTime = due
         tagColorName = tagcolor
         checked = false
         uniqueId = id

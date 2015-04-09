@@ -19,11 +19,21 @@ class ParseAction : ParseTask{
         static let taskDescription = "tdescription"
         static let taskSort = "tsort"
         static let taskOwner = "towner"
+        
+        static let uid = "uid"
     }
     
-    class func addTaskItem(taskname: String, completion: (String) -> Void) {
+//    private struct UserTaskConstants {
+//        static let userid = "uid"
+//        static let taskid = "tid"
+//    }
+    
+    class func addTaskItem(task: TaskItem, completion: (String) -> Void) {
         var taskItems = PFObject(className: TaskConstants.taskClass)
-        taskItems[TaskConstants.taskTitle] = taskname
+        
+        taskItems[TaskConstants.taskTitle] = task.taskName
+        taskItems[TaskConstants.taskDate] = task.dueTime
+        taskItems[TaskConstants.uid] = PFUser.currentUser().objectId
         
         taskItems.saveInBackgroundWithBlock { (success: Bool, error: NSError!) -> Void in
             if success {
@@ -33,6 +43,7 @@ class ParseAction : ParseTask{
                 println("\(error)")
             }
         }
+        
     }
     
     class func deleteItem(objectId: String) {
@@ -57,14 +68,20 @@ class ParseAction : ParseTask{
     class func getInitialDataFromParse(completion: ([TaskItem]) -> Void) {
         var data:[TaskItem] = []
         var query = PFQuery(className: TaskConstants.taskClass)
-        query.whereKeyExists(TaskConstants.taskTitle)
+        
+        query.whereKey(TaskConstants.uid, equalTo: PFUser.currentUser().objectId)
+//        query.whereKeyExists(TaskConstants.taskTitle)
         
         query.findObjectsInBackgroundWithBlock { (objects: [AnyObject]!, error: NSError!) -> Void in
             if error == nil {
                 //the find succeeded.
                 if let objects = objects as? [PFObject] {
                     for object in objects {
-                        var item = TaskItem(name: object.objectForKey(TaskConstants.taskTitle) as String, id: object.objectId,tagcolor: "")
+                        let title = object.objectForKey(TaskConstants.taskTitle) as String
+                        let due = object.objectForKey(TaskConstants.taskDate) as NSDate
+                        let id = object.objectId
+                        
+                        var item = TaskItem(name: title, id:id,due: due ,tagcolor: "")
                         
                         data.append(item)
                     }
@@ -82,7 +99,7 @@ class ParseAction : ParseTask{
 protocol ParseTask {
     class func deleteItem(objectId: String)
     class func getInitialDataFromParse(completion: ([TaskItem]) -> Void)
-    class func addTaskItem(taskname: String, completion: (String) -> Void)
+    class func addTaskItem(task: TaskItem, completion: (String) -> Void)
     /**
     update the task in database
     

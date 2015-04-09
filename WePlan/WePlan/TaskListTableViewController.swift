@@ -17,7 +17,7 @@ class TaskListTableViewController: UITableViewController, TasksTableViewCellDele
         if task != nil {
             tasks.append(task!)
             self.tableView.reloadData()
-            ParseAction.addTaskItem(task!.taskName, completion: { (resultId: String) -> Void in
+            ParseAction.addTaskItem(task!, completion: { (resultId: String) -> Void in
                 task!.uniqueId = resultId
             })
         }
