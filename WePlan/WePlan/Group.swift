@@ -15,4 +15,6 @@ struct Groups {
     
     var createdDate: NSDate
     var descript: String
+    
+    var sssss: String
 }
