@@ -7,15 +7,36 @@
 //
 
 import UIKit
+import Parse
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    
+    private struct ParseKey {
+        static let appKey = "iFko0h7dIreumEvZQwTKQxejAsOObunUSU37f1up"
+        //COMpsvCZLaqeAK424QPBfgUpZlYvUqk33RV5Z4su
+        static let clientKey = "bzEclgVBmYZVEQndtW9ummVpOcgtmYawLA03bNrb"
+//        ucOzGCY4seQMi4LLH2Wooa0rKrYMcAjNqGr5ZMXh
+    }
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        Parse.enableLocalDatastore()
+        Parse.setApplicationId(ParseKey.appKey, clientKey: ParseKey.clientKey)
+        // set entry point
+        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        var storyboard = UIStoryboard(name: "Main", bundle: nil)
+        var vc: UIViewController?
+        if PFUser.currentUser() != nil {
+            vc = storyboard.instantiateViewControllerWithIdentifier("TabBarEntry") as TabBarViewController
+        }else {
+            vc = storyboard.instantiateViewControllerWithIdentifier("LoginView") as LoginViewController
+        }
+        self.window?.rootViewController = vc
+        self.window?.makeKeyAndVisible()
         return true
     }
 
