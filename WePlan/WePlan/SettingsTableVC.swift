@@ -20,11 +20,25 @@ class SettingsTableVC: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+
     }
 
+    @IBAction func clickLogout(sender: AnyObject) {
+        var sb = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+        var vc = sb.instantiateViewControllerWithIdentifier("LoginView") as LoginViewController
+        self.presentViewController(vc, animated: true, completion: nil)
+        
+    }
+    
     override func viewWillAppear(animated: Bool) {
         DefaultSetting.setNavigationBar(self.navigationController!)
     }
+    
+    override func viewDidAppear(animated: Bool) {
+        
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

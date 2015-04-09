@@ -23,6 +23,10 @@ class SignUpViewController: UIViewController {
         static let segueToTabbar = "signUpSucceeded"
     }
     
+    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+        view.endEditing(true)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

@@ -17,8 +17,7 @@ class TabBarViewController: UITabBarController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Do any additional setup after loading the view.
+                // Do any additional setup after loading the view.
         var vcs:[UIViewController] = []
         
         let settingsSB: UIStoryboard = UIStoryboard(name: "Setting", bundle: NSBundle.mainBundle())
@@ -41,7 +40,10 @@ class TabBarViewController: UITabBarController {
         self.tabBar.backgroundColor = UIColor.redColor()
         
     }
+    override func viewDidAppear(animated: Bool) {
+        
 
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

@@ -23,18 +23,29 @@ class LoginViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+        view.endEditing(true)
+    }
+    
     override func viewWillAppear(animated: Bool) {
         displayed = true
-        if PFUser.currentUser() != nil {
-            usernameText.text = PFUser.currentUser().username
-//            println(PFUser.currentUser().username)
+//        if PFUser.currentUser() != nil {
+//            usernameText.text = PFUser.currentUser().username
 //            let vc = self.storyboard?.instantiateViewControllerWithIdentifier("TabBarEntry") as TabBarViewController
+//            println(vc)
+//            vc.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
+//            
+//            self.presentViewController(vc, animated: true, completion: nil)
+        
+//        }
+        
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+//        if PFUser.currentUser() != nil {
+//            usernameText.text = PFUser.currentUser().username
 //            performSegueWithIdentifier(Login.LoginSegueId, sender: self)
-//            self.presentViewController(vc, animated: false, completion: { () -> Void in
-//                
-//            })
-            
-        }
+//        }
     }
 
     override func viewWillDisappear(animated: Bool) {
