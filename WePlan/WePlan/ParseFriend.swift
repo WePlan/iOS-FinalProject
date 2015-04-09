@@ -13,7 +13,7 @@ class ParseFriendAction : ParseFriend {
     private struct FriendConstants{
         static let friendClass = "Friends"
         static let friendOne = "uid1"
-        static let friendTwo = "udi2"
+        static let friendTwo = "uid2"
     }
     
     private struct UserConstants{
@@ -66,48 +66,49 @@ class ParseFriendAction : ParseFriend {
     class func getFriendList (complete : ([User]) -> Void) {
         var friendList : [User] = []
         var userIDList : [String] = []
-        var first_query = PFQuery(className: FriendConstants.friendClass)
-        first_query.whereKey(FriendConstants.friendOne, equalTo: PFUser.currentUser().objectId)
-        first_query.findObjectsInBackgroundWithBlock { (objects : [AnyObject]!, error : NSError!) -> Void in
+        
+        var check_uid1_query = PFQuery(className: FriendConstants.friendClass)
+        check_uid1_query.whereKey(FriendConstants.friendOne, equalTo: "ZdohhG7VbV")
+        check_uid1_query.findObjectsInBackgroundWithBlock { (objects : [AnyObject]!, error : NSError!) -> Void in
             if error == nil {
                 if let objects = objects as? [PFObject] {
                     for object in objects {
                         var tmp = object.objectForKey(FriendConstants.friendTwo) as String
                         userIDList.append(tmp)
                     }
-                }
-            }
-            else{
-                println("Error \(error) \(error.userInfo)")
-            }
-        }
-        
-        var second_query = PFQuery(className: FriendConstants.friendClass)
-        second_query.whereKey(FriendConstants.friendTwo, equalTo: PFUser.currentUser().objectId)
-        second_query.findObjectsInBackgroundWithBlock { (objects : [AnyObject]!, error : NSError!) -> Void in
-            if error == nil {
-                if let objects = objects as? [PFObject] {
-                    for object in objects {
-                        var tmp = object.objectForKey(FriendConstants.friendOne) as String
-                        userIDList.append(tmp)
+                    var check_uid2_query = PFQuery(className: FriendConstants.friendClass)
+                    check_uid2_query.whereKey(FriendConstants.friendTwo, equalTo: "ZdohhG7VbV")
+                    check_uid2_query.findObjectsInBackgroundWithBlock {
+                        (objects : [AnyObject]!, error : NSError!) -> Void in
+                        if error == nil {
+                            if let objects = objects as? [PFObject] {
+                                for object in objects {
+                                    var tmp = object.objectForKey(FriendConstants.friendOne) as String
+                                    userIDList.append(tmp)
+                                }
+                                var extract_userinform_query = PFQuery(className: UserConstants.userClass)
+                                extract_userinform_query.whereKey("objectId", containedIn: userIDList)
+                                extract_userinform_query.findObjectsInBackgroundWithBlock {
+                                    (objects : [AnyObject]!, error : NSError!) -> Void in
+                                    if error == nil {
+                                        if let objects = objects as? [PFUser] {
+                                            for object in objects {
+                                                var item = User(name: object.objectForKey(UserConstants.userNickname) as String, uemail: object.email)
+                                                friendList.append(item)
+                                            }
+                                            complete(friendList)
+                                        }
+                                    }
+                                    else{
+                                        println("Error \(error) \(error.userInfo)")
+                                    }
+                                }
+                            }
+                        }
+                        else{
+                            println("Error \(error) \(error.userInfo)")
+                        }
                     }
-                }
-            }
-            else{
-                println("Error \(error) \(error.userInfo)")
-            }
-        }
-        
-        let predicate = NSPredicate(format: "objectID IN \(userIDList)")
-        var third_query = PFQuery(className: UserConstants.userClass, predicate: predicate)
-        third_query.findObjectsInBackgroundWithBlock { (objects : [AnyObject]!, error : NSError!) -> Void in
-            if error == nil {
-                if let objects = objects as? [PFUser] {
-                    for object in objects {
-                        var item = User(name: object.objectForKey(UserConstants.userNickname) as String, uemail: UserConstants.userEmail)
-                        friendList.append(item)
-                    }
-                    complete(friendList)
                 }
             }
             else{
