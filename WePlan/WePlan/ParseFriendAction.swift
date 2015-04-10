@@ -26,9 +26,7 @@ class ParseFriendAction : ParseFriend {
     class func searchPeopleByNickname (nickname : String, complete : ([User]) -> Void) {
         var resultList : [User] = []
         var query = PFQuery(className: UserConstants.userClass)
-        query.whereKey(UserConstants.userNickname, equalTo: nickname)
-        
-    
+        query.whereKey(UserConstants.userNickname, hasPrefix: nickname)
         query.findObjectsInBackgroundWithBlock {
             (objects: [AnyObject]?, error: NSError?) -> Void in
             if error == nil {
