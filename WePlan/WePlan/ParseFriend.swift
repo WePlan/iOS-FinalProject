@@ -73,8 +73,10 @@ class ParseFriendAction : ParseFriend {
             if error == nil {
                 if let objects = objects as? [PFObject] {
                     for object in objects {
-                        var tmp = object.objectForKey(FriendConstants.friendTwo) as String
-                        userIDList.append(tmp)
+                        if object.objectForKey(FriendConstants.friendVerified) as Bool {
+                            var tmp = object.objectForKey(FriendConstants.friendTwo) as String
+                            userIDList.append(tmp)
+                        }
                     }
                     var check_uid2_query = PFQuery(className: FriendConstants.friendClass)
                     check_uid2_query.whereKey(FriendConstants.friendTwo, equalTo: "ZdohhG7VbV")
@@ -83,8 +85,10 @@ class ParseFriendAction : ParseFriend {
                         if error == nil {
                             if let objects = objects as? [PFObject] {
                                 for object in objects {
-                                    var tmp = object.objectForKey(FriendConstants.friendOne) as String
-                                    userIDList.append(tmp)
+                                    if object.objectForKey(FriendConstants.friendVerified) as Bool {
+                                        var tmp = object.objectForKey(FriendConstants.friendOne) as String
+                                        userIDList.append(tmp)
+                                    }
                                 }
                                 var extract_userinform_query = PFQuery(className: UserConstants.userClass)
                                 extract_userinform_query.whereKey("objectId", containedIn: userIDList)
@@ -115,6 +119,10 @@ class ParseFriendAction : ParseFriend {
                 println("Error \(error) \(error.userInfo)")
             }
         }
+    }
+    
+    class func addFriend () {
+        
     }
     
     
