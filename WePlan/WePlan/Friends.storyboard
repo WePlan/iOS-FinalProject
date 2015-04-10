@@ -13,7 +13,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="friendCellPrototype" rowHeight="92" id="a6K-Fs-vew">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="friendCellPrototype" rowHeight="92" id="a6K-Fs-vew" customClass="FriendTableViewCell" customModule="WePlan" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="a6K-Fs-vew" id="suJ-X6-ZTr">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -32,12 +32,80 @@
                             <outlet property="delegate" destination="60p-uk-Fgz" id="OXA-pc-hRI"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Friends" id="3gD-jX-aHc"/>
+                    <navigationItem key="navigationItem" title="Friends" id="3gD-jX-aHc">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="feN-jc-NSe">
+                            <connections>
+                                <segue destination="pxd-RF-Ghc" kind="show" id="Jtm-4U-2No"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vc8-yZ-ln7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1925" y="987"/>
+            <point key="canvasLocation" x="1834" y="998"/>
+        </scene>
+        <!--Search FriendVC-->
+        <scene sceneID="cgF-fD-dMZ">
+            <objects>
+                <viewController id="pxd-RF-Ghc" customClass="SearchFriendVC" customModule="WePlan" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="93S-dG-snc"/>
+                        <viewControllerLayoutGuide type="bottom" id="fTx-Wt-8hb"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="01D-cI-atz">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="sz7-pt-XVC">
+                                <rect key="frame" x="0.0" y="64" width="600" height="44"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="pxd-RF-Ghc" id="ybi-iI-cV3"/>
+                                </connections>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="YU1-bh-fm9">
+                                <rect key="frame" x="0.0" y="108" width="600" height="443"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="protoCell" id="df4-Pn-RmM">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="df4-Pn-RmM" id="u9K-qi-j3s">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="YU1-bh-fm9" firstAttribute="leading" secondItem="sz7-pt-XVC" secondAttribute="leading" id="AzG-F7-tHv"/>
+                            <constraint firstItem="YU1-bh-fm9" firstAttribute="bottom" secondItem="fTx-Wt-8hb" secondAttribute="top" id="G1t-L3-9Ls"/>
+                            <constraint firstAttribute="trailing" secondItem="sz7-pt-XVC" secondAttribute="trailing" id="Krl-Hc-mVD"/>
+                            <constraint firstItem="sz7-pt-XVC" firstAttribute="top" secondItem="93S-dG-snc" secondAttribute="bottom" id="RAq-UF-KyO"/>
+                            <constraint firstItem="YU1-bh-fm9" firstAttribute="top" secondItem="sz7-pt-XVC" secondAttribute="bottom" id="XWH-UY-9YZ"/>
+                            <constraint firstItem="sz7-pt-XVC" firstAttribute="leading" secondItem="01D-cI-atz" secondAttribute="leading" id="mGc-Zt-erM"/>
+                            <constraint firstItem="YU1-bh-fm9" firstAttribute="trailing" secondItem="sz7-pt-XVC" secondAttribute="trailing" id="ryY-4c-9Zu"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="myTableview" destination="YU1-bh-fm9" id="jaV-zb-RO3"/>
+                        <outlet property="searchBar" destination="sz7-pt-XVC" id="fkU-Ot-sHD"/>
+                        <outlet property="searchDisplayController" destination="vw9-fc-TEb" id="4Yv-8h-9l7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aIS-jN-qPf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="vw9-fc-TEb">
+                    <connections>
+                        <outlet property="delegate" destination="pxd-RF-Ghc" id="MlU-Tb-L9a"/>
+                        <outlet property="searchBar" destination="sz7-pt-XVC" id="jlz-sq-guf"/>
+                        <outlet property="searchContentsController" destination="pxd-RF-Ghc" id="lGx-1H-xDb"/>
+                        <outlet property="searchResultsDataSource" destination="pxd-RF-Ghc" id="yH9-jM-hbx"/>
+                        <outlet property="searchResultsDelegate" destination="pxd-RF-Ghc" id="KZK-TT-IJx"/>
+                    </connections>
+                </searchDisplayController>
+            </objects>
+            <point key="canvasLocation" x="2623" y="975"/>
         </scene>
         <!--Friends-->
         <scene sceneID="76h-oD-dHT">
