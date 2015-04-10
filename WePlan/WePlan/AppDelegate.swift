@@ -31,9 +31,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var storyboard = UIStoryboard(name: "Main", bundle: nil)
         var vc: UIViewController?
         if PFUser.currentUser() != nil {
-            vc = storyboard.instantiateViewControllerWithIdentifier("TabBarEntry") as TabBarViewController
+            vc = storyboard.instantiateViewControllerWithIdentifier("TabBarEntry") as! TabBarViewController
         }else {
-            vc = storyboard.instantiateViewControllerWithIdentifier("LoginView") as LoginViewController
+            vc = storyboard.instantiateViewControllerWithIdentifier("LoginView") as! LoginViewController
         }
         self.window?.rootViewController = vc
         self.window?.makeKeyAndVisible()

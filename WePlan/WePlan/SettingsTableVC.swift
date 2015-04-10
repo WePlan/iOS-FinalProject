@@ -14,7 +14,7 @@ class SettingsTableVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        usernameid.text = PFUser.currentUser().username + PFUser.currentUser().objectId
+        usernameid.text = PFUser.currentUser()!.username! + PFUser.currentUser()!.objectId!
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -26,7 +26,7 @@ class SettingsTableVC: UITableViewController {
 
     @IBAction func clickLogout(sender: AnyObject) {
         var sb = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
-        var vc = sb.instantiateViewControllerWithIdentifier("LoginView") as LoginViewController
+        var vc = sb.instantiateViewControllerWithIdentifier("LoginView") as! LoginViewController
         self.presentViewController(vc, animated: true, completion: nil)
         
     }

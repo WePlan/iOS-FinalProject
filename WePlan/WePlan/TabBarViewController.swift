@@ -25,10 +25,10 @@ class TabBarViewController: UITabBarController {
         let taskSB:UIStoryboard = UIStoryboard(name: "Tasks", bundle: NSBundle.mainBundle())
         let groupSB:UIStoryboard = UIStoryboard(name: "Groups", bundle: NSBundle.mainBundle())
         
-        let vc1: UIViewController = settingsSB.instantiateViewControllerWithIdentifier(viewControllers.settingVC) as UINavigationController
-        let vc2: UIViewController = friendsSB.instantiateViewControllerWithIdentifier(viewControllers.friendVC) as UINavigationController
-        let vc3: UIViewController = taskSB.instantiateViewControllerWithIdentifier(viewControllers.mainVC) as UINavigationController
-        let vc4: UIViewController = groupSB.instantiateViewControllerWithIdentifier(viewControllers.groupVC) as UINavigationController
+        let vc1: UIViewController = settingsSB.instantiateViewControllerWithIdentifier(viewControllers.settingVC) as! UINavigationController
+        let vc2: UIViewController = friendsSB.instantiateViewControllerWithIdentifier(viewControllers.friendVC) as! UINavigationController
+        let vc3: UIViewController = taskSB.instantiateViewControllerWithIdentifier(viewControllers.mainVC) as! UINavigationController
+        let vc4: UIViewController = groupSB.instantiateViewControllerWithIdentifier(viewControllers.groupVC) as! UINavigationController
 
         vcs.append(vc3)
         vcs.append(vc2)

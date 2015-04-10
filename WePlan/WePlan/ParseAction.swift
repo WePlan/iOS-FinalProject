@@ -33,25 +33,28 @@ class ParseAction : ParseTask{
         
         taskItems[TaskConstants.taskTitle] = task.taskName
         taskItems[TaskConstants.taskDate] = task.dueTime
-        taskItems[TaskConstants.uid] = PFUser.currentUser().objectId
+        taskItems[TaskConstants.uid] = PFUser.currentUser()!.objectId
+
         
-        taskItems.saveInBackgroundWithBlock { (success: Bool, error: NSError!) -> Void in
+        taskItems.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
             if success {
                 println("Obj created with id: \(taskItems.objectId)")
-                completion(taskItems.objectId)
+                completion(taskItems.objectId!)
             }else {
                 println("\(error)")
             }
         }
+        
         
     }
     
     class func deleteItem(objectId: String) {
         // TODO:
         var pfQuery = PFQuery(className: TaskConstants.taskClass)
-        pfQuery.getObjectInBackgroundWithId(objectId, block: { (result: PFObject! , error: NSError!) -> Void in
+
+        pfQuery.getObjectInBackgroundWithId(objectId, block: { (result: PFObject? , error: NSError?) -> Void in
             if error == nil {
-                result.deleteInBackground()
+                result!.deleteInBackground()
             }
         })
     }
@@ -61,7 +64,7 @@ class ParseAction : ParseTask{
         
         var predicate = NSPredicate(format: "ttitle = 123 AND towner = 321")
         var query = PFQuery(className: TaskConstants.taskClass, predicate: predicate)
-        var resultArray = NSArray(array: query.findObjects())
+        var resultArray = NSArray(array: query.findObjects()!)
         
     }
     
@@ -69,26 +72,28 @@ class ParseAction : ParseTask{
         var data:[TaskItem] = []
         var query = PFQuery(className: TaskConstants.taskClass)
         
-        query.whereKey(TaskConstants.uid, equalTo: PFUser.currentUser().objectId)
+        query.whereKey(TaskConstants.uid, equalTo: PFUser.currentUser()!.objectId!)
 //        query.whereKeyExists(TaskConstants.taskTitle)
         
-        query.findObjectsInBackgroundWithBlock { (objects: [AnyObject]!, error: NSError!) -> Void in
+        
+        
+        query.findObjectsInBackgroundWithBlock { (objects: [AnyObject]?, error: NSError?) -> Void in
             if error == nil {
                 //the find succeeded.
                 if let objects = objects as? [PFObject] {
                     for object in objects {
-                        let title = object.objectForKey(TaskConstants.taskTitle) as String
-                        let due = object.objectForKey(TaskConstants.taskDate) as NSDate
+                        let title = object.objectForKey(TaskConstants.taskTitle) as! String
+                        let due = object.objectForKey(TaskConstants.taskDate) as! NSDate
                         let id = object.objectId
                         
-                        var item = TaskItem(name: title, id:id,due: due ,tagcolor: "")
+                        var item = TaskItem(name: title, id:id!,due: due ,tagcolor: "")
                         
                         data.append(item)
                     }
                     completion(data)
                 }
             }else {
-                println("Error \(error)     \(error.userInfo)")
+                println("Error \(error)     \(error!.userInfo)")
             }
         }
     }
@@ -97,9 +102,9 @@ class ParseAction : ParseTask{
 
 
 protocol ParseTask {
-    class func deleteItem(objectId: String)
-    class func getInitialDataFromParse(completion: ([TaskItem]) -> Void)
-    class func addTaskItem(task: TaskItem, completion: (String) -> Void)
+    static func deleteItem(objectId: String)
+    static func getInitialDataFromParse(completion: ([TaskItem]) -> Void)
+    static func addTaskItem(task: TaskItem, completion: (String) -> Void)
     /**
     update the task in database
     
@@ -107,7 +112,7 @@ protocol ParseTask {
     
     callback: update task in model
     */
-    class func updateTask(completion: Void -> Void)
+    static func updateTask(completion: Void -> Void)
 }
 
 protocol ParseGroup {

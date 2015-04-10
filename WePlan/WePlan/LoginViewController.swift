@@ -23,7 +23,7 @@ class LoginViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         view.endEditing(true)
     }
     
@@ -69,13 +69,14 @@ class LoginViewController: UIViewController {
             return
         }
         
-        PFUser.logInWithUsernameInBackground(username, password: pwd) { (user: PFUser!, error: NSError!) -> Void in
+        
+        PFUser.logInWithUsernameInBackground(username, password: pwd) { (user: PFUser?, error: NSError?) -> Void in
             if user != nil {
                 if self.displayed {
                     self.performSegueWithIdentifier(Login.LoginSegueId, sender: self)
                 }
             }else {
-                let errorString = error.userInfo!["error"] as String
+                let errorString = error!.userInfo!["error"] as! String
                 self.errorLabel.text = errorString
             }
         }

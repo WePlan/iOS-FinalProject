@@ -12,7 +12,7 @@ class TaskListTableViewController: UITableViewController, TasksTableViewCellDele
     var tasks:[TaskItem] = []
     
     @IBAction func unwindTaskList (segue: UIStoryboardSegue){
-        var src = segue.sourceViewController as AddTaskItemViewController
+        var src = segue.sourceViewController as! AddTaskItemViewController
         var task = src.newTask
         if task != nil {
             tasks.append(task!)
@@ -82,7 +82,7 @@ class TaskListTableViewController: UITableViewController, TasksTableViewCellDele
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("taskCellPrototype", forIndexPath: indexPath) as TasksTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("taskCellPrototype", forIndexPath: indexPath) as! TasksTableViewCell
 
         // Configure the cell...
         var item = tasks[indexPath.row]

@@ -22,8 +22,8 @@ class SearchFriendVC: UIViewController, UITableViewDataSource, UITableViewDelega
         myTableview.dataSource = self
         
         // Do any additional setup after loading the view.
-        searchDisplayController?.searchResultsDataSource = self
-        searchDisplayController?.searchResultsDelegate = self
+//        searchDisplayController?.searchResultsDataSource = self
+//        searchDisplayController?.searchResultsDelegate = self
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -50,10 +50,15 @@ class SearchFriendVC: UIViewController, UITableViewDataSource, UITableViewDelega
    
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell:UITableViewCell? = tableView.dequeueReusableCellWithIdentifier("protoCell") as? UITableViewCell
+//        var cell:UITableViewCell? = tableView.dequeueReusableCellWithIdentifier
+//        tableView.dequeueReusableCellWithIdentifier("protoCell" ) as? UITableViewCell
+        var cell:UITableViewCell? = tableView.dequeueReusableCellWithIdentifier("protoCell" ) as? UITableViewCell
+//        var cell: FriendTableViewCell? = tableView.dequeueReusableCellWithIdentifier("protoCell", forIndexPath: indexPath) as? FriendTableViewCell
         
         //configure cell
         if cell == nil {
+//            println("aa")
+//            cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "protoCell") as FriendTableViewCell
             cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "protoCell")
         }
         

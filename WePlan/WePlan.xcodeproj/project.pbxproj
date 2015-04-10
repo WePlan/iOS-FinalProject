@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		6623372F1AD442B800CA9BBB /* LocalUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6623372E1AD442B800CA9BBB /* LocalUser.swift */; };
-		663053AD1ACBACA80073FB96 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 663053AC1ACBACA80073FB96 /* Parse.framework */; };
-		663053AF1ACBACB90073FB96 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 663053AE1ACBACB90073FB96 /* Bolts.framework */; };
 		663053B11ACBAD380073FB96 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 663053B01ACBAD380073FB96 /* AudioToolbox.framework */; };
 		663053B31ACBAD450073FB96 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 663053B21ACBAD450073FB96 /* CFNetwork.framework */; };
 		663053B51ACBAD570073FB96 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 663053B41ACBAD570073FB96 /* CoreGraphics.framework */; };
@@ -37,6 +35,8 @@
 		6689E50E1ABCA3680079C8ED /* TaskListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6689E50D1ABCA3680079C8ED /* TaskListTableViewController.swift */; };
 		6689E5101ABCCD120079C8ED /* TaskItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6689E50F1ABCCD120079C8ED /* TaskItem.swift */; };
 		66AF5E001ACF2849006AA027 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66AF5DFF1ACF2849006AA027 /* LoginViewController.swift */; };
+		66BCE11D1AD84CB5009659EC /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66BCE11B1AD84CB5009659EC /* Bolts.framework */; };
+		66BCE11E1AD84CB5009659EC /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66BCE11C1AD84CB5009659EC /* Parse.framework */; };
 		66D5AB261AC9EFB200C37F6E /* TasksTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D5AB251AC9EFB200C37F6E /* TasksTableViewCell.swift */; };
 		66D746461ACA0D3A0077290A /* SettingsTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D746451ACA0D3A0077290A /* SettingsTableVC.swift */; };
 		66D746491ACA53F30077290A /* DefaultSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D746481ACA53F30077290A /* DefaultSetting.swift */; };
@@ -70,8 +70,6 @@
 
 /* Begin PBXFileReference section */
 		6623372E1AD442B800CA9BBB /* LocalUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalUser.swift; sourceTree = "<group>"; };
-		663053AC1ACBACA80073FB96 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
-		663053AE1ACBACB90073FB96 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		663053B01ACBAD380073FB96 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		663053B21ACBAD450073FB96 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		663053B41ACBAD570073FB96 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -106,6 +104,8 @@
 		6689E50D1ABCA3680079C8ED /* TaskListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskListTableViewController.swift; sourceTree = "<group>"; };
 		6689E50F1ABCCD120079C8ED /* TaskItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskItem.swift; sourceTree = "<group>"; };
 		66AF5DFF1ACF2849006AA027 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		66BCE11B1AD84CB5009659EC /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		66BCE11C1AD84CB5009659EC /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		66D5AB251AC9EFB200C37F6E /* TasksTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TasksTableViewCell.swift; sourceTree = "<group>"; };
 		66D746451ACA0D3A0077290A /* SettingsTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableVC.swift; sourceTree = "<group>"; };
 		66D746481ACA53F30077290A /* DefaultSetting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultSetting.swift; sourceTree = "<group>"; };
@@ -139,16 +139,16 @@
 				663053C51ACBADA80073FB96 /* libsqlite3.dylib in Frameworks */,
 				663053C31ACBAD9D0073FB96 /* libz.dylib in Frameworks */,
 				663053C11ACBAD910073FB96 /* SystemConfiguration.framework in Frameworks */,
+				66BCE11D1AD84CB5009659EC /* Bolts.framework in Frameworks */,
 				663053BF1ACBAD830073FB96 /* StoreKit.framework in Frameworks */,
 				663053BD1ACBAD7C0073FB96 /* Security.framework in Frameworks */,
+				66BCE11E1AD84CB5009659EC /* Parse.framework in Frameworks */,
 				663053BB1ACBAD710073FB96 /* QuartzCore.framework in Frameworks */,
 				663053B91ACBAD640073FB96 /* MobileCoreServices.framework in Frameworks */,
 				663053B71ACBAD5D0073FB96 /* CoreLocation.framework in Frameworks */,
 				663053B51ACBAD570073FB96 /* CoreGraphics.framework in Frameworks */,
 				663053B31ACBAD450073FB96 /* CFNetwork.framework in Frameworks */,
 				663053B11ACBAD380073FB96 /* AudioToolbox.framework in Frameworks */,
-				663053AD1ACBACA80073FB96 /* Parse.framework in Frameworks */,
-				663053AF1ACBACB90073FB96 /* Bolts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -191,8 +191,8 @@
 		663053C61ACBADB60073FB96 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				663053AC1ACBACA80073FB96 /* Parse.framework */,
-				663053AE1ACBACB90073FB96 /* Bolts.framework */,
+				66BCE11B1AD84CB5009659EC /* Bolts.framework */,
+				66BCE11C1AD84CB5009659EC /* Parse.framework */,
 				663053C41ACBADA80073FB96 /* libsqlite3.dylib */,
 				663053C21ACBAD9D0073FB96 /* libz.dylib */,
 				663053C01ACBAD910073FB96 /* SystemConfiguration.framework */,

@@ -56,10 +56,9 @@ class AddTaskItemViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         taskTitleTextField.resignFirstResponder()
     }
-    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -69,7 +68,7 @@ class AddTaskItemViewController: UIViewController {
         if sender as? UIButton != self.addButton {
             return
         }
-        if countElements(taskTitleTextField.text) > 0 {
+        if count(taskTitleTextField.text) > 0 {
             newTask = TaskItem(name: taskTitleTextField.text, id: "", due: datePicker.date, tagcolor: "")
         }
     }

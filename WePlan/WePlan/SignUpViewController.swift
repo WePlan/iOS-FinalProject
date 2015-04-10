@@ -23,7 +23,7 @@ class SignUpViewController: UIViewController {
         static let segueToTabbar = "signUpSucceeded"
     }
     
-    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         view.endEditing(true)
     }
     
@@ -53,7 +53,7 @@ class SignUpViewController: UIViewController {
         let password = passwordTextField.text
         let passwordRepeat = passwordRepeatTextField.text
         let nickname = nicknameTextField.text
-        if countElements(nickname) < 3 {
+        if count(nickname) < 3 {
             errorLabel.text = "Nickname is too short."
             return
         }
@@ -69,7 +69,8 @@ class SignUpViewController: UIViewController {
         user["nickname"] = nickname
 //        println(self.view.window)
         
-        user.signUpInBackgroundWithBlock { (succeeded: Bool!, error: NSError!) -> Void in
+        
+        user.signUpInBackgroundWithBlock { (succeeded: Bool, error: NSError?) -> Void in
 //            println(NSDate())
 //            sleep(5)
 //            println(NSDate())
@@ -87,7 +88,7 @@ class SignUpViewController: UIViewController {
 //                    self.performSegueWithIdentifier(Constants.segueToTabbar, sender: self)
 //                }
             }else {
-                let errorString = error.userInfo!["error"] as String
+                let errorString = error!.userInfo!["error"] as! String
                 self.errorLabel.text = errorString
             }
         }
