@@ -126,6 +126,24 @@ class ParseFriendAction : ParseFriend {
         
     }
     
+    class func deleteFriend(objectId : String) {
+        var first_predicate = NSPredicate(format: "uid1 == %@ AND uid2 == %@", objectId, PFUser.currentUser().objectId)
+        var first_query = PFQuery(className: FriendConstants.friendClass, predicate: first_predicate)
+        first_query.getFirstObjectInBackgroundWithBlock { (result : PFObject!, error : NSError!) -> Void in
+            if error == nil {
+                result.deleteInBackgroundWithBlock(nil)
+            }
+            else{
+                var second_predicate = NSPredicate(format: "uid1 == %@ AND uid2 == %@", PFUser.currentUser().objectId, objectId)
+                var second_query = PFQuery(className: FriendConstants.friendClass, predicate: second_predicate)
+                second_query.getFirstObjectInBackgroundWithBlock({ (result : PFObject!, error : NSError!) -> Void in
+                    if error == nil {
+                        result.deleteInBackgroundWithBlock(nil)
+                    }
+                })
+            }
+        }
+    }
     
 }
 
@@ -133,4 +151,5 @@ protocol ParseFriend {
     class func searchPeopleByNickname (nickname : String, complete : ([User]) -> Void)
     class func searchPeopleByEmail (email : String, complete : ([User]) -> Void)
     class func getFriendList (complete : [User] -> Void)
+    class func deleteFriend (objectId : String)
 }
