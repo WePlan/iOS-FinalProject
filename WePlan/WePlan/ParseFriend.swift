@@ -14,6 +14,7 @@ class ParseFriendAction : ParseFriend {
         static let friendClass = "Friends"
         static let friendOne = "uid1"
         static let friendTwo = "uid2"
+        static let friendVerified = "verified"
     }
     
     private struct UserConstants{
