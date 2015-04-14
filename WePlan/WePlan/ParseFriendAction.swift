@@ -24,21 +24,23 @@ class ParseFriendAction : ParseFriend {
     }
     
     class func searchPeopleByNickname (nickname : String, complete : ([User]) -> Void) {
-        var resultList : [User] = []
-        var query = PFQuery(className: UserConstants.userClass)
-        query.whereKey(UserConstants.userNickname, hasPrefix: nickname)
-        query.findObjectsInBackgroundWithBlock {
-            (objects: [AnyObject]?, error: NSError?) -> Void in
-            if error == nil {
-                if let objects = objects as? [PFUser] {
-                    for object in objects {
-                        var item = User(name: object.objectForKey(UserConstants.userNickname) as! String, uemail: object.email!)
-                        resultList.append(item)
+        if !nickname.isEmpty {
+            var resultList : [User] = []
+            var query = PFQuery(className: UserConstants.userClass)
+            query.whereKey(UserConstants.userNickname, hasPrefix: nickname)
+            query.findObjectsInBackgroundWithBlock {
+                (objects: [AnyObject]?, error: NSError?) -> Void in
+                if error == nil {
+                    if let objects = objects as? [PFUser] {
+                        for object in objects {
+                            var item = User(name: object.objectForKey(UserConstants.userNickname) as! String, uemail: object.email!)
+                            resultList.append(item)
+                        }
+                        complete(resultList)
                     }
-                    complete(resultList)
+                }else {
+                    println("Error \(error) \(error!.userInfo)")
                 }
-            }else {
-                println("Error \(error) \(error!.userInfo)")
             }
         }
     }
@@ -69,7 +71,7 @@ class ParseFriendAction : ParseFriend {
         var userIDList : [String] = []
         
         var check_uid1_query = PFQuery(className: FriendConstants.friendClass)
-        check_uid1_query.whereKey(FriendConstants.friendOne, equalTo: "ZdohhG7VbV")
+        check_uid1_query.whereKey(FriendConstants.friendOne, equalTo: PFUser.currentUser()!.objectId!)
         check_uid1_query.findObjectsInBackgroundWithBlock { (objects : [AnyObject]?, error : NSError?) -> Void in
             if error == nil {
                 if let objects = objects as? [PFObject] {
@@ -80,7 +82,7 @@ class ParseFriendAction : ParseFriend {
                         }
                     }
                     var check_uid2_query = PFQuery(className: FriendConstants.friendClass)
-                    check_uid2_query.whereKey(FriendConstants.friendTwo, equalTo: "ZdohhG7VbV")
+                    check_uid2_query.whereKey(FriendConstants.friendTwo, equalTo: PFUser.currentUser()!.objectId!)
                     check_uid2_query.findObjectsInBackgroundWithBlock {
                         (objects : [AnyObject]?, error : NSError?) -> Void in
                         if error == nil {
