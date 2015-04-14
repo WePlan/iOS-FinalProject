@@ -22,8 +22,7 @@ class SearchFriendVC: UIViewController, UITableViewDataSource, UITableViewDelega
         myTableview.dataSource = self
         
         // Do any additional setup after loading the view.
-//        searchDisplayController?.searchResultsDataSource = self
-//        searchDisplayController?.searchResultsDelegate = self
+        self.searchDisplayController?.searchResultsTableView.registerClass(SearchFriendTableViewCell.classForCoder(), forCellReuseIdentifier: "proto2")
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -39,9 +38,9 @@ class SearchFriendVC: UIViewController, UITableViewDataSource, UITableViewDelega
             self.friendsList = result
             println("Get \(result.count) Users")
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                println("main")
-//                self.myTableview.reloadData()
+//                println("main")
                 self.searchDisplayController?.searchResultsTableView.reloadData()
+//                NSLog("ad: search %p", self.searchDisplayController!.searchResultsTableView!)
             })
            
         })
@@ -50,21 +49,46 @@ class SearchFriendVC: UIViewController, UITableViewDataSource, UITableViewDelega
    
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-//        var cell:UITableViewCell? = tableView.dequeueReusableCellWithIdentifier
-//        tableView.dequeueReusableCellWithIdentifier("protoCell" ) as? UITableViewCell
-        var cell:UITableViewCell? = tableView.dequeueReusableCellWithIdentifier("protoCell" ) as? UITableViewCell
-//        var cell: FriendTableViewCell? = tableView.dequeueReusableCellWithIdentifier("protoCell", forIndexPath: indexPath) as? FriendTableViewCell
-        
+//        var cell:SearchFriendTableViewCell? = tableView.dequeueReusableCellWithIdentifier("protoCell" ) as? SearchFriendTableViewCell
+//        var cell:UITableViewCell? = tableView.dequeueReusableCellWithIdentifier("protoCell" ) as? UITableViewCell
+
+//        var cell: SearchFriendTableViewCell = tableView.dequeueReusableCellWithIdentifier("protoCell", forIndexPath: indexPath) as! SearchFriendTableViewCell
         //configure cell
-        if cell == nil {
-//            println("aa")
+//        if cell == nil {
+//            println("got a nil cell")
 //            cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "protoCell") as FriendTableViewCell
-            cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "protoCell")
+
+//            cell = SearchFriendTableViewCell(style: UITableViewStyle.Plain, reuseIdentifier: "protoCell") as? SearchFriendTableViewCell
+//            cell!.user = friendsList[indexPath.row]
+//            cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "protoCell")
+//        }else {
+//            cell!.user = friendsList[indexPath.row]
+//        }
+//        cell.user = friendsList[indexPath.row]
+        
+//        cell?.textLabel?.text = friendsList[indexPath.row].name
+//        NSLog("address of tableview: %p", self.myTableview)
+        
+//        return cell!
+//        var cell: UITableViewCell?
+        if tableView == self.myTableview {
+            var cell = tableView.dequeueReusableCellWithIdentifier("protoCell", forIndexPath: indexPath) as! UITableViewCell
+            return cell
+        
+        }else {
+            var cell: SearchFriendTableViewCell? = tableView.dequeueReusableCellWithIdentifier("proto2", forIndexPath: indexPath) as! SearchFriendTableViewCell
+//            cell.emailLabel.text = friendsList[indexPath.row].uemail
+//            cell.nickNameLabel.text = friendsList[indexPath.row].name
+            if cell != nil {
+                println("cell != nil")
+                cell!.uemail = friendsList[indexPath.row].uemail
+                cell!.nickname = friendsList[indexPath.row].name
+//                cell!.update()
+            }
+            return cell!
         }
         
-        cell?.textLabel?.text = friendsList[indexPath.row].name
-        
-        return cell!
+//        return cell!
     }
     /*
     // MARK: - Navigation

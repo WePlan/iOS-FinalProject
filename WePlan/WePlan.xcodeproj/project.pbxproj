@@ -29,6 +29,7 @@
 		663053E31ACCC2180073FB96 /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 663053E21ACCC2180073FB96 /* Friend.swift */; };
 		663053E51ACCC28A0073FB96 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 663053E41ACCC28A0073FB96 /* User.swift */; };
 		663053E71ACCC4320073FB96 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 663053E61ACCC4320073FB96 /* Group.swift */; };
+		66588B441AD853D90019BD3D /* SearchFriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66588B431AD853D90019BD3D /* SearchFriendTableViewCell.swift */; };
 		665BFE031AD35983009262D5 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665BFE021AD35983009262D5 /* SignUpViewController.swift */; };
 		6665868F1AD73DDF0008B4F6 /* SearchFriendVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6665868E1AD73DDF0008B4F6 /* SearchFriendVC.swift */; };
 		6689E50C1ABCA23E0079C8ED /* AddTaskItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6689E50B1ABCA23E0079C8ED /* AddTaskItemViewController.swift */; };
@@ -98,6 +99,7 @@
 		663053E21ACCC2180073FB96 /* Friend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
 		663053E41ACCC28A0073FB96 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		663053E61ACCC4320073FB96 /* Group.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
+		66588B431AD853D90019BD3D /* SearchFriendTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchFriendTableViewCell.swift; sourceTree = "<group>"; };
 		665BFE021AD35983009262D5 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		6665868E1AD73DDF0008B4F6 /* SearchFriendVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchFriendVC.swift; path = ../SearchFriendVC.swift; sourceTree = "<group>"; };
 		6689E50B1ABCA23E0079C8ED /* AddTaskItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTaskItemViewController.swift; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 			children = (
 				66D7464C1ACA5B880077290A /* FriendsTableVC.swift */,
 				6665868E1AD73DDF0008B4F6 /* SearchFriendVC.swift */,
+				66588B431AD853D90019BD3D /* SearchFriendTableViewCell.swift */,
 				66FC89E51AD7173000A9017A /* FriendTableViewCell.swift */,
 			);
 			name = "FriendsViews&Controllers";
@@ -464,6 +467,7 @@
 				663053E01ACC83BF0073FB96 /* SWUtilityButtonTapGestureRecognizer.m in Sources */,
 				663053CA1ACBB36C0073FB96 /* ParseAction.swift in Sources */,
 				C5276B311AD71BC200D260F3 /* ParseFriendAction.swift in Sources */,
+				66588B441AD853D90019BD3D /* SearchFriendTableViewCell.swift in Sources */,
 				663053E51ACCC28A0073FB96 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
