@@ -1,6 +1,4 @@
 
 *.xcuserstate
 
-WePlan/WePlan.xcodeproj/project.xcworkspace/xcshareddata/WePlan.xccheckout
-
-WePlan/WePlan.xcodeproj/project.xcworkspace/xcshareddata/WePlan.xccheckout
+*.xccheckout

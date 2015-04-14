@@ -24,14 +24,9 @@ class SearchFriendTableViewCell: UITableViewCell {
         }
     }
     
-    var nickname: String = ""
-    var uemail: String = ""
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        nickNameLabel.text = nickname
-        emailLabel.text = uemail
     }
     
 //    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
@@ -42,10 +37,7 @@ class SearchFriendTableViewCell: UITableViewCell {
 //        fatalError("init(coder:) has not been implemented")
 //    }
     
-    func update() {
-        nickNameLabel.text = nickname
-        emailLabel.text = uemail
-    }
+    
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
