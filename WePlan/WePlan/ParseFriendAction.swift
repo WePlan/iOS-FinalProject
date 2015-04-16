@@ -143,12 +143,13 @@ class ParseFriendAction : ParseFriend {
         }
     }
     
-    class func deleteFriend(objectId : String) {
+    class func deleteFriend(objectId : String, complete : (Bool) -> Void) {
         var first_predicate = NSPredicate(format: "uid1 == %@ AND uid2 == %@", objectId, PFUser.currentUser()!.objectId!)
         var first_query = PFQuery(className: FriendConstants.friendClass, predicate: first_predicate)
         first_query.getFirstObjectInBackgroundWithBlock { (result : PFObject?, error : NSError?) -> Void in
             if error == nil {
                 result!.deleteInBackgroundWithBlock(nil)
+                complete(true)
             }
             else{
                 var second_predicate = NSPredicate(format: "uid1 == %@ AND uid2 == %@", PFUser.currentUser()!.objectId!, objectId)
@@ -156,6 +157,10 @@ class ParseFriendAction : ParseFriend {
                 second_query.getFirstObjectInBackgroundWithBlock({ (result : PFObject?, error : NSError?) -> Void in
                     if error == nil {
                         result!.deleteInBackgroundWithBlock(nil)
+                        complete(true)
+                    }
+                    else{
+                        complete(false)
                     }
                 })
             }
@@ -168,5 +173,5 @@ protocol ParseFriend {
     static func searchPeopleByNickname (nickname : String, friendSet : Set<String>, complete : ([User]) -> Void)
     static func searchPeopleByEmail (email : String, friendSet : Set<String>, complete : ([User]) -> Void)
     static func getFriendList (complete : ([User]) -> Void)
-    static func deleteFriend (objectId : String)
+    static func deleteFriend (objectId : String, complete : (Bool) -> Void)
 }
