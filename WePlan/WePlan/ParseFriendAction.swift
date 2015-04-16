@@ -33,8 +33,8 @@ class ParseFriendAction : ParseFriend {
                 if error == nil {
                     if let objects = objects as? [PFUser] {
                         for object in objects {
-                            var item = User(name: object.objectForKey(UserConstants.userNickname) as! String, uemail: object.email!)
-                            if !friendSet.contains(object.email!) {
+                            var item = User(uid : object.objectId!, name: object.objectForKey(UserConstants.userNickname) as! String, uemail: object.email!)
+                            if !friendSet.contains(object.objectId!) {
                                 resultList.append(item)
                             }
                         }
@@ -56,8 +56,8 @@ class ParseFriendAction : ParseFriend {
             if error == nil{
                 if let objects = objects as? [PFUser] {
                     for object in objects {
-                        var item = User(name: object.objectForKey(UserConstants.userNickname) as! String, uemail: object.email!)
-                        if !friendSet.contains(object.email!) {
+                        var item = User(uid : object.objectId!, name: object.objectForKey(UserConstants.userNickname) as! String, uemail: object.email!)
+                        if !friendSet.contains(object.objectId!) {
                             resultList.append(item)
                         }
                     }
@@ -71,7 +71,6 @@ class ParseFriendAction : ParseFriend {
     }
     
     class func getFriendList (complete : ([User]) -> Void) {
-        var friendSet = [String : String]()
         var friendList : [User] = []
         var userIDList : [String] = []
         
@@ -105,9 +104,8 @@ class ParseFriendAction : ParseFriend {
                                     if error == nil {
                                         if let objects = objects as? [PFUser] {
                                             for object in objects {
-                                                var item = User(name: object.objectForKey(UserConstants.userNickname) as! String, uemail: object.email!)
+                                                var item = User(uid : object.objectId!, name: object.objectForKey(UserConstants.userNickname) as! String, uemail: object.email!)
                                                 friendList.append(item)
-                                                friendSet.updateValue(object.objectForKey(UserConstants.userNickname) as! String, forKey: object.email!)
                                             }
                                             complete(friendList)
                                         }
