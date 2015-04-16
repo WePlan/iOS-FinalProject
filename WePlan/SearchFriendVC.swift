@@ -45,7 +45,9 @@ class SearchFriendVC: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func addNewFriendWithId(id: String) {
-        ParseFriendAction.addFriend()
+        ParseFriendAction.addFriend(id, complete: { (successed:Bool) -> Void in
+            println(successed)
+        })
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -54,6 +56,7 @@ class SearchFriendVC: UIViewController, UITableViewDataSource, UITableViewDelega
         
         cell.emailLabel.text = friendsList[indexPath.row].uemail
         cell.nickNameLabel.text = friendsList[indexPath.row].name
+        cell.user = friendsList[indexPath.row]
         cell.delegate = self
         
         return cell

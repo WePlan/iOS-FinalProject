@@ -53,7 +53,7 @@ class FriendsTableVC: UITableViewController {
         // Configure the cell...
         cell.textLabel?.text = friendList[indexPath.row].name
         cell.detailTextLabel?.text = friendList[indexPath.row].uemail
-
+        println("\(friendList[indexPath.row].uid)")
         return cell
     }
     
@@ -102,7 +102,7 @@ class FriendsTableVC: UITableViewController {
         if segue.identifier == StoryBoardConstants.pushSegue {
             var friendIds = Set<String>()
             for friend in self.friendList {
-                friendIds.insert(friend.uemail)
+                friendIds.insert(friend.uid)
             }
             let destVC = segue.destinationViewController as! SearchFriendVC
             destVC.myFriendsSet = friendIds

@@ -52,8 +52,11 @@ class SearchFriendTableViewCell: UITableViewCell {
     @IBAction func clickAddButton(sender: AnyObject) {
         if delegate != nil {
             self.addButton.enabled = false
-            //TODO:
-//            delegate?.addNewFriendWithId(id: String)
+            if user == nil {
+                println("user is nil!")
+            }else{
+            delegate!.addNewFriendWithId(user!.uid)
+            }
         }
     }
 }
