@@ -10,7 +10,7 @@ import UIKit
 
 class FriendsTableVC: UITableViewController {
     
-    var FriendList: [User] = []
+    var friendList: [User] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,17 +34,20 @@ class FriendsTableVC: UITableViewController {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
-        return 0
+        return self.friendList.count
     }
-
+    
+    private struct StoryBoardConstants {
+        static let cell = "friendCellPrototype"
+        static let cell2 = "friendCellPrototype2"
+    }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cellIdentifier = "friendCellPrototype"
-        var cell: FriendTableViewCell? = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as? FriendTableViewCell
+        var cell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier(StoryBoardConstants.cell2, forIndexPath: indexPath) as! UITableViewCell
         
         // Configure the cell...
 
-        return cell!
+        return cell
     }
     
     /*
