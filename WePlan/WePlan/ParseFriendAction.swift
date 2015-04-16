@@ -132,6 +132,7 @@ class ParseFriendAction : ParseFriend {
         var addFriend = PFObject(className: FriendConstants.friendClass)
         addFriend[FriendConstants.friendOne] = PFUser.currentUser()?.objectId
         addFriend[FriendConstants.friendTwo] = userId
+        addFriend[FriendConstants.friendVerified] = true
         addFriend.saveInBackgroundWithBlock { (success : Bool, error : NSError?) -> Void in
             if success {
                 println("Add friend successfully!")
