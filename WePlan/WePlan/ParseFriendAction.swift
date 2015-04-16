@@ -173,5 +173,5 @@ protocol ParseFriend {
     static func searchPeopleByNickname (nickname : String, friendSet : Set<String>, complete : ([User]) -> Void)
     static func searchPeopleByEmail (email : String, friendSet : Set<String>, complete : ([User]) -> Void)
     static func getFriendList (complete : ([User]) -> Void)
-    static func deleteFriend (objectId : String)
+    static func deleteFriend (objectId : String, complete : (Bool) -> Void)
 }
