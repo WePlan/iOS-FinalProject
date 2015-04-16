@@ -23,7 +23,7 @@ class ParseFriendAction : ParseFriend {
         static let userEmail = "email"
     }
     
-    class func searchPeopleByNickname (nickname : String, friendSet : [String : String], complete : ([User]) -> Void) {
+    class func searchPeopleByNickname (nickname : String, friendSet : Set<String>, complete : ([User]) -> Void) {
         if !nickname.isEmpty {
             var resultList : [User] = []
             var query = PFQuery(className: UserConstants.userClass)
@@ -34,7 +34,7 @@ class ParseFriendAction : ParseFriend {
                     if let objects = objects as? [PFUser] {
                         for object in objects {
                             var item = User(name: object.objectForKey(UserConstants.userNickname) as! String, uemail: object.email!)
-                            if friendSet.indexForKey(object.email!) == nil {
+                            if !friendSet.contains(object.email!) {
                                 resultList.append(item)
                             }
                         }
@@ -47,7 +47,7 @@ class ParseFriendAction : ParseFriend {
         }
     }
     
-    class func searchPeopleByEmail (email : String, friendSet : [String : String], complete : ([User]) -> Void) {
+    class func searchPeopleByEmail (email : String, friendSet : Set<String>, complete : ([User]) -> Void) {
         var resultList : [User] = []
         var query = PFQuery(className: UserConstants.userClass)
         query.whereKey(UserConstants.userEmail, equalTo: email)
@@ -57,7 +57,7 @@ class ParseFriendAction : ParseFriend {
                 if let objects = objects as? [PFUser] {
                     for object in objects {
                         var item = User(name: object.objectForKey(UserConstants.userNickname) as! String, uemail: object.email!)
-                        if friendSet.indexForKey(object.email!) == nil {
+                        if !friendSet.contains(object.email!) {
                             resultList.append(item)
                         }
                     }
@@ -70,7 +70,7 @@ class ParseFriendAction : ParseFriend {
         }
     }
     
-    class func getFriendList (complete : ([User], [String : String]) -> Void) {
+    class func getFriendList (complete : ([User]) -> Void) {
         var friendSet = [String : String]()
         var friendList : [User] = []
         var userIDList : [String] = []
@@ -109,7 +109,7 @@ class ParseFriendAction : ParseFriend {
                                                 friendList.append(item)
                                                 friendSet.updateValue(object.objectForKey(UserConstants.userNickname) as! String, forKey: object.email!)
                                             }
-                                            complete(friendList, friendSet)
+                                            complete(friendList)
                                         }
                                     }
                                     else{
@@ -156,8 +156,8 @@ class ParseFriendAction : ParseFriend {
 }
 
 protocol ParseFriend {
-    static func searchPeopleByNickname (nickname : String, friendSet : [String : String], complete : ([User]) -> Void)
-    static func searchPeopleByEmail (email : String, friendSet : [String : String], complete : ([User]) -> Void)
-    static func getFriendList (complete : ([User], [String : String]) -> Void)
+    static func searchPeopleByNickname (nickname : String, friendSet : Set<String>, complete : ([User]) -> Void)
+    static func searchPeopleByEmail (email : String, friendSet : Set<String>, complete : ([User]) -> Void)
+    static func getFriendList (complete : ([User]) -> Void)
     static func deleteFriend (objectId : String)
 }
