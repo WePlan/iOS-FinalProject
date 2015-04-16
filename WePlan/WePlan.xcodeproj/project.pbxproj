@@ -57,6 +57,7 @@
 		66E5759D1AABCACB00F0890A /* Groups.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 66E5759C1AABCACB00F0890A /* Groups.storyboard */; };
 		66FC89E61AD7173000A9017A /* FriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FC89E51AD7173000A9017A /* FriendTableViewCell.swift */; };
 		C5276B311AD71BC200D260F3 /* ParseFriendAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5276B301AD71BC200D260F3 /* ParseFriendAction.swift */; };
+		C5E990111AE071A800963F18 /* ParseGroupAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E990101AE071A800963F18 /* ParseGroupAction.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -131,6 +132,7 @@
 		66E5759C1AABCACB00F0890A /* Groups.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Groups.storyboard; sourceTree = "<group>"; };
 		66FC89E51AD7173000A9017A /* FriendTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendTableViewCell.swift; sourceTree = "<group>"; };
 		C5276B301AD71BC200D260F3 /* ParseFriendAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseFriendAction.swift; sourceTree = "<group>"; };
+		C5E990101AE071A800963F18 /* ParseGroupAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseGroupAction.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -240,6 +242,7 @@
 				663053E61ACCC4320073FB96 /* Group.swift */,
 				663053C91ACBB36C0073FB96 /* ParseAction.swift */,
 				C5276B301AD71BC200D260F3 /* ParseFriendAction.swift */,
+				C5E990101AE071A800963F18 /* ParseGroupAction.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -453,6 +456,7 @@
 				66D746461ACA0D3A0077290A /* SettingsTableVC.swift in Sources */,
 				663053E31ACCC2180073FB96 /* Friend.swift in Sources */,
 				663053DE1ACC83BF0073FB96 /* SWLongPressGestureRecognizer.m in Sources */,
+				C5E990111AE071A800963F18 /* ParseGroupAction.swift in Sources */,
 				6689E50E1ABCA3680079C8ED /* TaskListTableViewController.swift in Sources */,
 				663053DF1ACC83BF0073FB96 /* SWTableViewCell.m in Sources */,
 				663053E71ACCC4320073FB96 /* Group.swift in Sources */,

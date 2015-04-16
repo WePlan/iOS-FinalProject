@@ -8,13 +8,10 @@
 
 import Foundation
 
-struct Groups {
+struct Group {
     var name: String
     var owner: User
     var members: [User]
-    
     var createdDate: NSDate
-    var descript: String
-    
-    var sssss: String
+    var description: String
 }
