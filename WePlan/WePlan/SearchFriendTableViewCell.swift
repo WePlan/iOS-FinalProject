@@ -9,6 +9,10 @@
 
 import UIKit
 
+protocol AddFriendsDelegate {
+    func addNewFriendWithId(id: String)
+}
+
 class SearchFriendTableViewCell: UITableViewCell {
 
     @IBOutlet weak var addButton: UIButton!
@@ -23,6 +27,7 @@ class SearchFriendTableViewCell: UITableViewCell {
             }
         }
     }
+    var delegate: AddFriendsDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -45,5 +50,10 @@ class SearchFriendTableViewCell: UITableViewCell {
     }
 
     @IBAction func clickAddButton(sender: AnyObject) {
+        if delegate != nil {
+            self.addButton.enabled = false
+            //TODO:
+//            delegate?.addNewFriendWithId(id: String)
+        }
     }
 }

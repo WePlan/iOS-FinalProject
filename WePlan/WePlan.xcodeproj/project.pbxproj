@@ -168,9 +168,9 @@
 			isa = PBXGroup;
 			children = (
 				66D7464C1ACA5B880077290A /* FriendsTableVC.swift */,
+				66FC89E51AD7173000A9017A /* FriendTableViewCell.swift */,
 				6665868E1AD73DDF0008B4F6 /* SearchFriendVC.swift */,
 				66588B431AD853D90019BD3D /* SearchFriendTableViewCell.swift */,
-				66FC89E51AD7173000A9017A /* FriendTableViewCell.swift */,
 			);
 			name = "FriendsViews&Controllers";
 			sourceTree = "<group>";

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SearchFriendVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate{
+class SearchFriendVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, AddFriendsDelegate{
 
     @IBOutlet weak var myTableview: UITableView!
     
@@ -44,7 +44,9 @@ class SearchFriendVC: UIViewController, UITableViewDataSource, UITableViewDelega
         })
     }
     
-   
+    func addNewFriendWithId(id: String) {
+        ParseFriendAction.addFriend()
+    }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 
@@ -52,6 +54,7 @@ class SearchFriendVC: UIViewController, UITableViewDataSource, UITableViewDelega
         
         cell.emailLabel.text = friendsList[indexPath.row].uemail
         cell.nickNameLabel.text = friendsList[indexPath.row].name
+        cell.delegate = self
         
         return cell
     }
