@@ -83,7 +83,13 @@ class FriendsTableVC: UITableViewController {
             let deleteId = friendList[indexPath.row].uid
             self.friendList.removeAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-            ParseFriendAction.deleteFriend(deleteId)
+            ParseFriendAction.deleteFriend(deleteId, complete: { (result :Bool) -> Void in
+                if result == true {
+                    println("Deleted!")
+                }else {
+                    println("fail!")
+                }
+            })
         } else if editingStyle == .Insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
