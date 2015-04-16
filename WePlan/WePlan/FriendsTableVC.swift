@@ -27,8 +27,13 @@ class FriendsTableVC: UITableViewController {
 
     override func viewWillAppear(animated: Bool) {
         DefaultSetting.setNavigationBar(self.navigationController!)
+        // Can be improved by add only one user object
+        ParseFriendAction.getFriendList { (userList:[User]) -> Void in
+            self.friendList = userList
+            self.tableView.reloadData()
+        }
     }
-    
+
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -109,5 +114,6 @@ class FriendsTableVC: UITableViewController {
         }
     }
     
+
 
 }
