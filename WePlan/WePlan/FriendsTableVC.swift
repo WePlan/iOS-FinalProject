@@ -19,6 +19,10 @@ class FriendsTableVC: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        ParseFriendAction.getFriendList { (userList:[User]) -> Void in
+            self.friendList = userList
+            self.tableView.reloadData()
+        }
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -40,12 +44,15 @@ class FriendsTableVC: UITableViewController {
     private struct StoryBoardConstants {
         static let cell = "friendCellPrototype"
         static let cell2 = "friendCellPrototype2"
+        static let pushSegue = "addFriendSegue"
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier(StoryBoardConstants.cell2, forIndexPath: indexPath) as! UITableViewCell
         
         // Configure the cell...
+        cell.textLabel?.text = friendList[indexPath.row].name
+        cell.detailTextLabel?.text = friendList[indexPath.row].uemail
 
         return cell
     }
@@ -85,14 +92,22 @@ class FriendsTableVC: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using [segue destinationViewController].
         // Pass the selected object to the new view controller.
+        if segue.identifier == StoryBoardConstants.pushSegue {
+            var friendIds = Set<String>()
+            for friend in self.friendList {
+                friendIds.insert(friend.uemail)
+            }
+            let destVC = segue.destinationViewController as! SearchFriendVC
+            destVC.myFriendsSet = friendIds
+        }
     }
-    */
+    
 
 }

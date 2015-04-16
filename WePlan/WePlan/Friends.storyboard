@@ -36,7 +36,7 @@
                     <navigationItem key="navigationItem" title="Friends" id="3gD-jX-aHc">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="feN-jc-NSe">
                             <connections>
-                                <segue destination="pxd-RF-Ghc" kind="show" id="Jtm-4U-2No"/>
+                                <segue destination="pxd-RF-Ghc" kind="show" identifier="addFriendSegue" id="Jtm-4U-2No"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -132,7 +132,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aIS-jN-qPf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2623" y="975"/>
+            <point key="canvasLocation" x="2579" y="998"/>
         </scene>
         <!--Friends-->
         <scene sceneID="76h-oD-dHT">

@@ -16,6 +16,8 @@ class SearchFriendVC: UIViewController, UITableViewDataSource, UITableViewDelega
    
     var friendsList: [User] = []
     
+    var myFriendsSet = Set<String>()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         myTableview.delegate = self
@@ -32,7 +34,8 @@ class SearchFriendVC: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
-        ParseFriendAction.searchPeopleByNickname(searchText, complete: { (result:[User]) -> Void in
+        
+        ParseFriendAction.searchPeopleByNickname(searchText, friendSet: self.myFriendsSet ,complete: { (result:[User]) -> Void in
             self.friendsList = result
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self.myTableview.reloadData()
