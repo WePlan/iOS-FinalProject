@@ -130,8 +130,18 @@ class ParseFriendAction : ParseFriend {
         }
     }
     
-    class func addFriend () {
-        
+    class func addFriend (userId : String, complete : (Bool) -> Void) {
+        var addFriend = PFObject(className: FriendConstants.friendClass)
+        addFriend[FriendConstants.friendOne] = PFUser.currentUser()?.objectId
+        addFriend[FriendConstants.friendTwo] = userId
+        addFriend.saveInBackgroundWithBlock { (success : Bool, error : NSError?) -> Void in
+            if success {
+                println("Add friend successfully!")
+                complete(success)
+            }else{
+                println("\(error)")
+            }
+        }
     }
     
     class func deleteFriend(objectId : String) {
