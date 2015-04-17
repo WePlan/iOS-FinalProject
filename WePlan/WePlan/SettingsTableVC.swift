@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SettingsTableVC: UITableViewController {
+class SettingsTableVC: UITableViewController , UIImagePickerControllerDelegate, UINavigationControllerDelegate{
 
     @IBOutlet weak var usernameLabel: UILabel!
     
@@ -22,18 +22,13 @@ class SettingsTableVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
-
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        
-
+        self.photoImage.image = UIImage(named: Constants.imageDefault)
     }
     
-
-
     func setUserLabels () {
         usernameLabel.text = PFUser.currentUser()!.username!
         uidLabel.text = PFUser.currentUser()!.objectId!
@@ -47,9 +42,53 @@ class SettingsTableVC: UITableViewController {
         
     }
     
+    // MARK: - ImagePickerController and delegate
+    
+    @IBAction func clickChangeImage(sender: AnyObject) {
+        prepareImagePicker()
+    
+    }
+    
+    func prepareImagePicker() {
+        var pickerController = UIImagePickerController()
+        let sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+        pickerController.sourceType = sourceType
+        if let availableSource = UIImagePickerController.availableMediaTypesForSourceType(sourceType) {
+            NSLog("source is available")
+            pickerController.mediaTypes = availableSource
+        }
+        pickerController.allowsEditing = true
+        pickerController.delegate = self
+        
+        self.presentViewController(pickerController, animated: true, completion: nil)
+        
+    }
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
+        println("image picked!")
+        let newSize = CGSizeMake(180, 180)
+        var newImage = resizeImage(image, size: newSize)
+        
+        photoImage.image = newImage
+        
+        ParseImageAction.uploadImage(newImage)
+                
+        picker.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func resizeImage(image: UIImage , size: CGSize) -> UIImage {
+        UIGraphicsBeginImageContext(size)
+        image.drawInRect(CGRectMake(0, 0, size.width, size.height))
+        var newImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return newImage
+    }
+    
+    // MARK: - LifeCycle
+    
     override func viewWillAppear(animated: Bool) {
         DefaultSetting.setNavigationBar(self.navigationController!)
-        self.photoImage.image = UIImage(named: Constants.imageDefault)
+        
         setUserLabels()
     }
     
