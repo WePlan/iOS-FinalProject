@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AddTaskItemViewController: UIViewController {
+class AddTaskItemViewController: UIViewController, UITextFieldDelegate {
     var newTask: TaskItem?
     
     @IBOutlet weak var taskTitleTextField: UITextField!
@@ -22,6 +22,11 @@ class AddTaskItemViewController: UIViewController {
     
     func datePickerDateChanged(datepicker: UIDatePicker) {
         dateLabel.text = format.stringFromDate(datePicker.date)
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
     
     private func prepareDatePicker() {
@@ -40,6 +45,7 @@ class AddTaskItemViewController: UIViewController {
         // Do any additional setup after loading the view.
         prepareDatePicker()
         
+        self.taskTitleTextField.delegate = self
         
         format.timeStyle = NSDateFormatterStyle.ShortStyle
         format.dateStyle = NSDateFormatterStyle.MediumStyle
