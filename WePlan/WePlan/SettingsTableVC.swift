@@ -10,11 +10,19 @@ import UIKit
 
 class SettingsTableVC: UITableViewController {
 
-    @IBOutlet weak var usernameid: UILabel!
+    @IBOutlet weak var usernameLabel: UILabel!
+    
+    @IBOutlet weak var uidLabel: UILabel!
+    @IBOutlet weak var emailLabel: UILabel!
+    @IBOutlet weak var photoImage: UIImageView!
+    
+    private struct Constants {
+        static let imageDefault = "defaultUserImage"
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        usernameid.text = PFUser.currentUser()!.username! + PFUser.currentUser()!.objectId!
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -23,7 +31,15 @@ class SettingsTableVC: UITableViewController {
         
 
     }
+    
 
+
+    func setUserLabels () {
+        usernameLabel.text = PFUser.currentUser()!.username!
+        uidLabel.text = PFUser.currentUser()!.objectId!
+        emailLabel.text = PFUser.currentUser()!.email!
+    }
+    
     @IBAction func clickLogout(sender: AnyObject) {
         var sb = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
         var vc = sb.instantiateViewControllerWithIdentifier("LoginView") as! LoginViewController
@@ -33,6 +49,8 @@ class SettingsTableVC: UITableViewController {
     
     override func viewWillAppear(animated: Bool) {
         DefaultSetting.setNavigationBar(self.navigationController!)
+        self.photoImage.image = UIImage(named: Constants.imageDefault)
+        setUserLabels()
     }
     
     override func viewDidAppear(animated: Bool) {
