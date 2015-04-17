@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5482C57A1AE199F7003A4A84 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5482C5791AE199F7003A4A84 /* Images.xcassets */; };
 		6623372F1AD442B800CA9BBB /* LocalUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6623372E1AD442B800CA9BBB /* LocalUser.swift */; };
 		663053B11ACBAD380073FB96 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 663053B01ACBAD380073FB96 /* AudioToolbox.framework */; };
 		663053B31ACBAD450073FB96 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 663053B21ACBAD450073FB96 /* CFNetwork.framework */; };
@@ -47,7 +48,6 @@
 		66D746501ACB1E560077290A /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 66D7464E1ACB1E560077290A /* Model.xcdatamodeld */; };
 		66E575711AA7C19B00F0890A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E575701AA7C19B00F0890A /* AppDelegate.swift */; };
 		66E575761AA7C19B00F0890A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 66E575741AA7C19B00F0890A /* Main.storyboard */; };
-		66E575781AA7C19B00F0890A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66E575771AA7C19B00F0890A /* Images.xcassets */; };
 		66E5757B1AA7C19B00F0890A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66E575791AA7C19B00F0890A /* LaunchScreen.xib */; };
 		66E575871AA7C19B00F0890A /* WePlanTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E575861AA7C19B00F0890A /* WePlanTests.swift */; };
 		66E575911AA7C25800F0890A /* WePlanColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E575901AA7C25800F0890A /* WePlanColors.swift */; };
@@ -72,6 +72,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5482C5791AE199F7003A4A84 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		6623372E1AD442B800CA9BBB /* LocalUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalUser.swift; sourceTree = "<group>"; };
 		663053B01ACBAD380073FB96 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		663053B21ACBAD450073FB96 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -121,7 +122,6 @@
 		66E5756F1AA7C19B00F0890A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		66E575701AA7C19B00F0890A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		66E575751AA7C19B00F0890A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		66E575771AA7C19B00F0890A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		66E5757A1AA7C19B00F0890A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		66E575801AA7C19B00F0890A /* WePlanTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WePlanTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		66E575851AA7C19B00F0890A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -315,8 +315,8 @@
 		66E5756E1AA7C19B00F0890A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				5482C5791AE199F7003A4A84 /* Images.xcassets */,
 				66E575791AA7C19B00F0890A /* LaunchScreen.xib */,
-				66E575771AA7C19B00F0890A /* Images.xcassets */,
 				66E575701AA7C19B00F0890A /* AppDelegate.swift */,
 				663053C81ACBAF4F0073FB96 /* WePlan-Bridging-Header.h */,
 				66E5756F1AA7C19B00F0890A /* Info.plist */,
@@ -424,9 +424,9 @@
 			files = (
 				66E575761AA7C19B00F0890A /* Main.storyboard in Resources */,
 				66E575991AABBF0F00F0890A /* Friends.storyboard in Resources */,
+				5482C57A1AE199F7003A4A84 /* Images.xcassets in Resources */,
 				66E5757B1AA7C19B00F0890A /* LaunchScreen.xib in Resources */,
 				66E5759B1AABCAC000F0890A /* Tasks.storyboard in Resources */,
-				66E575781AA7C19B00F0890A /* Images.xcassets in Resources */,
 				66E575931AA8100400F0890A /* Setting.storyboard in Resources */,
 				66E5759D1AABCACB00F0890A /* Groups.storyboard in Resources */,
 			);
