@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5482C57A1AE199F7003A4A84 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5482C5791AE199F7003A4A84 /* Images.xcassets */; };
+		5482C57C1AE19C71003A4A84 /* FriendDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5482C57B1AE19C71003A4A84 /* FriendDetailViewController.swift */; };
 		6623372F1AD442B800CA9BBB /* LocalUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6623372E1AD442B800CA9BBB /* LocalUser.swift */; };
 		663053B11ACBAD380073FB96 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 663053B01ACBAD380073FB96 /* AudioToolbox.framework */; };
 		663053B31ACBAD450073FB96 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 663053B21ACBAD450073FB96 /* CFNetwork.framework */; };
@@ -73,6 +74,7 @@
 
 /* Begin PBXFileReference section */
 		5482C5791AE199F7003A4A84 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		5482C57B1AE19C71003A4A84 /* FriendDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendDetailViewController.swift; sourceTree = "<group>"; };
 		6623372E1AD442B800CA9BBB /* LocalUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalUser.swift; sourceTree = "<group>"; };
 		663053B01ACBAD380073FB96 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		663053B21ACBAD450073FB96 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -175,6 +177,7 @@
 				66FC89E51AD7173000A9017A /* FriendTableViewCell.swift */,
 				6665868E1AD73DDF0008B4F6 /* SearchFriendVC.swift */,
 				66588B431AD853D90019BD3D /* SearchFriendTableViewCell.swift */,
+				5482C57B1AE19C71003A4A84 /* FriendDetailViewController.swift */,
 			);
 			name = "FriendsViews&Controllers";
 			sourceTree = "<group>";
@@ -456,6 +459,7 @@
 				6689E5101ABCCD120079C8ED /* TaskItem.swift in Sources */,
 				66E575951AA91E3400F0890A /* TabBarViewController.swift in Sources */,
 				66FC89E61AD7173000A9017A /* FriendTableViewCell.swift in Sources */,
+				5482C57C1AE19C71003A4A84 /* FriendDetailViewController.swift in Sources */,
 				6689E50C1ABCA23E0079C8ED /* AddTaskItemViewController.swift in Sources */,
 				66D746461ACA0D3A0077290A /* SettingsTableVC.swift in Sources */,
 				663053E31ACCC2180073FB96 /* Friend.swift in Sources */,

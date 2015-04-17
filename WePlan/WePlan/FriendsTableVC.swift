@@ -51,11 +51,12 @@ class FriendsTableVC: UITableViewController {
     private struct StoryBoardConstants {
         static let cell = "friendCellPrototype"
         static let cell2 = "friendCellPrototype2"
+        static let cell3 = "FriendListCellPrototype"
         static let pushSegue = "addFriendSegue"
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier(StoryBoardConstants.cell2, forIndexPath: indexPath) as! UITableViewCell
+        var cell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier(StoryBoardConstants.cell3, forIndexPath: indexPath) as! UITableViewCell
         
         // Configure the cell...
         cell.textLabel?.text = friendList[indexPath.row].name
