@@ -16,12 +16,20 @@ class SettingsTableVC: UITableViewController , UIImagePickerControllerDelegate, 
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var photoImage: UIImageView!
     
+    var changeImageAlertController: UIAlertController?
+    
     private struct Constants {
         static let imageDefault = "defaultUserImage"
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        initialAlertController()
+        
+        self.photoImage.userInteractionEnabled = true
+        let singleTap = UITapGestureRecognizer(target: self, action: "tappedImage")
+        self.photoImage.addGestureRecognizer(singleTap)
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
@@ -29,10 +37,23 @@ class SettingsTableVC: UITableViewController , UIImagePickerControllerDelegate, 
         self.photoImage.image = UIImage(named: Constants.imageDefault)
     }
     
+    func tappedImage() {
+        presentViewController(changeImageAlertController!, animated: true, completion: nil)
+    }
+    
     func setUserLabels () {
         usernameLabel.text = PFUser.currentUser()!.username!
         uidLabel.text = PFUser.currentUser()!.objectId!
         emailLabel.text = PFUser.currentUser()!.email!
+    }
+    
+    func initialAlertController () {
+        self.changeImageAlertController = UIAlertController(title: "Do you want to change your photo?", message: "", preferredStyle: .ActionSheet)
+        
+        self.changeImageAlertController?.addAction(UIAlertAction(title: "Choose New Photo", style: .Default, handler: { (paramAction:UIAlertAction!) -> Void in
+            self.prepareImagePicker()
+        }))
+        self.changeImageAlertController?.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Destructive, handler: nil))
     }
     
     @IBAction func clickLogout(sender: AnyObject) {
@@ -45,8 +66,8 @@ class SettingsTableVC: UITableViewController , UIImagePickerControllerDelegate, 
     // MARK: - ImagePickerController and delegate
     
     @IBAction func clickChangeImage(sender: AnyObject) {
-        prepareImagePicker()
-    
+//        prepareImagePicker()
+        println("It's abandoned")
     }
     
     func prepareImagePicker() {
@@ -54,7 +75,6 @@ class SettingsTableVC: UITableViewController , UIImagePickerControllerDelegate, 
         let sourceType = UIImagePickerControllerSourceType.PhotoLibrary
         pickerController.sourceType = sourceType
         if let availableSource = UIImagePickerController.availableMediaTypesForSourceType(sourceType) {
-            NSLog("source is available")
             pickerController.mediaTypes = availableSource
         }
         pickerController.allowsEditing = true
