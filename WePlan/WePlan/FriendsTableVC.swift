@@ -118,14 +118,36 @@ class FriendsTableVC: UITableViewController {
         return true
     }
     */
-
+// cell Height = 55 
+    //expanding cell height = 90
+    var selected: Int = -1
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if self.selected == indexPath.row {
+            return 90
+        }else{
+            return 55
+        }
+        
+    }
     
     // MARK: - Navigation
-    var selected: Int = 0
+    
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        //selet the expanding row
+        if self.selected == indexPath.row {
+            selected = -1
+            self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
+        }
+        if self.selected != -1 {
+            let prevIndexPath:NSIndexPath = NSIndexPath(forItem: self.selected, inSection: 0)
+            self.selected = indexPath.row
+            self.tableView.reloadRowsAtIndexPaths([prevIndexPath], withRowAnimation: .Fade)
+        }
         self.selected = indexPath.row
-        self.performSegueWithIdentifier(StoryBoardConstants.userDetailSegue, sender: self)
+        self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+//        self.performSegueWithIdentifier(StoryBoardConstants.userDetailSegue, sender: self)
     }
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using [segue destinationViewController].
@@ -138,11 +160,11 @@ class FriendsTableVC: UITableViewController {
             let destVC = segue.destinationViewController as! SearchFriendVC
             destVC.myFriendsSet = friendIds
         }
-        if segue.identifier == StoryBoardConstants.userDetailSegue {
-            if let dvc = segue.destinationViewController as? FriendDetailViewController {
-                dvc.user = friendList[selected]
-            }
-        }
+//        if segue.identifier == StoryBoardConstants.userDetailSegue {
+//            if let dvc = segue.destinationViewController as? FriendDetailViewController {
+//                dvc.user = friendList[selected]
+//            }
+//        }
     }
     
 

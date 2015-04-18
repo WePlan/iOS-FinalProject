@@ -10,6 +10,17 @@ import UIKit
 
 class FriendDetailViewController: UIViewController {
     var user:User?
+    @IBOutlet weak var userProfileImage: UIImageView!
+    
+    @IBOutlet weak var userName: UILabel!
+    @IBOutlet weak var userEmail: UILabel!
+    
+    @IBAction func assignATask(sender: UIButton) {
+    }
+    
+    @IBAction func removeFriend(sender: UIButton) {
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
