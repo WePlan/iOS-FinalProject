@@ -22,6 +22,11 @@ class SettingsTableVC: UITableViewController , UIImagePickerControllerDelegate, 
         static let imageDefault = "defaultUserImage"
     }
     
+    enum PhotoSource {
+        case Library
+        case Camera
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         initialAlertController()
@@ -50,8 +55,11 @@ class SettingsTableVC: UITableViewController , UIImagePickerControllerDelegate, 
     func initialAlertController () {
         self.changeImageAlertController = UIAlertController(title: "Do you want to change your photo?", message: "", preferredStyle: .ActionSheet)
         
-        self.changeImageAlertController?.addAction(UIAlertAction(title: "Choose New Photo", style: .Default, handler: { (paramAction:UIAlertAction!) -> Void in
-            self.prepareImagePicker()
+        self.changeImageAlertController?.addAction(UIAlertAction(title: "Choose From Library", style: .Default, handler: { (paramAction:UIAlertAction!) -> Void in
+            self.prepareImagePicker(PhotoSource.Library)
+        }))
+        self.changeImageAlertController?.addAction(UIAlertAction(title: "Choose From Camera", style: .Default, handler: { (paramAction:UIAlertAction!) -> Void in
+            self.prepareImagePicker(PhotoSource.Camera)
         }))
         self.changeImageAlertController?.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Destructive, handler: nil))
     }
@@ -70,19 +78,26 @@ class SettingsTableVC: UITableViewController , UIImagePickerControllerDelegate, 
         println("It's abandoned")
     }
     
-    func prepareImagePicker() {
+    func prepareImagePicker(source: PhotoSource) {
         var pickerController = UIImagePickerController()
-        let sourceType = UIImagePickerControllerSourceType.PhotoLibrary
-        pickerController.sourceType = sourceType
-        if let availableSource = UIImagePickerController.availableMediaTypesForSourceType(sourceType) {
-            pickerController.mediaTypes = availableSource
+        let sourceType: UIImagePickerControllerSourceType
+        if source == .Library {
+            sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+        }else{
+            sourceType = UIImagePickerControllerSourceType.Camera
         }
+        pickerController.sourceType = sourceType
+        var availableSource = UIImagePickerController.availableMediaTypesForSourceType(sourceType)
+        availableSource?.removeLast()
+        pickerController.mediaTypes = availableSource!
         pickerController.allowsEditing = true
         pickerController.delegate = self
         
         self.presentViewController(pickerController, animated: true, completion: nil)
         
     }
+    
+    
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
         println("image picked!")
