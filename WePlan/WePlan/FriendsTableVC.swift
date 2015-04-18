@@ -23,6 +23,8 @@ class FriendsTableVC: UITableViewController {
             self.friendList = userList
             self.tableView.reloadData()
         }
+        tableView.estimatedRowHeight = tableView.rowHeight
+        tableView.rowHeight = UITableViewAutomaticDimension
         
         self.tableView.allowsMultipleSelectionDuringEditing = false
     }
@@ -56,12 +58,16 @@ class FriendsTableVC: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier(StoryBoardConstants.cell3, forIndexPath: indexPath) as! UITableViewCell
+        var cell = tableView.dequeueReusableCellWithIdentifier(StoryBoardConstants.cell3, forIndexPath: indexPath) as! FriendTableViewCell
         
         // Configure the cell...
-        cell.textLabel?.text = friendList[indexPath.row].name
-        cell.detailTextLabel?.text = friendList[indexPath.row].uemail
-        println("\(friendList[indexPath.row].uid)")
+//        cell.textLabel?.text = friendList[indexPath.row].name
+//        cell.detailTextLabel?.text = friendList[indexPath.row].uemail
+//        println("\(friendList[indexPath.row].uid)")
+        
+        
+        //Custom cell configure
+        cell.friend = friendList[indexPath.row]
         return cell
     }
     
