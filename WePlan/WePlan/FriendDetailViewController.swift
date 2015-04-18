@@ -9,7 +9,7 @@
 import UIKit
 
 class FriendDetailViewController: UIViewController {
-
+    var user:User?
     override func viewDidLoad() {
         super.viewDidLoad()
 

@@ -38,8 +38,11 @@ class FriendTableViewCell: UITableViewCell {
         if let user = self.friend {
             userNameLabel?.text = user.name
             userEmailLabel?.text = user.uemail
-//            if
-            
+            //UserImage part
+//            if let userImage = user.image {
+//            userProfileImage?.image = UIImage()
+//            }
+        
         }
     }
     override func setSelected(selected: Bool, animated: Bool) {

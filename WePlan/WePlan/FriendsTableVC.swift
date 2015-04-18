@@ -55,6 +55,7 @@ class FriendsTableVC: UITableViewController {
         static let cell2 = "friendCellPrototype2"
         static let cell3 = "FriendListCellPrototype"
         static let pushSegue = "addFriendSegue"
+        static let userDetailSegue = "UserDetailView"
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -120,7 +121,11 @@ class FriendsTableVC: UITableViewController {
 
     
     // MARK: - Navigation
-
+    var selected: Int = 0
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        self.selected = indexPath.row
+        self.performSegueWithIdentifier(StoryBoardConstants.userDetailSegue, sender: self)
+    }
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using [segue destinationViewController].
@@ -132,6 +137,11 @@ class FriendsTableVC: UITableViewController {
             }
             let destVC = segue.destinationViewController as! SearchFriendVC
             destVC.myFriendsSet = friendIds
+        }
+        if segue.identifier == StoryBoardConstants.userDetailSegue {
+            if let dvc = segue.destinationViewController as? FriendDetailViewController {
+                dvc.user = friendList[selected]
+            }
         }
     }
     
