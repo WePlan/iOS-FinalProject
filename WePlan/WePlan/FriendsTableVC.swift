@@ -134,6 +134,7 @@ class FriendsTableVC: UITableViewController {
     // MARK: - Navigation
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: false)
         //selet the expanding row
         if selected == indexPath.row {
             selected = -1

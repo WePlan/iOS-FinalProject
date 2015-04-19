@@ -38,6 +38,7 @@
 		6689E50C1ABCA23E0079C8ED /* AddTaskItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6689E50B1ABCA23E0079C8ED /* AddTaskItemViewController.swift */; };
 		6689E50E1ABCA3680079C8ED /* TaskListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6689E50D1ABCA3680079C8ED /* TaskListTableViewController.swift */; };
 		6689E5101ABCCD120079C8ED /* TaskItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6689E50F1ABCCD120079C8ED /* TaskItem.swift */; };
+		66A792FE1AE392E7002DBA66 /* AsyncUIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A792FD1AE392E7002DBA66 /* AsyncUIImage.swift */; };
 		66AF5E001ACF2849006AA027 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66AF5DFF1ACF2849006AA027 /* LoginViewController.swift */; };
 		66BCE11D1AD84CB5009659EC /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66BCE11B1AD84CB5009659EC /* Bolts.framework */; };
 		66BCE11E1AD84CB5009659EC /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66BCE11C1AD84CB5009659EC /* Parse.framework */; };
@@ -111,6 +112,7 @@
 		6689E50B1ABCA23E0079C8ED /* AddTaskItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTaskItemViewController.swift; sourceTree = "<group>"; };
 		6689E50D1ABCA3680079C8ED /* TaskListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskListTableViewController.swift; sourceTree = "<group>"; };
 		6689E50F1ABCCD120079C8ED /* TaskItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskItem.swift; sourceTree = "<group>"; };
+		66A792FD1AE392E7002DBA66 /* AsyncUIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncUIImage.swift; sourceTree = "<group>"; };
 		66AF5DFF1ACF2849006AA027 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		66BCE11B1AD84CB5009659EC /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		66BCE11C1AD84CB5009659EC /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
@@ -240,6 +242,7 @@
 		6689E5111ABCCD840079C8ED /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				66A792FD1AE392E7002DBA66 /* AsyncUIImage.swift */,
 				6689E50F1ABCCD120079C8ED /* TaskItem.swift */,
 				6623372E1AD442B800CA9BBB /* LocalUser.swift */,
 				663053E41ACCC28A0073FB96 /* User.swift */,
@@ -481,6 +484,7 @@
 				C5276B311AD71BC200D260F3 /* ParseFriendAction.swift in Sources */,
 				66588B441AD853D90019BD3D /* SearchFriendTableViewCell.swift in Sources */,
 				663053E51ACCC28A0073FB96 /* User.swift in Sources */,
+				66A792FE1AE392E7002DBA66 /* AsyncUIImage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
