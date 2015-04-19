@@ -64,7 +64,10 @@ class TaskListTableViewController: UITableViewController, TasksTableViewCellDele
     // MARK: - Table view data source
     
     private struct TaskTableViewConstant {
-        static let cellHeight: CGFloat = 60
+//        static let cellHeight: CGFloat = 60
+        static let commonCellHeight: CGFloat = 49
+        static let expandingCellHeight: CGFloat = 90
+        
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -76,9 +79,13 @@ class TaskListTableViewController: UITableViewController, TasksTableViewCellDele
         // Return the number of rows in the section.
         return tasks.count
     }
-
+    var selectedTask: Int = -1
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return TaskTableViewConstant.cellHeight
+        if selectedTask != -1 && selectedTask == indexPath.row {
+            return TaskTableViewConstant.expandingCellHeight
+        }else{
+            return TaskTableViewConstant.commonCellHeight
+        }
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -86,6 +93,7 @@ class TaskListTableViewController: UITableViewController, TasksTableViewCellDele
 
         // Configure the cell...
         var item = tasks[indexPath.row]
+        cell.clipsToBounds = true
         
         cell.checkState = item.checked
         cell.taskTitle.text = item.taskName
@@ -97,7 +105,23 @@ class TaskListTableViewController: UITableViewController, TasksTableViewCellDele
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: false)
+//        tableView.deselectRowAtIndexPath(indexPath, animated: false)
+        if selectedTask == indexPath.row {
+            selectedTask = -1
+            tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+            return
+        }
+        else if selectedTask != -1 {
+            let prevIndexPath:NSIndexPath = NSIndexPath(forRow: selectedTask, inSection: 0)
+            selectedTask = indexPath.row
+            tableView.reloadRowsAtIndexPaths([prevIndexPath], withRowAnimation: .Automatic)
+            self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+        }else{
+            
+            selectedTask = indexPath.row
+            tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+        }
+
     }
     
     func checkButtonPressed(index: NSIndexPath) {

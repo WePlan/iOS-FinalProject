@@ -30,32 +30,32 @@
         <scene sceneID="hYL-Fa-roS">
             <objects>
                 <tableViewController storyboardIdentifier="MainWindow" useStoryboardIdentifierAsRestorationIdentifier="YES" id="QCe-Hq-JYz" customClass="TaskListTableViewController" customModule="WePlan" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="94" sectionHeaderHeight="22" sectionFooterHeight="22" id="Zsg-Uf-pkz">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="49" sectionHeaderHeight="22" sectionFooterHeight="22" id="Zsg-Uf-pkz">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" verticalHuggingPriority="300" verticalCompressionResistancePriority="800" selectionStyle="none" indentationWidth="10" reuseIdentifier="taskCellPrototype" rowHeight="94" id="mGe-fM-Qsl" customClass="TasksTableViewCell" customModule="WePlan" customModuleProvider="target">
+                            <tableViewCell contentMode="scaleToFill" verticalHuggingPriority="300" verticalCompressionResistancePriority="800" selectionStyle="none" indentationWidth="10" reuseIdentifier="taskCellPrototype" rowHeight="49" id="mGe-fM-Qsl" customClass="TasksTableViewCell" customModule="WePlan" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mGe-fM-Qsl" id="dVd-5Z-jug">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="11" contentMode="left" horizontalHuggingPriority="240" verticalHuggingPriority="251" horizontalCompressionResistancePriority="740" restorationIdentifier="11" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ulm-3S-etZ">
-                                            <rect key="frame" x="46" y="13" width="481" height="20"/>
+                                            <rect key="frame" x="46" y="18" width="481" height="20"/>
                                             <color key="tintColor" red="0.2470588235" green="0.50980392159999999" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="27b-wo-iAo">
-                                            <rect key="frame" x="535" y="8" width="47" height="30"/>
+                                            <rect key="frame" x="535" y="13" width="47" height="30"/>
                                             <state key="normal" title="Details">
                                                 <color key="titleColor" red="0.1942502622" green="0.78135874230000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f8I-np-2TP">
-                                            <rect key="frame" x="8" y="8" width="30" height="30"/>
+                                            <rect key="frame" x="8" y="13" width="30" height="30"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="f8I-np-2TP" secondAttribute="height" multiplier="1:1" id="y3U-64-n45"/>
                                             </constraints>
@@ -67,53 +67,53 @@
                                             </connections>
                                         </button>
                                         <imageView userInteractionEnabled="NO" alpha="0.49999999999999961" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="top divider" translatesAutoresizingMaskIntoConstraints="NO" id="1yi-Ke-GfN">
-                                            <rect key="frame" x="8" y="41" width="584" height="1"/>
+                                            <rect key="frame" x="8" y="48" width="584" height="1"/>
                                         </imageView>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vyd-N0-ib2">
-                                            <rect key="frame" x="126" y="50" width="111" height="30"/>
+                                            <rect key="frame" x="126" y="57" width="111" height="30"/>
                                             <state key="normal">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="anQ-rh-dMm">
-                                            <rect key="frame" x="8" y="50" width="110" height="30"/>
+                                            <rect key="frame" x="8" y="57" width="110" height="30"/>
                                             <state key="normal">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KPc-7m-c1m">
-                                            <rect key="frame" x="245" y="50" width="110" height="30"/>
+                                            <rect key="frame" x="245" y="57" width="110" height="30"/>
                                             <state key="normal">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3qP-ZR-FBl">
-                                            <rect key="frame" x="482" y="50" width="110" height="30"/>
+                                            <rect key="frame" x="482" y="57" width="110" height="30"/>
                                             <state key="normal">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mac-zC-SoX">
-                                            <rect key="frame" x="363" y="50" width="111" height="30"/>
+                                            <rect key="frame" x="363" y="57" width="111" height="30"/>
                                             <state key="normal">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                         </button>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CompleteNoWord" translatesAutoresizingMaskIntoConstraints="NO" id="wB6-Fn-9bd">
-                                            <rect key="frame" x="43" y="50" width="40" height="30"/>
+                                            <rect key="frame" x="43" y="57" width="40" height="30"/>
                                         </imageView>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ScheduleNoWord" translatesAutoresizingMaskIntoConstraints="NO" id="39u-3H-TvY">
-                                            <rect key="frame" x="162" y="50" width="40" height="30"/>
+                                            <rect key="frame" x="162" y="57" width="40" height="30"/>
                                         </imageView>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AddPeople" translatesAutoresizingMaskIntoConstraints="NO" id="3XC-P8-cYC">
-                                            <rect key="frame" x="280" y="50" width="40" height="30"/>
+                                            <rect key="frame" x="280" y="57" width="40" height="30"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="40" id="LJC-fW-1cM"/>
                                                 <constraint firstAttribute="height" constant="30" id="nFh-Sg-yQY"/>
                                             </constraints>
                                         </imageView>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Edit" translatesAutoresizingMaskIntoConstraints="NO" id="7gL-gZ-YfQ">
-                                            <rect key="frame" x="398" y="50" width="40" height="30"/>
+                                            <rect key="frame" x="398" y="57" width="40" height="30"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="30" id="LMH-Su-DJh"/>
                                                 <constraint firstAttribute="width" constant="30" id="zfl-fC-nAi"/>
@@ -126,7 +126,7 @@
                                             </variation>
                                         </imageView>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="delete" translatesAutoresizingMaskIntoConstraints="NO" id="FJS-SV-KXy">
-                                            <rect key="frame" x="517" y="50" width="40" height="30"/>
+                                            <rect key="frame" x="517" y="57" width="40" height="30"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="30" id="61Z-OU-ttI"/>
                                                 <constraint firstAttribute="width" constant="30" id="Gqs-0h-ITj"/>
@@ -146,7 +146,7 @@
                                         <constraint firstItem="FJS-SV-KXy" firstAttribute="centerY" secondItem="3qP-ZR-FBl" secondAttribute="centerY" id="9Rk-5r-vZB"/>
                                         <constraint firstItem="39u-3H-TvY" firstAttribute="centerY" secondItem="Vyd-N0-ib2" secondAttribute="centerY" id="COj-0d-RwW"/>
                                         <constraint firstItem="39u-3H-TvY" firstAttribute="width" secondItem="3XC-P8-cYC" secondAttribute="width" id="Cr7-CI-icy"/>
-                                        <constraint firstItem="Ulm-3S-etZ" firstAttribute="top" secondItem="dVd-5Z-jug" secondAttribute="topMargin" constant="5" id="DEo-Yj-6mX"/>
+                                        <constraint firstItem="Ulm-3S-etZ" firstAttribute="top" secondItem="dVd-5Z-jug" secondAttribute="topMargin" constant="10" id="DEo-Yj-6mX"/>
                                         <constraint firstItem="Mac-zC-SoX" firstAttribute="width" secondItem="KPc-7m-c1m" secondAttribute="width" id="DO2-t3-HVH"/>
                                         <constraint firstItem="Mac-zC-SoX" firstAttribute="height" secondItem="KPc-7m-c1m" secondAttribute="height" id="EJ9-Zy-lOh"/>
                                         <constraint firstItem="Vyd-N0-ib2" firstAttribute="leading" secondItem="anQ-rh-dMm" secondAttribute="trailing" constant="8" symbolic="YES" id="Gfi-ae-ibQ"/>
@@ -191,7 +191,7 @@
                                         <constraint firstItem="39u-3H-TvY" firstAttribute="height" secondItem="3XC-P8-cYC" secondAttribute="height" id="wgq-er-MaO"/>
                                         <constraint firstItem="1yi-Ke-GfN" firstAttribute="leading" secondItem="dVd-5Z-jug" secondAttribute="leadingMargin" id="xuc-bg-j1k"/>
                                         <constraint firstItem="anQ-rh-dMm" firstAttribute="height" secondItem="Vyd-N0-ib2" secondAttribute="height" id="zF6-U5-2WJ"/>
-                                        <constraint firstItem="1yi-Ke-GfN" firstAttribute="top" secondItem="Ulm-3S-etZ" secondAttribute="bottom" constant="8" symbolic="YES" id="zHf-g4-TAc"/>
+                                        <constraint firstItem="1yi-Ke-GfN" firstAttribute="top" secondItem="Ulm-3S-etZ" secondAttribute="bottom" constant="10" id="zHf-g4-TAc"/>
                                         <constraint firstItem="Vyd-N0-ib2" firstAttribute="centerY" secondItem="KPc-7m-c1m" secondAttribute="centerY" id="zaD-TU-ax6"/>
                                     </constraints>
                                     <variation key="default">
