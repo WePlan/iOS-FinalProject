@@ -29,7 +29,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lfe-41-A1M" id="696-em-tVi">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="meR-zJ-H6S">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="meR-zJ-H6S" customClass="AsyncUIImageView" customModule="WePlan" customModuleProvider="target">
                                                     <rect key="frame" x="13" y="8" width="64" height="64"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="meR-zJ-H6S" secondAttribute="height" multiplier="1:1" id="xuZ-A2-IdE"/>

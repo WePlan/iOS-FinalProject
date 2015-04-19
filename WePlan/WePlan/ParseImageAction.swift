@@ -34,7 +34,7 @@ class ParseImageAction : ImageAction{
 //                let end = NSDate()
 //                println("end:" + "\(end)" )
                 println("image saved with id:"+userPhoto.objectId!)
-                
+                self.changeImageId(newId: userPhoto.objectId!)
             }else {
                 let errorString = error!.userInfo!["error"] as! String
                 println(errorString)
@@ -45,7 +45,9 @@ class ParseImageAction : ImageAction{
     
     
     static func changeImageId(# newId: String) {
-        
+        let localUser = PFUser.currentUser()!
+        localUser["imageId"] = newId
+        localUser.saveInBackground()
     }
     
     static func getImage(objectId: String, completion: (UIImage) -> Void) {

@@ -8,19 +8,19 @@
 
 import UIKit
 
-class AsyncUIImage: UIImageView {
+class AsyncUIImageView: UIImageView {
     
     var defaultImageName: String? {
         didSet{
-            if objectId == nil {
+            if imageObjectId == nil {
                 self.image = UIImage(named: defaultImageName!)
             }
         }
     }
     
-    var objectId: String? {
+    var imageObjectId: String? {
         didSet{
-            ParseImageAction.getImage(objectId!, completion: { (returnImage: UIImage) -> Void in
+            ParseImageAction.getImage(imageObjectId!, completion: { (returnImage: UIImage) -> Void in
                 self.image = returnImage
             })
         }

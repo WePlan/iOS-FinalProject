@@ -14,7 +14,7 @@ class SettingsTableVC: UITableViewController , UIImagePickerControllerDelegate, 
     
     @IBOutlet weak var uidLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
-    @IBOutlet weak var photoImage: UIImageView!
+    @IBOutlet weak var photoImage: AsyncUIImageView!
     
     var changeImageAlertController: UIAlertController?
     
@@ -39,7 +39,13 @@ class SettingsTableVC: UITableViewController , UIImagePickerControllerDelegate, 
         // self.clearsSelectionOnViewWillAppear = false
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        self.photoImage.image = UIImage(named: Constants.imageDefault)
+//        self.photoImage.image = UIImage(named: Constants.imageDefault)
+        self.photoImage.defaultImageName = Constants.imageDefault
+        if let imageId = PFUser.currentUser()!["imageId"] as? String {
+            self.photoImage.imageObjectId = imageId
+        }else {
+            println("Could not find imageId")
+        }
     }
     
     func tappedImage() {
