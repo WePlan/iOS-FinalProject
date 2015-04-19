@@ -19,11 +19,14 @@ class SearchFriendTableViewCell: UITableViewCell {
     @IBOutlet weak var nickNameLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
     
+    @IBOutlet weak var userImageView: AsyncUIImageView!
+    
     var user: User? {
         didSet{
-            if user != nil {
-                nickNameLabel.text = user!.name
-                emailLabel.text = user!.uemail
+            if let user = user {
+                nickNameLabel.text = user.name
+                emailLabel.text = user.uemail
+                userImageView.imageObjectId = user.imageId
             }
         }
     }

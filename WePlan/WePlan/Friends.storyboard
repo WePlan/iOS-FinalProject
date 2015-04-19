@@ -378,7 +378,7 @@
                                                         <action selector="clickAddButton:" destination="df4-Pn-RmM" eventType="touchUpInside" id="ocL-es-fHA"/>
                                                     </connections>
                                                 </button>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="UserDefaultPic" translatesAutoresizingMaskIntoConstraints="NO" id="GNg-S0-pHB">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="UserDefaultPic" translatesAutoresizingMaskIntoConstraints="NO" id="GNg-S0-pHB" customClass="AsyncUIImageView" customModule="WePlan" customModuleProvider="target">
                                                     <rect key="frame" x="70" y="8" width="42" height="42"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="GNg-S0-pHB" secondAttribute="height" multiplier="1:1" id="VrF-U5-m2n"/>
@@ -412,6 +412,7 @@
                                             <outlet property="addButton" destination="N8W-fC-WPu" id="FjI-Fc-zoz"/>
                                             <outlet property="emailLabel" destination="TYv-GI-LBj" id="ds3-kE-ngN"/>
                                             <outlet property="nickNameLabel" destination="B19-es-oGQ" id="d3D-2I-CLR"/>
+                                            <outlet property="userImageView" destination="GNg-S0-pHB" id="ouq-4H-Nc7"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
