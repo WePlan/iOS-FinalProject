@@ -20,12 +20,29 @@ class FriendTableViewCell: UITableViewCell {
 
     @IBOutlet weak var userDetailButton: UIButton!
     
-    @IBOutlet weak var removeFriendButton: UIButton!
-    @IBOutlet weak var assignATaskButton: UIButton!
+//    @IBAction func removeFriend(sender: UIButton) {
+//        if let deleteUser = self.friend {
+//            let deleteId = deleteUser.uid
+//            //        self.friendList.removeAtIndex(indexPath.row)
+//            //        tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+//            ParseFriendAction.deleteFriend(deleteId, complete: { (result :Bool) -> Void in
+//                if result == true {
+//                    println("Deleted!")
+//                }else {
+//                    println("fail!")
+//                }
+//            })
+//        }
+//        
+//        
+//    }
+
     @IBAction func userDetail(sender: UIButton) {
     }
     
-    private struct StoryBoardConstant{
+   
+    
+        private struct StoryBoardConstant{
         static let UserDetaultImage = "UserDefaultPic"
         static let expandingHeight:CGFloat = 90
         static let commonHeight:CGFloat = 55

@@ -140,16 +140,16 @@ class FriendsTableVC: UITableViewController {
             tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
             return
         }
-        if selected != -1 {
+        else if selected != -1 {
             let prevIndexPath:NSIndexPath = NSIndexPath(forRow: selected, inSection: 0)
-//            selected = indexPath.row
+            selected = indexPath.row
             tableView.reloadRowsAtIndexPaths([prevIndexPath], withRowAnimation: .Fade)
-//            self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        }
+            self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+        }else{
         
             selected = indexPath.row
             tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        
+        }
        
 //        self.performSegueWithIdentifier(StoryBoardConstants.userDetailSegue, sender: self)
     }

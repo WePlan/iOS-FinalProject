@@ -58,8 +58,8 @@
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" misplaced="YES" text="email" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PfW-ka-L0a">
-                                            <rect key="frame" x="56" y="36" width="516" height="10"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="email" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PfW-ka-L0a">
+                                            <rect key="frame" x="56" y="36" width="516" height="14"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleCaption2"/>
                                             <color key="textColor" red="0.32213128306878303" green="0.32213128306878303" blue="0.32213128306878303" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -84,7 +84,7 @@
                                             <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         </imageView>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i3I-OM-BHz">
-                                            <rect key="frame" x="8" y="65" width="288" height="25"/>
+                                            <rect key="frame" x="8" y="65" width="284" height="25"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="25" id="Rcz-xb-bha"/>
                                             </constraints>
@@ -95,13 +95,16 @@
                                             </state>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x8d-R5-nZS">
-                                            <rect key="frame" x="304" y="65" width="288" height="25"/>
+                                            <rect key="frame" x="309" y="65" width="283" height="25"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                             <state key="normal" title="Remove Friend">
                                                 <color key="titleColor" red="0.26274509800000001" green="0.70980392160000005" blue="0.99215686270000003" alpha="1" colorSpace="calibratedRGB"/>
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                         </button>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="VerticalDivider" translatesAutoresizingMaskIntoConstraints="NO" id="3Cc-t9-NcN">
+                                            <rect key="frame" x="300" y="56" width="1" height="34"/>
+                                        </imageView>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
@@ -109,6 +112,7 @@
                                         <constraint firstItem="x8d-R5-nZS" firstAttribute="leading" secondItem="i3I-OM-BHz" secondAttribute="trailing" constant="8" symbolic="YES" id="2j1-zR-HO0"/>
                                         <constraint firstItem="PfW-ka-L0a" firstAttribute="top" secondItem="fF7-fe-S2o" secondAttribute="bottom" constant="8" symbolic="YES" id="6FW-ue-Gqy"/>
                                         <constraint firstItem="fF7-fe-S2o" firstAttribute="bottom" secondItem="dgc-ml-OZy" secondAttribute="centerY" id="AIX-Qb-fL2"/>
+                                        <constraint firstItem="3Cc-t9-NcN" firstAttribute="height" secondItem="x8d-R5-nZS" secondAttribute="height" constant="9" id="AlH-hD-xws"/>
                                         <constraint firstItem="dgc-ml-OZy" firstAttribute="top" secondItem="gsc-b7-ZoI" secondAttribute="topMargin" id="CCx-dT-LXy"/>
                                         <constraint firstItem="i3I-OM-BHz" firstAttribute="centerY" secondItem="x8d-R5-nZS" secondAttribute="centerY" id="CMu-te-UqW"/>
                                         <constraint firstItem="i3I-OM-BHz" firstAttribute="height" secondItem="x8d-R5-nZS" secondAttribute="height" id="Dtf-OA-74Y"/>
@@ -118,6 +122,9 @@
                                         <constraint firstItem="PfW-ka-L0a" firstAttribute="leading" secondItem="fF7-fe-S2o" secondAttribute="leading" id="Mi0-AM-O67"/>
                                         <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="PfW-ka-L0a" secondAttribute="bottom" id="QFI-8I-V0t"/>
                                         <constraint firstItem="i3I-OM-BHz" firstAttribute="leading" secondItem="gsc-b7-ZoI" secondAttribute="leadingMargin" id="RNn-lA-naW"/>
+                                        <constraint firstItem="3Cc-t9-NcN" firstAttribute="leading" secondItem="i3I-OM-BHz" secondAttribute="trailing" constant="8" symbolic="YES" id="TAy-Oh-Iww"/>
+                                        <constraint firstItem="3Cc-t9-NcN" firstAttribute="centerY" secondItem="i3I-OM-BHz" secondAttribute="centerY" constant="-4.5" id="U89-CJ-RXt"/>
+                                        <constraint firstItem="x8d-R5-nZS" firstAttribute="leading" secondItem="3Cc-t9-NcN" secondAttribute="trailing" constant="8" symbolic="YES" id="UuC-rB-RWz"/>
                                         <constraint firstItem="fr7-7y-Rpl" firstAttribute="trailing" secondItem="gsc-b7-ZoI" secondAttribute="trailingMargin" id="YU7-uZ-C6r"/>
                                         <constraint firstItem="tsS-mn-QgM" firstAttribute="trailing" secondItem="gsc-b7-ZoI" secondAttribute="trailingMargin" id="b0Y-GE-oha"/>
                                         <constraint firstItem="fF7-fe-S2o" firstAttribute="leading" secondItem="dgc-ml-OZy" secondAttribute="trailing" constant="8" symbolic="YES" id="dDr-g3-KZ5"/>
@@ -131,12 +138,11 @@
                                     <variation key="default">
                                         <mask key="constraints">
                                             <exclude reference="g2I-at-PCz"/>
+                                            <exclude reference="2j1-zR-HO0"/>
                                         </mask>
                                     </variation>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="assignATaskButton" destination="i3I-OM-BHz" id="bn4-k4-bQA"/>
-                                    <outlet property="removeFriendButton" destination="x8d-R5-nZS" id="ilX-Kc-zhf"/>
                                     <outlet property="userDetailButton" destination="tsS-mn-QgM" id="Iws-0D-7Yf"/>
                                     <outlet property="userEmailLabel" destination="PfW-ka-L0a" id="16f-i3-Bc9"/>
                                     <outlet property="userNameLabel" destination="fF7-fe-S2o" id="JT5-rM-1b4"/>
@@ -463,6 +469,7 @@
         <image name="ButtonBorder" width="310" height="80"/>
         <image name="Shape-1" width="310" height="80"/>
         <image name="UserDefaultPic" width="1145" height="1054"/>
+        <image name="VerticalDivider" width="1" height="99"/>
         <image name="top divider" width="640" height="1"/>
     </resources>
 </document>
