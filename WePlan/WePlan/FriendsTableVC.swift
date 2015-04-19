@@ -88,17 +88,25 @@ class FriendsTableVC: UITableViewController {
     // Override to support editing the table view.
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
-            // Delete the row from the data source
             let deleteId = friendList[indexPath.row].uid
-            self.friendList.removeAtIndex(indexPath.row)
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-            ParseFriendAction.deleteFriend(deleteId, complete: { (result :Bool) -> Void in
-                if result == true {
-                    println("Deleted!")
-                }else {
-                    println("fail!")
-                }
-            })
+            let deleteName = friendList[indexPath.row].name
+            //Alert
+            var alert = UIAlertController(title: "Delete Friend", message: "Are you sure you want to delete \(deleteName)", preferredStyle: UIAlertControllerStyle.Alert)
+            // Delete the row from the data source
+            alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default,handler: nil))
+            alert.addAction(UIAlertAction(title: "Delete", style: UIAlertActionStyle.Default, handler: { action in
+                self.friendList.removeAtIndex(indexPath.row)
+                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+                ParseFriendAction.deleteFriend(deleteId, complete: { (result :Bool) -> Void in
+                    if result == true {
+                        println("Deleted!")
+                    }else {
+                        println("fail!")
+                    }
+                })
+            }))
+            self.presentViewController(alert, animated: true, completion: nil)
+            
         } else if editingStyle == .Insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
