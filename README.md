@@ -1,3 +1,9 @@
+Todo List:
+
+1.  Search Friend 的结果里 有自己
+
+2.  Search friend 的结果 区分了大小写， 改成不区分？
+
 # iOS-FinalProject
 Group for iOS final
 
