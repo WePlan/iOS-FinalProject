@@ -14,6 +14,8 @@ class FriendsTableVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -23,9 +25,7 @@ class FriendsTableVC: UITableViewController {
             self.friendList = userList
             self.tableView.reloadData()
         }
-        tableView.estimatedRowHeight = tableView.rowHeight
-        tableView.rowHeight = UITableViewAutomaticDimension
-        
+
         self.tableView.allowsMultipleSelectionDuringEditing = false
     }
 
@@ -36,6 +36,7 @@ class FriendsTableVC: UITableViewController {
             self.friendList = userList
             self.tableView.reloadData()
         }
+
     }
 
     // MARK: - Table view data source
@@ -65,7 +66,7 @@ class FriendsTableVC: UITableViewController {
 //        cell.textLabel?.text = friendList[indexPath.row].name
 //        cell.detailTextLabel?.text = friendList[indexPath.row].uemail
 //        println("\(friendList[indexPath.row].uid)")
-        
+        cell.clipsToBounds = true;
         
         //Custom cell configure
         cell.friend = friendList[indexPath.row]
@@ -122,7 +123,7 @@ class FriendsTableVC: UITableViewController {
     //expanding cell height = 90
     var selected: Int = -1
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        if self.selected == indexPath.row {
+        if selected != -1 && selected == indexPath.row {
             return 90
         }else{
             return 55
@@ -134,17 +135,22 @@ class FriendsTableVC: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         //selet the expanding row
-        if self.selected == indexPath.row {
+        if selected == indexPath.row {
             selected = -1
-            self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
+            tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
+            return
         }
-        if self.selected != -1 {
-            let prevIndexPath:NSIndexPath = NSIndexPath(forItem: self.selected, inSection: 0)
-            self.selected = indexPath.row
-            self.tableView.reloadRowsAtIndexPaths([prevIndexPath], withRowAnimation: .Fade)
+        if selected != -1 {
+            let prevIndexPath:NSIndexPath = NSIndexPath(forRow: selected, inSection: 0)
+//            selected = indexPath.row
+            tableView.reloadRowsAtIndexPaths([prevIndexPath], withRowAnimation: .Fade)
+//            self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         }
-        self.selected = indexPath.row
-        self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+        
+            selected = indexPath.row
+            tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+        
+       
 //        self.performSegueWithIdentifier(StoryBoardConstants.userDetailSegue, sender: self)
     }
     
@@ -166,7 +172,12 @@ class FriendsTableVC: UITableViewController {
 //            }
 //        }
     }
-    
-
-
+//    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+//        (cell as! FriendTableViewCell).noticeCell()
+//    }
+//    
+//    override func tableView(tableView: UITableView, didEndDisplayingCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+//        (cell as! FriendTableViewCell).endNoticeCell()
+//    }
+//
 }
