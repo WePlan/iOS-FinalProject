@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -252,10 +253,21 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZFJ-VW-JQn">
-                                <rect key="frame" x="16" y="539" width="280" height="30"/>
-                                <state key="normal" title="Cancel">
+                                <rect key="frame" x="105" y="539" width="145" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="145" id="SQ6-ft-BIp"/>
+                                    <constraint firstAttribute="height" constant="30" id="fzm-fI-9zb"/>
+                                    <constraint firstAttribute="width" secondItem="ZFJ-VW-JQn" secondAttribute="height" multiplier="7:2" id="omP-4P-gbf"/>
+                                </constraints>
+                                <state key="normal" title="Cancel" backgroundImage="ButtonRoundBackground">
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="omP-4P-gbf"/>
+                                    </mask>
+                                </variation>
                                 <connections>
                                     <segue destination="mDd-Fu-u89" kind="unwind" unwindAction="unwindTaskList:" id="tHF-sg-xIt"/>
                                 </connections>
@@ -271,14 +283,15 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pbb-mb-nb8">
-                                <rect key="frame" x="22" y="74" width="65" height="58"/>
+                                <rect key="frame" x="-2" y="-76" width="77" height="35"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SHz-Hp-az5">
-                                <rect key="frame" x="-3" y="-59" width="87" height="86"/>
+                                <rect key="frame" x="-78" y="83" width="83" height="90"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c66-TE-97s">
-                                <rect key="frame" x="304" y="539" width="280" height="30"/>
-                                <state key="normal" title="Add">
+                                <rect key="frame" x="350" y="539" width="145" height="30"/>
+                                <state key="normal" title="Add" backgroundImage="ButtonRoundBackground">
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -376,9 +389,10 @@
                             <constraint firstItem="jtq-3Z-Nvw" firstAttribute="width" secondItem="Enm-v3-9Xk" secondAttribute="width" id="DGC-QU-FNU"/>
                             <constraint firstItem="Psi-VR-WtX" firstAttribute="top" secondItem="JeU-I6-pAB" secondAttribute="bottom" constant="8" symbolic="YES" id="DN7-6p-pRf"/>
                             <constraint firstItem="wY8-cB-mDO" firstAttribute="centerY" secondItem="4xV-cs-2ak" secondAttribute="centerY" id="Dhy-38-dGG"/>
+                            <constraint firstAttribute="centerX" secondItem="ZFJ-VW-JQn" secondAttribute="trailing" constant="50" id="ECT-bm-glP"/>
                             <constraint firstItem="NpP-15-TDQ" firstAttribute="top" secondItem="09O-cN-4jo" secondAttribute="bottom" constant="8" symbolic="YES" id="EiR-Me-uoc"/>
                             <constraint firstItem="ZFJ-VW-JQn" firstAttribute="top" secondItem="caf-5L-k4k" secondAttribute="bottom" constant="20" id="FeE-bY-fpM"/>
-                            <constraint firstItem="ZFJ-VW-JQn" firstAttribute="leading" secondItem="uq6-HR-59y" secondAttribute="leadingMargin" id="GrC-IT-fKh"/>
+                            <constraint firstItem="ZFJ-VW-JQn" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="uq6-HR-59y" secondAttribute="leadingMargin" id="GrC-IT-fKh"/>
                             <constraint firstAttribute="centerY" secondItem="ZFJ-VW-JQn" secondAttribute="centerY" constant="-156" id="ImA-o6-Oae"/>
                             <constraint firstItem="09O-cN-4jo" firstAttribute="leading" secondItem="NpP-15-TDQ" secondAttribute="leading" id="JA1-kK-uao"/>
                             <constraint firstItem="Psi-VR-WtX" firstAttribute="trailing" secondItem="uq6-HR-59y" secondAttribute="trailingMargin" id="K9e-sK-SQc"/>
@@ -406,12 +420,13 @@
                             <constraint firstItem="caf-5L-k4k" firstAttribute="top" secondItem="wY8-cB-mDO" secondAttribute="bottom" constant="8" symbolic="YES" id="fLc-pr-Ai5"/>
                             <constraint firstItem="Dzt-do-mU7" firstAttribute="width" secondItem="Enm-v3-9Xk" secondAttribute="width" id="gBW-Vg-Sgp"/>
                             <constraint firstItem="cUw-cL-b0Y" firstAttribute="leading" secondItem="uq6-HR-59y" secondAttribute="leadingMargin" id="gJR-7F-3V3"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="c66-TE-97s" secondAttribute="trailing" id="glk-zC-Cpg"/>
+                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="c66-TE-97s" secondAttribute="trailing" id="glk-zC-Cpg"/>
                             <constraint firstItem="c66-TE-97s" firstAttribute="leading" secondItem="ZFJ-VW-JQn" secondAttribute="trailing" constant="8" symbolic="YES" id="iDv-Hy-DP9"/>
                             <constraint firstItem="ZFJ-VW-JQn" firstAttribute="leading" secondItem="pbb-mb-nb8" secondAttribute="trailing" constant="8" symbolic="YES" id="iMX-08-5sy"/>
                             <constraint firstItem="Dzt-do-mU7" firstAttribute="centerX" secondItem="xnD-nk-PhN" secondAttribute="centerX" id="iyC-au-ZB0"/>
                             <constraint firstItem="wY8-cB-mDO" firstAttribute="centerY" secondItem="4xV-cs-2ak" secondAttribute="centerY" id="jGy-Yh-hmt"/>
                             <constraint firstItem="Dzt-do-mU7" firstAttribute="centerY" secondItem="Enm-v3-9Xk" secondAttribute="centerY" id="jml-cG-OYk"/>
+                            <constraint firstAttribute="centerX" secondItem="c66-TE-97s" secondAttribute="leading" constant="-50" id="kI8-De-xbO"/>
                             <constraint firstItem="caf-5L-k4k" firstAttribute="trailing" secondItem="uq6-HR-59y" secondAttribute="trailingMargin" id="nOF-1y-AGe"/>
                             <constraint firstItem="09O-cN-4jo" firstAttribute="width" secondItem="NpP-15-TDQ" secondAttribute="width" id="npK-nw-leh"/>
                             <constraint firstItem="lpI-cc-8Zy" firstAttribute="top" secondItem="Enm-v3-9Xk" secondAttribute="bottom" id="ob5-GX-el7"/>
@@ -444,6 +459,7 @@
                                 <exclude reference="iMX-08-5sy"/>
                                 <exclude reference="761-S5-fpy"/>
                                 <exclude reference="Nlh-MT-c0Q"/>
+                                <exclude reference="iDv-Hy-DP9"/>
                             </mask>
                         </variation>
                     </view>
@@ -490,6 +506,7 @@
         <image name="AddPeople" width="80" height="60"/>
         <image name="Assignforother" width="60" height="45"/>
         <image name="BackgroundButtonBlue-50%trans" width="310" height="80"/>
+        <image name="ButtonRoundBackground" width="310" height="80"/>
         <image name="CompleteNoWord" width="80" height="60"/>
         <image name="Edit" width="80" height="60"/>
         <image name="GroupGray" width="60" height="45"/>
