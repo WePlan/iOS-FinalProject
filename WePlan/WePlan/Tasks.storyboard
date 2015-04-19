@@ -83,37 +83,37 @@
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KPc-7m-c1m">
                                             <rect key="frame" x="245" y="50" width="110" height="30"/>
-                                            <state key="normal" title="Add people">
+                                            <state key="normal">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3qP-ZR-FBl">
                                             <rect key="frame" x="482" y="50" width="110" height="30"/>
-                                            <state key="normal" title="Delete">
+                                            <state key="normal">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mac-zC-SoX">
                                             <rect key="frame" x="363" y="50" width="111" height="30"/>
-                                            <state key="normal" title="Edit">
+                                            <state key="normal">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                         </button>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CompleteBlue" translatesAutoresizingMaskIntoConstraints="NO" id="wB6-Fn-9bd">
-                                            <rect key="frame" x="33" y="45" width="60" height="40"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CompleteNoWord" translatesAutoresizingMaskIntoConstraints="NO" id="wB6-Fn-9bd">
+                                            <rect key="frame" x="43" y="50" width="40" height="30"/>
                                         </imageView>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Scheduleblue" translatesAutoresizingMaskIntoConstraints="NO" id="39u-3H-TvY">
-                                            <rect key="frame" x="152" y="45" width="60" height="40"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ScheduleNoWord" translatesAutoresizingMaskIntoConstraints="NO" id="39u-3H-TvY">
+                                            <rect key="frame" x="162" y="50" width="40" height="30"/>
                                         </imageView>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3XC-P8-cYC">
-                                            <rect key="frame" x="270" y="45" width="60" height="40"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AddPeople" translatesAutoresizingMaskIntoConstraints="NO" id="3XC-P8-cYC">
+                                            <rect key="frame" x="280" y="50" width="40" height="30"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="60" id="LJC-fW-1cM"/>
-                                                <constraint firstAttribute="height" constant="40" id="nFh-Sg-yQY"/>
+                                                <constraint firstAttribute="width" constant="40" id="LJC-fW-1cM"/>
+                                                <constraint firstAttribute="height" constant="30" id="nFh-Sg-yQY"/>
                                             </constraints>
                                         </imageView>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7gL-gZ-YfQ">
-                                            <rect key="frame" x="388" y="45" width="60" height="40"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Edit" translatesAutoresizingMaskIntoConstraints="NO" id="7gL-gZ-YfQ">
+                                            <rect key="frame" x="398" y="50" width="40" height="30"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="30" id="LMH-Su-DJh"/>
                                                 <constraint firstAttribute="width" constant="30" id="zfl-fC-nAi"/>
@@ -125,8 +125,8 @@
                                                 </mask>
                                             </variation>
                                         </imageView>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FJS-SV-KXy">
-                                            <rect key="frame" x="507" y="45" width="60" height="40"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="delete" translatesAutoresizingMaskIntoConstraints="NO" id="FJS-SV-KXy">
+                                            <rect key="frame" x="517" y="50" width="40" height="30"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="30" id="61Z-OU-ttI"/>
                                                 <constraint firstAttribute="width" constant="30" id="Gqs-0h-ITj"/>
@@ -369,8 +369,11 @@
         </scene>
     </scenes>
     <resources>
-        <image name="CompleteBlue" width="120" height="80"/>
-        <image name="Scheduleblue" width="120" height="80"/>
+        <image name="AddPeople" width="80" height="60"/>
+        <image name="CompleteNoWord" width="80" height="60"/>
+        <image name="Edit" width="80" height="60"/>
+        <image name="ScheduleNoWord" width="80" height="60"/>
+        <image name="delete" width="80" height="60"/>
         <image name="top divider" width="640" height="1"/>
     </resources>
 </document>
