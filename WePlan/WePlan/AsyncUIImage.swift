@@ -20,9 +20,11 @@ class AsyncUIImageView: UIImageView {
     
     var imageObjectId: String? {
         didSet{
-            ParseImageAction.getImage(imageObjectId!, completion: { (returnImage: UIImage) -> Void in
-                self.image = returnImage
-            })
+            if let imageObjectId = imageObjectId {
+                ParseImageAction.getImage(imageObjectId, completion: { (returnImage: UIImage) -> Void in
+                    self.image = returnImage
+                    })
+            }
         }
     }
    

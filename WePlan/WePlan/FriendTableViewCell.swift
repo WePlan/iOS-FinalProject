@@ -15,7 +15,7 @@ class FriendTableViewCell: UITableViewCell {
         }
     }
     @IBOutlet weak var userNameLabel: UILabel!
-    @IBOutlet weak var userProfileImage: UIImageView!
+    @IBOutlet weak var userProfileImage: AsyncUIImageView!
     @IBOutlet weak var userEmailLabel: UILabel!
 
     @IBOutlet weak var userDetailButton: UIButton!
@@ -61,19 +61,22 @@ class FriendTableViewCell: UITableViewCell {
         // Initialization code
     }
     func updateCell() {
-        userNameLabel?.text = nil
-        userProfileImage?.image = UIImage(named: StoryBoardConstant.UserDetaultImage)
-        userEmailLabel?.text = nil
+        
         
         if let user = self.friend {
             userNameLabel?.text = user.name
             userEmailLabel?.text = user.uemail
+            userProfileImage.imageObjectId = user.imageId
             //UserImage part
 //            if let userImage = user.image {
 //            userProfileImage?.image = UIImage()
 //            }
-        
-      
+        }else{
+            userNameLabel?.text = nil
+            userEmailLabel?.text = nil
+//            userProfileImage?.image = UIImage(named: StoryBoardConstant.UserDetaultImage)
+            userProfileImage.defaultImageName = StoryBoardConstant.UserDetaultImage
+            
         }
     }
 //    func noticeCell() {

@@ -69,7 +69,8 @@ class ParseGroupAction : ParseGroup {
             if error == nil {
                 if let objects = objects as? [PFUser] {
                     for object in objects {
-                        var tmp = User(uid : ownerId, name : object.objectForKey(UserConstants.userNickname) as! String, uemail : object.email!)
+                        let imgId = object["imageId"] as? String
+                        var tmp = User(uid : ownerId, name : object.objectForKey(UserConstants.userNickname) as! String, uemail : object.email!, imageId: imgId)
                         complete(tmp)
                     }
                 }
@@ -95,7 +96,10 @@ class ParseGroupAction : ParseGroup {
                         if error == nil {
                             if let objects = objects as? [PFUser] {
                                 for object in objects {
-                                    var tmp = User(uid : object.objectId!, name : object.objectForKey(UserConstants.userNickname) as! String, uemail : object.email!)
+                                    let imgId = object["imageId"] as? String
+                                    var tmp = User(uid : object.objectId!, name : object.objectForKey(UserConstants.userNickname) as! String, uemail : object.email!, imageId: imgId)
+                                    
+                                    
                                     memberList.append(tmp)
                                 }
                                 complete(memberList)
