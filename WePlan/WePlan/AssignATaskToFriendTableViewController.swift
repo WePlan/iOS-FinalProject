@@ -12,6 +12,8 @@ class AssignATaskToFriendTableViewController: UITableViewController {
 
     var friend:User?
     var tasks:[TaskItem] = []
+    
+//    let checkMark = UIImageView(image: UIImage(named: AssignTaskStoryBoard.CheckMarkImageName))
      var format: NSDateFormatter = NSDateFormatter()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,6 +55,7 @@ class AssignATaskToFriendTableViewController: UITableViewController {
     private struct AssignTaskStoryBoard {
         static let AssignTaskCellIdentifier = "TaskList"
         static let AssignTskDefaultCellIdentifier = "taskListDefault"
+        static let CheckMarkImageName = "CompleteNoWord"
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -74,12 +77,15 @@ class AssignATaskToFriendTableViewController: UITableViewController {
     }
     var selectedIndex = -1
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
         if let cell = tableView.cellForRowAtIndexPath(indexPath) {
             var check:Bool = cell.accessoryType == UITableViewCellAccessoryType.Checkmark
             
             println(check)
             
+//            cell.accessoryView = checkMark
             if cell.accessoryType != UITableViewCellAccessoryType.Checkmark {
+                cell.tintColor = WePlanColors.blueColor()
                 cell.accessoryType = UITableViewCellAccessoryType.Checkmark
                 
             }else{
