@@ -86,12 +86,15 @@ class AssignATaskToFriendTableViewController: UITableViewController {
 //            cell.accessoryView = checkMark
             if cell.accessoryType != UITableViewCellAccessoryType.Checkmark {
                 cell.tintColor = WePlanColors.blueColor()
+                cell.contentView.backgroundColor = UIColor.whiteColor()
                 cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+                
+                //
                 
             }else{
                 cell.accessoryType = UITableViewCellAccessoryType.None
             }
-            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+//            tableView.deselectRowAtIndexPath(indexPath, animated: true)
         }
         
 //        tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .None)
