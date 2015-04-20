@@ -63,16 +63,21 @@ class AssignATaskToFriendTableViewController: UITableViewController {
         return cell
     }
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        <#code#>
+        let cell  = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as! AssignTaskToFriendTableViewCell
+        if cell.taskCheckImage.image == nil {
+            cell.taskCheckImage.image = UIImage(named: "CompleteNoWord")
+        }else{
+            cell.taskCheckImage.image == nil
+        }
     }
 
-    /*
+    
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         // Return NO if you do not want the specified item to be editable.
         return true
     }
-    */
+    
 
     /*
     // Override to support editing the table view.
