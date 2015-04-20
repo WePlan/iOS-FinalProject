@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		546F2CCD1AE55BC900722AE7 /* AssignATaskToFriendTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546F2CCC1AE55BC900722AE7 /* AssignATaskToFriendTableViewController.swift */; };
 		5482C57A1AE199F7003A4A84 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5482C5791AE199F7003A4A84 /* Images.xcassets */; };
 		5482C57C1AE19C71003A4A84 /* FriendDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5482C57B1AE19C71003A4A84 /* FriendDetailViewController.swift */; };
 		6623372F1AD442B800CA9BBB /* LocalUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6623372E1AD442B800CA9BBB /* LocalUser.swift */; };
@@ -74,6 +75,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		546F2CCC1AE55BC900722AE7 /* AssignATaskToFriendTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignATaskToFriendTableViewController.swift; sourceTree = "<group>"; };
 		5482C5791AE199F7003A4A84 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		5482C57B1AE19C71003A4A84 /* FriendDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendDetailViewController.swift; sourceTree = "<group>"; };
 		6623372E1AD442B800CA9BBB /* LocalUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalUser.swift; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 				6665868E1AD73DDF0008B4F6 /* SearchFriendVC.swift */,
 				66588B431AD853D90019BD3D /* SearchFriendTableViewCell.swift */,
 				5482C57B1AE19C71003A4A84 /* FriendDetailViewController.swift */,
+				546F2CCC1AE55BC900722AE7 /* AssignATaskToFriendTableViewController.swift */,
 			);
 			name = "FriendsViews&Controllers";
 			sourceTree = "<group>";
@@ -474,6 +477,7 @@
 				66D746491ACA53F30077290A /* DefaultSetting.swift in Sources */,
 				66D5AB261AC9EFB200C37F6E /* TasksTableViewCell.swift in Sources */,
 				663053DC1ACC83BF0073FB96 /* NSMutableArray+SWUtilityButtons.m in Sources */,
+				546F2CCD1AE55BC900722AE7 /* AssignATaskToFriendTableViewController.swift in Sources */,
 				66E575711AA7C19B00F0890A /* AppDelegate.swift in Sources */,
 				663053E11ACC83BF0073FB96 /* SWUtilityButtonView.m in Sources */,
 				665BFE031AD35983009262D5 /* SignUpViewController.swift in Sources */,

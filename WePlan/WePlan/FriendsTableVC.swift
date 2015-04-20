@@ -57,6 +57,7 @@ class FriendsTableVC: UITableViewController {
         static let cell3 = "FriendListCellPrototype"
         static let pushSegue = "addFriendSegue"
         static let userDetailSegue = "UserDetailView"
+        static let assignATaskSegue = "AssignATask"
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
