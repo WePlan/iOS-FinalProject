@@ -52,27 +52,37 @@ class AssignATaskToFriendTableViewController: UITableViewController {
     }
     private struct AssignTaskStoryBoard {
         static let AssignTaskCellIdentifier = "TaskList"
+        static let AssignTskDefaultCellIdentifier = "taskListDefault"
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(AssignTaskStoryBoard.AssignTaskCellIdentifier, forIndexPath: indexPath) as! AssignTaskToFriendTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(AssignTaskStoryBoard.AssignTskDefaultCellIdentifier, forIndexPath: indexPath) as! AssignTaskToFriendTableViewCell
         
-        cell.taskCheckImage.image = nil
+        //custon cell format
+//        cell.taskCheckImage.image = nil
 //        format.timeStyle = NSDateFormatterStyle.ShortStyle
         format.dateStyle = NSDateFormatterStyle.MediumStyle
-        cell.taskDate.text = format.stringFromDate(tasks[indexPath.row].dueTime)
-        cell.taskNameLabel.text = tasks[indexPath.row].taskName
-        // Configure the cell...
-
+//        cell.taskDate.text = format.stringFromDate(tasks[indexPath.row].dueTime)
+//        cell.taskNameLabel.text = tasks[indexPath.row].taskName
+//        // Configure the cell...
+        
+        //Configure default cell
+        cell.textLabel?.text = tasks[indexPath.row].taskName
+        cell.detailTextLabel?.text = format.stringFromDate(tasks[indexPath.row].dueTime)
+        
         return cell
     }
+    var selectedIndex = -1
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let cell  = tableView.dequeueReusableCellWithIdentifier(AssignTaskStoryBoard.AssignTaskCellIdentifier, forIndexPath: indexPath) as! AssignTaskToFriendTableViewCell
-        if cell.taskCheckImage.image == nil {
-            cell.taskCheckImage.image = UIImage(named: "CompleteNoWord")
-        }else{
-            cell.taskCheckImage.image == nil
-        }
+        
+//        let cell  = tableView.dequeueReusableCellWithIdentifier(AssignTaskStoryBoard.AssignTaskCellIdentifier, forIndexPath: indexPath) as! AssignTaskToFriendTableViewCell
+//        if cell.taskCheckImage.image == nil {
+//            cell.taskCheckImage.image = UIImage(named: "CompleteNoWord")
+//            
+//        }else{
+//            cell.taskCheckImage.image == nil
+//        }
+//        tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .None)
     }
 
     
