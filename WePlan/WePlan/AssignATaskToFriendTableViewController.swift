@@ -89,10 +89,15 @@ class AssignATaskToFriendTableViewController: UITableViewController {
                 cell.contentView.backgroundColor = UIColor.whiteColor()
                 cell.accessoryType = UITableViewCellAccessoryType.Checkmark
                 
-                //
+                let taskItemChecked = tasks[indexPath.row]
+                //add user to certain task group
+                // To Do Code Here
+                
                 
             }else{
                 cell.accessoryType = UITableViewCellAccessoryType.None
+                //remove user from certain task group
+                //To Do Code Here
             }
 //            tableView.deselectRowAtIndexPath(indexPath, animated: true)
         }
