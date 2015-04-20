@@ -82,11 +82,12 @@ class AssignATaskToFriendTableViewController: UITableViewController {
             var check:Bool = cell.accessoryType == UITableViewCellAccessoryType.Checkmark
             
             println(check)
-            
+            cell.contentView.superview?.backgroundColor = UIColor.whiteColor()
 //            cell.accessoryView = checkMark
             if cell.accessoryType != UITableViewCellAccessoryType.Checkmark {
                 cell.tintColor = WePlanColors.blueColor()
-                cell.contentView.backgroundColor = UIColor.whiteColor()
+                cell.contentView.superview?.backgroundColor = UIColor.whiteColor()
+                
                 cell.accessoryType = UITableViewCellAccessoryType.Checkmark
                 
                 let taskItemChecked = tasks[indexPath.row]
@@ -95,6 +96,7 @@ class AssignATaskToFriendTableViewController: UITableViewController {
                 
                 
             }else{
+                cell.contentView.superview?.backgroundColor = UIColor.whiteColor()
                 cell.accessoryType = UITableViewCellAccessoryType.None
                 //remove user from certain task group
                 //To Do Code Here
