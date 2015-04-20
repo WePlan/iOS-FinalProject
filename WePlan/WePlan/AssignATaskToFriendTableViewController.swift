@@ -11,8 +11,8 @@ import UIKit
 class AssignATaskToFriendTableViewController: UITableViewController {
 
     var friend:user?
-    
-    
+    var tasks:[TaskItem] = []
+     var format: NSDateFormatter = NSDateFormatter()
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.delegate = self
@@ -22,6 +22,11 @@ class AssignATaskToFriendTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        ParseAction.getInitialDataFromParse { (data) -> Void in
+            self.tasks = data
+            self.tableView.reloadData()
+        }
+
         self.tableView.allowsMultipleSelectionDuringEditing = true
     }
 
@@ -35,24 +40,31 @@ class AssignATaskToFriendTableViewController: UITableViewController {
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Potentially incomplete method implementation.
         // Return the number of sections.
-        return 0
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
-        return 0
+        return tasks.count
     }
 
-    /*
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as! UITableViewCell
-
+        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as! AssignTaskToFriendTableViewCell
+        
+        cell.taskCheckImage.image = nil
+//        format.timeStyle = NSDateFormatterStyle.ShortStyle
+        format.dateStyle = NSDateFormatterStyle.MediumStyle
+        cell.taskDate.text = format.stringFromDate(tasks[indexPath.row].dueTime)
+        cell.taskNameLabel.text = tasks[indexPath.row].taskName
         // Configure the cell...
 
         return cell
     }
-    */
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        <#code#>
+    }
 
     /*
     // Override to support conditional editing of the table view.

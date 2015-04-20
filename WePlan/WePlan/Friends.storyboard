@@ -436,7 +436,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TaskList" id="8QS-Dz-016">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TaskList" id="8QS-Dz-016" customClass="AssignTaskToFriendTableViewCell" customModule="WePlan" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8QS-Dz-016" id="h8b-Tw-idG">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -471,6 +471,11 @@
                                         <constraint firstItem="WUT-Ht-S7W" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="XI8-7V-vlq" secondAttribute="trailing" constant="8" symbolic="YES" id="syD-rx-Mqr"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="taskCheckImage" destination="aqw-55-Ynt" id="rb7-LS-dld"/>
+                                    <outlet property="taskDate" destination="WUT-Ht-S7W" id="sFT-dB-DVx"/>
+                                    <outlet property="taskNameLabel" destination="XI8-7V-vlq" id="XL0-1L-ig7"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
