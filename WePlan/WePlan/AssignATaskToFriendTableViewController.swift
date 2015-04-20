@@ -10,23 +10,25 @@ import UIKit
 
 class AssignATaskToFriendTableViewController: UITableViewController {
 
-    var friend:user?
+    var friend:User?
     var tasks:[TaskItem] = []
      var format: NSDateFormatter = NSDateFormatter()
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
+    
+//        self.tableView.delegate = self
+//        self.tableView.dataSource = self
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
         ParseAction.getInitialDataFromParse { (data) -> Void in
             self.tasks = data
             self.tableView.reloadData()
         }
-
+//        println(tasks[0].taskName)
         self.tableView.allowsMultipleSelectionDuringEditing = true
     }
 
@@ -48,10 +50,12 @@ class AssignATaskToFriendTableViewController: UITableViewController {
         // Return the number of rows in the section.
         return tasks.count
     }
-
+    private struct AssignTaskStoryBoard {
+        static let AssignTaskCellIdentifier = "TaskList"
+    }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as! AssignTaskToFriendTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(AssignTaskStoryBoard.AssignTaskCellIdentifier, forIndexPath: indexPath) as! AssignTaskToFriendTableViewCell
         
         cell.taskCheckImage.image = nil
 //        format.timeStyle = NSDateFormatterStyle.ShortStyle
@@ -63,7 +67,7 @@ class AssignATaskToFriendTableViewController: UITableViewController {
         return cell
     }
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let cell  = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as! AssignTaskToFriendTableViewCell
+        let cell  = tableView.dequeueReusableCellWithIdentifier(AssignTaskStoryBoard.AssignTaskCellIdentifier, forIndexPath: indexPath) as! AssignTaskToFriendTableViewCell
         if cell.taskCheckImage.image == nil {
             cell.taskCheckImage.image = UIImage(named: "CompleteNoWord")
         }else{

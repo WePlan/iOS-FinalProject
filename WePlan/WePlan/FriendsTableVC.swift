@@ -176,6 +176,13 @@ class FriendsTableVC: UITableViewController {
             let destVC = segue.destinationViewController as! SearchFriendVC
             destVC.myFriendsSet = friendIds
         }
+        if segue.identifier == StoryBoardConstants.assignATaskSegue {
+            
+            if let atdvc = segue.destinationViewController as? AssignATaskToFriendTableViewController {
+                println(friendList[selected].name)
+                atdvc.friend = friendList[selected]
+            }
+        }
 //        if segue.identifier == StoryBoardConstants.userDetailSegue {
 //            if let dvc = segue.destinationViewController as? FriendDetailViewController {
 //                dvc.user = friendList[selected]
