@@ -75,13 +75,13 @@ class AssignATaskToFriendTableViewController: UITableViewController {
     var selectedIndex = -1
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-//        let cell  = tableView.dequeueReusableCellWithIdentifier(AssignTaskStoryBoard.AssignTaskCellIdentifier, forIndexPath: indexPath) as! AssignTaskToFriendTableViewCell
-//        if cell.taskCheckImage.image == nil {
-//            cell.taskCheckImage.image = UIImage(named: "CompleteNoWord")
-//            
-//        }else{
-//            cell.taskCheckImage.image == nil
-//        }
+        let cell  = tableView.dequeueReusableCellWithIdentifier(AssignTaskStoryBoard.AssignTskDefaultCellIdentifier, forIndexPath: indexPath) as! AssignTaskToFriendTableViewCell
+        if cell.accessoryType != UITableViewCellAccessoryType.Checkmark {
+            cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+            
+        }else{
+            cell.accessoryType = UITableViewCellAccessoryType.None
+        }
 //        tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .None)
     }
 

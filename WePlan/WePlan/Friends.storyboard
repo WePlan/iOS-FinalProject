@@ -477,7 +477,7 @@
                                     <outlet property="taskNameLabel" destination="XI8-7V-vlq" id="XL0-1L-ig7"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="taskListDefault" textLabel="BaA-MV-lVT" detailTextLabel="alI-h2-n3r" style="IBUITableViewCellStyleSubtitle" id="ABs-Ko-ZMq">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="taskListDefault" textLabel="BaA-MV-lVT" detailTextLabel="alI-h2-n3r" style="IBUITableViewCellStyleSubtitle" id="ABs-Ko-ZMq" customClass="AssignTaskToFriendTableViewCell" customModule="WePlan" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ABs-Ko-ZMq" id="a1y-A9-NP1">
