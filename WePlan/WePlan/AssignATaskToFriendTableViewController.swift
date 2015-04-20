@@ -74,17 +74,22 @@ class AssignATaskToFriendTableViewController: UITableViewController {
     }
     var selectedIndex = -1
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
-        let cell  = tableView.dequeueReusableCellWithIdentifier(AssignTaskStoryBoard.AssignTskDefaultCellIdentifier, forIndexPath: indexPath) as! AssignTaskToFriendTableViewCell
-        if cell.accessoryType != UITableViewCellAccessoryType.Checkmark {
-            cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+        if let cell = tableView.cellForRowAtIndexPath(indexPath) {
+            var check:Bool = cell.accessoryType == UITableViewCellAccessoryType.Checkmark
             
-        }else{
-            cell.accessoryType = UITableViewCellAccessoryType.None
+            println(check)
+            
+            if cell.accessoryType != UITableViewCellAccessoryType.Checkmark {
+                cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+                
+            }else{
+                cell.accessoryType = UITableViewCellAccessoryType.None
+            }
+            tableView.deselectRowAtIndexPath(indexPath, animated: true)
         }
+        
 //        tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .None)
     }
-
     
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
