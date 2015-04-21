@@ -22,6 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        
         // Override point for customization after application launch.
         
         Parse.enableLocalDatastore()
@@ -35,10 +36,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }else {
             vc = storyboard.instantiateViewControllerWithIdentifier("LoginView") as! LoginViewController
         }
-//        let tbc = self.window?.rootViewController as? UITabBarController
-//        let tabbar = tbc?.tabBar
-//        println(tabbar?.items)
+        
+        
         self.window?.rootViewController = vc
+//        if let tbc = self.window?.rootViewController as? UITabBarController {
+//            println("123")
+//            
+//            var tabBar = tbc.tabBar.items?[0] as? UITabBarItem
+//            tabBar!.image = UIImage(named:"TapBarFriendGrey")!.imageWithRenderingMode(.AlwaysOriginal)
+//            
+//        }
         self.window?.makeKeyAndVisible()
         
         

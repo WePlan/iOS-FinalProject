@@ -54,7 +54,7 @@ class TabBarViewController: UITabBarController {
 //            
 //            default: break
 //            }
-//             let tabBarItem = UITabBarItem.init(title: nil, image: nil, selectedImage: nil)
+//             let tabBarItem = UITabBarItem.init(title: "123", image: nil, selectedImage: nil)
 //            tabBarItem.image = UIImage(named:imageName + "Grey")!.imageWithRenderingMode(.AlwaysOriginal)
 //            tabBarItem.selectedImage = UIImage(named:imageName + "Blue")!.imageWithRenderingMode(.AlwaysOriginal)
 //            tabBarItem.imageInsets = UIEdgeInsetsMake(5, 0, -6, 0);
