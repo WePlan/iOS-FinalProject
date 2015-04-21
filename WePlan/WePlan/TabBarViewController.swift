@@ -35,18 +35,18 @@ class TabBarViewController: UITabBarController {
         vcs.append(vc2)
         vcs.append(vc4)
         vcs.append(vc1)
-        vc3.tabBarItem = UITabBarItem.init(title: nil, image: UIImage.init(named: "TapBarTaskGrey")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal), selectedImage: UIImage.init(named: "TapBarTaskBlue")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal))
+        vc3.tabBarItem = UITabBarItem.init(title: "Task", image: UIImage.init(named: "TapBarTaskGrey")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal), selectedImage: UIImage.init(named: "TapBarTaskBlue")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal))
         
-        vc3.tabBarItem.imageInsets = UIEdgeInsets(top: 9, left: 0, bottom: -9, right: 0)
-        vc2.tabBarItem = UITabBarItem.init(title: nil, image: UIImage.init(named: "TapBarFriendGrey")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal), selectedImage: UIImage.init(named: "TapBarFriendBlue")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal))
+//        vc3.tabBarItem.imageInsets = UIEdgeInsets(top: 9, left: 0, bottom: -9, right: 0)
+        vc2.tabBarItem = UITabBarItem.init(title: "Friends", image: UIImage.init(named: "TapBarFriendGrey")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal), selectedImage: UIImage.init(named: "TapBarFriendBlue")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal))
         
-        vc2.tabBarItem.imageInsets = UIEdgeInsets(top: 9, left: 0, bottom: -9, right: 0)
-        vc4.tabBarItem = UITabBarItem.init(title: nil, image: UIImage.init(named: "TapBarGroupGrey")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal), selectedImage: UIImage.init(named: "TapBarGroupBlue")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal))
+//        vc2.tabBarItem.imageInsets = UIEdgeInsets(top: 9, left: 0, bottom: -9, right: 0)
+        vc4.tabBarItem = UITabBarItem.init(title: "Group", image: UIImage.init(named: "TapBarGroupGrey")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal), selectedImage: UIImage.init(named: "TapBarGroupBlue")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal))
         
-        vc4.tabBarItem.imageInsets = UIEdgeInsets(top: 9, left: 0, bottom: -9, right: 0)
-        vc1.tabBarItem = UITabBarItem.init(title: nil, image: UIImage.init(named: "TapBarSettingGrey")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal), selectedImage: UIImage.init(named: "TapBarSettingBlue")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal))
+//        vc4.tabBarItem.imageInsets = UIEdgeInsets(top: 9, left: 0, bottom: -9, right: 0)
+        vc1.tabBarItem = UITabBarItem.init(title: "Setting", image: UIImage.init(named: "TapBarSettingGrey")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal), selectedImage: UIImage.init(named: "TapBarSettingBlue")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal))
         
-        vc1.tabBarItem.imageInsets = UIEdgeInsets(top: 9, left: 0, bottom: -9, right: 0)
+//        vc1.tabBarItem.imageInsets = UIEdgeInsets(top: 9, left: 0, bottom: -9, right: 0)
         
         self.setViewControllers(vcs, animated: false)
         self.selectedIndex = 0

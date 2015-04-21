@@ -28,9 +28,9 @@ class GroupsTableVC: UITableViewController {
         DefaultSetting.setNavigationBar(self.navigationController!)
 //        self.tabBarItem = UITabBarItem.init(title: "as", image: UIImage.init(named: "TapBarTaskGrey"), selectedImage: UIImage.init(named: "TapBarTaskBlue"))
         //        self.tabBarItem = UITabBarItem.init(title: "as", image: UIImage.init(named: "TapBarFriendGrey"), selectedImage: UIImage.init(named: "TapBarFriendBlue"))
-                self.tabBarItem = UITabBarItem.init(title:nil, image: UIImage.init(named: "TapBarGroupGrey")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal), selectedImage: UIImage.init(named: "TapBarGroupBlue")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal))
-    
-        self.tabBarItem.imageInsets = UIEdgeInsets(top: 9, left: 0, bottom: -9, right: 0)
+//                self.tabBarItem = UITabBarItem.init(title:nil, image: UIImage.init(named: "TapBarGroupGrey")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal), selectedImage: UIImage.init(named: "TapBarGroupBlue")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal))
+//    
+//        self.tabBarItem.imageInsets = UIEdgeInsets(top: 9, left: 0, bottom: -9, right: 0)
         //        self.tabBarItem = UITabBarItem.init(title: "as", image: UIImage.init(named: "TapBarSettingGrey"), selectedImage: UIImage.init(named: "TapBarSettingBlue"))
         self.view.backgroundColor = UIColor.whiteColor()
         
