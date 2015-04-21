@@ -506,16 +506,52 @@
         <scene sceneID="gRe-zW-4eZ">
             <objects>
                 <tableViewController id="0At-XO-H6S" customClass="AddPeopleToTaskTableViewController" customModule="WePlan" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="sfx-hN-hH6">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="55" sectionHeaderHeight="22" sectionFooterHeight="22" id="sfx-hN-hH6">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AddPelpleListCell" id="9KF-mC-Pk5">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AddPelpleListCell" id="9KF-mC-Pk5" customClass="AddPeopleToTaskTableViewCell" customModule="WePlan" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9KF-mC-Pk5" id="pAr-XO-7PV">
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="UserDefaultPic" translatesAutoresizingMaskIntoConstraints="NO" id="FSH-Jd-pRo" customClass="AsyncUIImageView" customModule="WePlan" customModuleProvider="target">
+                                            <rect key="frame" x="8" y="8" width="40" height="40"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="FSH-Jd-pRo" secondAttribute="height" multiplier="1:1" id="01N-fC-IXp"/>
+                                                <constraint firstAttribute="height" constant="40" id="gpM-qY-Ina"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xRv-ey-pbU">
+                                            <rect key="frame" x="56" y="8" width="41" height="20"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RkQ-8Q-EVG">
+                                            <rect key="frame" x="56" y="28" width="41" height="14"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleCaption2"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="RkQ-8Q-EVG" firstAttribute="top" secondItem="xRv-ey-pbU" secondAttribute="bottom" id="7Ky-zV-0Tv"/>
+                                        <constraint firstItem="xRv-ey-pbU" firstAttribute="bottom" secondItem="FSH-Jd-pRo" secondAttribute="centerY" id="8gP-9y-Xwz"/>
+                                        <constraint firstItem="xRv-ey-pbU" firstAttribute="leading" secondItem="RkQ-8Q-EVG" secondAttribute="leading" id="IDf-po-dOC"/>
+                                        <constraint firstItem="xRv-ey-pbU" firstAttribute="width" secondItem="RkQ-8Q-EVG" secondAttribute="width" id="IvO-Ou-CrB"/>
+                                        <constraint firstItem="xRv-ey-pbU" firstAttribute="leading" secondItem="FSH-Jd-pRo" secondAttribute="trailing" constant="8" symbolic="YES" id="nG2-Bp-0en"/>
+                                        <constraint firstItem="FSH-Jd-pRo" firstAttribute="leading" secondItem="pAr-XO-7PV" secondAttribute="leadingMargin" id="ojU-Hx-5Lq"/>
+                                        <constraint firstItem="FSH-Jd-pRo" firstAttribute="top" secondItem="pAr-XO-7PV" secondAttribute="topMargin" id="p3K-cz-C3a"/>
+                                        <constraint firstItem="xRv-ey-pbU" firstAttribute="top" secondItem="FSH-Jd-pRo" secondAttribute="top" id="pAe-DL-lSN"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="userEmailLabel" destination="RkQ-8Q-EVG" id="xSr-Ij-I5v"/>
+                                    <outlet property="userNameLabel" destination="xRv-ey-pbU" id="Otq-Ij-n2c"/>
+                                    <outlet property="userProfileImage" destination="FSH-Jd-pRo" id="O1O-eO-NHZ"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -556,6 +592,7 @@
         <image name="Edit" width="80" height="60"/>
         <image name="GroupGray" width="60" height="45"/>
         <image name="ScheduleNoWord" width="80" height="60"/>
+        <image name="UserDefaultPic" width="1145" height="1054"/>
         <image name="delete" width="80" height="60"/>
         <image name="self" width="60" height="45"/>
         <image name="top divider" width="640" height="1"/>

@@ -10,14 +10,22 @@ import UIKit
 
 class AddPeopleToTaskTableViewController: UITableViewController {
 
+    var friendList:[User] = []
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        ParseFriendAction.getFriendList { (userList:[User]) -> Void in
+            self.friendList = userList
+            self.tableView.reloadData()
+        }
+        
+        self.tableView.allowsMultipleSelectionDuringEditing = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -30,32 +38,69 @@ class AddPeopleToTaskTableViewController: UITableViewController {
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Potentially incomplete method implementation.
         // Return the number of sections.
-        return 0
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
-        return 0
+        return self.friendList.count
     }
 
-    /*
+    private struct AddPeopleToTastConstants {
+        static let cellIdentifier = "AddPelpleListCell"
+    }
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as! UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(AddPeopleToTastConstants.cellIdentifier, forIndexPath: indexPath) as! AddPeopleToTaskTableViewCell
 
         // Configure the cell...
-
+        
+        cell.friend = friendList[indexPath.row]
         return cell
     }
-    */
+    
 
-    /*
+    
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         // Return NO if you do not want the specified item to be editable.
         return true
     }
-    */
+    
+    var selectedIndex = -1
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        if let cell = tableView.cellForRowAtIndexPath(indexPath) {
+            
+            if cell.accessoryType != UITableViewCellAccessoryType.Checkmark {
+                cell.tintColor = WePlanColors.blueColor()
+                cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+                
+                var myBackView = UIView(frame: cell.frame)
+                myBackView.backgroundColor = WePlanColors.blueColor()
+                cell.selectedBackgroundView = myBackView
+                
+                let taskItemChecked = friendList[indexPath.row]
+                
+                //add users to this task group
+                // To Do Code Here
+                
+                
+            }else{
+                cell.accessoryType = UITableViewCellAccessoryType.None
+                
+                //remove users from this task group
+                //To Do Code Here
+                
+                
+            }
+            
+            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        }
+        
+        
+    }
 
     /*
     // Override to support editing the table view.

@@ -10,6 +10,7 @@
 		546F2CCD1AE55BC900722AE7 /* AssignATaskToFriendTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546F2CCC1AE55BC900722AE7 /* AssignATaskToFriendTableViewController.swift */; };
 		546F2CD01AE5651100722AE7 /* AssignTaskToFriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546F2CCF1AE5651100722AE7 /* AssignTaskToFriendTableViewCell.swift */; };
 		546F2CD21AE5D57300722AE7 /* AddPeopleToTaskTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546F2CD11AE5D57300722AE7 /* AddPeopleToTaskTableViewController.swift */; };
+		546F2CD61AE5DA1F00722AE7 /* AddPeopleToTaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546F2CD51AE5DA1F00722AE7 /* AddPeopleToTaskTableViewCell.swift */; };
 		5482C57A1AE199F7003A4A84 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5482C5791AE199F7003A4A84 /* Images.xcassets */; };
 		5482C57C1AE19C71003A4A84 /* FriendDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5482C57B1AE19C71003A4A84 /* FriendDetailViewController.swift */; };
 		6623372F1AD442B800CA9BBB /* LocalUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6623372E1AD442B800CA9BBB /* LocalUser.swift */; };
@@ -80,6 +81,7 @@
 		546F2CCC1AE55BC900722AE7 /* AssignATaskToFriendTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignATaskToFriendTableViewController.swift; sourceTree = "<group>"; };
 		546F2CCF1AE5651100722AE7 /* AssignTaskToFriendTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignTaskToFriendTableViewCell.swift; sourceTree = "<group>"; };
 		546F2CD11AE5D57300722AE7 /* AddPeopleToTaskTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPeopleToTaskTableViewController.swift; sourceTree = "<group>"; };
+		546F2CD51AE5DA1F00722AE7 /* AddPeopleToTaskTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPeopleToTaskTableViewCell.swift; sourceTree = "<group>"; };
 		5482C5791AE199F7003A4A84 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		5482C57B1AE19C71003A4A84 /* FriendDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendDetailViewController.swift; sourceTree = "<group>"; };
 		6623372E1AD442B800CA9BBB /* LocalUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalUser.swift; sourceTree = "<group>"; };
@@ -191,6 +193,7 @@
 			isa = PBXGroup;
 			children = (
 				546F2CD11AE5D57300722AE7 /* AddPeopleToTaskTableViewController.swift */,
+				546F2CD51AE5DA1F00722AE7 /* AddPeopleToTaskTableViewCell.swift */,
 			);
 			name = AddPeopleToTask;
 			sourceTree = "<group>";
@@ -485,6 +488,7 @@
 				66E575911AA7C25800F0890A /* WePlanColors.swift in Sources */,
 				66AF5E001ACF2849006AA027 /* LoginViewController.swift in Sources */,
 				546F2CD01AE5651100722AE7 /* AssignTaskToFriendTableViewCell.swift in Sources */,
+				546F2CD61AE5DA1F00722AE7 /* AddPeopleToTaskTableViewCell.swift in Sources */,
 				6689E5101ABCCD120079C8ED /* TaskItem.swift in Sources */,
 				66E575951AA91E3400F0890A /* TabBarViewController.swift in Sources */,
 				66FC89E61AD7173000A9017A /* FriendTableViewCell.swift in Sources */,
