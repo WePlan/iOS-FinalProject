@@ -87,6 +87,9 @@
                                             <state key="normal">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
+                                            <connections>
+                                                <segue destination="0At-XO-H6S" kind="show" identifier="AddPeopleToTask" id="37T-t7-4CN"/>
+                                            </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3qP-ZR-FBl">
                                             <rect key="frame" x="482" y="57" width="110" height="30"/>
@@ -228,7 +231,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wcb-W9-VLK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1319" y="-376"/>
+            <point key="canvasLocation" x="1364" y="-391"/>
         </scene>
         <!--Add Task Item View Controller-->
         <scene sceneID="RuX-tn-VDs">
@@ -497,7 +500,33 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qk4-qQ-Qz9" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="mDd-Fu-u89" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2797" y="-381"/>
+            <point key="canvasLocation" x="2753" y="247"/>
+        </scene>
+        <!--Add People To Task Table View Controller-->
+        <scene sceneID="gRe-zW-4eZ">
+            <objects>
+                <tableViewController id="0At-XO-H6S" customClass="AddPeopleToTaskTableViewController" customModule="WePlan" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="sfx-hN-hH6">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AddPelpleListCell" id="9KF-mC-Pk5">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9KF-mC-Pk5" id="pAr-XO-7PV">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="0At-XO-H6S" id="CSP-Xn-qVe"/>
+                            <outlet property="delegate" destination="0At-XO-H6S" id="clQ-ju-wwn"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XQc-Lc-GCj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2089" y="-391"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="1GD-s5-HhY">
@@ -515,7 +544,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CTb-zh-Fi1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2111" y="-376"/>
+            <point key="canvasLocation" x="2033" y="213"/>
         </scene>
     </scenes>
     <resources>
