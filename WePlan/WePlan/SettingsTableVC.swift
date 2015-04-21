@@ -129,10 +129,19 @@ class SettingsTableVC: UITableViewController , UIImagePickerControllerDelegate, 
     
     override func viewWillAppear(animated: Bool) {
         DefaultSetting.setNavigationBar(self.navigationController!)
-        
+        initialUISettings()
         setUserLabels()
     }
-    
+    private func initialUISettings() {
+        DefaultSetting.setNavigationBar(self.navigationController!)
+//        self.tabBarItem = UITabBarItem.init(title: "as", image: UIImage.init(named: "TapBarTaskGrey"), selectedImage: UIImage.init(named: "TapBarTaskBlue"))
+        //        self.tabBarItem = UITabBarItem.init(title: "as", image: UIImage.init(named: "TapBarFriendGrey"), selectedImage: UIImage.init(named: "TapBarFriendBlue"))
+        //        self.tabBarItem = UITabBarItem.init(title: "as", image: UIImage.init(named: "TapBarGroupGrey"), selectedImage: UIImage.init(named: "TapBarGroupBlue"))
+                self.tabBarItem = UITabBarItem.init(title: nil, image: UIImage.init(named: "TapBarSettingGrey")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal), selectedImage: UIImage.init(named: "TapBarSettingBlue")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal))
+        self.tabBarItem.imageInsets = UIEdgeInsets(top: 9, left: 0, bottom: -9, right: 0)
+        self.view.backgroundColor = UIColor.whiteColor()
+        
+    }
     override func viewDidAppear(animated: Bool) {
         
     }

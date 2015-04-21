@@ -35,8 +35,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }else {
             vc = storyboard.instantiateViewControllerWithIdentifier("LoginView") as! LoginViewController
         }
+//        let tbc = self.window?.rootViewController as? UITabBarController
+//        let tabbar = tbc?.tabBar
+//        println(tabbar?.items)
         self.window?.rootViewController = vc
         self.window?.makeKeyAndVisible()
+        
+        
+        
+        
+        
         return true
     }
 

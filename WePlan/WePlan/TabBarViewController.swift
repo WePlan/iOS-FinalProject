@@ -9,6 +9,7 @@
 import UIKit
 
 class TabBarViewController: UITabBarController {
+    
     private struct viewControllers {
         static let mainVC = "TasksEntry"
         static let friendVC = "FriendsEntry"
@@ -34,10 +35,37 @@ class TabBarViewController: UITabBarController {
         vcs.append(vc2)
         vcs.append(vc4)
         vcs.append(vc1)
+//        self.tabBar.items = [UITabBarItem]
+//        println(self.tabBar.items)
+//        for var i = 0; i < 4; i++ {
+////            let tabBarItem = self.tabBar.items![i] as! UITabBarItem
+//            
+//            // Adjust tab images (Like mstysf says, these values will vary)
+//            
+//            
+//            // Let's find and set the icon's default and selected states
+//            // (use your own image names here)
+//            var imageName = ""
+//            switch (i) {
+//            case 0: imageName = "TapBarTask"
+//            case 1: imageName = "TapBarFriend"
+//            case 2: imageName = "TapBarGroup"
+//            case 3: imageName = "TapBarSetting"
+//            
+//            default: break
+//            }
+//             let tabBarItem = UITabBarItem.init(title: nil, image: nil, selectedImage: nil)
+//            tabBarItem.image = UIImage(named:imageName + "Grey")!.imageWithRenderingMode(.AlwaysOriginal)
+//            tabBarItem.selectedImage = UIImage(named:imageName + "Blue")!.imageWithRenderingMode(.AlwaysOriginal)
+//            tabBarItem.imageInsets = UIEdgeInsetsMake(5, 0, -6, 0);
+//            self.tabBar.items!.append(tabBarItem)
+//        }
+        
         self.setViewControllers(vcs, animated: false)
         self.selectedIndex = 0
-        self.tabBar.tintColor = UIColor.greenColor()
-        self.tabBar.backgroundColor = UIColor.redColor()
+        self.tabBar.tintColor = WePlanColors.blueColor()
+        
+//        self.tabBar.backgroundColor = UIColor.redColor()
         
     }
     override func viewDidAppear(animated: Bool) {

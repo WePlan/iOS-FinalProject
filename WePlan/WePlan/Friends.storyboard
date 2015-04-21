@@ -509,11 +509,11 @@
             </objects>
             <point key="canvasLocation" x="2376" y="990"/>
         </scene>
-        <!--Friends-->
+        <!--Navigation Controller-->
         <scene sceneID="76h-oD-dHT">
             <objects>
                 <navigationController storyboardIdentifier="FriendsEntry" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BnU-cx-w9H" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Friends" id="wQy-t6-5Eh"/>
+                    <tabBarItem key="tabBarItem" title="" id="wQy-t6-5Eh"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="gPK-cP-6gh">

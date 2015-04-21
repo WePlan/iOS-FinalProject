@@ -14,6 +14,7 @@ class FriendsTableVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        initialUISettings()
         self.tableView.delegate = self
         self.tableView.dataSource = self
         // Uncomment the following line to preserve selection between presentations
@@ -31,6 +32,7 @@ class FriendsTableVC: UITableViewController {
 
     override func viewWillAppear(animated: Bool) {
         DefaultSetting.setNavigationBar(self.navigationController!)
+        initialUISettings()
         // Can be improved by add only one user object
         ParseFriendAction.getFriendList { (userList:[User]) -> Void in
             self.friendList = userList
@@ -59,7 +61,18 @@ class FriendsTableVC: UITableViewController {
         static let userDetailSegue = "UserDetailView"
         static let assignATaskSegue = "AssignATaskToFriend"
     }
-    
+    private func initialUISettings() {
+        DefaultSetting.setNavigationBar(self.navigationController!)
+//        self.tabBarItem = UITabBarItem.init(title: "as", image: UIImage.init(named: "TapBarTaskGrey"), selectedImage: UIImage.init(named: "TapBarTaskBlue"))
+                self.tabBarItem = UITabBarItem.init(title: nil, image: UIImage.init(named: "TapBarFriendGrey")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal), selectedImage: UIImage.init(named: "TapBarFriendBlue")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal))
+       
+        self.tabBarItem.imageInsets = UIEdgeInsets(top: 9, left: 0, bottom: -9, right: 0)
+        //        self.tabBarItem = UITabBarItem.init(title: "as", image: UIImage.init(named: "TapBarGroupGrey"), selectedImage: UIImage.init(named: "TapBarGroupBlue"))
+        //        self.tabBarItem = UITabBarItem.init(title: "as", image: UIImage.init(named: "TapBarSettingGrey"), selectedImage: UIImage.init(named: "TapBarSettingBlue"))
+        self.view.backgroundColor = UIColor.whiteColor()
+        
+    }
+
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCellWithIdentifier(StoryBoardConstants.cell3, forIndexPath: indexPath) as! FriendTableViewCell
         
