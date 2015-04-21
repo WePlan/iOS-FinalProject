@@ -70,41 +70,52 @@ class AssignATaskToFriendTableViewController: UITableViewController {
 //        // Configure the cell...
         
         //Configure default cell
+        cell.selectedBackgroundView.backgroundColor = UIColor.whiteColor()
         cell.textLabel?.text = tasks[indexPath.row].taskName
         cell.detailTextLabel?.text = format.stringFromDate(tasks[indexPath.row].dueTime)
         
         return cell
     }
+//    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+//        if let cell = tableView.cellForRowAtIndexPath(indexPath){
+//            cell.contentView.backgroundColor = UIColor.whiteColor()
+//            cell.accessoryView?.backgroundColor = UIColor.whiteColor()
+//        }
+//
+//    }
     var selectedIndex = -1
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         if let cell = tableView.cellForRowAtIndexPath(indexPath) {
             var check:Bool = cell.accessoryType == UITableViewCellAccessoryType.Checkmark
-            
-            println(check)
-            cell.contentView.superview?.backgroundColor = UIColor.whiteColor()
-//            cell.accessoryView = checkMark
+
             if cell.accessoryType != UITableViewCellAccessoryType.Checkmark {
                 cell.tintColor = WePlanColors.blueColor()
-                cell.contentView.superview?.backgroundColor = UIColor.whiteColor()
-                
                 cell.accessoryType = UITableViewCellAccessoryType.Checkmark
                 
+                var myBackView = UIView(frame: cell.frame)
+                myBackView.backgroundColor = WePlanColors.blueColor()
+                cell.selectedBackgroundView = myBackView
+                
                 let taskItemChecked = tasks[indexPath.row]
+                
                 //add user to certain task group
                 // To Do Code Here
                 
                 
             }else{
-                cell.contentView.superview?.backgroundColor = UIColor.whiteColor()
                 cell.accessoryType = UITableViewCellAccessoryType.None
+                
                 //remove user from certain task group
                 //To Do Code Here
+                
+                
             }
-//            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            
+            tableView.deselectRowAtIndexPath(indexPath, animated: true)
         }
         
-//        tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .None)
+        
     }
     
     // Override to support conditional editing of the table view.
