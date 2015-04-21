@@ -338,12 +338,18 @@
                                 <state key="normal" image="GroupGray">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="groupButton:" destination="kF5-Jw-de5" eventType="touchUpInside" id="oV4-7T-yse"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dzt-do-mU7">
                                 <rect key="frame" x="395" y="261" width="189" height="45"/>
                                 <state key="normal" image="Assignforother">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="OtherPeopleButton:" destination="kF5-Jw-de5" eventType="touchUpInside" id="2eU-4r-ZOX"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OtherPeople" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xnD-nk-PhN">
                                 <rect key="frame" x="454" y="306" width="70" height="15"/>
@@ -371,6 +377,9 @@
                                 <state key="normal" image="self" backgroundImage="BackgroundButtonBlue-50%trans">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="mySelfButton:" destination="kF5-Jw-de5" eventType="touchUpInside" id="fTn-Bo-mUZ"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -403,6 +412,7 @@
                             <constraint firstItem="wY8-cB-mDO" firstAttribute="leading" secondItem="uq6-HR-59y" secondAttribute="leadingMargin" constant="50" id="PBg-jy-BSU"/>
                             <constraint firstItem="caf-5L-k4k" firstAttribute="top" secondItem="wY8-cB-mDO" secondAttribute="bottom" constant="8" symbolic="YES" id="PWW-ZQ-NpC"/>
                             <constraint firstItem="jtq-3Z-Nvw" firstAttribute="leading" secondItem="VWj-fB-MH5" secondAttribute="trailing" constant="8" symbolic="YES" id="Q60-cf-QW1"/>
+                            <constraint firstItem="Enm-v3-9Xk" firstAttribute="height" secondItem="Dzt-do-mU7" secondAttribute="height" id="QCJ-Qb-Vdx"/>
                             <constraint firstItem="jtq-3Z-Nvw" firstAttribute="centerX" secondItem="Z5R-FV-DPr" secondAttribute="centerX" id="QHn-1x-8BI"/>
                             <constraint firstItem="jtq-3Z-Nvw" firstAttribute="top" secondItem="VWj-fB-MH5" secondAttribute="bottom" constant="8" symbolic="YES" id="RTF-jG-oes"/>
                             <constraint firstItem="c66-TE-97s" firstAttribute="centerY" secondItem="ZFJ-VW-JQn" secondAttribute="centerY" id="StW-VK-Q27"/>
@@ -421,6 +431,7 @@
                             <constraint firstItem="Dzt-do-mU7" firstAttribute="width" secondItem="Enm-v3-9Xk" secondAttribute="width" id="gBW-Vg-Sgp"/>
                             <constraint firstItem="cUw-cL-b0Y" firstAttribute="leading" secondItem="uq6-HR-59y" secondAttribute="leadingMargin" id="gJR-7F-3V3"/>
                             <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="c66-TE-97s" secondAttribute="trailing" id="glk-zC-Cpg"/>
+                            <constraint firstItem="Enm-v3-9Xk" firstAttribute="height" secondItem="jtq-3Z-Nvw" secondAttribute="height" id="h8Y-Rm-vMl"/>
                             <constraint firstItem="c66-TE-97s" firstAttribute="leading" secondItem="ZFJ-VW-JQn" secondAttribute="trailing" constant="8" symbolic="YES" id="iDv-Hy-DP9"/>
                             <constraint firstItem="ZFJ-VW-JQn" firstAttribute="leading" secondItem="pbb-mb-nb8" secondAttribute="trailing" constant="8" symbolic="YES" id="iMX-08-5sy"/>
                             <constraint firstItem="Dzt-do-mU7" firstAttribute="centerX" secondItem="xnD-nk-PhN" secondAttribute="centerX" id="iyC-au-ZB0"/>
@@ -475,6 +486,11 @@
                         <outlet property="addButton" destination="c66-TE-97s" id="oaV-27-x9R"/>
                         <outlet property="dateLabel" destination="4xV-cs-2ak" id="oFj-kH-h6S"/>
                         <outlet property="datePicker" destination="caf-5L-k4k" id="qbc-WA-iHU"/>
+                        <outlet property="groupButtonLabel" destination="Enm-v3-9Xk" id="UtZ-cS-1nA"/>
+                        <outlet property="mySelfButtonLabel" destination="jtq-3Z-Nvw" id="X50-5u-sCv"/>
+                        <outlet property="otherPeopleButtonLabel" destination="Dzt-do-mU7" id="FJs-pm-hSz"/>
+                        <outlet property="shortDescriptionTextField" destination="CTf-Vg-Uwj" id="P8a-SJ-vg9"/>
+                        <outlet property="taskLocationTextField" destination="NpP-15-TDQ" id="jwN-SA-c0j"/>
                         <outlet property="taskTitleTextField" destination="09O-cN-4jo" id="oeF-68-DtP"/>
                     </connections>
                 </viewController>

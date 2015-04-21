@@ -10,13 +10,47 @@ import UIKit
 
 class AddTaskItemViewController: UIViewController, UITextFieldDelegate {
     var newTask: TaskItem?
-    
+    private struct StoryBoardConstants {
+        static let backgroundImageName = "BackgroundButtonBlue-50%trans"
+    }
     @IBOutlet weak var taskTitleTextField: UITextField!
     
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var dateLabel: UILabel!
     
+    //Not implemented
+    @IBOutlet weak var taskLocationTextField: UITextField!
+    @IBOutlet weak var shortDescriptionTextField: UITextField!
+    
+    @IBOutlet weak var mySelfButtonLabel: UIButton!
+    @IBOutlet weak var groupButtonLabel: UIButton!
+    @IBOutlet weak var otherPeopleButtonLabel: UIButton!
+    
+    var taskFor: String = ""
+    let buttonBackgroundImage = UIImage(named: StoryBoardConstants.backgroundImageName)
+    @IBAction func mySelfButton(sender: UIButton) {
+        taskFor = "Myself"
+       mySelfButtonLabel.setBackgroundImage(buttonBackgroundImage, forState: UIControlState.Normal)
+        groupButtonLabel.setBackgroundImage(nil, forState: UIControlState.Normal)
+        otherPeopleButtonLabel.setBackgroundImage(nil, forState: UIControlState.Normal)
+        
+    }
+    
+    @IBAction func OtherPeopleButton(sender: UIButton) {
+        taskFor = "OtherPeople"
+        mySelfButtonLabel.setBackgroundImage(nil, forState: UIControlState.Normal)
+        groupButtonLabel.setBackgroundImage(nil, forState: UIControlState.Normal)
+        otherPeopleButtonLabel.setBackgroundImage(buttonBackgroundImage, forState: UIControlState.Normal)
+        
+    }
+    @IBAction func groupButton(sender: UIButton) {
+        taskFor = "Group"
+        mySelfButtonLabel.setBackgroundImage(nil, forState: UIControlState.Normal)
+        groupButtonLabel.setBackgroundImage(buttonBackgroundImage, forState: UIControlState.Normal)
+        otherPeopleButtonLabel.setBackgroundImage(nil, forState: UIControlState.Normal)
+    }
+    //AbovePart Not Implementd
     
     var format: NSDateFormatter = NSDateFormatter()
     
