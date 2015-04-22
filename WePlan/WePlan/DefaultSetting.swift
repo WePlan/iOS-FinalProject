@@ -25,4 +25,11 @@ class DefaultSetting {
         tabBarController.tabBar.tintColor = UIColor.redColor()
         tabBarController.tabBar.backgroundColor = UIColor.purpleColor()
     }
+    
+    
+    //MARK: - FixImageShape
+    class func fixImageView(imageView: UIImageView, radius: CGFloat) {
+        imageView.layer.cornerRadius = radius
+        imageView.layer.masksToBounds = true
+    }
 }

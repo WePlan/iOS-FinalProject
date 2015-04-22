@@ -14,7 +14,7 @@ class SettingsTableVC: UITableViewController , UIImagePickerControllerDelegate, 
     
     @IBOutlet weak var uidLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
-    @IBOutlet weak var photoImage: AsyncUIImageView!
+    @IBOutlet weak var photoImageView: AsyncUIImageView!
     
     var changeImageAlertController: UIAlertController?
     
@@ -26,23 +26,30 @@ class SettingsTableVC: UITableViewController , UIImagePickerControllerDelegate, 
         case Library
         case Camera
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        initialAlertController()
-        
-        self.photoImage.userInteractionEnabled = true
-        let singleTap = UITapGestureRecognizer(target: self, action: "tappedImage")
-        self.photoImage.addGestureRecognizer(singleTap)
+        self.initialAlertController()
+        self.initialPhotoView()
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-//        self.photoImage.image = UIImage(named: Constants.imageDefault)
-        self.photoImage.defaultImageName = Constants.imageDefault
+        
+        
+    }
+    func initialPhotoView() {
+        // add TapGesture
+        self.photoImageView.userInteractionEnabled = true
+        let singleTap = UITapGestureRecognizer(target: self, action: "tappedImage")
+        self.photoImageView.addGestureRecognizer(singleTap)
+        // Set default image and frame
+        self.photoImageView.defaultImageName = Constants.imageDefault
+        DefaultSetting.fixImageView(photoImageView, radius: 32)
+        
         if let imageId = PFUser.currentUser()!["imageId"] as? String {
-            self.photoImage.imageObjectId = imageId
+            self.photoImageView.imageObjectId = imageId
         }else {
             println("Could not find imageId")
         }
@@ -52,11 +59,7 @@ class SettingsTableVC: UITableViewController , UIImagePickerControllerDelegate, 
         presentViewController(changeImageAlertController!, animated: true, completion: nil)
     }
     
-    func setUserLabels () {
-        usernameLabel.text = PFUser.currentUser()!.username!
-        uidLabel.text = PFUser.currentUser()!.objectId!
-        emailLabel.text = PFUser.currentUser()!.email!
-    }
+    
     
     func initialAlertController () {
         self.changeImageAlertController = UIAlertController(title: "Do you want to change your photo?", message: "", preferredStyle: .ActionSheet)
@@ -67,9 +70,10 @@ class SettingsTableVC: UITableViewController , UIImagePickerControllerDelegate, 
         self.changeImageAlertController?.addAction(UIAlertAction(title: "Choose From Camera", style: .Default, handler: { (paramAction:UIAlertAction!) -> Void in
             self.prepareImagePicker(PhotoSource.Camera)
         }))
-        self.changeImageAlertController?.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Destructive, handler: nil))
+        self.changeImageAlertController?.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
     }
     
+    // MARK: - ClickAction
     @IBAction func clickLogout(sender: AnyObject) {
         var sb = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
         var vc = sb.instantiateViewControllerWithIdentifier("LoginView") as! LoginViewController
@@ -78,11 +82,6 @@ class SettingsTableVC: UITableViewController , UIImagePickerControllerDelegate, 
     }
     
     // MARK: - ImagePickerController and delegate
-    
-    @IBAction func clickChangeImage(sender: AnyObject) {
-//        prepareImagePicker()
-        println("It's abandoned")
-    }
     
     func prepareImagePicker(source: PhotoSource) {
         var pickerController = UIImagePickerController()
@@ -103,14 +102,12 @@ class SettingsTableVC: UITableViewController , UIImagePickerControllerDelegate, 
         
     }
     
-    
-    
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
         println("image picked!")
         let newSize = CGSizeMake(180, 180)
         var newImage = resizeImage(image, size: newSize)
         
-        photoImage.image = newImage
+        photoImageView.image = newImage
         
         ParseImageAction.uploadImage(newImage)
                 
@@ -126,6 +123,11 @@ class SettingsTableVC: UITableViewController , UIImagePickerControllerDelegate, 
     }
     
     // MARK: - LifeCycle
+    func setUserLabels () {
+        usernameLabel.text = PFUser.currentUser()!.username!
+        uidLabel.text = PFUser.currentUser()!.objectId!
+        emailLabel.text = PFUser.currentUser()!.email!
+    }
     
     override func viewWillAppear(animated: Bool) {
         DefaultSetting.setNavigationBar(self.navigationController!)
@@ -141,14 +143,6 @@ class SettingsTableVC: UITableViewController , UIImagePickerControllerDelegate, 
 //        self.tabBarItem.imageInsets = UIEdgeInsets(top: 9, left: 0, bottom: -9, right: 0)
         self.view.backgroundColor = UIColor.whiteColor()
         
-    }
-    override func viewDidAppear(animated: Bool) {
-        
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     // MARK: - Table view data source
