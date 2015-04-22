@@ -53,6 +53,7 @@ class ParseGroupAction : ParseGroup {
                             if let objects = objects as? [PFObject] {
                                 for object in objects {
                                     ////////////Stuck! Stop her one Sec!!!!! ----- By Mark
+                                    ////Testing
                                 }
                             }
                         }
