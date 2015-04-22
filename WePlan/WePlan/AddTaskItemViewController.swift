@@ -133,7 +133,7 @@ class AddTaskItemViewController: UIViewController, UITextFieldDelegate {
         let current = datePicker.date
         dateLabel.text = format.stringFromDate(current)
         dateLabel.userInteractionEnabled = true
-        let singleTap = UIGestureRecognizer(target: self, action: "tapDateLabel")
+        let singleTap = UITapGestureRecognizer(target: self, action: "tapDateLabel")
         dateLabel.addGestureRecognizer(singleTap)
     }
     
