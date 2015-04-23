@@ -29,6 +29,9 @@ class AddTaskItemViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var groupButtonLabel: UIButton!
     @IBOutlet weak var otherPeopleButtonLabel: UIButton!
     
+    @IBOutlet weak var pickerViewHeightConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var pickerViewBottomConstraint: NSLayoutConstraint!
     var taskFor: String = ""
     let buttonBackgroundImage = UIImage(named: StoryBoardConstants.backgroundImageName)
     @IBAction func mySelfButton(sender: UIButton) {
@@ -55,21 +58,14 @@ class AddTaskItemViewController: UIViewController, UITextFieldDelegate {
     //AbovePart Not Implementd
     
     
+    
     //MARK: - DatePicker and its View
     var format: NSDateFormatter = NSDateFormatter()
     var pickerDisplayed: Bool = false
     
-    
-    
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
-    
     private func prepareDatePicker() {
         let now = NSDate()
         let oneYearTime: NSTimeInterval = 365*24*60*60
-        
         let oneYearFromNow = now.dateByAddingTimeInterval(oneYearTime)
         datePicker.minimumDate = now
         datePicker.maximumDate = oneYearFromNow
@@ -80,41 +76,33 @@ class AddTaskItemViewController: UIViewController, UITextFieldDelegate {
         dateLabel.text = format.stringFromDate(datePicker.date)
     }
     
+    @IBAction func clickDoneInPicker(sender: AnyObject) {
+        hidePickerView()
+    }
+    
     func tapDateLabel() {
-        println("tapped")
         if self.pickerDisplayed {
-            //hide View
             hidePickerView()
         }else{
-            //show View
             showPickerView()
         }
     }
     
     func showPickerView(){
-        self.addButton.hidden = true
-        self.cancelButton.hidden = true
-        println("show")
-        let frame = self.view.frame
-        println(frame.height)
-        UIView.animateWithDuration(1, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
-            self.pickerView.frame = CGRectMake(0, frame.height, frame.width, 200)
+        UIView.animateWithDuration(0.4, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
+            self.pickerViewBottomConstraint.constant = 0
+            self.view.layoutIfNeeded()
             }) { (finished:Bool) -> Void in
-            //
             self.pickerDisplayed = true
         }
     }
     
     func hidePickerView(){
-        println("hide")
-        let frame = self.view.frame
-        UIView.animateWithDuration(1, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
-            self.pickerView.frame = CGRectMake(0, frame.height+200, frame.width, 0)
+        UIView.animateWithDuration(0.4, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
+            self.pickerViewBottomConstraint.constant = 200
+            self.view.layoutIfNeeded()
             }) { (finished:Bool) -> Void in
-            //
             self.pickerDisplayed = false
-            self.addButton.hidden = false
-            self.cancelButton.hidden = false
         }
         
     }
@@ -146,18 +134,20 @@ class AddTaskItemViewController: UIViewController, UITextFieldDelegate {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(true)
         let size = self.view.frame.size
-        println(size)
-        println(pickerView.frame)
-        self.pickerView.frame = CGRectMake(0, size.height+200, 375, 0)
-        
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-//    
-//    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+    
+    //MARK: - Misc
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
 //        let touch: UITouch = touches.first as! UITouch
 //        let touchPoint = touch.locationInView(self.view)
 //        let labelBounds = dateLabel.frame
@@ -167,8 +157,8 @@ class AddTaskItemViewController: UIViewController, UITextFieldDelegate {
 //            println("touched")
 //            tapDateLabel()
 //        }
-//        taskTitleTextField.resignFirstResponder()
-//    }
+        taskTitleTextField.resignFirstResponder()
+    }
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
