@@ -46,7 +46,7 @@ class SettingsTableVC: UITableViewController , UIImagePickerControllerDelegate, 
         self.photoImageView.addGestureRecognizer(singleTap)
         // Set default image and frame
         self.photoImageView.defaultImageName = Constants.imageDefault
-        DefaultSetting.fixImageView(photoImageView, radius: 32)
+        DefaultSetting.changeImageViewToCircle(photoImageView)
         
         if let imageId = PFUser.currentUser()!["imageId"] as? String {
             self.photoImageView.imageObjectId = imageId
