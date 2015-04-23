@@ -376,6 +376,9 @@
                             <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KSC-rh-pAB">
                                 <rect key="frame" x="0.0" y="600" width="600" height="200"/>
                                 <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="77Q-bf-5CK">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="200"/>
+                                    </imageView>
                                     <datePicker contentMode="scaleToFill" verticalHuggingPriority="240" verticalCompressionResistancePriority="740" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="EkQ-ow-7fZ">
                                         <rect key="frame" x="0.0" y="38" width="600" height="162"/>
                                         <date key="date" timeIntervalSinceReferenceDate="451420370.95666403">
@@ -394,12 +397,16 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="77Q-bf-5CK" secondAttribute="bottom" id="2CB-nY-Oxl"/>
                                     <constraint firstItem="EkQ-ow-7fZ" firstAttribute="leading" secondItem="KSC-rh-pAB" secondAttribute="leading" id="54X-M6-Icj"/>
                                     <constraint firstAttribute="bottom" secondItem="EkQ-ow-7fZ" secondAttribute="bottom" id="AD5-Xs-MWC"/>
                                     <constraint firstItem="dKy-Pz-COh" firstAttribute="top" secondItem="KSC-rh-pAB" secondAttribute="top" constant="8" id="Igs-9d-4a5"/>
+                                    <constraint firstItem="77Q-bf-5CK" firstAttribute="top" secondItem="KSC-rh-pAB" secondAttribute="top" id="VEe-dm-HsL"/>
                                     <constraint firstAttribute="trailing" secondItem="EkQ-ow-7fZ" secondAttribute="trailing" id="VqR-vb-HZE"/>
                                     <constraint firstAttribute="height" constant="200" id="ihS-6W-4fe"/>
                                     <constraint firstAttribute="trailing" secondItem="dKy-Pz-COh" secondAttribute="trailing" constant="20" symbolic="YES" id="j9B-TQ-TFD"/>
+                                    <constraint firstItem="77Q-bf-5CK" firstAttribute="leading" secondItem="KSC-rh-pAB" secondAttribute="leading" id="kSQ-bL-m6o"/>
+                                    <constraint firstAttribute="trailing" secondItem="77Q-bf-5CK" secondAttribute="trailing" id="msS-6m-SBY"/>
                                     <constraint firstItem="EkQ-ow-7fZ" firstAttribute="top" secondItem="dKy-Pz-COh" secondAttribute="bottom" id="yye-Na-LCO"/>
                                 </constraints>
                             </view>
@@ -475,6 +482,7 @@
                         <outlet property="mySelfButtonLabel" destination="jtq-3Z-Nvw" id="X50-5u-sCv"/>
                         <outlet property="otherPeopleButtonLabel" destination="Dzt-do-mU7" id="FJs-pm-hSz"/>
                         <outlet property="pickerView" destination="KSC-rh-pAB" id="J99-u2-iW8"/>
+                        <outlet property="pickerViewBackgroundImageView" destination="77Q-bf-5CK" id="gRR-ON-pQu"/>
                         <outlet property="pickerViewBottomConstraint" destination="fsT-xr-2Rp" id="Cbj-Wo-fDh"/>
                         <outlet property="pickerViewHeightConstraint" destination="ihS-6W-4fe" id="NgG-Wp-2kD"/>
                         <outlet property="shortDescriptionTextField" destination="CTf-Vg-Uwj" id="P8a-SJ-vg9"/>

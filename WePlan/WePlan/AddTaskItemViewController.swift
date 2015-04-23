@@ -21,6 +21,7 @@ class AddTaskItemViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var pickerView: UIView!
+    @IBOutlet weak var pickerViewBackgroundImageView: UIImageView!
     //Not implemented
     @IBOutlet weak var taskLocationTextField: UITextField!
     @IBOutlet weak var shortDescriptionTextField: UITextField!
@@ -70,6 +71,8 @@ class AddTaskItemViewController: UIViewController, UITextFieldDelegate {
         datePicker.minimumDate = now
         datePicker.maximumDate = oneYearFromNow
         datePicker.addTarget(self, action: "datePickerDateChanged:", forControlEvents: .ValueChanged)
+        
+        self.pickerViewBackgroundImageView.image = UIImage(named: "PickerBackground")
     }
     
     func datePickerDateChanged(datepicker: UIDatePicker) {
@@ -89,7 +92,7 @@ class AddTaskItemViewController: UIViewController, UITextFieldDelegate {
     }
     
     func showPickerView(){
-        UIView.animateWithDuration(0.4, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
+        UIView.animateWithDuration(0.4, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 5,options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
             self.pickerViewBottomConstraint.constant = 0
             self.view.layoutIfNeeded()
             }) { (finished:Bool) -> Void in
@@ -98,7 +101,7 @@ class AddTaskItemViewController: UIViewController, UITextFieldDelegate {
     }
     
     func hidePickerView(){
-        UIView.animateWithDuration(0.4, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
+        UIView.animateWithDuration(0.4, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 5,options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
             self.pickerViewBottomConstraint.constant = 200
             self.view.layoutIfNeeded()
             }) { (finished:Bool) -> Void in
@@ -123,6 +126,7 @@ class AddTaskItemViewController: UIViewController, UITextFieldDelegate {
         dateLabel.userInteractionEnabled = true
         let singleTap = UITapGestureRecognizer(target: self, action: "tapDateLabel")
         dateLabel.addGestureRecognizer(singleTap)
+        
     }
     
     override func viewWillAppear(animated: Bool) {
