@@ -49,14 +49,7 @@ class ParseAction : ParseTask{
     }
     
     class func deleteItem(objectId: String) {
-        // TODO:
-        var pfQuery = PFQuery(className: TaskConstants.taskClass)
-
-        pfQuery.getObjectInBackgroundWithId(objectId, block: { (result: PFObject? , error: NSError?) -> Void in
-            if error == nil {
-                result!.deleteInBackground()
-            }
-        })
+        ParseBaseAction.deleteItem(objectId: objectId, inClass: TaskConstants.taskClass)
     }
     
     class func updateTask(completion: Void -> Void) {

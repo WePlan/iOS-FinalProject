@@ -46,6 +46,7 @@
 		66AF5E001ACF2849006AA027 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66AF5DFF1ACF2849006AA027 /* LoginViewController.swift */; };
 		66BCE11D1AD84CB5009659EC /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66BCE11B1AD84CB5009659EC /* Bolts.framework */; };
 		66BCE11E1AD84CB5009659EC /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66BCE11C1AD84CB5009659EC /* Parse.framework */; };
+		66C606051AEA12690096D3CF /* ParseBaseAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C606041AEA12690096D3CF /* ParseBaseAction.swift */; };
 		66D5AB261AC9EFB200C37F6E /* TasksTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D5AB251AC9EFB200C37F6E /* TasksTableViewCell.swift */; };
 		66D746461ACA0D3A0077290A /* SettingsTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D746451ACA0D3A0077290A /* SettingsTableVC.swift */; };
 		66D746491ACA53F30077290A /* DefaultSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D746481ACA53F30077290A /* DefaultSetting.swift */; };
@@ -124,6 +125,7 @@
 		66AF5DFF1ACF2849006AA027 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		66BCE11B1AD84CB5009659EC /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		66BCE11C1AD84CB5009659EC /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		66C606041AEA12690096D3CF /* ParseBaseAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseBaseAction.swift; sourceTree = "<group>"; };
 		66D5AB251AC9EFB200C37F6E /* TasksTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TasksTableViewCell.swift; sourceTree = "<group>"; };
 		66D746451ACA0D3A0077290A /* SettingsTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableVC.swift; sourceTree = "<group>"; };
 		66D746481ACA53F30077290A /* DefaultSetting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultSetting.swift; sourceTree = "<group>"; };
@@ -275,6 +277,7 @@
 				663053E41ACCC28A0073FB96 /* User.swift */,
 				663053E21ACCC2180073FB96 /* Friend.swift */,
 				663053E61ACCC4320073FB96 /* Group.swift */,
+				66C606041AEA12690096D3CF /* ParseBaseAction.swift */,
 				663053C91ACBB36C0073FB96 /* ParseAction.swift */,
 				C5276B301AD71BC200D260F3 /* ParseFriendAction.swift */,
 				C5E990101AE071A800963F18 /* ParseGroupAction.swift */,
@@ -496,6 +499,7 @@
 				6689E50C1ABCA23E0079C8ED /* AddTaskItemViewController.swift in Sources */,
 				66D746461ACA0D3A0077290A /* SettingsTableVC.swift in Sources */,
 				546F2CD21AE5D57300722AE7 /* AddPeopleToTaskTableViewController.swift in Sources */,
+				66C606051AEA12690096D3CF /* ParseBaseAction.swift in Sources */,
 				663053E31ACCC2180073FB96 /* Friend.swift in Sources */,
 				663053DE1ACC83BF0073FB96 /* SWLongPressGestureRecognizer.m in Sources */,
 				C5E990111AE071A800963F18 /* ParseGroupAction.swift in Sources */,

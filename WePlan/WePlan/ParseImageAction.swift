@@ -24,15 +24,11 @@ class ParseImageAction : ImageAction{
         let imageFile = PFFile(name:"image.png", data:imageData)
         
         var userPhoto = PFObject(className: ParseContants.photosClass)
-        userPhoto["imageName"] = "Test pic"
+        userPhoto["imageName"] = "UserPhoto"
         userPhoto[ParseContants.colImageFile] = imageFile
-//        let start = NSDate()
-//        println("start:" + "\(start)" )
+        userPhoto["userId"] = PFUser.currentUser()?.objectId
         userPhoto.saveInBackgroundWithBlock { (successed: Bool, error:NSError?) -> Void in
             if error == nil {
-//                println("uploaded")
-//                let end = NSDate()
-//                println("end:" + "\(end)" )
                 println("image saved with id:"+userPhoto.objectId!)
                 self.changeImageId(newId: userPhoto.objectId!)
             }else {
@@ -46,16 +42,22 @@ class ParseImageAction : ImageAction{
     
     static func changeImageId(# newId: String) {
         let localUser = PFUser.currentUser()!
+        let oldImageId = localUser["imageId"] as? String
+        
         localUser["imageId"] = newId
         localUser.saveInBackground()
+        
+        if oldImageId != nil {
+            ParseBaseAction.deleteItem(objectId: oldImageId!, inClass: ParseContants.photosClass)
+        }
     }
     
+
     static func getImage(objectId: String, completion: (UIImage) -> Void) {
         var targer: PFFile?
         
         var query = PFQuery(className: ParseContants.photosClass)
         query.whereKey("objectId", equalTo: objectId)
-//        query.whereKey("objectId", equalTo: "bKAM0X4jma")
         query.findObjectsInBackgroundWithBlock { (results:[AnyObject]?, error:NSError?) -> Void in
             if error == nil {
                 if let results = results as? [PFObject] {
@@ -69,7 +71,6 @@ class ParseImageAction : ImageAction{
                             if let image = UIImage(data: imageData!) {
                                 completion(image)
                             }
-//                            self.image2.image = image
                         }
                     }
                 }
