@@ -9,9 +9,10 @@
 import Foundation
 
 struct Group {
+    var id: String
     var name: String
     var owner: User
     var members: [User]
-    var createdDate: NSDate
     var description: String
+//    var createdDate: NSDate
 }

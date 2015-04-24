@@ -79,6 +79,10 @@ class SignUpViewController: UIViewController {
 //                    println(self.displayed)
 //                    println("Going to segue")
 //                    println(self.view.window)
+                    let pfobject = PFObject(className:"User_Group")
+                    assert(user.objectId != nil, "id is nil")
+                    pfobject["uid"] = user.objectId
+                    pfobject.saveInBackground()
                     self.performSegueWithIdentifier(Constants.segueToTabbar, sender: self)
                 }
 //                if self.isViewLoaded() && self.view.window != nil {
