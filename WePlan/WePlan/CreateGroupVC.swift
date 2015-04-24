@@ -21,6 +21,13 @@ class CreateGroupVC: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func showList(sender: AnyObject) {
+        ParseGroupAction2.getGroupList { (titles:[String]) -> Void in
+            for title in titles {
+                println(title)
+            }
+        }
+    }
 
     @IBAction func createGroup(sender: AnyObject) {
         let ownerId = PFUser.currentUser()!.objectId!

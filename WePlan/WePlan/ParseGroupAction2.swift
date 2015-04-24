@@ -25,8 +25,28 @@ class ParseGroupAction2 {
         static let classname = "User_Group"
     }
     
-    class func getGroupList() {
-        
+    class func getGroupList(completion: ([String]) -> Void) {
+        let userId = PFUser.currentUser()!.objectId!
+        let query = PFQuery(className: UserGroup.classname)
+        query.whereKey("uid", equalTo: userId)
+        query.getFirstObjectInBackgroundWithBlock { (object: PFObject?, error: NSError?) -> Void in
+            if error == nil {
+                if let array = object!["groupIds"] as? [String] {
+                    
+                    let subQuery = PFQuery(className: GroupConstant.classname)
+                    subQuery.whereKey("objectId", containedIn: array)
+                    subQuery.findObjectsInBackgroundWithBlock({ (objects:[AnyObject]?, error: NSError?) -> Void in
+                        let pfobjects = objects as! [PFObject]
+                        var titles:[String] = []
+                        for pfobject in pfobjects {
+                            let str = pfobject["gtitle"] as! String
+                            titles.append(str)
+                        }
+                        completion(titles)
+                    })
+                }
+            }
+        }
     }
     
     class func createGroup(name:String, ownerId: String, members:[String], desc: String = "None") {
@@ -54,6 +74,7 @@ class ParseGroupAction2 {
     }
     
     static func addGroupIdtoUsers(groupId: String, userIds:[String]) {
+        //Deprecated
         let predicate = NSPredicate(format: "objectId IN %@", userIds)
         var query = PFQuery(className: User.classname, predicate: predicate)
         
