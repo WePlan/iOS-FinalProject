@@ -10,8 +10,9 @@ import UIKit
 
 class FriendsTableVC: UITableViewController {
     
-    var friendList: [User] = []
+    var localFriendList = LocalFriendList.sharedInstance
     
+    //MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         initialUISettings()
@@ -22,10 +23,6 @@ class FriendsTableVC: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        ParseFriendAction.getFriendList { (userList:[User]) -> Void in
-            self.friendList = userList
-            self.tableView.reloadData()
-        }
 
         self.tableView.allowsMultipleSelectionDuringEditing = false
     }
@@ -34,11 +31,9 @@ class FriendsTableVC: UITableViewController {
         DefaultSetting.setNavigationBar(self.navigationController!)
         initialUISettings()
         // Can be improved by add only one user object
-        ParseFriendAction.getFriendList { (userList:[User]) -> Void in
-            self.friendList = userList
+        localFriendList.getFriendListFromParse { () -> Void in
             self.tableView.reloadData()
         }
-
     }
 
     // MARK: - Table view data source
@@ -50,7 +45,7 @@ class FriendsTableVC: UITableViewController {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
-        return self.friendList.count
+        return localFriendList.count
     }
     
     private struct StoryBoardConstants {
@@ -61,6 +56,7 @@ class FriendsTableVC: UITableViewController {
         static let userDetailSegue = "UserDetailView"
         static let assignATaskSegue = "AssignATaskToFriend"
     }
+    
     private func initialUISettings() {
         DefaultSetting.setNavigationBar(self.navigationController!)
 //        self.tabBarItem = UITabBarItem.init(title: "as", image: UIImage.init(named: "TapBarTaskGrey"), selectedImage: UIImage.init(named: "TapBarTaskBlue"))
@@ -83,7 +79,7 @@ class FriendsTableVC: UITableViewController {
         cell.clipsToBounds = true;
         
         //Custom cell configure
-        cell.friend = friendList[indexPath.row]
+        cell.friend = localFriendList.getFriendAtIndex(indexPath.row)
         return cell
     }
     
@@ -102,16 +98,16 @@ class FriendsTableVC: UITableViewController {
     // Override to support editing the table view.
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
-            let deleteId = friendList[indexPath.row].uid
-            let deleteName = friendList[indexPath.row].name
+            let deleteId = localFriendList.getFriendAtIndex(indexPath.row)?.uid
+            let deleteName = localFriendList.getFriendAtIndex(indexPath.row)?.name
             //Alert
             var alert = UIAlertController(title: "Delete Friend", message: "Are you sure you want to delete \(deleteName)", preferredStyle: UIAlertControllerStyle.Alert)
             // Delete the row from the data source
             alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default,handler: nil))
             alert.addAction(UIAlertAction(title: "Delete", style: UIAlertActionStyle.Default, handler: { action in
-                self.friendList.removeAtIndex(indexPath.row)
+                self.localFriendList.friendList.removeAtIndex(indexPath.row)
                 tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-                ParseFriendAction.deleteFriend(deleteId, complete: { (result :Bool) -> Void in
+                ParseFriendAction.deleteFriend(deleteId!, complete: { (result :Bool) -> Void in
                     if result == true {
                         println("Deleted!")
                     }else {
@@ -153,8 +149,6 @@ class FriendsTableVC: UITableViewController {
         
     }
     
-    // MARK: - Navigation
-    
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
         //selet the expanding row
@@ -169,31 +163,33 @@ class FriendsTableVC: UITableViewController {
             tableView.reloadRowsAtIndexPaths([prevIndexPath], withRowAnimation: .Fade)
             self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         }else{
-        
+            
             selected = indexPath.row
             tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         }
-       
-//        self.performSegueWithIdentifier(StoryBoardConstants.userDetailSegue, sender: self)
+        
+        //        self.performSegueWithIdentifier(StoryBoardConstants.userDetailSegue, sender: self)
     }
+    // MARK: - Navigation
     
+
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using [segue destinationViewController].
         // Pass the selected object to the new view controller.
         if segue.identifier == StoryBoardConstants.pushSegue {
-            var friendIds = Set<String>()
-            for friend in self.friendList {
-                friendIds.insert(friend.uid)
-            }
+            let friendIds = localFriendList.friendIds
             let destVC = segue.destinationViewController as! SearchFriendVC
             destVC.myFriendsSet = friendIds
         }
         if segue.identifier == StoryBoardConstants.assignATaskSegue {
             
             if let atdvc = segue.destinationViewController as? AssignATaskToFriendTableViewController {
-                println(friendList[selected].name)
-                atdvc.friend = friendList[selected]
+//                let tmp1 = friendList[selected].name
+                let tmp = localFriendList.getFriendAtIndex(selected)?.name
+                println(tmp)
+                atdvc.friend = localFriendList.getFriendAtIndex(selected)
+//                let a = friendList[selected]
             }
         }
 //        if segue.identifier == StoryBoardConstants.userDetailSegue {

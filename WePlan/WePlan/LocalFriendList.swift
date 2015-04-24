@@ -17,6 +17,15 @@ class LocalFriendList {
             return friendList.count
         }
     }
+    var friendIds: Set<String> {
+        get{
+            var idSet = Set<String>()
+            for friend in friendList {
+                idSet.insert(friend.uid)
+            }
+            return idSet
+        }
+    }
     
     private init(){
         friendList = []
@@ -27,6 +36,18 @@ class LocalFriendList {
     }
     
     func getFriendAtIndex(index:Int) -> User?{
-        return friendList[index]
+        if index < count {
+            return friendList[index]
+        }else{
+            return nil
+        }
     }
+    
+    func getFriendListFromParse(completion: () -> Void) {
+        ParseFriendAction.getFriendList { (userList: [User]) -> Void in
+            self.updateAllWith(userList)
+            completion()
+        }
+    }
+    
 }
