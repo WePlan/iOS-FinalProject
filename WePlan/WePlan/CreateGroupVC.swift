@@ -22,11 +22,11 @@ class CreateGroupVC: UIViewController {
     }
     
     @IBAction func showList(sender: AnyObject) {
-        ParseGroupAction2.getGroupList { (titles:[String]) -> Void in
-            for title in titles {
-                println(title)
-            }
-        }
+//        ParseGroupAction2.getGroupList { (titles:[String]) -> Void in
+//            for title in titles {
+//                println(title)
+//            }
+//        }
     }
 
     @IBAction func createGroup(sender: AnyObject) {

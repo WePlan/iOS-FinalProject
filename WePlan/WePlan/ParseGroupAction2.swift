@@ -25,24 +25,31 @@ class ParseGroupAction2 {
         static let classname = "User_Group"
     }
     
-    class func getGroupList(completion: ([String]) -> Void) {
+    class func getGroupList(completion: ([Group]) -> Void) {
         let userId = PFUser.currentUser()!.objectId!
         let query = PFQuery(className: UserGroup.classname)
         query.whereKey("uid", equalTo: userId)
         query.getFirstObjectInBackgroundWithBlock { (object: PFObject?, error: NSError?) -> Void in
             if error == nil {
                 if let array = object!["groupIds"] as? [String] {
-                    
+                    // find all groups belong to current user
                     let subQuery = PFQuery(className: GroupConstant.classname)
                     subQuery.whereKey("objectId", containedIn: array)
                     subQuery.findObjectsInBackgroundWithBlock({ (objects:[AnyObject]?, error: NSError?) -> Void in
                         let pfobjects = objects as! [PFObject]
                         var titles:[String] = []
+                        var result: [Group] = []
                         for pfobject in pfobjects {
                             let str = pfobject["gtitle"] as! String
                             titles.append(str)
+                            
+                            let ownerId = pfobject[GroupConstant.owner] as! String
+                            let members = pfobject[GroupConstant.members] as! [String]
+                            let desc = pfobject[GroupConstant.desc] as! String
+                            var newGroup = Group(id: pfobject.objectId!, name:str, ownerId: ownerId, memberIds: members,description: desc)
+                            result.append(newGroup)
                         }
-                        completion(titles)
+                        completion(result)
                     })
                 }
             }

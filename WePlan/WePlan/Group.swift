@@ -11,8 +11,12 @@ import Foundation
 struct Group {
     var id: String
     var name: String
-    var owner: User
-    var members: [User]
+//    var owner: User
+//    var members: [User]
+    var ownerId: String
+    var memberIds: [String]
     var description: String
 //    var createdDate: NSDate
+    
+    
 }
