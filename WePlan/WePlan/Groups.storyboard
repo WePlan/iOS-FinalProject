@@ -2,6 +2,8 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Groups-->
@@ -33,11 +35,90 @@
                                     </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="groupCellPrototype2" rowHeight="118" id="lOb-Ve-66D">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="groupCellPrototype2" rowHeight="70" id="lOb-Ve-66D" customClass="GroupTableViewCell" customModule="WePlan" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lOb-Ve-66D" id="d4f-2t-yB4">
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GE2-CD-OO8" customClass="AsyncUIImageView" customModule="WePlan" customModuleProvider="target">
+                                            <rect key="frame" x="8" y="8" width="53" height="53"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="GE2-CD-OO8" secondAttribute="height" multiplier="1:1" id="zjO-8q-xNo"/>
+                                            </constraints>
+                                        </imageView>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fJs-fN-bA0">
+                                            <rect key="frame" x="562" y="20" width="30" height="30"/>
+                                            <state key="normal" title="&gt;&gt;">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                        </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="240" verticalHuggingPriority="251" text="Group Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="seQ-V1-Il6">
+                                            <rect key="frame" x="91" y="11" width="471" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Owner:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dag-AF-llg">
+                                            <rect key="frame" x="91" y="34" width="56" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="240" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yep-7s-qod">
+                                            <rect key="frame" x="155" y="34" width="281" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Members:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="McT-72-62j">
+                                            <rect key="frame" x="436" y="34" width="78" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CUV-m3-ezV">
+                                            <rect key="frame" x="524" y="34" width="30" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="30" id="IwA-UH-1Rh"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="GE2-CD-OO8" firstAttribute="centerY" secondItem="seQ-V1-Il6" secondAttribute="centerY" constant="13" id="89m-4g-CjJ"/>
+                                        <constraint firstItem="Yep-7s-qod" firstAttribute="leading" secondItem="Dag-AF-llg" secondAttribute="trailing" constant="8" id="9kW-bz-Ss2"/>
+                                        <constraint firstItem="GE2-CD-OO8" firstAttribute="leading" secondItem="d4f-2t-yB4" secondAttribute="leadingMargin" id="C7V-ad-fB5"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="GE2-CD-OO8" secondAttribute="bottom" id="EXn-OU-7VK"/>
+                                        <constraint firstItem="Yep-7s-qod" firstAttribute="centerY" secondItem="Dag-AF-llg" secondAttribute="centerY" id="Exb-Pq-tF0"/>
+                                        <constraint firstItem="McT-72-62j" firstAttribute="centerY" secondItem="Dag-AF-llg" secondAttribute="centerY" id="HLg-JL-9QK"/>
+                                        <constraint firstItem="fJs-fN-bA0" firstAttribute="leading" secondItem="seQ-V1-Il6" secondAttribute="trailing" id="LLH-C3-6JL"/>
+                                        <constraint firstItem="fJs-fN-bA0" firstAttribute="leading" secondItem="CUV-m3-ezV" secondAttribute="trailing" constant="8" symbolic="YES" id="Lot-ZR-Sod"/>
+                                        <constraint firstItem="Dag-AF-llg" firstAttribute="centerY" secondItem="CUV-m3-ezV" secondAttribute="centerY" id="RPh-ij-YYF"/>
+                                        <constraint firstItem="seQ-V1-Il6" firstAttribute="leading" secondItem="GE2-CD-OO8" secondAttribute="trailing" constant="30" id="TzO-3d-2ke"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="fJs-fN-bA0" secondAttribute="trailing" id="XMc-Ta-Jjb"/>
+                                        <constraint firstItem="McT-72-62j" firstAttribute="leading" secondItem="Yep-7s-qod" secondAttribute="trailing" id="Y2F-cd-vix"/>
+                                        <constraint firstItem="Dag-AF-llg" firstAttribute="leading" secondItem="seQ-V1-Il6" secondAttribute="leading" id="gQm-PK-dpL"/>
+                                        <constraint firstItem="Dag-AF-llg" firstAttribute="centerY" secondItem="GE2-CD-OO8" secondAttribute="centerY" constant="10" id="mfQ-1M-7bj"/>
+                                        <constraint firstItem="McT-72-62j" firstAttribute="leading" secondItem="Yep-7s-qod" secondAttribute="trailing" constant="44" id="nsB-0e-Ddo"/>
+                                        <constraint firstItem="GE2-CD-OO8" firstAttribute="top" secondItem="d4f-2t-yB4" secondAttribute="topMargin" id="pUr-HM-C4y"/>
+                                        <constraint firstAttribute="centerY" secondItem="fJs-fN-bA0" secondAttribute="centerY" id="u2b-9A-0It"/>
+                                        <constraint firstItem="CUV-m3-ezV" firstAttribute="leading" secondItem="McT-72-62j" secondAttribute="trailing" constant="10" id="yDj-wc-TGP"/>
+                                    </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="nsB-0e-Ddo"/>
+                                        </mask>
+                                    </variation>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="asyncImageView" destination="GE2-CD-OO8" id="rID-jN-g3m"/>
+                                    <outlet property="detailButton" destination="fJs-fN-bA0" id="IyK-5y-T0p"/>
+                                    <outlet property="groupNameLabel" destination="seQ-V1-Il6" id="hOD-aX-al0"/>
+                                    <outlet property="memberNumLabel" destination="CUV-m3-ezV" id="YVP-UQ-GAS"/>
+                                    <outlet property="ownerLabel" destination="Yep-7s-qod" id="3NP-Kk-KY5"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <sections/>

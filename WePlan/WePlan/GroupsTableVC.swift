@@ -13,12 +13,15 @@ class GroupsTableVC: UITableViewController {
     
     private struct StoryBoard {
         static let cell = "groupCellPrototype"
+        static let cell2 = "groupCellPrototype2"
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         groups.updateAll { () -> Void in
             self.tableView.reloadData()
         }
+//        tableView.estimatedRowHeight = tableView.rowHeight
+//        tableView.rowHeight = UITableViewAutomaticDimension
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -55,15 +58,19 @@ class GroupsTableVC: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(StoryBoard.cell, forIndexPath: indexPath) as! UITableViewCell
-
+//        let cell = tableView.dequeueReusableCellWithIdentifier(StoryBoard.cell, forIndexPath: indexPath) as! UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(StoryBoard.cell2, forIndexPath: indexPath) as! GroupTableViewCell
         // Configure the cell...
-        cell.textLabel?.text = groups.groupList[indexPath.row].name
-        cell.detailTextLabel?.text = groups.groupList[indexPath.row].id
+//        cell.textLabel?.text = groups.groupList[indexPath.row].name
+//        cell.detailTextLabel?.text = groups.groupList[indexPath.row].i
+        cell.group = groups.groupList[indexPath.row]
         return cell
     }
     
-
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 70
+    }
     /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
