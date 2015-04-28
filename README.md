@@ -1,5 +1,5 @@
 #The functions or modules that need to be implemented or updated：
-#Group Module:
+*Group Module:
 UI Part :
 1. CreateGroupView. Including (All the contents should be implemented in a single view.): 
   1) Image of the Group. (By uploading.)
@@ -19,7 +19,7 @@ Backend Part:
 3. func GetGroupUserList ([memberId])
 4. func AssignGroupTask() with tsort = 3, towner = groupId, uid = each member's objectId of the groupId.
 
-#Friend Module:
+*Friend Module:
 UI Part :
 1. "Add" friend button bug needs to be fixed. (Turn into grey (enable = false))
 2. FriendDetailView. Including :
@@ -33,7 +33,7 @@ UI Part :
 Backend Part :
 1. AssignFriendTask() with tsort = 2, towner = sender's objectId, uid = receiver's objectId.
 
-#Task Module :
+*Task Module :
 UI Part :
 1. Remove "Slide to delete" function for Task Module.
 2. Hide the touch-shown list when the user touches some blank place or other items of the menu.
