@@ -1,8 +1,8 @@
-#The functions or modules that need to be implemented or updated：
+# The functions or modules that need to be implemented or updated：
 
-Group Module:
+## Group Module:
 
-UI Part :
+### UI Part :
 
 1. CreateGroupView. Including (All the contents should be implemented in a single view.): 
   - Image of the Group. (By uploading.)
@@ -16,16 +16,16 @@ UI Part :
 4. Remove "Slide to delete" function for Group Module.
 5. Remove "Touch-shown list" function for Group Module.
 
-Backend Part:
+### Backend Part:
 
 1. func QuitGroup (PFUser.currentUser().objectId)
 2. func DeleteGroup (groupId)
 3. func GetGroupUserList ([memberId])
 4. func AssignGroupTask() with tsort = 3, towner = groupId, uid = each member's objectId of the groupId.
 
-Friend Module:
+## Friend Module:
 
-UI Part :
+### UI Part :
 
 1. "Add" friend button bug needs to be fixed. (Turn into grey (enable = false))
 2. FriendDetailView. Including :
@@ -36,24 +36,26 @@ UI Part :
 4. Remove "Slide to delete" function for Friend Module.
 5. Search Bar for my friend list.
 
-Backend Part :
+### Backend Part :
 
 1. AssignFriendTask() with tsort = 2, towner = sender's objectId, uid = receiver's objectId.
 
-Task Module :
+## Task Module :
 
-UI Part :
+### UI Part :
 
 1. Remove "Slide to delete" function for Task Module.
 2. Hide the touch-shown list when the user touches some blank place or other items of the menu.
 3. Expand the cell of the Task to support more information and buttons.
 4. "Colored Label", which is used for showing different types of the task. (Self task or Group task or Friend assigned task)
-Backend Part :
+
+### Backend Part :
+
 1. "Slide right to check the task" function needs to be implemented. (Pending.)
 
-Setting Module : (TBA)
+## Setting Module : (TBA)
 
-April 27th, 2015, By Mark
+###April 27th, 2015, By Mark
 
 # iOS-FinalProject
 Group for iOS final
