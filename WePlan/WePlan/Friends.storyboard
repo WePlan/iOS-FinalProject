@@ -93,7 +93,7 @@
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                             <connections>
-                                                <segue destination="h1b-gW-xBT" kind="show" identifier="AssignATaskToFriend" id="BZ7-zJ-2gr"/>
+                                                <action selector="clickAssign:" destination="F8V-0D-Pdc" eventType="touchUpInside" id="QsG-lA-Tnk"/>
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x8d-R5-nZS">

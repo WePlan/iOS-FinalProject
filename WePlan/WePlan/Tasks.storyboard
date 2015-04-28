@@ -491,6 +491,7 @@
                         <outlet property="taskTitleTextField" destination="09O-cN-4jo" id="oeF-68-DtP"/>
                         <segue destination="mDd-Fu-u89" kind="unwind" identifier="unwindGroupDetail" unwindAction="unwindGroupDetail:" id="4Wr-Me-b1n"/>
                         <segue destination="mDd-Fu-u89" kind="unwind" identifier="unwindTaskList" unwindAction="unwindTaskList:" id="U7f-S1-Tr3"/>
+                        <segue destination="mDd-Fu-u89" kind="unwind" identifier="unwindFriendList" unwindAction="unwindFriendList:" id="hMW-zw-Tm4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qk4-qQ-Qz9" userLabel="First Responder" sceneMemberID="firstResponder"/>

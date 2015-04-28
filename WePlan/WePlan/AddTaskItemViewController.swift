@@ -174,6 +174,9 @@ class AddTaskItemViewController: UIViewController, UITextFieldDelegate {
         if "Group" == entrypoint {
             performSegueWithIdentifier("unwindGroupDetail", sender: self)
         }
+        if "Friend" == entrypoint {
+            performSegueWithIdentifier("unwindFriendList", sender: self)
+        }
     }
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

@@ -8,7 +8,12 @@
 
 import UIKit
 
+protocol FriendTableCellDeleget {
+    func toAddTask()
+}
+
 class FriendTableViewCell: UITableViewCell {
+    var delegate: FriendTableCellDeleget?
     var friend: User? {
         didSet{
             updateCell()
@@ -36,6 +41,10 @@ class FriendTableViewCell: UITableViewCell {
 //        
 //        
 //    }
+    @IBAction func clickAssign(sender: AnyObject) {
+        self.delegate?.toAddTask()
+        
+    }
 
     @IBAction func userDetail(sender: UIButton) {
     }

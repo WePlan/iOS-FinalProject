@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FriendsTableVC: UITableViewController {
+class FriendsTableVC: UITableViewController , FriendTableCellDeleget{
     
     var localFriendList = LocalFriendList.sharedInstance
     
@@ -79,6 +79,7 @@ class FriendsTableVC: UITableViewController {
         cell.clipsToBounds = true;
         
         //Custom cell configure
+        cell.delegate = self
         cell.friend = localFriendList.getFriendAtIndex(indexPath.row)
         return cell
     }
@@ -205,5 +206,19 @@ class FriendsTableVC: UITableViewController {
 //    override func tableView(tableView: UITableView, didEndDisplayingCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
 //        (cell as! FriendTableViewCell).endNoticeCell()
 //    }
+    
 //
+    //MARK: - Navigation
+    
+    @IBAction func unwindFriendList(segue:UIStoryboardSegue){
+        
+    }
+    
+    func toAddTask() {
+        let taskSB:UIStoryboard = UIStoryboard(name: "Tasks", bundle: NSBundle.mainBundle())
+        let vc = taskSB.instantiateViewControllerWithIdentifier("addTaskEntry") as! UINavigationController
+        let a = vc.childViewControllers[0] as! AddTaskItemViewController
+        a.entrypoint = "Friend"
+        presentViewController(vc, animated: true, completion: nil)
+    }
 }
