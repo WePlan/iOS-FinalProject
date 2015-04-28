@@ -4,7 +4,7 @@
 
 ### UI Part :
 
-1. CreateGroupView. Including (All the contents should be implemented in a single view.): 
+1. CreateGroupView(has prototype). Including (All the contents should be implemented in a single view.): 
   - Image of the Group. (By uploading.)
   - Input the basic information of the group. (Such as : title, description, etc.)
   - Add members for this group. (sub-Tableview)
@@ -65,6 +65,10 @@
 
 improve UI design
 
+## Advance and important:
+
+Local cache for Images.
+
 ###April 27th, 2015, By Mark
 
 # iOS-FinalProject
@@ -99,10 +103,4 @@ Settings 的 table view 用静态的 设计就可以了
 
 5.  在每个storyboard里加入相关的viewcontroller： 比如好友的详细界面  添加界面等， 也可以写相关的功能方法
 
-6. 现在需要的图片: appicon , Tabbar icon 优先级比较高， 其他的可以先不考虑， 用涂鸦占位， 做好storyboard先
 
-7. Tableview的相关质料：
-
-基础入门指南: https://developer.apple.com/library/ios/referencelibrary/GettingStarted/RoadMapiOS/index.html#//apple_ref/doc/uid/TP40011343
-
-stanford itunesU: swift lesson 10: Tableview
