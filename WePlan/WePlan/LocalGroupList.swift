@@ -21,7 +21,7 @@ class LocalGroupList {
     }
     
     func updateAll(completion: ()-> Void) {
-        ParseGroupAction2.getGroupList { (groups:[Group]) -> Void in
+        ParseGroupAction.getGroupList { (groups:[Group]) -> Void in
             self.groupList = groups
             completion()
         }
