@@ -265,6 +265,54 @@ class ParseGroupAction : ParseGroup{
     }
     
     class func dismissGroup (groupId : String) {
+        var query = PFQuery(className: GroupConstant.classname)
+        query.getObjectInBackgroundWithId(groupId, block: { (object : PFObject?, error : NSError?) -> Void in
+            if error == nil {
+                if let object = object {
+                    var members = object[GroupConstant.groupMembers] as! [String]
+                    object.deleteInBackground()
+                    self.handleUserGroupWhenDismiss(groupId, members : members)
+                }
+            }
+        })
+    }
+    
+    static func handleUserGroupWhenDismiss(groupId : String, members : [String]) {
+        for member in members {
+            var query = PFQuery(className: GroupUserConstant.classname)
+            query.whereKey(GroupUserConstant.userId, equalTo: member)
+            query.getFirstObjectInBackgroundWithBlock({ (object : PFObject?, error : NSError?) -> Void in
+                if error == nil {
+                    if let object = object {
+                        var groups = object[GroupUserConstant.groupIds] as! [String]
+                        var index = 0
+                        for each in groups {
+                            if each == groupId {
+                                break
+                            }
+                            else{
+                                index++
+                            }
+                        }
+                        groups.removeAtIndex(index)
+                        object[GroupUserConstant.groupIds] = groups
+                        object.saveInBackgroundWithBlock({ (success : Bool, error : NSError?) -> Void in
+                            if success {
+                                println("UG has been modified when group \(groupId) was dismissed")
+                            }
+                            else{
+                                println(error?.userInfo)
+                            }
+                        })
+                    }
+                }
+            })
+        }
+    }
+    
+    //tsort = 3, towner = groupId, uid = member's objectId
+    //Add task to Task Class
+    class func assignGroupTask () {
         
     }
     

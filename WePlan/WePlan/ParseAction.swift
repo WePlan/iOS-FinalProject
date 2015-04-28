@@ -9,6 +9,7 @@
 import Foundation
 import Parse
 
+//The whole strutue needs to be modified and updated.
 class ParseAction : ParseTask{
     
     private struct TaskConstants {
