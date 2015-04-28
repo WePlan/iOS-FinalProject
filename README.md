@@ -55,6 +55,8 @@
 
 1. "Slide right to check the task" function needs to be implemented. (Pending.)
 
+2. Incoming task notification. Parse push?
+
 ## Setting Module : (TBA)
 
 ###April 27th, 2015, By Mark
