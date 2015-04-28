@@ -59,6 +59,12 @@
 
 ## Setting Module : (TBA)
 
+## Sign up && Sign in
+
+### UI Part :
+
+improve UI design
+
 ###April 27th, 2015, By Mark
 
 # iOS-FinalProject
