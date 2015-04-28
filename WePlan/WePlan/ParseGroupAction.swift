@@ -11,19 +11,18 @@ import Parse
 
 class ParseGroupAction : ParseGroup {
     private struct GroupConstant {
-        static let groupClass = "Group"
-        static let groupName = "gtitle"
+        static let classname = "Group"
+        static let grouptitle = "gtitle"
         static let groupDesc = "gdescription"
         static let groupOwner = "gowner"
-        static let groupCreatedAt = "createdAt"
-        
+        static let groupMembers = "members"
+        //static let groupCreatedAt = "createdAt"
     }
     
     private struct GroupUserConstant {
-        static let groupUserClass = "User_Group"
-        static let groupVerified = "verified"
-        static let groupId = "gid"
+        static let classname = "User_Group"
         static let userId = "uid"
+        static let groupId = "groupIds"
     }
     
     private struct UserConstants{
@@ -32,35 +31,91 @@ class ParseGroupAction : ParseGroup {
         static let userEmail = "email"
     }
     
-    func getGroupList (complete : ([Group]) -> Void ) {
-        var groupList : [Group] = []
-        var groupIdList : [String] = []
-        var query = PFQuery(className: GroupUserConstant.groupUserClass)
-        query.whereKey(GroupUserConstant.userId, equalTo: PFUser.currentUser()!.objectId!)
-        query.findObjectsInBackgroundWithBlock { (objects : [AnyObject]?, error : NSError?) -> Void in
+    class func getGroupList(completion: ([Group]) -> Void) {
+        let userId = PFUser.currentUser()!.objectId!
+        let query = PFQuery(className: GroupUserConstant.classname)
+        query.whereKey("uid", equalTo: userId)
+        query.getFirstObjectInBackgroundWithBlock { (object: PFObject?, error: NSError?) -> Void in
             if error == nil {
-                if let objects = objects as? [PFObject] {
-                    for object in objects {
-                        if object.objectForKey(GroupUserConstant.groupVerified) as! Bool {
-                            var tmp = object.objectForKey(GroupUserConstant.groupId) as! String
-                            groupIdList.append(tmp)
+                if let array = object!["groupIds"] as? [String] {
+                    // find all groups belong to current user
+                    let subQuery = PFQuery(className: GroupConstant.classname)
+                    subQuery.whereKey("objectId", containedIn: array)
+                    subQuery.findObjectsInBackgroundWithBlock({ (objects:[AnyObject]?, error: NSError?) -> Void in
+                        let pfobjects = objects as! [PFObject]
+                        var titles:[String] = []
+                        var result: [Group] = []
+                        for pfobject in pfobjects {
+                            let str = pfobject["gtitle"] as! String
+                            titles.append(str)
+                            
+                            let ownerId = pfobject[GroupConstant.groupOwner] as! String
+                            let members = pfobject[GroupConstant.groupMembers] as! [String]
+                            let desc = pfobject[GroupConstant.groupDesc] as! String
+                            var newGroup = Group(id: pfobject.objectId!, name:str, ownerId: ownerId, memberIds: members,description: desc)
+                            result.append(newGroup)
                         }
-                    }
-                    var queryForDetail = PFQuery(className: GroupConstant.groupClass)
-                    queryForDetail.whereKey("objectId", containedIn: groupIdList)
-                    queryForDetail.findObjectsInBackgroundWithBlock({ (objects : [AnyObject]?, error : NSError?) -> Void in
-                        if error == nil {
-                            if let objects = objects as? [PFObject] {
-                                for object in objects {
-                                    ////////////Stuck! Stop her one Sec!!!!! ----- By Mark
-                                    ////Testing
-                                }
-                            }
-                        }
+                        completion(result)
                     })
                 }
             }
         }
+    }
+    
+    class func createGroup(name:String, ownerId: String, members:[String], desc: String = "None") {
+        var group = PFObject(className: GroupConstant.classname)
+        //core
+        group[GroupConstant.grouptitle] = name
+        group[GroupConstant.groupOwner] = ownerId
+        group[GroupConstant.groupMembers] = members
+        //misc
+        group[GroupConstant.groupDesc] = desc
+        
+        //TODO: update id
+        group.saveInBackgroundWithBlock { (success:Bool, error: NSError?) -> Void in
+            if success {
+                let groupId = group.objectId!
+                println("group created with id: \(groupId)")
+                //completion?
+                //TODO: add groupd id to all members
+                self.addGroupIdtoUsers(groupId, userIds: members)
+            }else{
+                println("##create group error: \(error?.userInfo)")
+            }
+        }
+        
+    }
+    
+    static func addGroupIdtoUsers(groupId: String, userIds: [String]){
+        let predicate = NSPredicate(format: "uid IN %@", userIds)
+        //TODO: initial usergroup when signup
+        var query = PFQuery(className: GroupUserConstant.classname, predicate: predicate)
+        
+        query.findObjectsInBackgroundWithBlock { (objects: [AnyObject]?, error: NSError?) -> Void in
+            if error == nil{
+                println("we get \(objects?.count)")
+                let objects = objects as! [PFObject]
+                for object in objects {
+                    
+                    var groups = object["groupIds"] as? [String]
+                    if groups == nil {
+                        groups = []
+                    }
+                    groups?.append(groupId)
+                    object["groupIds"] = groups!
+                }
+                PFObject.saveAllInBackground(objects, block: { (success:Bool, error:NSError?) -> Void in
+                    if error == nil {
+                        println("group update success")
+                    }else{
+                        println("\(error?.userInfo)")
+                    }
+                })
+            }else{
+                println(error?.userInfo)
+            }
+        }
+        
     }
     
     func getGroupOwnerDetail (ownerId : String, complete : (User) -> Void) {
@@ -79,37 +134,22 @@ class ParseGroupAction : ParseGroup {
         }
     }
     
-    func getGroupMembers (members : [String], complete : ([User]) -> Void) {
+    func getGroupMembers (memberIdList : [String], complete : ([User]) -> Void) {
         var memberList : [User] = []
-        var memberIdList : [String] = []
-        var query = PFQuery(className: GroupUserConstant.groupUserClass)
-        query.whereKey(GroupUserConstant.groupId, containedIn: members)
-        query.findObjectsInBackgroundWithBlock { (objects : [AnyObject]?, error : NSError?) -> Void in
+        var queryForDetail = PFQuery(className: UserConstants.userClass)
+        queryForDetail.whereKey("objectId", containedIn: memberIdList)
+        queryForDetail.findObjectsInBackgroundWithBlock({ (objects : [AnyObject]?, error : NSError?) -> Void in
             if error == nil {
-                if let objects = objects as? [PFObject] {
+                if let objects = objects as? [PFUser] {
                     for object in objects {
-                        var tmp = object.objectForKey(GroupUserConstant.userId) as! String
-                        memberIdList.append(tmp)
+                        let imgId = object["imageId"] as? String
+                        var tmp = User(uid : object.objectId!, name : object.objectForKey(UserConstants.userNickname) as! String, uemail : object.email!, imageId: imgId)
+                        memberList.append(tmp)
                     }
-                    var queryForDetail = PFQuery(className: UserConstants.userClass)
-                    queryForDetail.whereKey("objectId", containedIn: memberIdList)
-                    queryForDetail.findObjectsInBackgroundWithBlock({ (objects : [AnyObject]?, error : NSError?) -> Void in
-                        if error == nil {
-                            if let objects = objects as? [PFUser] {
-                                for object in objects {
-                                    let imgId = object["imageId"] as? String
-                                    var tmp = User(uid : object.objectId!, name : object.objectForKey(UserConstants.userNickname) as! String, uemail : object.email!, imageId: imgId)
-                                    
-                                    
-                                    memberList.append(tmp)
-                                }
-                                complete(memberList)
-                            }
-                        }
-                    })
+                    complete(memberList)
                 }
             }
-        }
+        })
     }
     
     
