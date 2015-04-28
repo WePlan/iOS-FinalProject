@@ -79,7 +79,7 @@ class TaskListTableViewController: UITableViewController, TasksTableViewCellDele
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // Return the number of rows in the section.
-        return tasks.count
+        return tasks.count + 1
     }
     var selectedTask: Int = -1
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -91,6 +91,10 @@ class TaskListTableViewController: UITableViewController, TasksTableViewCellDele
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        if indexPath.row == tasks.count {
+            let cell =  tableView.dequeueReusableCellWithIdentifier("Empty", forIndexPath: indexPath) as! UITableViewCell
+            return cell
+        }
         let cell = tableView.dequeueReusableCellWithIdentifier("taskCellPrototype", forIndexPath: indexPath) as! TasksTableViewCell
 
         // Configure the cell...
@@ -133,6 +137,8 @@ class TaskListTableViewController: UITableViewController, TasksTableViewCellDele
     }
     
         override func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
+            selectedTask = -1
+//            self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
         return UITableViewCellEditingStyle.Delete
     }
     
@@ -147,7 +153,9 @@ class TaskListTableViewController: UITableViewController, TasksTableViewCellDele
     
     // Override to support editing the table view.
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        
         if editingStyle == .Delete {
+            
             // Delete the row from the data source
             ParseAction.deleteItem(self.tasks[indexPath.row].uniqueId)
             self.tasks.removeAtIndex(indexPath.row)
