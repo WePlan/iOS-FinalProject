@@ -17,6 +17,4 @@ struct Group {
     var memberIds: [String]
     var description: String
 //    var createdDate: NSDate
-    
-    
 }

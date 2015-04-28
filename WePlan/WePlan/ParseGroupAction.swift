@@ -9,7 +9,8 @@
 import Foundation
 import Parse
 
-class ParseGroupAction : ParseGroup {
+class ParseGroupAction : ParseGroup{
+    
     private struct GroupConstant {
         static let classname = "Group"
         static let grouptitle = "gtitle"
@@ -22,7 +23,7 @@ class ParseGroupAction : ParseGroup {
     private struct GroupUserConstant {
         static let classname = "User_Group"
         static let userId = "uid"
-        static let groupId = "groupIds"
+        static let groupIds = "groupIds"
     }
     
     private struct UserConstants{
@@ -87,38 +88,64 @@ class ParseGroupAction : ParseGroup {
     }
     
     static func addGroupIdtoUsers(groupId: String, userIds: [String]){
-        let predicate = NSPredicate(format: "uid IN %@", userIds)
-        //TODO: initial usergroup when signup
-        var query = PFQuery(className: GroupUserConstant.classname, predicate: predicate)
-        
-        query.findObjectsInBackgroundWithBlock { (objects: [AnyObject]?, error: NSError?) -> Void in
-            if error == nil{
-                println("we get \(objects?.count)")
-                let objects = objects as! [PFObject]
-                for object in objects {
-                    
-                    var groups = object["groupIds"] as? [String]
-                    if groups == nil {
-                        groups = []
+        var tmpUserIds = Set<String>()
+        var query = PFQuery(className: GroupUserConstant.classname)
+        query.whereKey(GroupUserConstant.userId, containedIn: userIds)
+        query.findObjectsInBackgroundWithBlock { (objects : [AnyObject]?, error : NSError?) -> Void in
+            if error == nil {
+                if let objects = objects as? [PFObject] {
+                    for object in objects {
+                        
+                        var tmpUserId = object[GroupUserConstant.userId] as! String
+                        tmpUserIds.insert(tmpUserId)
+                        
+                        var groups = object[GroupUserConstant.groupIds] as! [String]
+                        groups.append(groupId)
+                        object[GroupUserConstant.groupIds] = groups
+                        
                     }
-                    groups?.append(groupId)
-                    object["groupIds"] = groups!
+                    PFObject.saveAllInBackground(objects, block: { (success : Bool, error : NSError?) -> Void in
+                        if success {
+                            println("groupIds update successfully")
+                        }
+                        else{
+                            println(error?.userInfo)
+                        }
+                    })
                 }
-                PFObject.saveAllInBackground(objects, block: { (success:Bool, error:NSError?) -> Void in
-                    if error == nil {
-                        println("group update success")
-                    }else{
-                        println("\(error?.userInfo)")
+                if tmpUserIds.count != userIds.count {
+                    for userId in userIds {
+                        if !tmpUserIds.contains(userId) {
+                            self.createNewRowForGroupUser(userId, groupId: groupId)
+                        }
                     }
-                })
-            }else{
-                println(error?.userInfo)
+                }
+            }
+            else{
+                for userId in userIds {
+                    self.createNewRowForGroupUser(userId, groupId: groupId)
+                }
             }
         }
-        
     }
     
-    func getGroupOwnerDetail (ownerId : String, complete : (User) -> Void) {
+    static func createNewRowForGroupUser (userId : String, groupId : String) {
+        var newGroupIds : [String] = []
+        newGroupIds.append(groupId)
+        var subquery = PFObject(className: GroupUserConstant.classname)
+        subquery[GroupUserConstant.userId] = userId
+        subquery[GroupUserConstant.groupIds] = newGroupIds
+        subquery.saveInBackgroundWithBlock({ (success : Bool, error : NSError?) -> Void in
+            if success {
+                println("Record with uid \(userId) has been added.")
+            }
+            else{
+                println("\(error?.userInfo)")
+            }
+        })
+    }
+    
+    class func getGroupOwnerDetail (ownerId : String, complete : (User) -> Void) {
         var query = PFQuery(className: UserConstants.userClass)
         query.whereKey("objectId", equalTo: ownerId)
         query.findObjectsInBackgroundWithBlock { (objects : [AnyObject]?, error : NSError?) -> Void in
@@ -134,7 +161,7 @@ class ParseGroupAction : ParseGroup {
         }
     }
     
-    func getGroupMembers (memberIdList : [String], complete : ([User]) -> Void) {
+    class func getGroupMembers (memberIdList : [String], complete : ([User]) -> Void) {
         var memberList : [User] = []
         var queryForDetail = PFQuery(className: UserConstants.userClass)
         queryForDetail.whereKey("objectId", containedIn: memberIdList)
@@ -152,10 +179,99 @@ class ParseGroupAction : ParseGroup {
         })
     }
     
+    class func updateGroup (groupId : String, name : String, members : [String], desc : String) {
+        var query = PFQuery(className: GroupConstant.classname)
+        query.getObjectInBackgroundWithId(groupId) { (object : PFObject?, error : NSError?) -> Void in
+            if error == nil {
+                if let object = object {
+                    object[GroupConstant.grouptitle] = name
+                    object[GroupConstant.groupDesc] = desc
+                    object[GroupConstant.groupMembers] = members
+                    object.saveInBackgroundWithBlock({ (success : Bool, error : NSError?) -> Void in
+                        if success {
+                            println("Group with ID \(groupId) has been updated")
+                        }
+                        else{
+                            println("\(error?.userInfo)")
+                        }
+                    })
+                }
+            }
+        }
+    }
     
+    class func quitGroup (groupId : String) {
+        var uid = PFUser.currentUser()?.objectId
+        var query_Group = PFQuery(className: GroupConstant.classname)
+        query_Group.getObjectInBackgroundWithId(groupId, block: { (object : PFObject?, error : NSError?) -> Void in
+            if error == nil {
+                if let object = object {
+                    var members = object[GroupConstant.groupMembers] as! [String]
+                    var index = 0
+                    for each in members {
+                        if each == uid {
+                            break
+                        }
+                        else{
+                            index++
+                        }
+                    }
+                    members.removeAtIndex(index)
+                    object[GroupConstant.groupMembers] = members
+                    object.saveInBackgroundWithBlock({ (success : Bool, error : NSError?) -> Void in
+                        if success {
+                            println("User \(uid) has quit the group \(groupId)")
+                            self.handleUserGroupWhenQuit(groupId)
+                        }
+                        else{
+                            println(error?.userInfo)
+                        }
+                    })
+                }
+            }
+        })
+    }
+    
+    static func handleUserGroupWhenQuit (groupId : String) {
+        var uid = PFUser.currentUser()?.objectId
+        var query = PFQuery(className: GroupUserConstant.classname)
+        query.whereKey(GroupUserConstant.userId, equalTo: uid!)
+        query.getFirstObjectInBackgroundWithBlock { (object : PFObject?, error : NSError?) -> Void in
+            if error == nil {
+                if let object = object {
+                    var groups = object[GroupUserConstant.groupIds] as! [String]
+                    var index = 0
+                    for each in groups {
+                        if each == uid {
+                            break
+                        }
+                        else{
+                            index++
+                        }
+                    }
+                    groups.removeAtIndex(index)
+                    object[GroupUserConstant.groupIds] = groups
+                    object.saveInBackgroundWithBlock({ (success : Bool, error : NSError?) -> Void in
+                        if success {
+                            println("UG has been midified on user \(uid)")
+                        }
+                        else{
+                            println(error?.userInfo)
+                        }
+                    })
+                }
+            }
+        }
+    }
+    
+    class func dismissGroup (groupId : String) {
+        
+    }
     
 }
 
-//protocol ParseGroup {
-//    
-//}
+protocol ParseGroup {
+    static func getGroupList(completion: ([Group]) -> Void)
+    static func createGroup(name:String, ownerId: String, members:[String], desc: String)
+    static func addGroupIdtoUsers(groupId: String, userIds: [String])
+}

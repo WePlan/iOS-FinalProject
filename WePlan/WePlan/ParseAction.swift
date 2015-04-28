@@ -107,7 +107,3 @@ protocol ParseTask {
     */
     static func updateTask(completion: Void -> Void)
 }
-
-protocol ParseGroup {
-    
-}
