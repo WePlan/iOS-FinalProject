@@ -52,6 +52,7 @@
 		66C6060B1AEAD8A50096D3CF /* CreateGroupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C6060A1AEAD8A50096D3CF /* CreateGroupVC.swift */; };
 		66C6060D1AEB03000096D3CF /* LocalGroupList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C6060C1AEB03000096D3CF /* LocalGroupList.swift */; };
 		66C606101AEE050B0096D3CF /* GroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C6060F1AEE050B0096D3CF /* GroupTableViewCell.swift */; };
+		66C606121AEF4E140096D3CF /* FriendSelectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C606111AEF4E140096D3CF /* FriendSelectTableViewCell.swift */; };
 		66D5AB261AC9EFB200C37F6E /* TasksTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D5AB251AC9EFB200C37F6E /* TasksTableViewCell.swift */; };
 		66D746461ACA0D3A0077290A /* SettingsTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D746451ACA0D3A0077290A /* SettingsTableVC.swift */; };
 		66D746491ACA53F30077290A /* DefaultSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D746481ACA53F30077290A /* DefaultSetting.swift */; };
@@ -136,6 +137,7 @@
 		66C6060A1AEAD8A50096D3CF /* CreateGroupVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateGroupVC.swift; sourceTree = "<group>"; };
 		66C6060C1AEB03000096D3CF /* LocalGroupList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalGroupList.swift; sourceTree = "<group>"; };
 		66C6060F1AEE050B0096D3CF /* GroupTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupTableViewCell.swift; sourceTree = "<group>"; };
+		66C606111AEF4E140096D3CF /* FriendSelectTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendSelectTableViewCell.swift; sourceTree = "<group>"; };
 		66D5AB251AC9EFB200C37F6E /* TasksTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TasksTableViewCell.swift; sourceTree = "<group>"; };
 		66D746451ACA0D3A0077290A /* SettingsTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableVC.swift; sourceTree = "<group>"; };
 		66D746481ACA53F30077290A /* DefaultSetting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultSetting.swift; sourceTree = "<group>"; };
@@ -229,6 +231,7 @@
 				66D7464A1ACA5A1C0077290A /* GroupsTableVC.swift */,
 				66C6060F1AEE050B0096D3CF /* GroupTableViewCell.swift */,
 				66C6060A1AEAD8A50096D3CF /* CreateGroupVC.swift */,
+				66C606111AEF4E140096D3CF /* FriendSelectTableViewCell.swift */,
 			);
 			name = "GroupsViews&Controllers";
 			sourceTree = "<group>";
@@ -527,6 +530,7 @@
 				66D746491ACA53F30077290A /* DefaultSetting.swift in Sources */,
 				66D5AB261AC9EFB200C37F6E /* TasksTableViewCell.swift in Sources */,
 				663053DC1ACC83BF0073FB96 /* NSMutableArray+SWUtilityButtons.m in Sources */,
+				66C606121AEF4E140096D3CF /* FriendSelectTableViewCell.swift in Sources */,
 				546F2CCD1AE55BC900722AE7 /* AssignATaskToFriendTableViewController.swift in Sources */,
 				66E575711AA7C19B00F0890A /* AppDelegate.swift in Sources */,
 				66C6060B1AEAD8A50096D3CF /* CreateGroupVC.swift in Sources */,

@@ -10,29 +10,25 @@ import UIKit
 
 class CreateGroupVC: UIViewController {
 
+    @IBOutlet weak var gruopNameTextField: UITextField!
+    @IBOutlet weak var descTextField: UITextField!
+    @IBOutlet weak var groupImageView: AsyncUIImageView!
+    @IBOutlet weak var memberNumLabel: UILabel!
+    
+    @IBOutlet weak var friendsTableView: UITableView!
+    var selectedFriends:[String] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+
+    @IBAction func clickBack(sender: AnyObject) {
     }
     
-    @IBAction func showList(sender: AnyObject) {
-//        ParseGroupAction2.getGroupList { (titles:[String]) -> Void in
-//            for title in titles {
-//                println(title)
-//            }
-//        }
-    }
-
-    @IBAction func createGroup(sender: AnyObject) {
-        let ownerId = PFUser.currentUser()!.objectId!
-        let members:[String] = ["lOPPuMksKd","OxNKZWaHCV"]
-        ParseGroupAction2.createGroup("groupTest1", ownerId: ownerId, members: members)
+    @IBAction func clickCreate(sender: AnyObject) {
     }
     /*
     // MARK: - Navigation
