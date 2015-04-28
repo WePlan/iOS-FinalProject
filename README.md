@@ -40,6 +40,8 @@
 
 1. AssignFriendTask() with tsort = 2, towner = sender's objectId, uid = receiver's objectId.
 
+2. Send Email invitation to new user. Use Parse notification.
+
 ## Task Module :
 
 ### UI Part :
