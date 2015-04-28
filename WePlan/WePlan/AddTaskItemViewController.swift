@@ -13,6 +13,8 @@ class AddTaskItemViewController: UIViewController, UITextFieldDelegate {
     private struct StoryBoardConstants {
         static let backgroundImageName = "BackgroundButtonBlue-50%trans"
     }
+    var entrypoint:String?
+    
     @IBOutlet weak var taskTitleTextField: UITextField!
     
     @IBOutlet weak var cancelButton: UIButton!
@@ -165,6 +167,14 @@ class AddTaskItemViewController: UIViewController, UITextFieldDelegate {
     }
     // MARK: - Navigation
 
+    @IBAction func clickBackButton(sender: AnyObject) {
+        if "Task" == entrypoint {
+            performSegueWithIdentifier("unwindTaskList", sender: self)
+        }
+        if "Group" == entrypoint {
+            performSegueWithIdentifier("unwindGroupDetail", sender: self)
+        }
+    }
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.

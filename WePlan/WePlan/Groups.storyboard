@@ -134,10 +134,42 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="xAx-d3-CHo" kind="show" identifier="groupDeatil" id="Dhh-jI-5L5"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PIz-Is-rVZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2314" y="185"/>
+        </scene>
+        <!--Group DetailVC-->
+        <scene sceneID="Wya-rE-3Vh">
+            <objects>
+                <viewController id="xAx-d3-CHo" customClass="GroupDetailVC" customModule="WePlan" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ObI-MT-auB"/>
+                        <viewControllerLayoutGuide type="bottom" id="8MI-8l-TTV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="y0X-bn-vg7">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QAZ-oa-xTd">
+                                <rect key="frame" x="16" y="72" width="79" height="30"/>
+                                <state key="normal" title="Assign task">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="clickAssign:" destination="xAx-d3-CHo" eventType="touchUpInside" id="XfZ-uV-t26"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VN5-rs-tdI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2314" y="918"/>
         </scene>
         <!--Create Group-->
         <scene sceneID="Gwt-fu-shy">
@@ -329,7 +361,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ezr-gu-m3W" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3024" y="185"/>
+            <point key="canvasLocation" x="3023" y="76"/>
         </scene>
     </scenes>
 </document>

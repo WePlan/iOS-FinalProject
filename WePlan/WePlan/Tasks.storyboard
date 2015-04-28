@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
@@ -231,7 +231,7 @@
                     <navigationItem key="navigationItem" title="TaskList" id="XO6-O8-BfL">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="nyB-Mp-Iuz">
                             <connections>
-                                <segue destination="rn8-S5-m1x" kind="presentation" id="S5m-d9-5rp"/>
+                                <segue destination="rn8-S5-m1x" kind="presentation" identifier="TaskListToAdd" id="S5m-d9-5rp"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -279,9 +279,6 @@
                                         <exclude reference="omP-4P-gbf"/>
                                     </mask>
                                 </variation>
-                                <connections>
-                                    <segue destination="mDd-Fu-u89" kind="unwind" unwindAction="unwindTaskList:" id="tHF-sg-xIt"/>
-                                </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="09O-cN-4jo">
                                 <rect key="frame" x="21" y="107" width="558" height="30"/>
@@ -299,9 +296,6 @@
                                     <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <connections>
-                                    <segue destination="mDd-Fu-u89" kind="unwind" unwindAction="unwindTaskList:" id="v05-oZ-TBs"/>
-                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="255" verticalHuggingPriority="251" text="Due Time:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wY8-cB-mDO">
                                 <rect key="frame" x="16" y="329" width="75" height="20"/>
@@ -476,7 +470,7 @@
                         <barButtonItem key="leftBarButtonItem" title="Back" id="dQX-7D-nxO">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
-                                <segue destination="mDd-Fu-u89" kind="unwind" unwindAction="unwindTaskList:" id="Kjg-r4-MhR"/>
+                                <action selector="clickBackButton:" destination="kF5-Jw-de5" id="yF8-QS-ceU"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -495,12 +489,14 @@
                         <outlet property="shortDescriptionTextField" destination="CTf-Vg-Uwj" id="P8a-SJ-vg9"/>
                         <outlet property="taskLocationTextField" destination="NpP-15-TDQ" id="jwN-SA-c0j"/>
                         <outlet property="taskTitleTextField" destination="09O-cN-4jo" id="oeF-68-DtP"/>
+                        <segue destination="mDd-Fu-u89" kind="unwind" identifier="unwindGroupDetail" unwindAction="unwindGroupDetail:" id="4Wr-Me-b1n"/>
+                        <segue destination="mDd-Fu-u89" kind="unwind" identifier="unwindTaskList" unwindAction="unwindTaskList:" id="U7f-S1-Tr3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qk4-qQ-Qz9" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="mDd-Fu-u89" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2753" y="247"/>
+            <point key="canvasLocation" x="2730" y="324"/>
         </scene>
         <!--Add People To Task Table View Controller-->
         <scene sceneID="gRe-zW-4eZ">
@@ -567,7 +563,7 @@
         <!--Navigation Controller-->
         <scene sceneID="1GD-s5-HhY">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="rn8-S5-m1x" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="addTaskEntry" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="rn8-S5-m1x" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="7Aw-4g-BaG">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
