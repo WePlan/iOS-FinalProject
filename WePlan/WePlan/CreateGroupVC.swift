@@ -8,8 +8,8 @@
 
 import UIKit
 
-class CreateGroupVC: UIViewController {
-
+class CreateGroupVC: UIViewController ,UITableViewDataSource, UITableViewDelegate{
+    var localFriendsList = LocalFriendList.sharedInstance
     @IBOutlet weak var gruopNameTextField: UITextField!
     @IBOutlet weak var descTextField: UITextField!
     @IBOutlet weak var groupImageView: AsyncUIImageView!
@@ -20,10 +20,25 @@ class CreateGroupVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        friendsTableView.dataSource = self
+        friendsTableView.delegate = self
         // Do any additional setup after loading the view.
     }
-
+    // MARK: - TableView
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return localFriendsList.count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("friendSelectedCell", forIndexPath: indexPath) as! FriendSelectTableViewCell
+        cell.nameLabel.text = localFriendsList.friendList[indexPath.row].name
+        cell.friendImageView.imageObjectId = localFriendsList.friendList[indexPath.row].imageId
+        return cell
+    }
 
     @IBAction func clickBack(sender: AnyObject) {
     }
