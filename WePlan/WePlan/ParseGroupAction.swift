@@ -79,11 +79,11 @@ class ParseGroupAction : ParseGroup {
         }
     }
     
-    func getGroupMembers (groupId : String, complete : ([User]) -> Void) {
+    func getGroupMembers (members : [String], complete : ([User]) -> Void) {
         var memberList : [User] = []
         var memberIdList : [String] = []
         var query = PFQuery(className: GroupUserConstant.groupUserClass)
-        query.whereKey(GroupUserConstant.groupId, equalTo: groupId)
+        query.whereKey(GroupUserConstant.groupId, containedIn: members)
         query.findObjectsInBackgroundWithBlock { (objects : [AnyObject]?, error : NSError?) -> Void in
             if error == nil {
                 if let objects = objects as? [PFObject] {
