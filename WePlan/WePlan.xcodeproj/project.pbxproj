@@ -48,7 +48,6 @@
 		66BCE11E1AD84CB5009659EC /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66BCE11C1AD84CB5009659EC /* Parse.framework */; };
 		66C606051AEA12690096D3CF /* ParseBaseAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C606041AEA12690096D3CF /* ParseBaseAction.swift */; };
 		66C606071AEA18210096D3CF /* LocalFriendList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C606061AEA18210096D3CF /* LocalFriendList.swift */; };
-		66C606091AEABCC20096D3CF /* ParseGroupAction2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C606081AEABCC20096D3CF /* ParseGroupAction2.swift */; };
 		66C6060B1AEAD8A50096D3CF /* CreateGroupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C6060A1AEAD8A50096D3CF /* CreateGroupVC.swift */; };
 		66C6060D1AEB03000096D3CF /* LocalGroupList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C6060C1AEB03000096D3CF /* LocalGroupList.swift */; };
 		66C606101AEE050B0096D3CF /* GroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C6060F1AEE050B0096D3CF /* GroupTableViewCell.swift */; };
@@ -134,7 +133,6 @@
 		66BCE11C1AD84CB5009659EC /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		66C606041AEA12690096D3CF /* ParseBaseAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseBaseAction.swift; sourceTree = "<group>"; };
 		66C606061AEA18210096D3CF /* LocalFriendList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalFriendList.swift; sourceTree = "<group>"; };
-		66C606081AEABCC20096D3CF /* ParseGroupAction2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseGroupAction2.swift; sourceTree = "<group>"; };
 		66C6060A1AEAD8A50096D3CF /* CreateGroupVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateGroupVC.swift; sourceTree = "<group>"; };
 		66C6060C1AEB03000096D3CF /* LocalGroupList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalGroupList.swift; sourceTree = "<group>"; };
 		66C6060F1AEE050B0096D3CF /* GroupTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupTableViewCell.swift; sourceTree = "<group>"; };
@@ -301,7 +299,6 @@
 				663053C91ACBB36C0073FB96 /* ParseAction.swift */,
 				C5276B301AD71BC200D260F3 /* ParseFriendAction.swift */,
 				C5E990101AE071A800963F18 /* ParseGroupAction.swift */,
-				66C606081AEABCC20096D3CF /* ParseGroupAction2.swift */,
 				6655F5101AE18E59005BA9E3 /* ParseImageAction.swift */,
 			);
 			name = Model;
@@ -543,7 +540,6 @@
 				663053DD1ACC83BF0073FB96 /* SWCellScrollView.m in Sources */,
 				66D7464B1ACA5A1C0077290A /* GroupsTableVC.swift in Sources */,
 				663053E01ACC83BF0073FB96 /* SWUtilityButtonTapGestureRecognizer.m in Sources */,
-				66C606091AEABCC20096D3CF /* ParseGroupAction2.swift in Sources */,
 				663053CA1ACBB36C0073FB96 /* ParseAction.swift in Sources */,
 				C5276B311AD71BC200D260F3 /* ParseFriendAction.swift in Sources */,
 				66588B441AD853D90019BD3D /* SearchFriendTableViewCell.swift in Sources */,
