@@ -1,8 +1,47 @@
-Todo List:
+#The functions or modules that need to be implemented or updated：
+Group Module:
+  UI Part :
+    1. CreateGroupView. Including (All the contents should be implemented in a single view.): 
+      1) Image of the Group. (By uploading.)
+      2) Input the basic information of the group. (Such as : title, description, etc.)
+      3) Add members for this group. (sub-Tableview)
+    2. Cell of group need to be updated. (New style, arrangement, etc. Needs to be redesigned.)
+    3. GroupDetailView. Including :
+      1) Showing detailed information of the group. (Data has already been fetched from the database.)
+      2) "Quit/Dismiss" button needs to be implemented. (Group owner or Group member.)
+      3) Assign task for this group. (New View, which can be named as AssignGroupTaskView.)
+    4. Remove "Slide to delete" function for Group Module.
+    5. Remove "Touch-shown list" function for Group Module.
+  Backend Part:
+    1. func QuitGroup (PFUser.currentUser().objectId)
+    2. func DeleteGroup (groupId)
+    3. func GetGroupUserList ([memberId])
+    4. func AssignGroupTask() with tsort = 3, towner = groupId, uid = each member's objectId of the groupId.
+Friend Module:
+  UI Part :
+    1. "Add" friend button bug needs to be fixed. (Turn into grey (enable = false))
+    2. FriendDetailView. Including :
+      1) Showing detailed information of the selected friend. (Data has already been fetched from the database.)
+      2) "Delete" the friendship button. (Function has already been implemented.)
+      3) Assign task for this friend. (New View, which can be named as AssignFriendTaskView.)
+    3. Remove "Touch-shown list" function for Friend Module.
+    4. Remove "Slide to delete" function for Friend Module.
+    5. Search Bar for my friend list.
+  Backend Part :
+    1. AssignFriendTask() with tsort = 2, towner = sender's objectId, uid = receiver's objectId.
+Task Module :
+  UI Part :
+    1. Remove "Slide to delete" function for Task Module.
+    2. Hide the touch-shown list when the user touches some blank place or other items of the menu.
+    3. Expand the cell of the Task to support more information and buttons.
+    4. "Colored Label", which is used for showing different types of the task. (Self task or Group task or Friend assigned task)
+  Backend Part :
+    1. "Slide right to check the task" function needs to be implemented. (Pending.)
+Setting Module : (TBA)
 
-1.  Search Friend 的结果里 有自己
+April 27th, 2015
 
-2.  Search friend 的结果 区分了大小写， 改成不区分？
+Mark
 
 # iOS-FinalProject
 Group for iOS final
