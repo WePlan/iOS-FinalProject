@@ -102,7 +102,15 @@ class TaskListTableViewController: UITableViewController, TasksTableViewCellDele
         cell.clipsToBounds = true
         
         cell.checkState = item.checked
-        cell.taskTitle.text = item.taskName
+        cell.taskItem = item
+        if item.kind.rawValue != 3 {
+            let preImage = UIImage(named: "AddPeople");
+            let tintedImage = preImage?.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
+            cell.expandCellGroupImage = (tintedImage, forState: .Normal)
+            btn.tintColor = UIColor.redColor()
+            
+        }
+//        cell.taskTitle.text = item.taskName
 
         cell.selectionStyle = UITableViewCellSelectionStyle.None
         cell.index = indexPath

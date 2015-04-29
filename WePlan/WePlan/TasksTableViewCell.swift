@@ -14,7 +14,7 @@ protocol TasksTableViewCellDelegate {
 }
 
 class TasksTableViewCell: UITableViewCell {
-
+    var taskItem:TaskItem?
     @IBOutlet weak var taskTitle: UILabel!
     @IBOutlet weak var checkButton: UIButton!
     @IBOutlet weak var taskKindLabel: UILabel!
@@ -29,6 +29,7 @@ class TasksTableViewCell: UITableViewCell {
         }
     }
     
+    @IBOutlet weak var expandCellGroupImage: UIImageView!
     var index: NSIndexPath?
     var delegate: TasksTableViewCellDelegate?
     

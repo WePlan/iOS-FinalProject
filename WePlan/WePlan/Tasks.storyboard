@@ -211,6 +211,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="checkButton" destination="f8I-np-2TP" id="uOz-be-paU"/>
+                                    <outlet property="expandCellGroupImage" destination="3XC-P8-cYC" id="5Kn-EM-I0x"/>
                                     <outlet property="taskKindLabel" destination="L4j-sD-Bng" id="bBg-8C-mx2"/>
                                     <outlet property="taskTitle" destination="Ulm-3S-etZ" id="ska-5a-fMo"/>
                                 </connections>
