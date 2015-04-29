@@ -18,6 +18,7 @@ class ParseGroupAction : ParseGroup{
         static let groupOwner = "gowner"
         static let groupMembers = "members"
         //static let groupCreatedAt = "createdAt"
+        static let groupImage = "groupImage"
     }
     
     private struct GroupUserConstant {
@@ -64,7 +65,9 @@ class ParseGroupAction : ParseGroup{
                             let ownerId = pfobject[GroupConstant.groupOwner] as! String
                             let members = pfobject[GroupConstant.groupMembers] as! [String]
                             let desc = pfobject[GroupConstant.groupDesc] as! String
-                            var newGroup = Group(id: pfobject.objectId!, name:str, ownerId: ownerId, memberIds: members,description: desc)
+                            let file = pfobject[GroupConstant.groupImage] as? PFFile
+                            var newGroup = Group(id: pfobject.objectId!, name:str, ownerId: ownerId, memberIds: members,description: desc, groupImage: file)
+                            
                             result.append(newGroup)
                         }
                         completion(result)
@@ -74,18 +77,28 @@ class ParseGroupAction : ParseGroup{
         }
     }
     
-    class func createGroup(name:String, ownerId: String, members:[String], desc: String = "None", completion: () -> Void) {
-        var group = PFObject(className: GroupConstant.classname)
-        //core
-        group[GroupConstant.grouptitle] = name
-        group[GroupConstant.groupOwner] = ownerId
-        group[GroupConstant.groupMembers] = members
-        //misc
-        group[GroupConstant.groupDesc] = desc
+    class func createGroup(name:String, ownerId: String, members:[String], desc: String = "None",groupImage: UIImage?, completion: () -> Void) {
+        let imageFile: PFFile?
+        if groupImage != nil {
+            let data = UIImagePNGRepresentation(groupImage)
+            imageFile = PFFile(name: "GroupImage.png", data: data)
+        }else{
+            imageFile = nil
+        }
         
-        group.saveInBackgroundWithBlock { (success:Bool, error: NSError?) -> Void in
+        var pfGroup = PFObject(className: GroupConstant.classname)
+        //core
+        pfGroup[GroupConstant.grouptitle] = name
+        pfGroup[GroupConstant.groupOwner] = ownerId
+        pfGroup[GroupConstant.groupMembers] = members
+        //misc
+        pfGroup[GroupConstant.groupDesc] = desc
+        if let file = imageFile {
+            pfGroup[GroupConstant.groupImage] = file
+        }
+        pfGroup.saveInBackgroundWithBlock { (success:Bool, error: NSError?) -> Void in
             if success {
-                let groupId = group.objectId!
+                let groupId = pfGroup.objectId!
                 println("group created with id: \(groupId)")
                 //completion?
                 //TODO: add groupd id to all members

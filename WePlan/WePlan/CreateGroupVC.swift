@@ -74,7 +74,8 @@ class CreateGroupVC: UIViewController ,UITableViewDataSource, UITableViewDelegat
         let groupName: String = self.gruopNameTextField.text
         let creatorId = PFUser.currentUser()!.objectId!
         let desc:String = self.descTextField.text
-        ParseGroupAction.createGroup(groupName, ownerId: creatorId, members: self.selectedFriends, desc: desc) { () -> Void in
+        let image = UIImage() // set it
+        ParseGroupAction.createGroup(groupName, ownerId: creatorId, members: self.selectedFriends, desc: desc, groupImage: image) { () -> Void in
             self.performSegueWithIdentifier(SegueId.unwindTable, sender: self)
         }
         
