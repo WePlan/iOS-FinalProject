@@ -120,11 +120,12 @@
                     </navigationItem>
                     <connections>
                         <segue destination="xAx-d3-CHo" kind="show" identifier="groupDeatil" id="Dhh-jI-5L5"/>
+                        <segue destination="vY3-1F-eDs" kind="show" identifier="GroupDetail" id="e7n-2C-o7B"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PIz-Is-rVZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2356" y="29"/>
+            <point key="canvasLocation" x="2457" y="201"/>
         </scene>
         <!--Group DetailVC-->
         <scene sceneID="Wya-rE-3Vh">
@@ -203,42 +204,57 @@
             </objects>
             <point key="canvasLocation" x="1898" y="916"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Group Detail TableVC-->
         <scene sceneID="dee-xH-TZ5">
             <objects>
-                <tableViewController id="vY3-1F-eDs" sceneMemberID="viewController">
+                <tableViewController id="vY3-1F-eDs" customClass="GroupDetailTableVC" customModule="WePlan" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="8mS-dZ-Qbz">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <sections>
-                            <tableViewSection headerTitle="Section-1" id="OJ8-1W-UkP">
+                            <tableViewSection headerTitle="Section-1" id="OJ8-1W-UkP" userLabel="GroupInfo">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="200" id="Slu-XM-ywq">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="250" id="Slu-XM-ywq">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Slu-XM-ywq" id="hDf-PA-C4j">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hqT-ig-TSG">
-                                                    <rect key="frame" x="202" y="20" width="182" height="128"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" image="GroupDefaultPic" translatesAutoresizingMaskIntoConstraints="NO" id="hqT-ig-TSG">
+                                                    <rect key="frame" x="208" y="8" width="185" height="185"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="hqT-ig-TSG" secondAttribute="height" multiplier="1:1" id="hIn-mq-okJ"/>
+                                                    </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Group Details" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SSj-0O-2x7">
-                                                    <rect key="frame" x="8" y="170" width="584" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="260" verticalHuggingPriority="260" horizontalCompressionResistancePriority="760" verticalCompressionResistancePriority="760" text="Group Details" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SSj-0O-2x7">
+                                                    <rect key="frame" x="250" y="221" width="100" height="20"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lLm-sc-Swu">
-                                                    <rect key="frame" x="384" y="17" width="191" height="131"/>
-                                                </imageView>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sol-Sn-Zxc">
-                                                    <rect key="frame" x="16" y="20" width="184" height="128"/>
-                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="255" verticalHuggingPriority="255" horizontalCompressionResistancePriority="755" verticalCompressionResistancePriority="755" text="Group Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7dd-kV-IK4">
+                                                    <rect key="frame" x="253" y="193" width="94" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="TUH-7i-ezw"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="TUH-7i-ezw"/>
+                                                        </mask>
+                                                    </variation>
+                                                </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="SSj-0O-2x7" firstAttribute="leading" secondItem="hDf-PA-C4j" secondAttribute="leadingMargin" id="Aw7-1Q-Qis"/>
+                                                <constraint firstItem="hqT-ig-TSG" firstAttribute="top" secondItem="hDf-PA-C4j" secondAttribute="topMargin" id="6jJ-qA-qzc"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="SSj-0O-2x7" secondAttribute="bottom" id="Hwc-ED-Lel"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="SSj-0O-2x7" secondAttribute="trailing" id="ybb-DC-efR"/>
+                                                <constraint firstItem="7dd-kV-IK4" firstAttribute="top" secondItem="hqT-ig-TSG" secondAttribute="bottom" id="Ig4-M7-JiX"/>
+                                                <constraint firstItem="SSj-0O-2x7" firstAttribute="top" secondItem="7dd-kV-IK4" secondAttribute="bottom" constant="8" symbolic="YES" id="MhY-GK-SGg"/>
+                                                <constraint firstAttribute="centerX" secondItem="7dd-kV-IK4" secondAttribute="centerX" id="UQ4-ne-SLx"/>
+                                                <constraint firstAttribute="centerX" secondItem="SSj-0O-2x7" secondAttribute="centerX" id="ZUh-P2-eab"/>
+                                                <constraint firstAttribute="centerX" secondItem="hqT-ig-TSG" secondAttribute="centerX" id="dkb-BB-z1y"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -275,7 +291,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y2v-GT-Drp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2661" y="804"/>
+            <point key="canvasLocation" x="2999" y="939"/>
         </scene>
         <!--Create Group-->
         <scene sceneID="Gwt-fu-shy">
