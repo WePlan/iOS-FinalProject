@@ -11,9 +11,11 @@ import UIKit
 class GroupTableViewCell: UITableViewCell {
     var group:Group? {
         didSet{
-            groupNameLabel.text = group?.name
-            let count = group?.memberIds.count
-            memberNumLabel.text = "\(count)"
+            if let group = group {
+                groupNameLabel.text = group.name
+                let count = group.memberIds.count
+                memberNumLabel.text = "\(count) members"
+            }
         }
     }
     

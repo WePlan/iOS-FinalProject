@@ -74,7 +74,7 @@ class ParseGroupAction : ParseGroup{
         }
     }
     
-    class func createGroup(name:String, ownerId: String, members:[String], desc: String = "None") {
+    class func createGroup(name:String, ownerId: String, members:[String], desc: String = "None", completion: () -> Void) {
         var group = PFObject(className: GroupConstant.classname)
         //core
         group[GroupConstant.grouptitle] = name
@@ -83,14 +83,13 @@ class ParseGroupAction : ParseGroup{
         //misc
         group[GroupConstant.groupDesc] = desc
         
-        //TODO: update id
         group.saveInBackgroundWithBlock { (success:Bool, error: NSError?) -> Void in
             if success {
                 let groupId = group.objectId!
                 println("group created with id: \(groupId)")
                 //completion?
                 //TODO: add groupd id to all members
-                self.addGroupIdtoUsers(groupId, userIds: members)
+                self.addGroupIdtoUsers(groupId, userIds: members, completion: completion)
             }else{
                 println("##create group error: \(error?.userInfo)")
             }
@@ -98,10 +97,12 @@ class ParseGroupAction : ParseGroup{
         
     }
     
-    static func addGroupIdtoUsers(groupId: String, userIds: [String]){
+    private static func addGroupIdtoUsers(groupId: String, userIds: [String], completion: ()-> Void){
         var tmpUserIds = Set<String>()
         var query = PFQuery(className: GroupUserConstant.classname)
         query.whereKey(GroupUserConstant.userId, containedIn: userIds)
+        
+        //find all User in this group and update their gIds
         query.findObjectsInBackgroundWithBlock { (objects : [AnyObject]?, error : NSError?) -> Void in
             if error == nil {
                 if let objects = objects as? [PFObject] {
@@ -118,6 +119,7 @@ class ParseGroupAction : ParseGroup{
                     PFObject.saveAllInBackground(objects, block: { (success : Bool, error : NSError?) -> Void in
                         if success {
                             println("groupIds update successfully")
+                            completion()
                         }
                         else{
                             println(error?.userInfo)
@@ -351,6 +353,6 @@ class ParseGroupAction : ParseGroup{
 
 protocol ParseGroup {
     static func getGroupList(completion: ([Group]) -> Void)
-    static func createGroup(name:String, ownerId: String, members:[String], desc: String)
-    static func addGroupIdtoUsers(groupId: String, userIds: [String])
+//    static func createGroup(name:String, ownerId: String, members:[String], desc: String)
+//    static func addGroupIdtoUsers(groupId: String, userIds: [String])
 }

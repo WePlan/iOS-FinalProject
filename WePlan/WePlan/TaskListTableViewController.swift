@@ -107,6 +107,7 @@ class TaskListTableViewController: UITableViewController, TasksTableViewCellDele
         cell.selectionStyle = UITableViewCellSelectionStyle.None
         cell.index = indexPath
         cell.delegate = self
+        cell.taskKindLabel.text = item.owner
         return cell
     }
     

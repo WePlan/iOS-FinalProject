@@ -17,6 +17,7 @@ class TasksTableViewCell: UITableViewCell {
 
     @IBOutlet weak var taskTitle: UILabel!
     @IBOutlet weak var checkButton: UIButton!
+    @IBOutlet weak var taskKindLabel: UILabel!
     
     var checkState: Bool? {
         didSet{
