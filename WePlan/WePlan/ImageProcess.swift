@@ -30,6 +30,14 @@ class ImageProcess {
         imageView.layer.cornerRadius = radius
         imageView.layer.masksToBounds = true
     }
-
+    //MARK: Misc.
+    
+    class func resizeImage(image: UIImage , size: CGSize) -> UIImage {
+        UIGraphicsBeginImageContext(size)
+        image.drawInRect(CGRectMake(0, 0, size.width, size.height))
+        var newImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return newImage
+    }
 
 }
