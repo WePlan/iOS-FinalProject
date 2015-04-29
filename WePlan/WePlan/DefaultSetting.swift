@@ -30,33 +30,8 @@ class DefaultSetting {
         
         tabBarController.tabBar.tintColor = UIColor.redColor()
         tabBarController.tabBar.backgroundColor = UIColor.purpleColor()
+        
     }
     
     
-    //MARK: - FixImageShape
-    class func changeImageViewToCircle(imageView: UIImageView) {
-        let size = imageView.frame.size
-        let radius: CGFloat
-        if size.height == size.width {
-            radius = size.height/2
-        }else{
-            println("Aspect ratio of image is not 1:1.")
-            radius = 0
-        }
-        imageView.layer.cornerRadius = radius
-        imageView.layer.masksToBounds = true
-    }
-    
-    class func changeImageViewRounded(imageView: UIImageView) {
-        let size = imageView.frame.size
-        let radius: CGFloat
-        if size.height == size.width {
-            radius = size.height/10
-        }else{
-            println("Aspect ratio of image is not 1:1.")
-            radius = 0
-        }
-        imageView.layer.cornerRadius = radius
-        imageView.layer.masksToBounds = true
-    }
 }

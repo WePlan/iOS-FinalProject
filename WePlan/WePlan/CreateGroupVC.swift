@@ -87,8 +87,7 @@ class CreateGroupVC: UIViewController ,UITableViewDataSource, UITableViewDelegat
         self.groupImageView.addGestureRecognizer(singleTap)
         // Set default image and frame
         self.groupImageView.defaultImageName = ""
-//        DefaultSetting.changeImageViewToCircle(groupImageView)
-        DefaultSetting.changeImageViewRounded(groupImageView)
+        ImageProcess.changeImageViewRounded(groupImageView)
         
         // TODO: image id is wrong
         if let imageId = PFUser.currentUser()!["imageId"] as? String {
