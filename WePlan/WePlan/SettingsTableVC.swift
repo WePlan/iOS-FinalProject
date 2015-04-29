@@ -110,7 +110,7 @@ class SettingsTableVC: UITableViewController , UIImagePickerControllerDelegate, 
         photoImageView.image = newImage
         
         ParseImageAction.uploadImage(newImage)
-                
+        
         picker.dismissViewControllerAnimated(true, completion: nil)
     }
     

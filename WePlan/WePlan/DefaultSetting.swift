@@ -46,4 +46,17 @@ class DefaultSetting {
         imageView.layer.cornerRadius = radius
         imageView.layer.masksToBounds = true
     }
+    
+    class func changeImageViewRounded(imageView: UIImageView) {
+        let size = imageView.frame.size
+        let radius: CGFloat
+        if size.height == size.width {
+            radius = size.height/10
+        }else{
+            println("Aspect ratio of image is not 1:1.")
+            radius = 0
+        }
+        imageView.layer.cornerRadius = radius
+        imageView.layer.masksToBounds = true
+    }
 }
