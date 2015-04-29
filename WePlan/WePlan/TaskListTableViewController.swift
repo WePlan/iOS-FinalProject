@@ -129,41 +129,66 @@ class TaskListTableViewController: UITableViewController, TasksTableViewCellDele
         }
 
     }
-    
+    //deleteButton at task cell
+    @IBAction func deleteTask(sender: UIButton) {
+        let cell = sender.superview?.superview as! TasksTableViewCell
+        //        let tableView = cell.superview?.superview as! UITableView
+
+        if let indexPath = tableView.indexPathForCell(cell) {
+            //            ParseAction.deleteItem(self.tasks[indexPath.row].uniqueId)
+            
+            //            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            let deleteName = tasks[indexPath.row].taskName
+            let deleteId = self.tasks[indexPath.row].uniqueId
+            //Alert
+            var alert = UIAlertController(title: "Delete Friend", message: "Are you sure you want to delete \(deleteName)", preferredStyle: UIAlertControllerStyle.Alert)
+            // Delete the row from the data source
+            alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default,handler: nil))
+            alert.addAction(UIAlertAction(title: "Delete", style: UIAlertActionStyle.Default, handler: { action in
+                self.tasks.removeAtIndex(indexPath.row)
+                self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+                ParseAction.deleteItem(deleteId)
+                
+            }))
+            self.presentViewController(alert, animated: true, completion: nil)
+            
+        }
+
+    }
     func checkButtonPressed(index: NSIndexPath) {
         var tappedItem = tasks[index.row]
         tappedItem.checked = !tappedItem.checked
         tableView.reloadRowsAtIndexPaths([index], withRowAnimation: UITableViewRowAnimation.Automatic)
     }
     
-        override func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
-            selectedTask = -1
-//            self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-        return UITableViewCellEditingStyle.Delete
-    }
+//        override func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
+//            selectedTask = -1
+////            self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+//        return UITableViewCellEditingStyle.Delete
+//    }
     
    
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         // Return NO if you do not want the specified item to be editable.
-        return true
+        return false
     }
     
 
     
     // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        
-        if editingStyle == .Delete {
-            
-            // Delete the row from the data source
-            ParseAction.deleteItem(self.tasks[indexPath.row].uniqueId)
-            self.tasks.removeAtIndex(indexPath.row)
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
+//    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+//        
+//        if editingStyle == .Delete {
+//            
+//            // Delete the row from the data source
+//            ParseAction.deleteItem(self.tasks[indexPath.row].uniqueId)
+//            self.tasks.removeAtIndex(indexPath.row)
+//            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+//        } else if editingStyle == .Insert {
+//            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+//        }    
+//    }
     
 
     /*
