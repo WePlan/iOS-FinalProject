@@ -9,6 +9,7 @@
 import Foundation
 import Parse
 
+//The whole strutue needs to be modified and updated.
 class ParseAction : ParseTask{
     
     private struct TaskConstants {
@@ -106,8 +107,4 @@ protocol ParseTask {
     callback: update task in model
     */
     static func updateTask(completion: Void -> Void)
-}
-
-protocol ParseGroup {
-    
 }

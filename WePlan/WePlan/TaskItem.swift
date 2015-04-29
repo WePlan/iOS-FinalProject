@@ -8,6 +8,7 @@
 
 import Foundation
 
+//Task struture needs to be modified and updated, it's outdated.
 class TaskItem {
     //attributes
     var taskName: String
