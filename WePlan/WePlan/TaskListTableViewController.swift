@@ -129,32 +129,48 @@ class TaskListTableViewController: UITableViewController, TasksTableViewCellDele
         }
 
     }
-    //deleteButton at task cell
-    @IBAction func deleteTask(sender: UIButton) {
-        let cell = sender.superview?.superview as! TasksTableViewCell
-        //        let tableView = cell.superview?.superview as! UITableView
-
-        if let indexPath = tableView.indexPathForCell(cell) {
-            //            ParseAction.deleteItem(self.tasks[indexPath.row].uniqueId)
+    // MARK: - expanding cell button delegate
+    func checkDeletePressed(indexPath:NSIndexPath) {
+        let deleteName = tasks[indexPath.row].taskName
+        let deleteId = self.tasks[indexPath.row].uniqueId
+        //Alert
+        var alert = UIAlertController(title: "Delete Task", message: "Are you sure you want to delete \(deleteName)", preferredStyle: UIAlertControllerStyle.Alert)
+        // Delete the row from the data source
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default,handler: nil))
+        alert.addAction(UIAlertAction(title: "Delete", style: UIAlertActionStyle.Default, handler: { action in
+            self.tasks.removeAtIndex(indexPath.row)
+            self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            ParseAction.deleteItem(deleteId)
             
-            //            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-            let deleteName = tasks[indexPath.row].taskName
-            let deleteId = self.tasks[indexPath.row].uniqueId
-            //Alert
-            var alert = UIAlertController(title: "Delete Task", message: "Are you sure you want to delete \(deleteName)", preferredStyle: UIAlertControllerStyle.Alert)
-            // Delete the row from the data source
-            alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default,handler: nil))
-            alert.addAction(UIAlertAction(title: "Delete", style: UIAlertActionStyle.Default, handler: { action in
-                self.tasks.removeAtIndex(indexPath.row)
-                self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-                ParseAction.deleteItem(deleteId)
-                
-            }))
-            self.presentViewController(alert, animated: true, completion: nil)
-            
-        }
-
+        }))
+        self.presentViewController(alert, animated: true, completion: nil)
     }
+    //deleteButton at task cell
+//    @IBAction func deleteTask(sender: UIButton) {
+//        let cell = sender.superview?.superview as! TasksTableViewCell
+//        //        let tableView = cell.superview?.superview as! UITableView
+//
+//        if let indexPath = tableView.indexPathForCell(cell) {
+//            //            ParseAction.deleteItem(self.tasks[indexPath.row].uniqueId)
+//            
+//            //            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+//            let deleteName = tasks[indexPath.row].taskName
+//            let deleteId = self.tasks[indexPath.row].uniqueId
+//            //Alert
+//            var alert = UIAlertController(title: "Delete Task", message: "Are you sure you want to delete \(deleteName)", preferredStyle: UIAlertControllerStyle.Alert)
+//            // Delete the row from the data source
+//            alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default,handler: nil))
+//            alert.addAction(UIAlertAction(title: "Delete", style: UIAlertActionStyle.Default, handler: { action in
+//                self.tasks.removeAtIndex(indexPath.row)
+//                self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+//                ParseAction.deleteItem(deleteId)
+//                
+//            }))
+//            self.presentViewController(alert, animated: true, completion: nil)
+//            
+//        }
+//
+//    }
     func checkButtonPressed(index: NSIndexPath) {
         var tappedItem = tasks[index.row]
         tappedItem.checked = !tappedItem.checked
