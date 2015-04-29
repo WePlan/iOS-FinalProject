@@ -43,7 +43,7 @@ class TasksTableViewCell: UITableViewCell {
             self.delegate!.checkDeletePressed(self.index!)
         }
     }
-        
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
