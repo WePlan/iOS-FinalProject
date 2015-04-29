@@ -46,8 +46,7 @@ class SettingsTableVC: UITableViewController , UIImagePickerControllerDelegate, 
         self.photoImageView.addGestureRecognizer(singleTap)
         // Set default image and frame
         self.photoImageView.defaultImageName = Constants.imageDefault
-        DefaultSetting.changeImageViewToCircle(photoImageView)
-        
+        ImageProcess.changeImageViewToCircle(photoImageView)
         if let imageId = PFUser.currentUser()!["imageId"] as? String {
             self.photoImageView.imageObjectId = imageId
         }else {
@@ -105,22 +104,16 @@ class SettingsTableVC: UITableViewController , UIImagePickerControllerDelegate, 
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
         println("image picked!")
         let newSize = CGSizeMake(180, 180)
-        var newImage = resizeImage(image, size: newSize)
+        var newImage = ImageProcess.resizeImage(image, size: newSize)
         
         photoImageView.image = newImage
         
         ParseImageAction.uploadImage(newImage)
-                
+        
         picker.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    func resizeImage(image: UIImage , size: CGSize) -> UIImage {
-        UIGraphicsBeginImageContext(size)
-        image.drawInRect(CGRectMake(0, 0, size.width, size.height))
-        var newImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        return newImage
-    }
+    
     
     // MARK: - LifeCycle
     func setUserLabels () {

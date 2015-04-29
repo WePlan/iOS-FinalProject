@@ -10,6 +10,7 @@ import UIKit
 
 protocol TasksTableViewCellDelegate {
     func checkButtonPressed(index: NSIndexPath)
+    func checkDeletePressed(index: NSIndexPath)
 }
 
 class TasksTableViewCell: UITableViewCell {
@@ -35,7 +36,14 @@ class TasksTableViewCell: UITableViewCell {
             self.delegate!.checkButtonPressed(self.index!)
         }
     }
+    // MARK: -ExpandCellButtonFunction
     
+    @IBAction func deleteTask(sender: UIButton) {
+        if delegate != nil {
+            self.delegate!.checkDeletePressed(self.index!)
+        }
+    }
+        
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

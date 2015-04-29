@@ -148,6 +148,9 @@ class AddTaskItemViewController: UIViewController, UITextFieldDelegate {
     }
     
     //MARK: - Misc
+    
+    
+    
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
@@ -166,16 +169,23 @@ class AddTaskItemViewController: UIViewController, UITextFieldDelegate {
         taskTitleTextField.resignFirstResponder()
     }
     // MARK: - Navigation
-
+    @IBAction func clickAddButton(sender: AnyObject) {
+        performUnwindSegue(self.addButton)
+    }
+    
     @IBAction func clickBackButton(sender: AnyObject) {
+        performUnwindSegue(self)
+    }
+    
+    private func performUnwindSegue(sender: AnyObject?) {
         if "Task" == entrypoint {
-            performSegueWithIdentifier("unwindTaskList", sender: self)
+            performSegueWithIdentifier("unwindTaskList", sender: sender)
         }
         if "Group" == entrypoint {
-            performSegueWithIdentifier("unwindGroupDetail", sender: self)
+            performSegueWithIdentifier("unwindGroupDetail", sender: sender)
         }
         if "Friend" == entrypoint {
-            performSegueWithIdentifier("unwindFriendList", sender: self)
+            performSegueWithIdentifier("unwindFriendList", sender: sender)
         }
     }
     // In a storyboard-based application, you will often want to do a little preparation before navigation

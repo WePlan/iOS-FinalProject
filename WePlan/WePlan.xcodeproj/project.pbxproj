@@ -39,6 +39,7 @@
 		66588B441AD853D90019BD3D /* SearchFriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66588B431AD853D90019BD3D /* SearchFriendTableViewCell.swift */; };
 		665BFE031AD35983009262D5 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665BFE021AD35983009262D5 /* SignUpViewController.swift */; };
 		6665868F1AD73DDF0008B4F6 /* SearchFriendVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6665868E1AD73DDF0008B4F6 /* SearchFriendVC.swift */; };
+		6668893C1AF1278E00DFB054 /* ImageProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6668893B1AF1278E00DFB054 /* ImageProcess.swift */; };
 		6689E50C1ABCA23E0079C8ED /* AddTaskItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6689E50B1ABCA23E0079C8ED /* AddTaskItemViewController.swift */; };
 		6689E50E1ABCA3680079C8ED /* TaskListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6689E50D1ABCA3680079C8ED /* TaskListTableViewController.swift */; };
 		6689E5101ABCCD120079C8ED /* TaskItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6689E50F1ABCCD120079C8ED /* TaskItem.swift */; };
@@ -124,6 +125,7 @@
 		66588B431AD853D90019BD3D /* SearchFriendTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchFriendTableViewCell.swift; sourceTree = "<group>"; };
 		665BFE021AD35983009262D5 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		6665868E1AD73DDF0008B4F6 /* SearchFriendVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchFriendVC.swift; path = ../SearchFriendVC.swift; sourceTree = "<group>"; };
+		6668893B1AF1278E00DFB054 /* ImageProcess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageProcess.swift; sourceTree = "<group>"; };
 		6689E50B1ABCA23E0079C8ED /* AddTaskItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTaskItemViewController.swift; sourceTree = "<group>"; };
 		6689E50D1ABCA3680079C8ED /* TaskListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskListTableViewController.swift; sourceTree = "<group>"; };
 		6689E50F1ABCCD120079C8ED /* TaskItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskItem.swift; sourceTree = "<group>"; };
@@ -347,6 +349,7 @@
 			children = (
 				66E575901AA7C25800F0890A /* WePlanColors.swift */,
 				66D746481ACA53F30077290A /* DefaultSetting.swift */,
+				6668893B1AF1278E00DFB054 /* ImageProcess.swift */,
 				66E575941AA91E3400F0890A /* TabBarViewController.swift */,
 				66E575741AA7C19B00F0890A /* Main.storyboard */,
 				66AF5DFF1ACF2849006AA027 /* LoginViewController.swift */,
@@ -519,6 +522,7 @@
 				5482C57C1AE19C71003A4A84 /* FriendDetailViewController.swift in Sources */,
 				6689E50C1ABCA23E0079C8ED /* AddTaskItemViewController.swift in Sources */,
 				66D746461ACA0D3A0077290A /* SettingsTableVC.swift in Sources */,
+				6668893C1AF1278E00DFB054 /* ImageProcess.swift in Sources */,
 				546F2CD21AE5D57300722AE7 /* AddPeopleToTaskTableViewController.swift in Sources */,
 				66C606051AEA12690096D3CF /* ParseBaseAction.swift in Sources */,
 				663053E31ACCC2180073FB96 /* Friend.swift in Sources */,

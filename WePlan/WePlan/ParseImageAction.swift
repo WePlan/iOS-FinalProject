@@ -16,7 +16,29 @@ class ParseImageAction : ImageAction{
     
     private struct ParseContants{
         static let photosClass = "Photos"
+        static let groupImageClass = "GroupImages"
         static let colImageFile = "imageFile"
+    }
+    
+    static func uploadGroupImage(image: UIImage , groupId: String){
+        let imageData: NSData = UIImagePNGRepresentation(image)
+        let imageFile = PFFile(name:"image.png", data:imageData)
+        
+        var groupImage = PFObject(className: ParseContants.groupImageClass)
+        groupImage["imageName"] = "GroupImage"
+        groupImage[ParseContants.colImageFile] = imageFile
+        groupImage["groupId"] = groupId
+        groupImage.saveInBackgroundWithBlock { (successed: Bool, error:NSError?) -> Void in
+            if error == nil {
+                println("group image saved with id:"+groupImage.objectId!)
+//                self.changeImageId(newId: groupImage.objectId!)
+            }else {
+                let errorString = error!.userInfo!["error"] as! String
+                println(errorString)
+            }
+            
+        }
+
     }
     
     static func uploadImage(image: UIImage) {
