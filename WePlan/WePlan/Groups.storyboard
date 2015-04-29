@@ -312,7 +312,6 @@
                         <barButtonItem key="leftBarButtonItem" title="Back" id="dkS-XO-ukA">
                             <connections>
                                 <action selector="clickBack:" destination="9KE-0D-R6L" id="SEC-wh-Oap"/>
-                                <segue destination="hRJ-o1-30q" kind="unwind" identifier="unwindGroup" unwindAction="unwindGroupTable:" id="zra-ia-Foi"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -322,6 +321,7 @@
                         <outlet property="groupImageView" destination="nuj-d4-feL" id="ao2-cH-tvt"/>
                         <outlet property="gruopNameTextField" destination="mRm-z1-bmR" id="u1q-wa-Wj8"/>
                         <outlet property="memberNumLabel" destination="FnX-sI-uZf" id="XyF-19-eNo"/>
+                        <segue destination="hRJ-o1-30q" kind="unwind" identifier="unwindGroupTable" unwindAction="unwindGroupTable:" id="bWa-Kv-0Dh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BHo-jp-z2d" userLabel="First Responder" sceneMemberID="firstResponder"/>

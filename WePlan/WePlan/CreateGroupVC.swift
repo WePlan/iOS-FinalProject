@@ -27,6 +27,7 @@ class CreateGroupVC: UIViewController ,UITableViewDataSource, UITableViewDelegat
         self.initialAlertController()
         self.initialPhotoView()
     }
+    
     // MARK: - TableView
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -45,6 +46,7 @@ class CreateGroupVC: UIViewController ,UITableViewDataSource, UITableViewDelegat
         return cell
     }
     
+    // MARK: deleget for Cell
     func selectFriend(uid: String) {
         selectedFriends.append(uid)
         memberNumLabel.text = "\(selectedFriends.count)"
@@ -65,19 +67,28 @@ class CreateGroupVC: UIViewController ,UITableViewDataSource, UITableViewDelegat
     }
     // MARK: - Misc.
     @IBAction func clickBack(sender: AnyObject) {
+        performSegueWithIdentifier(SegueId.unwindTable, sender: self)
     }
     
     @IBAction func clickCreate(sender: AnyObject) {
+        let groupName: String = self.gruopNameTextField.text
+        let creatorId = PFUser.currentUser()!.objectId!
+        let desc:String = self.descTextField.text
+        ParseGroupAction.createGroup(groupName, ownerId: creatorId, members: self.selectedFriends, desc: desc)
+        performSegueWithIdentifier(SegueId.unwindTable, sender: self)
     }
-    /*
+    
     // MARK: - Navigation
-
+    private struct SegueId {
+        static let unwindTable = "unwindGroupTable"
+    }
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
-    */
+    
     
     // MARK: - TapImage and Alert
     func initialPhotoView() {
