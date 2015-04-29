@@ -102,12 +102,13 @@ class TaskListTableViewController: UITableViewController, TasksTableViewCellDele
         cell.clipsToBounds = true
         
         cell.checkState = item.checked
-        cell.taskTitle.text = item.taskName
+        cell.taskItem = item
+//        cell.taskTitle.text = item.taskName
 
         cell.selectionStyle = UITableViewCellSelectionStyle.None
         cell.index = indexPath
         cell.delegate = self
-        cell.taskKindLabel.text = item.owner
+//        cell.taskKindLabel.text = item.owner
         return cell
     }
     
