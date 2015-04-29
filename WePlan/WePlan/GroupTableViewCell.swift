@@ -11,7 +11,6 @@ import UIKit
 class GroupTableViewCell: UITableViewCell {
     var group:Group? {
         didSet{
-            ownerLabel.text = group?.id
             groupNameLabel.text = group?.name
             let count = group?.memberIds.count
             memberNumLabel.text = "\(count)"
@@ -20,7 +19,6 @@ class GroupTableViewCell: UITableViewCell {
     
     @IBOutlet weak var asyncImageView: AsyncUIImageView!
     @IBOutlet weak var groupNameLabel: UILabel!
-    @IBOutlet weak var ownerLabel: UILabel!
     @IBOutlet weak var memberNumLabel: UILabel!
     
     @IBOutlet weak var detailButton: UIButton!
