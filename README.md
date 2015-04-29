@@ -4,17 +4,13 @@
 
 ### UI Part :
 
-1. CreateGroupView(has prototype). Including (All the contents should be implemented in a single view.): 
-  - Image of the Group. (By uploading.)
-  - Input the basic information of the group. (Such as : title, description, etc.)
-  - Add members for this group. (sub-Tableview)
+1. CreateGroupView:
+  - need activity indicator view
 2. Cell of group need to be updated. (New style, arrangement, etc. Needs to be redesigned.)
 3. GroupDetailView. Including :
   - Showing detailed information of the group. (Data has already been fetched from the database.)
   - "Quit/Dismiss" button needs to be implemented. (Group owner or Group member.)
   - Assign task for this group. (New View, which can be named as AssignGroupTaskView.)
-4. Remove "Slide to delete" function for Group Module.
-5. Remove "Touch-shown list" function for Group Module.
 
 ### Backend Part:
 

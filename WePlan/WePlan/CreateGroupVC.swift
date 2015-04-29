@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CreateGroupVC: UIViewController ,UITableViewDataSource, UITableViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate, FriendSelectTableDelegate{
+class CreateGroupVC: UIViewController ,UITableViewDataSource, UITableViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate, FriendSelectTableDelegate, UITextFieldDelegate{
     var localFriendsList = LocalFriendList.sharedInstance
     @IBOutlet weak var gruopNameTextField: UITextField!
     @IBOutlet weak var descTextField: UITextField!
@@ -19,6 +19,8 @@ class CreateGroupVC: UIViewController ,UITableViewDataSource, UITableViewDelegat
     var selectedFriends:[String] = [PFUser.currentUser()!.objectId!]
     var changeImageAlertController: UIAlertController?
     
+    var imageGiven: Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         friendsTableView.dataSource = self
@@ -26,6 +28,10 @@ class CreateGroupVC: UIViewController ,UITableViewDataSource, UITableViewDelegat
         // Do any additional setup after loading the view.
         self.initialAlertController()
         self.initialPhotoView()
+        
+        self.gruopNameTextField.delegate = self
+        self.descTextField.delegate = self
+        memberNumLabel.text = "1 members"
     }
     
     // MARK: - TableView
@@ -65,6 +71,21 @@ class CreateGroupVC: UIViewController ,UITableViewDataSource, UITableViewDelegat
             memberNumLabel.text = "\(selectedFriends.count)"
         }
     }
+    // MARK: - TextFiled
+    
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+        view.endEditing(true)
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        if textField == self.gruopNameTextField {
+            self.descTextField.becomeFirstResponder()
+        }else{
+            view.endEditing(true)
+            return true
+        }
+        return false
+    }
     // MARK: - Misc.
     @IBAction func clickBack(sender: AnyObject) {
         performSegueWithIdentifier(SegueId.unwindTable, sender: self)
@@ -74,7 +95,12 @@ class CreateGroupVC: UIViewController ,UITableViewDataSource, UITableViewDelegat
         let groupName: String = self.gruopNameTextField.text
         let creatorId = PFUser.currentUser()!.objectId!
         let desc:String = self.descTextField.text
-        let image = UIImage() // set it
+        let image: UIImage?
+        if self.imageGiven {
+            image = self.groupImageView.image
+        }else{
+            image = nil
+        }
         ParseGroupAction.createGroup(groupName, ownerId: creatorId, members: self.selectedFriends, desc: desc, groupImage: image) { () -> Void in
             self.performSegueWithIdentifier(SegueId.unwindTable, sender: self)
         }
@@ -100,15 +126,9 @@ class CreateGroupVC: UIViewController ,UITableViewDataSource, UITableViewDelegat
         let singleTap = UITapGestureRecognizer(target: self, action: "tappedImage")
         self.groupImageView.addGestureRecognizer(singleTap)
         // Set default image and frame
-        self.groupImageView.defaultImageName = ""
+        self.groupImageView.defaultImageName = "GroupDefaultPic"
         ImageProcess.changeImageViewRounded(groupImageView)
-        
-        // TODO: image id is wrong
-        if let imageId = PFUser.currentUser()!["imageId"] as? String {
-            self.groupImageView.imageObjectId = imageId
-        }else {
-            println("Could not find imageId")
-        }
+      
     }
     
     func tappedImage() {
@@ -161,11 +181,8 @@ class CreateGroupVC: UIViewController ,UITableViewDataSource, UITableViewDelegat
         var newImage = ImageProcess.resizeImage(image, size: newSize)
         
         groupImageView.image = newImage
-        
-        ParseImageAction.uploadGroupImage(newImage, groupId: "")
-        // TODO: use completion to track Image Id, set image id to group when create group
-        // TODO: use created group id to track image such that there is no duplicate image for a group
-        
+        self.imageGiven = true
+        // TODO: initial friend is empty, fix it!
         
         picker.dismissViewControllerAnimated(true, completion: nil)
     }

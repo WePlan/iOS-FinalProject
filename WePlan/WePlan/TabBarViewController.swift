@@ -56,7 +56,7 @@ class TabBarViewController: UITabBarController {
         
     }
     override func viewDidAppear(animated: Bool) {
-        
+        initialLocalFriendAndGroup()
 
     }
     override func didReceiveMemoryWarning() {
@@ -65,6 +65,14 @@ class TabBarViewController: UITabBarController {
     }
     
 
+    private func initialLocalFriendAndGroup() {
+        LocalFriendList.sharedInstance.getFriendListFromParse { () -> Void in
+            //
+        }
+        LocalGroupList.sharedInstance.updateAll { () -> Void in
+            //
+        }
+    }
     /*
     // MARK: - Navigation
 

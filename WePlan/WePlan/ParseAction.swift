@@ -81,10 +81,12 @@ class ParseAction : ParseTask{
                         let title = object.objectForKey(TaskConstants.taskTitle) as! String
                         let due = object.objectForKey(TaskConstants.taskDate) as! NSDate
                         let id = object.objectId
-                        let kind = object.objectForKey(TaskConstants.taskSort) as? TaskKind
+                        let kindInt = object.objectForKey(TaskConstants.taskSort) as? Int
+                        
                         let owner = object.objectForKey(TaskConstants.taskOwner) as? String
                         var item: TaskItem
-                        if kind != nil && owner != nil{
+                        if kindInt != nil && owner != nil{
+                            let kind = TaskKind(rawValue: kindInt!)
                             item = TaskItem(name: title, id:id!,due: due ,tagcolor: "",taskOwner:owner!,kind:kind!)
                         }else {
                             item = TaskItem(name: title, id:id!,due: due ,tagcolor: "")

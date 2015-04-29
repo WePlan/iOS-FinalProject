@@ -37,7 +37,7 @@ class AddTaskItemViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var pickerViewBottomConstraint: NSLayoutConstraint!
     var taskFor = TaskKind.Individual
-    var taskOwner = ""
+    var taskOwner = PFUser.currentUser()!.username!
     
     let buttonBackgroundImage = UIImage(named: StoryBoardConstants.backgroundImageName)
     @IBAction func mySelfButton(sender: UIButton) {
@@ -172,6 +172,8 @@ class AddTaskItemViewController: UIViewController, UITextFieldDelegate {
 //            println("touched")
 //            tapDateLabel()
 //        }
+        taskLocationTextField.resignFirstResponder()
+        shortDescriptionTextField.resignFirstResponder()
         taskTitleTextField.resignFirstResponder()
     }
     // MARK: - Navigation
