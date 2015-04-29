@@ -35,10 +35,10 @@ class AddTaskItemViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var pickerViewHeightConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var pickerViewBottomConstraint: NSLayoutConstraint!
-    var taskFor: String = ""
+    var taskFor = TaskKind.Individual
     let buttonBackgroundImage = UIImage(named: StoryBoardConstants.backgroundImageName)
     @IBAction func mySelfButton(sender: UIButton) {
-        taskFor = "Myself"
+        taskFor = TaskKind(rawValue: 1)!
        mySelfButtonLabel.setBackgroundImage(buttonBackgroundImage, forState: UIControlState.Normal)
         groupButtonLabel.setBackgroundImage(nil, forState: UIControlState.Normal)
         otherPeopleButtonLabel.setBackgroundImage(nil, forState: UIControlState.Normal)
@@ -46,14 +46,14 @@ class AddTaskItemViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func OtherPeopleButton(sender: UIButton) {
-        taskFor = "OtherPeople"
+        taskFor = TaskKind(rawValue: 2)!
         mySelfButtonLabel.setBackgroundImage(nil, forState: UIControlState.Normal)
         groupButtonLabel.setBackgroundImage(nil, forState: UIControlState.Normal)
         otherPeopleButtonLabel.setBackgroundImage(buttonBackgroundImage, forState: UIControlState.Normal)
         
     }
     @IBAction func groupButton(sender: UIButton) {
-        taskFor = "Group"
+        taskFor = TaskKind(rawValue: 3)!
         mySelfButtonLabel.setBackgroundImage(nil, forState: UIControlState.Normal)
         groupButtonLabel.setBackgroundImage(buttonBackgroundImage, forState: UIControlState.Normal)
         otherPeopleButtonLabel.setBackgroundImage(nil, forState: UIControlState.Normal)
@@ -196,9 +196,13 @@ class AddTaskItemViewController: UIViewController, UITextFieldDelegate {
             return
         }
         if count(taskTitleTextField.text) > 0 {
-            newTask = TaskItem(name: taskTitleTextField.text, id: "", due: datePicker.date, tagcolor: "")
+//            newTask = TaskItem(name: taskTitleTextField.text, id: "", due: datePicker.date, tagcolor: "")
+            newTask = TaskItem(name: taskTitleTextField.text, id: "", due: datePicker.date, tagcolor: "", kind: taskFor)
+//        let a = TaskItem(name: "", id: "", due: <#NSDate#>, tagcolor: <#String#>, kind: <#TaskKind#>)
         }
     }
+    
+    
     
     
     
