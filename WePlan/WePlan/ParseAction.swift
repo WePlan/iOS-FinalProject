@@ -36,6 +36,7 @@ class ParseAction : ParseTask{
         taskItems[TaskConstants.taskDate] = task.dueTime
         taskItems[TaskConstants.taskSort] = task.kind.rawValue
         taskItems[TaskConstants.uid] = PFUser.currentUser()!.objectId
+        taskItems[TaskConstants.taskOwner] = task.owner
 
         
         taskItems.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
