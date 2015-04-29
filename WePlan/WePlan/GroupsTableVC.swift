@@ -17,9 +17,7 @@ class GroupsTableVC: UITableViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        groups.updateAll { () -> Void in
-            self.tableView.reloadData()
-        }
+        
 //        tableView.estimatedRowHeight = tableView.rowHeight
 //        tableView.rowHeight = UITableViewAutomaticDimension
         // Uncomment the following line to preserve selection between presentations
@@ -43,6 +41,9 @@ class GroupsTableVC: UITableViewController {
     override func viewWillAppear(animated: Bool) {
         initialUISettings()
         DefaultSetting.setNavigationBar(self.navigationController!)
+        groups.updateAll { () -> Void in
+            self.tableView.reloadData()
+        }
     }
 
     // MARK: - Table view data source
@@ -113,7 +114,9 @@ class GroupsTableVC: UITableViewController {
     
     // MARK: - Navigation
     @IBAction func unwindGroupTable(segue: UIStoryboardSegue) {
-        
+        groups.updateAll { () -> Void in
+            self.tableView.reloadData()
+        }
     }
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
