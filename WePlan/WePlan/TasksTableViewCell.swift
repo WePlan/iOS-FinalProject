@@ -14,11 +14,15 @@ protocol TasksTableViewCellDelegate {
 }
 
 class TasksTableViewCell: UITableViewCell {
-    var taskItem:TaskItem?
+    var taskItem:TaskItem? {
+        didSet{
+            updateCell()
+        }
+    }
     @IBOutlet weak var taskTitle: UILabel!
     @IBOutlet weak var checkButton: UIButton!
     @IBOutlet weak var taskKindLabel: UILabel!
-    
+    @IBOutlet weak var expandCellGroupImage: UIImageView!
     var checkState: Bool? {
         didSet{
             if checkState != nil && checkState!{
@@ -29,7 +33,21 @@ class TasksTableViewCell: UITableViewCell {
         }
     }
     
-    @IBOutlet weak var expandCellGroupImage: UIImageView!
+    func updateCell() {
+        if let item = self.taskItem {
+            if item.kind.rawValue != 3 {
+                let preImage = UIImage(named: "AddPeople");
+                let tintedImage = preImage?.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
+                expandCellGroupImage.image = tintedImage
+                expandCellGroupImage.tintColor = UIColor.redColor()
+                
+            }
+            taskKindLabel.text = item.owner
+            taskTitle.text = item.taskName
+            
+        }
+        
+    }
     var index: NSIndexPath?
     var delegate: TasksTableViewCellDelegate?
     
