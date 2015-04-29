@@ -172,6 +172,8 @@ class AddTaskItemViewController: UIViewController, UITextFieldDelegate {
 //            println("touched")
 //            tapDateLabel()
 //        }
+        taskLocationTextField.resignFirstResponder()
+        shortDescriptionTextField.resignFirstResponder()
         taskTitleTextField.resignFirstResponder()
     }
     // MARK: - Navigation
