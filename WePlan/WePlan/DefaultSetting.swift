@@ -13,7 +13,13 @@ class DefaultSetting {
     
     class func setNavigationBar(navigationController: UINavigationController) {
         
+//        navigationController.navigationBar.barTintColor = WePlanColors.blueColor()
+        var attributes = [
+            NSForegroundColorAttributeName: UIColor.whiteColor(),
+            NSFontAttributeName: UIFont(name: "Chalkboard SE", size: 30)!
+        ]
         navigationController.navigationBar.barTintColor = WePlanColors.blueColor()
+        navigationController.navigationBar.titleTextAttributes = attributes
         navigationController.navigationBar.tintColor = UIColor.whiteColor()
         navigationController.navigationItem.titleView?.backgroundColor = UIColor.redColor()
     }
