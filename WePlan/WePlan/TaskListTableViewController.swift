@@ -141,7 +141,7 @@ class TaskListTableViewController: UITableViewController, TasksTableViewCellDele
             let deleteName = tasks[indexPath.row].taskName
             let deleteId = self.tasks[indexPath.row].uniqueId
             //Alert
-            var alert = UIAlertController(title: "Delete Friend", message: "Are you sure you want to delete \(deleteName)", preferredStyle: UIAlertControllerStyle.Alert)
+            var alert = UIAlertController(title: "Delete Task", message: "Are you sure you want to delete \(deleteName)", preferredStyle: UIAlertControllerStyle.Alert)
             // Delete the row from the data source
             alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default,handler: nil))
             alert.addAction(UIAlertAction(title: "Delete", style: UIAlertActionStyle.Default, handler: { action in
