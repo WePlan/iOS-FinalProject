@@ -38,6 +38,7 @@ class FriendSelectTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         chose = false
+        ImageProcess.changeImageViewToCircle(self.friendImageView)
     }
     
     @IBAction func clickButton(sender: AnyObject) {

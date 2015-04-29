@@ -15,6 +15,10 @@ class GroupTableViewCell: UITableViewCell {
                 groupNameLabel.text = group.name
                 let count = group.memberIds.count
                 memberNumLabel.text = "\(count) members"
+                
+                let pfFile = group.groupImage
+                
+                asyncImageView.imageFile = pfFile
             }
         }
     }
@@ -28,6 +32,7 @@ class GroupTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        ImageProcess.changeImageViewRounded(self.asyncImageView)
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

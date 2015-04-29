@@ -27,5 +27,15 @@ class AsyncUIImageView: UIImageView {
             }
         }
     }
+    
+    var imageFile: PFFile? {
+        didSet{
+            if let file = imageFile {
+                ParseImageAction.getImage(file, completion: { (returnImage:UIImage) -> Void in
+                    self.image = returnImage
+                })
+            }
+        }
+    }
    
 }

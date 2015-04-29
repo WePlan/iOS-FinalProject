@@ -100,6 +100,15 @@ class ParseImageAction : ImageAction{
                 println("Error: \(error!.userInfo)")
             }
         }
-        
+    }
+    
+    static func getImage(imageFile: PFFile, completion: (UIImage) -> Void) {
+        imageFile.getDataInBackgroundWithBlock { (imageData:NSData?, error: NSError?) -> Void in
+            if error == nil {
+                if let image = UIImage(data: imageData!) {
+                    completion(image)
+                }
+            }
+        }
     }
 }
