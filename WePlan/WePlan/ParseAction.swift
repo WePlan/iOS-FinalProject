@@ -81,8 +81,9 @@ class ParseAction : ParseTask{
                         let title = object.objectForKey(TaskConstants.taskTitle) as! String
                         let due = object.objectForKey(TaskConstants.taskDate) as! NSDate
                         let id = object.objectId
-                        
-                        var item = TaskItem(name: title, id:id!,due: due ,tagcolor: "")
+                        let kind = object.objectForKey(TaskConstants.taskSort) as! TaskKind
+                        let owner = object.objectForKey(TaskConstants.taskOwner) as! String 
+                        var item = TaskItem(name: title, id:id!,due: due ,tagcolor: "",taskOwner:owner,kind:kind)
                         
                         data.append(item)
                     }
