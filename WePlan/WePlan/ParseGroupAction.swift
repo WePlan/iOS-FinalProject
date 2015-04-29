@@ -32,6 +32,17 @@ class ParseGroupAction : ParseGroup{
         static let userEmail = "email"
     }
     
+    private struct TaskConstants{
+        static let classname = "Task"
+        static let taskTitle = "tname"
+        static let taskDate = "tdate"
+        static let taskLocation = "tlocation"
+        static let taskDescription = "tdescription"
+        static let taskType = "tsort"
+        static let taskOwner = "towner"
+        static let taskUid = "uid"
+    }
+    
     class func getGroupList(completion: ([Group]) -> Void) {
         let userId = PFUser.currentUser()!.objectId!
         let query = PFQuery(className: GroupUserConstant.classname)
@@ -312,8 +323,28 @@ class ParseGroupAction : ParseGroup{
     
     //tsort = 3, towner = groupId, uid = member's objectId
     //Add task to Task Class
-    class func assignGroupTask () {
-        
+    class func assignGroupTask (task : TaskItem, groupId : String, members : [String], complete : (Bool) -> Void) {
+        var objects : [PFObject] = []
+        for member in members {
+            var newRow = PFObject(className: TaskConstants.classname)
+            newRow[TaskConstants.taskTitle] = task.taskName
+            newRow[TaskConstants.taskDate] = task.dueTime
+            newRow[TaskConstants.taskLocation] = task.location
+            newRow[TaskConstants.taskDescription] = task.descript
+            newRow[TaskConstants.taskType] = 3
+            newRow[TaskConstants.taskOwner] = groupId
+            newRow[TaskConstants.taskUid] = member
+            objects.append(newRow)
+        }
+        PFObject.saveAllInBackground(objects) { (success : Bool, error : NSError?) -> Void in
+            if success {
+                println("Group Task Added!")
+                complete(true)
+            }
+            else{
+                println(error?.userInfo)
+            }
+        }
     }
     
 }
