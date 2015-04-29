@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CreateGroupVC: UIViewController ,UITableViewDataSource, UITableViewDelegate{
+class CreateGroupVC: UIViewController ,UITableViewDataSource, UITableViewDelegate, FriendSelectTableDelegate{
     var localFriendsList = LocalFriendList.sharedInstance
     @IBOutlet weak var gruopNameTextField: UITextField!
     @IBOutlet weak var descTextField: UITextField!
@@ -37,9 +37,30 @@ class CreateGroupVC: UIViewController ,UITableViewDataSource, UITableViewDelegat
         let cell = tableView.dequeueReusableCellWithIdentifier("friendSelectedCell", forIndexPath: indexPath) as! FriendSelectTableViewCell
         cell.nameLabel.text = localFriendsList.friendList[indexPath.row].name
         cell.friendImageView.imageObjectId = localFriendsList.friendList[indexPath.row].imageId
+        cell.uid = localFriendsList.friendList[indexPath.row].uid
+        cell.delegate = self
         return cell
     }
-
+    
+    func selectFriend(uid: String) {
+        selectedFriends.append(uid)
+        memberNumLabel.text = "\(selectedFriends.count)"
+    }
+    func deselectFriend(uid: String) {
+        var find = -1
+        for index in 0..<selectedFriends.count {
+            if selectedFriends[index] == uid {
+                find = index
+                break
+            }
+        }
+        
+        if find != -1{
+            selectedFriends.removeAtIndex(find)
+            memberNumLabel.text = "\(selectedFriends.count)"
+        }
+    }
+    // MARK: - Misc.
     @IBAction func clickBack(sender: AnyObject) {
     }
     
