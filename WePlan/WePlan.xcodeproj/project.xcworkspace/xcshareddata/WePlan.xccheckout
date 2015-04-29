@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>F5555CFA-0DF4-414F-B329-16C4AABAE8CB</string>
 	<key>IDESourceControlProjectName</key>
-	<string>WePlan</string>
+	<string>project</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>B38630C21BF5F1A262EFA6E5C20A21B45A1D1149</key>
 		<string>https://github.com/WePlan/iOS-FinalProject.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>WePlan/WePlan.xcodeproj</string>
+	<string>WePlan/WePlan.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>B38630C21BF5F1A262EFA6E5C20A21B45A1D1149</key>

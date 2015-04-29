@@ -23,6 +23,7 @@ class TasksTableViewCell: UITableViewCell {
     @IBOutlet weak var checkButton: UIButton!
     @IBOutlet weak var taskKindLabel: UILabel!
     @IBOutlet weak var expandCellGroupImage: UIImageView!
+    @IBOutlet weak var groupButton: UIButton!
     var checkState: Bool? {
         didSet{
             if checkState != nil && checkState!{
@@ -39,11 +40,22 @@ class TasksTableViewCell: UITableViewCell {
                 let preImage = UIImage(named: "AddPeople");
                 let tintedImage = preImage?.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
                 expandCellGroupImage.image = tintedImage
-                expandCellGroupImage.tintColor = UIColor.redColor()
-                
+                expandCellGroupImage.tintColor = UIColor.grayColor()
+                groupButton.enabled = false
             }
             taskKindLabel.text = item.owner
             taskTitle.text = item.taskName
+            switch (item.kind.rawValue) {
+            case 1:
+                taskKindLabel.textColor = WePlanColors.blueColor()
+            case 2:
+                taskKindLabel.textColor = WePlanColors.otherPeopleColor()
+            case 3:
+                taskKindLabel.textColor = WePlanColors.groupColor()
+            default:
+                taskKindLabel.textColor = WePlanColors.blueColor()
+            }
+            
             
         }
         
