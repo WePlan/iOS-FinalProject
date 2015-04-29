@@ -367,32 +367,37 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ec8-0n-fG8" id="0aG-n4-Zsl">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="260" verticalHuggingPriority="260" horizontalCompressionResistancePriority="760" verticalCompressionResistancePriority="760" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GP9-Mr-iUl">
-                                                    <rect key="frame" x="50" y="-15" width="225" height="80"/>
-                                                    <state key="normal" title="Dismiss" backgroundImage="DeleteButtonBorder">
-                                                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                </button>
                                                 <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="260" verticalHuggingPriority="260" horizontalCompressionResistancePriority="745" verticalCompressionResistancePriority="745" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3hG-oB-zq2">
-                                                    <rect key="frame" x="325" y="-15" width="225" height="80"/>
+                                                    <rect key="frame" x="308" y="-15" width="276" height="80"/>
                                                     <state key="normal" title="Quit" backgroundImage="DeleteButtonBorder">
                                                         <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                 </button>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NGz-Ik-2RX" userLabel="RightImage">
-                                                    <rect key="frame" x="558" y="42" width="34" height="0.0"/>
+                                                    <rect key="frame" x="592" y="42" width="0.0" height="0.0"/>
                                                 </imageView>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rNv-oR-A0W" userLabel="MiddleImage">
-                                                    <rect key="frame" x="283" y="8" width="34" height="34"/>
+                                                    <rect key="frame" x="300" y="8" width="0.0" height="34"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="rNv-oR-A0W" secondAttribute="height" multiplier="1:1" id="tYD-PF-JX8"/>
                                                     </constraints>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="tYD-PF-JX8"/>
+                                                        </mask>
+                                                    </variation>
                                                 </imageView>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Rjq-6c-7BW" userLabel="LeftImage">
-                                                    <rect key="frame" x="8" y="8" width="34" height="34"/>
+                                                    <rect key="frame" x="8" y="8" width="0.0" height="34"/>
                                                 </imageView>
+                                                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="260" verticalHuggingPriority="260" horizontalCompressionResistancePriority="760" verticalCompressionResistancePriority="760" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GP9-Mr-iUl">
+                                                    <rect key="frame" x="16" y="-15" width="276" height="80"/>
+                                                    <state key="normal" title="Dismiss" backgroundImage="DeleteButtonBorder">
+                                                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="centerY" secondItem="GP9-Mr-iUl" secondAttribute="centerY" id="1Vx-pf-idN"/>
@@ -407,7 +412,6 @@
                                                 <constraint firstAttribute="centerY" secondItem="rNv-oR-A0W" secondAttribute="centerY" id="fcL-cC-8dU"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="NGz-Ik-2RX" secondAttribute="trailing" id="g7L-cD-x7S"/>
                                                 <constraint firstAttribute="centerY" secondItem="3hG-oB-zq2" secondAttribute="centerY" id="gQL-pD-fJW"/>
-                                                <constraint firstItem="rNv-oR-A0W" firstAttribute="leading" secondItem="0aG-n4-Zsl" secondAttribute="leadingMargin" id="kRn-TA-Ji6"/>
                                                 <constraint firstItem="Rjq-6c-7BW" firstAttribute="width" secondItem="NGz-Ik-2RX" secondAttribute="width" id="lJ0-UI-LBh"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="rNv-oR-A0W" secondAttribute="bottom" id="pVr-AI-Cmx"/>
                                                 <constraint firstItem="rNv-oR-A0W" firstAttribute="leading" secondItem="GP9-Mr-iUl" secondAttribute="trailing" constant="8" symbolic="YES" id="xAS-tT-Aid"/>
