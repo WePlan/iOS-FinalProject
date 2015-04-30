@@ -501,9 +501,6 @@
                                                     <state key="normal">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
-                                                    <connections>
-                                                        <action selector="clickButton:" destination="nNd-tm-QBH" eventType="touchUpInside" id="vPa-Aa-hk7"/>
-                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="240" verticalHuggingPriority="251" horizontalCompressionResistancePriority="240" text="Friend" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o9Z-8i-Bwa">
                                                     <rect key="frame" x="51" y="14" width="489" height="21"/>
@@ -517,6 +514,15 @@
                                                         <constraint firstAttribute="width" secondItem="Xa5-ja-8fe" secondAttribute="height" multiplier="1:1" id="qY6-3n-Fg1"/>
                                                     </constraints>
                                                 </imageView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="592-eS-EUe">
+                                                    <rect key="frame" x="8" y="8" width="552" height="33"/>
+                                                    <state key="normal">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="clickButton:" destination="nNd-tm-QBH" eventType="touchUpInside" id="hTM-s2-6Oe"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailingMargin" secondItem="At7-rs-dMg" secondAttribute="trailing" id="0PJ-sq-yrQ"/>
@@ -524,11 +530,21 @@
                                                 <constraint firstItem="Xa5-ja-8fe" firstAttribute="centerY" secondItem="o9Z-8i-Bwa" secondAttribute="centerY" id="5da-iM-x1t"/>
                                                 <constraint firstAttribute="centerY" secondItem="Xa5-ja-8fe" secondAttribute="centerY" id="IGT-w8-5wb"/>
                                                 <constraint firstItem="o9Z-8i-Bwa" firstAttribute="leading" secondItem="Xa5-ja-8fe" secondAttribute="trailing" constant="10" id="J6l-RH-zfE"/>
+                                                <constraint firstItem="592-eS-EUe" firstAttribute="bottom" secondItem="RHH-Ui-gxW" secondAttribute="bottomMargin" id="M0W-Qz-Ozb"/>
                                                 <constraint firstItem="Xa5-ja-8fe" firstAttribute="top" secondItem="RHH-Ui-gxW" secondAttribute="topMargin" id="UMM-HD-Qbs"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="592-eS-EUe" secondAttribute="trailing" id="URW-ic-VIj"/>
+                                                <constraint firstItem="592-eS-EUe" firstAttribute="leading" secondItem="RHH-Ui-gxW" secondAttribute="leadingMargin" id="eWn-7C-PxE"/>
+                                                <constraint firstItem="592-eS-EUe" firstAttribute="leading" secondItem="Xa5-ja-8fe" secondAttribute="trailing" constant="294" id="hKC-iW-9Vq"/>
                                                 <constraint firstItem="At7-rs-dMg" firstAttribute="leading" secondItem="o9Z-8i-Bwa" secondAttribute="trailing" id="hpn-zs-RjL"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="Xa5-ja-8fe" secondAttribute="bottom" id="hri-Vz-7kz"/>
+                                                <constraint firstItem="592-eS-EUe" firstAttribute="top" secondItem="RHH-Ui-gxW" secondAttribute="topMargin" id="llD-vb-f84"/>
                                                 <constraint firstAttribute="centerY" secondItem="At7-rs-dMg" secondAttribute="centerY" id="nlW-b7-a61"/>
                                             </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="hKC-iW-9Vq"/>
+                                                </mask>
+                                            </variation>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="friendImageView" destination="Xa5-ja-8fe" id="c4g-cC-Ps4"/>
