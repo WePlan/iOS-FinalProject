@@ -31,20 +31,23 @@ class ParseAction : ParseTask{
 //    }
     
     class func addTaskItem(task: TaskItem, completion: (String) -> Void) {
-        var taskItems = PFObject(className: TaskConstants.taskClass)
+        var pfTask = PFObject(className: TaskConstants.taskClass)
+        //basic
+        pfTask[TaskConstants.taskTitle] = task.taskName
+        pfTask[TaskConstants.taskDate] = task.dueTime
+        pfTask[TaskConstants.taskDescription] = task.descript
+        pfTask[TaskConstants.taskLocation] = task.location
+        //advanced
+        pfTask[TaskConstants.taskSort] = 1
+        pfTask[TaskConstants.uid] = PFUser.currentUser()!.objectId!
+        pfTask[TaskConstants.taskOwner] = PFUser.currentUser()!.objectId!
         
-        taskItems[TaskConstants.taskTitle] = task.taskName
-        taskItems[TaskConstants.taskDate] = task.dueTime
-        taskItems[TaskConstants.taskSort] = task.kind.rawValue
-        taskItems[TaskConstants.uid] = PFUser.currentUser()!.objectId!
-        taskItems[TaskConstants.taskOwner] = task.owner
-        taskItems[TaskConstants.taskDescription] = task.descript
 
         
-        taskItems.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
+        pfTask.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
             if success {
-                println("Obj created with id: \(taskItems.objectId)")
-                completion(taskItems.objectId!)
+                println("self Task Obj created with id: \(pfTask.objectId)")
+                completion(pfTask.objectId!)
             }else {
                 println("\(error)")
             }
@@ -71,27 +74,27 @@ class ParseAction : ParseTask{
         var query = PFQuery(className: TaskConstants.taskClass)
         
         query.whereKey(TaskConstants.uid, equalTo: PFUser.currentUser()!.objectId!)
-//        query.whereKeyExists(TaskConstants.taskTitle)
-        
-        
         
         query.findObjectsInBackgroundWithBlock { (objects: [AnyObject]?, error: NSError?) -> Void in
             if error == nil {
                 //the find succeeded.
                 if let objects = objects as? [PFObject] {
                     for object in objects {
+                        //basic
+                        let id = object.objectId
                         let title = object.objectForKey(TaskConstants.taskTitle) as! String
                         let due = object.objectForKey(TaskConstants.taskDate) as! NSDate
-                        let id = object.objectId
+                        let descript = object.objectForKey(TaskConstants.taskDescription) as! String
+
                         let kindInt = object.objectForKey(TaskConstants.taskSort) as? Int
-                        let descrip = object.objectForKey(TaskConstants.taskDescription) as? String
                         let owner = object.objectForKey(TaskConstants.taskOwner) as? String
                         var item: TaskItem
-                        if kindInt != nil && owner != nil && descrip != nil{
+                        assert(kindInt != nil && owner != nil, "both sort and owner have value")
+                        if kindInt != nil && owner != nil{
                             let kind = TaskKind(rawValue: kindInt!)
-                        item = TaskItem(name: title, id:id!,due: due ,taskOwner:owner!,kind:kind!,descript:descrip!)
+                            item = TaskItem(name: title, id:id!,due: due ,taskOwner:owner!,kind:kind!,descript:descript)
                         }else {
-                            item = TaskItem(name: title, id:id!,due: due)
+                            item = TaskItem(name: title, id:id!,due: due, descript: descript)
                         }
                         
                         
