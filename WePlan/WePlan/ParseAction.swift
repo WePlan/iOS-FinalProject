@@ -35,7 +35,7 @@ class ParseAction : ParseTask{
         taskItems[TaskConstants.taskTitle] = task.taskName
         taskItems[TaskConstants.taskDate] = task.dueTime
         taskItems[TaskConstants.taskSort] = task.kind.rawValue
-        taskItems[TaskConstants.uid] = PFUser.currentUser()!.objectId
+        taskItems[TaskConstants.uid] = task.uniqueId
         taskItems[TaskConstants.taskOwner] = task.owner
 
         

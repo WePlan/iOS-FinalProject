@@ -42,13 +42,14 @@ class AddTaskItemViewController: UIViewController, UITextFieldDelegate,AssignTas
 
     var taskFor = TaskKind.Individual
     var taskOwner = PFUser.currentUser()!.username!
-    var assignTaskToName = PFUser.currentUser()!.username!
+//    var assignTaskToName = PFUser.currentUser()!.username!
     //for assign to other people
     var taskUID:String?
     var assignPeople:User?
     let buttonBackgroundImage = UIImage(named: StoryBoardConstants.backgroundImageName)
     @IBAction func mySelfButton(sender: UIButton) {
         taskFor = TaskKind(rawValue: 1)!
+        taskUID = PFUser.currentUser()!.username!
         taskOwner = PFUser.currentUser()!.username!
         taskForMemberLabel.text = PFUser.currentUser()!.username!
        mySelfButtonLabel.setBackgroundImage(buttonBackgroundImage, forState: UIControlState.Normal)
@@ -156,10 +157,9 @@ class AddTaskItemViewController: UIViewController, UITextFieldDelegate,AssignTas
         
         format.timeStyle = NSDateFormatterStyle.ShortStyle
         format.dateStyle = NSDateFormatterStyle.MediumStyle
-    
+        taskForMemberLabel.text = ""
         let current = datePicker.date
         dateLabel.text = format.stringFromDate(current)
-//        taskForMemberLabel.text = assignTaskToName
         dateLabel.userInteractionEnabled = true
         let singleTap = UITapGestureRecognizer(target: self, action: "tapDateLabel")
         dateLabel.addGestureRecognizer(singleTap)
@@ -214,6 +214,9 @@ class AddTaskItemViewController: UIViewController, UITextFieldDelegate,AssignTas
         performUnwindSegue(self)
     }
     
+    @IBAction func clickCancelButton(sender: UIButton) {
+        performUnwindSegue(self.cancelButton)
+    }
     private func performUnwindSegue(sender: AnyObject?) {
         if "Task" == entrypoint {
             performSegueWithIdentifier("unwindTaskList", sender: sender)
@@ -244,8 +247,11 @@ class AddTaskItemViewController: UIViewController, UITextFieldDelegate,AssignTas
         }
         if count(taskTitleTextField.text) > 0 {
 //            newTask = TaskItem(name: taskTitleTextField.text, id: "", due: datePicker.date, tagcolor: "")
-            newTask = TaskItem(name: taskTitleTextField.text, id: "", due: datePicker.date, tagcolor: "",taskOwner:taskOwner, kind: taskFor)
-//        let a = TaskItem(name: "", id: "", due: <#NSDate#>, tagcolor: <#String#>, kind: <#TaskKind#>)
+            if taskUID != nil  {
+                
+                newTask = TaskItem(name: taskTitleTextField.text, id: taskUID!, due: datePicker.date, tagcolor: "",taskOwner:taskOwner, kind: taskFor)
+            }
+            
         }
     }
     
