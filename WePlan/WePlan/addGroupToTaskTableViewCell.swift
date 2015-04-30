@@ -9,11 +9,12 @@
 import UIKit
 
 class addGroupToTaskTableViewCell: UITableViewCell {
-    var groupItem:Group? {
-        didSet {
-            updateCell()
-        }
-    }
+    var groupItem:Group?
+//        {
+//        didSet {
+//            updateCell()
+//        }
+//    }
 
     override func awakeFromNib() {
         super.awakeFromNib()
