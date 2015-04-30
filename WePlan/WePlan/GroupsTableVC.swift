@@ -74,7 +74,7 @@ class GroupsTableVC: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        performSegueWithIdentifier("groupDeatil", sender: self)
+        performSegueWithIdentifier("GroupDetail", sender: self)
     }
     /*
     // Override to support conditional editing of the table view.
