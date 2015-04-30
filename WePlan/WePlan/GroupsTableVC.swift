@@ -10,6 +10,7 @@ import UIKit
 
 class GroupsTableVC: UITableViewController {
     var groups = LocalGroupList.sharedInstance
+    var IndexChosen:Int!
     
     private struct StoryBoard {
         static let cell = "groupCellPrototype"
@@ -74,6 +75,7 @@ class GroupsTableVC: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        IndexChosen=indexPath.row
         performSegueWithIdentifier("GroupDetail", sender: self)
     }
     /*
@@ -123,7 +125,10 @@ class GroupsTableVC: UITableViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using [segue destinationViewController].
         // Pass the selected object to the new view controller.
+        if segue.identifier=="GroupDetail"{
+            var nextvc=segue.destinationViewController as! GroupDetailTableVC
+            nextvc.group=groups.groupList[IndexChosen]
+        }
     }
-    
 
 }

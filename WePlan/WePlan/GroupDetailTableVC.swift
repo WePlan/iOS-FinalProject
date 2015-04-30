@@ -10,9 +10,13 @@ import UIKit
 
 class GroupDetailTableVC: UITableViewController {
 
+    var group:Group!
+    
+    @IBOutlet weak var groupNameLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        groupNameLabel.text=group.name
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
