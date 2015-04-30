@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -501,9 +501,6 @@
                                                     <state key="normal">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
-                                                    <connections>
-                                                        <action selector="clickButton:" destination="nNd-tm-QBH" eventType="touchUpInside" id="vPa-Aa-hk7"/>
-                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="240" verticalHuggingPriority="251" horizontalCompressionResistancePriority="240" text="Friend" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o9Z-8i-Bwa">
                                                     <rect key="frame" x="51" y="14" width="489" height="21"/>
@@ -517,6 +514,15 @@
                                                         <constraint firstAttribute="width" secondItem="Xa5-ja-8fe" secondAttribute="height" multiplier="1:1" id="qY6-3n-Fg1"/>
                                                     </constraints>
                                                 </imageView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="592-eS-EUe">
+                                                    <rect key="frame" x="8" y="8" width="552" height="33"/>
+                                                    <state key="normal">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="clickButton:" destination="nNd-tm-QBH" eventType="touchUpInside" id="hTM-s2-6Oe"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailingMargin" secondItem="At7-rs-dMg" secondAttribute="trailing" id="0PJ-sq-yrQ"/>
@@ -524,11 +530,21 @@
                                                 <constraint firstItem="Xa5-ja-8fe" firstAttribute="centerY" secondItem="o9Z-8i-Bwa" secondAttribute="centerY" id="5da-iM-x1t"/>
                                                 <constraint firstAttribute="centerY" secondItem="Xa5-ja-8fe" secondAttribute="centerY" id="IGT-w8-5wb"/>
                                                 <constraint firstItem="o9Z-8i-Bwa" firstAttribute="leading" secondItem="Xa5-ja-8fe" secondAttribute="trailing" constant="10" id="J6l-RH-zfE"/>
+                                                <constraint firstItem="592-eS-EUe" firstAttribute="bottom" secondItem="RHH-Ui-gxW" secondAttribute="bottomMargin" id="M0W-Qz-Ozb"/>
                                                 <constraint firstItem="Xa5-ja-8fe" firstAttribute="top" secondItem="RHH-Ui-gxW" secondAttribute="topMargin" id="UMM-HD-Qbs"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="592-eS-EUe" secondAttribute="trailing" id="URW-ic-VIj"/>
+                                                <constraint firstItem="592-eS-EUe" firstAttribute="leading" secondItem="RHH-Ui-gxW" secondAttribute="leadingMargin" id="eWn-7C-PxE"/>
+                                                <constraint firstItem="592-eS-EUe" firstAttribute="leading" secondItem="Xa5-ja-8fe" secondAttribute="trailing" constant="294" id="hKC-iW-9Vq"/>
                                                 <constraint firstItem="At7-rs-dMg" firstAttribute="leading" secondItem="o9Z-8i-Bwa" secondAttribute="trailing" id="hpn-zs-RjL"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="Xa5-ja-8fe" secondAttribute="bottom" id="hri-Vz-7kz"/>
+                                                <constraint firstItem="592-eS-EUe" firstAttribute="top" secondItem="RHH-Ui-gxW" secondAttribute="topMargin" id="llD-vb-f84"/>
                                                 <constraint firstAttribute="centerY" secondItem="At7-rs-dMg" secondAttribute="centerY" id="nlW-b7-a61"/>
                                             </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="hKC-iW-9Vq"/>
+                                                </mask>
+                                            </variation>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="friendImageView" destination="Xa5-ja-8fe" id="c4g-cC-Ps4"/>
@@ -538,6 +554,9 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="w0g-Ym-y5W">
+                                <rect key="frame" x="290" y="240" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -557,10 +576,12 @@
                             <constraint firstItem="9jQ-0O-K6W" firstAttribute="top" secondItem="YLB-ty-ngp" secondAttribute="bottom" constant="8" symbolic="YES" id="cf3-mM-ROq"/>
                             <constraint firstAttribute="trailingMargin" secondItem="mRm-z1-bmR" secondAttribute="trailing" id="e4j-4O-8VZ"/>
                             <constraint firstItem="FnX-sI-uZf" firstAttribute="centerX" secondItem="lC2-rl-H5x" secondAttribute="centerX" constant="10" id="el8-bb-sNX"/>
+                            <constraint firstAttribute="centerX" secondItem="w0g-Ym-y5W" secondAttribute="centerX" id="iG0-gy-F9k"/>
                             <constraint firstAttribute="trailingMargin" secondItem="9jQ-0O-K6W" secondAttribute="trailing" id="mgC-uP-Wca"/>
                             <constraint firstItem="nuj-d4-feL" firstAttribute="leading" secondItem="ldC-VG-fL6" secondAttribute="leadingMargin" constant="8" id="t8j-gv-SXD"/>
                             <constraint firstItem="nuj-d4-feL" firstAttribute="centerY" secondItem="mRm-z1-bmR" secondAttribute="centerY" id="vfu-MC-lMA"/>
                             <constraint firstItem="mRm-z1-bmR" firstAttribute="leading" secondItem="nuj-d4-feL" secondAttribute="trailing" constant="8" symbolic="YES" id="w3b-g1-Hgb"/>
+                            <constraint firstAttribute="centerY" secondItem="w0g-Ym-y5W" secondAttribute="centerY" constant="50" id="zDl-Tw-vRc"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -582,6 +603,7 @@
                         <outlet property="groupImageView" destination="nuj-d4-feL" id="ao2-cH-tvt"/>
                         <outlet property="gruopNameTextField" destination="mRm-z1-bmR" id="u1q-wa-Wj8"/>
                         <outlet property="memberNumLabel" destination="FnX-sI-uZf" id="XyF-19-eNo"/>
+                        <outlet property="spinner" destination="w0g-Ym-y5W" id="uEq-hk-9Ze"/>
                         <segue destination="hRJ-o1-30q" kind="unwind" identifier="unwindGroupTable" unwindAction="unwindGroupTable:" id="bWa-Kv-0Dh"/>
                     </connections>
                 </viewController>

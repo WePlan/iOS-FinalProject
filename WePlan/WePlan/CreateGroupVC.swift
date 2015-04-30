@@ -8,13 +8,13 @@
 
 import UIKit
 
-class CreateGroupVC: UIViewController ,UITableViewDataSource, UITableViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate, FriendSelectTableDelegate, UITextFieldDelegate{
+class CreateGroupVC: UIViewController ,UITableViewDataSource, UITableViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate, FriendSelectTableDelegate, UITextFieldDelegate, MBProgressHUDDelegate{
     var localFriendsList = LocalFriendList.sharedInstance
     @IBOutlet weak var gruopNameTextField: UITextField!
     @IBOutlet weak var descTextField: UITextField!
     @IBOutlet weak var groupImageView: AsyncUIImageView!
     @IBOutlet weak var memberNumLabel: UILabel!
-    
+
     @IBOutlet weak var friendsTableView: UITableView!
     var selectedFriends:[String] = [PFUser.currentUser()!.objectId!]
     var changeImageAlertController: UIAlertController?
@@ -28,7 +28,7 @@ class CreateGroupVC: UIViewController ,UITableViewDataSource, UITableViewDelegat
         // Do any additional setup after loading the view.
         self.initialAlertController()
         self.initialPhotoView()
-        
+
         self.gruopNameTextField.delegate = self
         self.descTextField.delegate = self
         memberNumLabel.text = "1 members"
@@ -87,11 +87,21 @@ class CreateGroupVC: UIViewController ,UITableViewDataSource, UITableViewDelegat
         return false
     }
     // MARK: - Misc.
+    
+    
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
+    
     @IBAction func clickBack(sender: AnyObject) {
         performSegueWithIdentifier(SegueId.unwindTable, sender: self)
     }
     
     @IBAction func clickCreate(sender: AnyObject) {
+        var hud = MBProgressHUD(view: self.view)
+        self.view.addSubview(hud)
+        hud.delegate = self
+        hud.show(true)
+        hud.labelText = "Creating..."
+        
         let groupName: String = self.gruopNameTextField.text
         let creatorId = PFUser.currentUser()!.objectId!
         let desc:String = self.descTextField.text
@@ -101,7 +111,10 @@ class CreateGroupVC: UIViewController ,UITableViewDataSource, UITableViewDelegat
         }else{
             image = nil
         }
+//        spinner.startAnimating()
         ParseGroupAction.createGroup(groupName, ownerId: creatorId, members: self.selectedFriends, desc: desc, groupImage: image) { () -> Void in
+//            self.spinner.stopAnimating()
+            hud.hide(true)
             self.performSegueWithIdentifier(SegueId.unwindTable, sender: self)
         }
         
