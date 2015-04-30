@@ -8,11 +8,12 @@
 
 import UIKit
 
-class AddTaskItemViewController: UIViewController, UITextFieldDelegate {
+class AddTaskItemViewController: UIViewController, UITextFieldDelegate,AssignTaskToOtherPeopleDelegate {
     var newTask: TaskItem?
     var group: Group?
     private struct StoryBoardConstants {
         static let backgroundImageName = "BackgroundButtonBlue-50%trans"
+        static let assignTaskToOtherPeopleSegue = "AddPeopleToTask"
     }
     var entrypoint:String?
     
@@ -20,6 +21,7 @@ class AddTaskItemViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var addButton: UIButton!
+    @IBOutlet weak var taskForMemberLabel: UILabel!
     
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var datePicker: UIDatePicker!
@@ -36,27 +38,53 @@ class AddTaskItemViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var pickerViewHeightConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var pickerViewBottomConstraint: NSLayoutConstraint!
+    // MARK: -taskforButoon
+
     var taskFor = TaskKind.Individual
     var taskOwner = PFUser.currentUser()!.username!
-    
+    var assignTaskToName = PFUser.currentUser()!.username!
+    //for assign to other people
+    var taskUID:String?
+    var assignPeople:User?
     let buttonBackgroundImage = UIImage(named: StoryBoardConstants.backgroundImageName)
     @IBAction func mySelfButton(sender: UIButton) {
         taskFor = TaskKind(rawValue: 1)!
         taskOwner = PFUser.currentUser()!.username!
+        taskForMemberLabel.text = PFUser.currentUser()!.username!
        mySelfButtonLabel.setBackgroundImage(buttonBackgroundImage, forState: UIControlState.Normal)
         groupButtonLabel.setBackgroundImage(nil, forState: UIControlState.Normal)
         otherPeopleButtonLabel.setBackgroundImage(nil, forState: UIControlState.Normal)
         
     }
-    
-    @IBAction func OtherPeopleButton(sender: UIButton) {
+    func assignTaskToOtherPeople(assignPeople: User) {
+        println("123123123")
         taskOwner = PFUser.currentUser()!.username!
         taskFor = TaskKind(rawValue: 2)!
         mySelfButtonLabel.setBackgroundImage(nil, forState: UIControlState.Normal)
         groupButtonLabel.setBackgroundImage(nil, forState: UIControlState.Normal)
         otherPeopleButtonLabel.setBackgroundImage(buttonBackgroundImage, forState: UIControlState.Normal)
         
+        self.assignPeople = assignPeople
+        taskForMemberLabel.text = assignPeople.name
+        taskUID = assignPeople.uid
+        
     }
+    
+//    @IBAction func OtherPeopleButton(sender: UIButton) {
+//        
+//        taskOwner = PFUser.currentUser()!.username!
+//        taskFor = TaskKind(rawValue: 2)!
+//        mySelfButtonLabel.setBackgroundImage(nil, forState: UIControlState.Normal)
+//        groupButtonLabel.setBackgroundImage(nil, forState: UIControlState.Normal)
+//        otherPeopleButtonLabel.setBackgroundImage(buttonBackgroundImage, forState: UIControlState.Normal)
+////        performSegueWithIdentifier(StoryBoardConstants.assignTaskToOtherPeopleSegue, sender: self)
+////        if taskUID == nil {
+////            return
+////        }else{
+////            
+////        }
+//        
+//    }
     @IBAction func groupButton(sender: UIButton) {
         taskFor = TaskKind(rawValue: 3)!
         taskOwner = group?.name ?? ""
@@ -71,7 +99,7 @@ class AddTaskItemViewController: UIViewController, UITextFieldDelegate {
     //MARK: - DatePicker and its View
     var format: NSDateFormatter = NSDateFormatter()
     var pickerDisplayed: Bool = false
-    
+   
     private func prepareDatePicker() {
         let now = NSDate()
         let oneYearTime: NSTimeInterval = 365*24*60*60
@@ -131,6 +159,7 @@ class AddTaskItemViewController: UIViewController, UITextFieldDelegate {
     
         let current = datePicker.date
         dateLabel.text = format.stringFromDate(current)
+//        taskForMemberLabel.text = assignTaskToName
         dateLabel.userInteractionEnabled = true
         let singleTap = UITapGestureRecognizer(target: self, action: "tapDateLabel")
         dateLabel.addGestureRecognizer(singleTap)
@@ -200,6 +229,16 @@ class AddTaskItemViewController: UIViewController, UITextFieldDelegate {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
+        if segue.identifier == StoryBoardConstants.assignTaskToOtherPeopleSegue {
+            if let vc = segue.destinationViewController as? AddPeopleToTaskTableViewController {
+                println("1234")
+                vc.delegate = self
+                if assignPeople != nil {
+                    vc.alreadyAssignedPeople = assignPeople
+                }
+            }
+        }
         if sender as? UIButton != self.addButton {
             return
         }

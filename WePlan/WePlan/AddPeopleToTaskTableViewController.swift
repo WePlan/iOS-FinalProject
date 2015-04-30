@@ -8,9 +8,13 @@
 
 import UIKit
 
+protocol AssignTaskToOtherPeopleDelegate {
+    func assignTaskToOtherPeople(assignPeople:User)
+}
 class AddPeopleToTaskTableViewController: UITableViewController {
-
+    var alreadyAssignedPeople: User?
     var friendList:[User] = []
+    var delegate: AssignTaskToOtherPeopleDelegate?
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.delegate = self
@@ -57,6 +61,15 @@ class AddPeopleToTaskTableViewController: UITableViewController {
         // Configure the cell...
         
         cell.friend = friendList[indexPath.row]
+        if alreadyAssignedPeople != nil && alreadyAssignedPeople?.uid == cell.friend?.uid {
+            cell.tintColor = WePlanColors.blueColor()
+            cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+            var myBackView = UIView(frame: cell.frame)
+            myBackView.backgroundColor = WePlanColors.blueColor()
+            cell.selectedBackgroundView = myBackView
+            selectedIndex = indexPath
+//            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        }
         return cell
     }
     
@@ -68,34 +81,42 @@ class AddPeopleToTaskTableViewController: UITableViewController {
         return true
     }
     
-    var selectedIndex = -1
+    var selectedIndex:NSIndexPath?
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         if let cell = tableView.cellForRowAtIndexPath(indexPath) {
-            
-            if cell.accessoryType != UITableViewCellAccessoryType.Checkmark {
-                cell.tintColor = WePlanColors.blueColor()
-                cell.accessoryType = UITableViewCellAccessoryType.Checkmark
-                
-                var myBackView = UIView(frame: cell.frame)
-                myBackView.backgroundColor = WePlanColors.blueColor()
-                cell.selectedBackgroundView = myBackView
-                
-                let taskItemChecked = friendList[indexPath.row]
-                
-                //add users to this task group
-                // To Do Code Here
-                
-                
-            }else{
+            if selectedIndex == indexPath {
                 cell.accessoryType = UITableViewCellAccessoryType.None
-                
-                //remove users from this task group
-                //To Do Code Here
-                
-                
+                selectedIndex = nil
+                alreadyAssignedPeople = nil
+                return
+            }
+            if selectedIndex != nil {
+//                selectedIndex = indexPath
+                if let prevCell = tableView.cellForRowAtIndexPath(selectedIndex!) {
+                    prevCell.accessoryType = UITableViewCellAccessoryType.None
+                    
+                    
+                }
+
             }
             
+            selectedIndex = indexPath
+            alreadyAssignedPeople = friendList[indexPath.row]
+            cell.tintColor = WePlanColors.blueColor()
+            cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+                
+            var myBackView = UIView(frame: cell.frame)
+            myBackView.backgroundColor = WePlanColors.blueColor()
+            cell.selectedBackgroundView = myBackView
+                
+//            let taskItemChecked = friendList[indexPath.row]
+            
+            println("12")
+            if delegate != nil {
+                println("122")
+                delegate!.assignTaskToOtherPeople(friendList[indexPath.row])
+            }
             tableView.deselectRowAtIndexPath(indexPath, animated: true)
         }
         

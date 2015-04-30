@@ -216,6 +216,14 @@
 			name = AddPeopleToTask;
 			sourceTree = "<group>";
 		};
+		54FDA3751AF1A20200D41623 /* CreateTask */ = {
+			isa = PBXGroup;
+			children = (
+				6689E50B1ABCA23E0079C8ED /* AddTaskItemViewController.swift */,
+			);
+			name = CreateTask;
+			sourceTree = "<group>";
+		};
 		663053A91ACBAB8E0073FB96 /* FriendsViews&Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -321,7 +329,7 @@
 			isa = PBXGroup;
 			children = (
 				6689E50D1ABCA3680079C8ED /* TaskListTableViewController.swift */,
-				6689E50B1ABCA23E0079C8ED /* AddTaskItemViewController.swift */,
+				54FDA3751AF1A20200D41623 /* CreateTask */,
 				66AF5DFE1ACD1372006AA027 /* TasksViews */,
 				546F2CD41AE5D5AE00722AE7 /* AddPeopleToTask */,
 			);
