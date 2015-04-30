@@ -159,6 +159,8 @@ class AddTaskItemViewController: UIViewController, UITextFieldDelegate,AssignTas
         format.dateStyle = NSDateFormatterStyle.MediumStyle
         taskForMemberLabel.text = ""
         if assignPeople != nil && "Friend" == entrypoint{
+            mySelfButtonLabel.enabled = false
+            groupButtonLabel.enabled = false
             assignTaskToOtherPeople(assignPeople!)
         }
         let current = datePicker.date
