@@ -126,8 +126,7 @@ class ParseGroupAction : ParseGroup{
             if success {
                 let groupId = pfGroup.objectId!
                 println("group created with id: \(groupId)")
-                //completion?
-                //TODO: add groupd id to all members
+                
                 self.addGroupIdtoUsers(groupId, userIds: members, completion: completion)
             }else{
                 println("##create group error: \(error?.userInfo)")
@@ -165,6 +164,7 @@ class ParseGroupAction : ParseGroup{
                         }
                     })
                 }
+                assert(tmpUserIds.count == userIds.count, "user's count != tmp's count")
                 if tmpUserIds.count != userIds.count {
                     for userId in userIds {
                         if !tmpUserIds.contains(userId) {
@@ -174,12 +174,12 @@ class ParseGroupAction : ParseGroup{
                 }
             }
             else{
+                assert(tmpUserIds.count == userIds.count, "user's count != tmp's count")
                 for userId in userIds {
                     self.createNewRowForGroupUser(userId, groupId: groupId)
                 }
             }
         }
-        //TODO: assert user's count == tmp's count
     }
     
     static func createNewRowForGroupUser (userId : String, groupId : String) {
