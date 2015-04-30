@@ -41,19 +41,19 @@ class ParseFriendAction : ParseFriend {
         pfTask[TaskConstants.taskDate] = task.dueTime
         
         
-        taskItems[TaskConstants.taskSort] = task.kind.rawValue
-        taskItems[TaskConstants.uid] = PFUser.currentUser()!.objectId!
-        taskItems[TaskConstants.taskOwner] = task.owner
-        taskItems[TaskConstants.taskDescription] = task.descript
+//        taskItems[TaskConstants.taskSort] = task.kind.rawValue
+//        taskItems[TaskConstants.uid] = PFUser.currentUser()!.objectId!
+//        taskItems[TaskConstants.taskOwner] = task.owner
+//        taskItems[TaskConstants.taskDescription] = task.descript
         
         
-        taskItems.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
-            if success {
-                println("Obj created with id: \(taskItems.objectId)")
-                completion(taskItems.objectId!)
-            }else {
-                println("\(error)")
-            }
+        pfTask.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
+//            if success {
+//                println("Obj created with id: \(taskItems.objectId)")
+//                completion(taskItems.objectId!)
+//            }else {
+//                println("\(error)")
+//            }
         }
     }
     

@@ -231,7 +231,7 @@ class AddTaskItemViewController: UIViewController, UITextFieldDelegate,AssignTas
 //            newTask = TaskItem(name: taskTitleTextField.text, id: "", due: datePicker.date, tagcolor: "")
 //            if taskUID != nil  {
             
-            newTask = TaskItem(name: taskTitleTextField.text, id: taskUID ?? "", due: datePicker.date, tagcolor: "",taskOwner:taskOwner, kind: taskFor, descript: shortDescriptionTextField?.text ?? "")
+            newTask = TaskItem(name: taskTitleTextField.text, id: taskUID ?? "", due: datePicker.date,taskOwner:taskOwner, kind: taskFor, descript: shortDescriptionTextField?.text ?? "")
 //            }
             
         }
