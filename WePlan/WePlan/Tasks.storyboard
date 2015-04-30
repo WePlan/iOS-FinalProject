@@ -527,7 +527,7 @@
         <scene sceneID="BKv-YE-WYU">
             <objects>
                 <tableViewController id="Nes-KM-GpR" customClass="AddGroupToTaskTableViewController" customModule="WePlan" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="GDc-59-ade">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="55" sectionHeaderHeight="22" sectionFooterHeight="22" id="GDc-59-ade">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -536,7 +536,49 @@
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hAT-Yz-fZU" id="Qzi-qp-ZjW">
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Faq-De-apm">
+                                            <rect key="frame" x="54" y="8" width="538" height="20"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CLk-P3-i3D">
+                                            <rect key="frame" x="54" y="28" width="538" height="15"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="GroupDefaultPic" translatesAutoresizingMaskIntoConstraints="NO" id="hFw-Hw-Jap" customClass="AsyncUIImageView" customModule="WePlan" customModuleProvider="target">
+                                            <rect key="frame" x="8" y="8" width="38" height="38"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="hFw-Hw-Jap" secondAttribute="height" multiplier="1:1" id="aYl-X8-hZU"/>
+                                            </constraints>
+                                        </imageView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Faq-De-apm" firstAttribute="width" secondItem="CLk-P3-i3D" secondAttribute="width" id="Kd2-hD-DrY"/>
+                                        <constraint firstItem="hFw-Hw-Jap" firstAttribute="top" secondItem="Qzi-qp-ZjW" secondAttribute="topMargin" id="LHb-xG-zFa"/>
+                                        <constraint firstItem="hFw-Hw-Jap" firstAttribute="leading" secondItem="Qzi-qp-ZjW" secondAttribute="leadingMargin" id="UIt-wH-9VY"/>
+                                        <constraint firstItem="CLk-P3-i3D" firstAttribute="top" secondItem="Faq-De-apm" secondAttribute="bottom" id="VfW-Of-NIe"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="hFw-Hw-Jap" secondAttribute="bottom" id="Wes-yl-lzh"/>
+                                        <constraint firstItem="Faq-De-apm" firstAttribute="trailing" secondItem="Qzi-qp-ZjW" secondAttribute="trailingMargin" id="h6f-dK-ed0"/>
+                                        <constraint firstItem="Faq-De-apm" firstAttribute="leading" secondItem="hFw-Hw-Jap" secondAttribute="trailing" constant="8" symbolic="YES" id="vYs-J3-fMs"/>
+                                        <constraint firstItem="Faq-De-apm" firstAttribute="top" secondItem="hFw-Hw-Jap" secondAttribute="top" id="wM1-me-29z"/>
+                                        <constraint firstItem="Faq-De-apm" firstAttribute="leading" secondItem="CLk-P3-i3D" secondAttribute="leading" id="xmw-hz-4Zi"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="CLk-P3-i3D" secondAttribute="trailing" id="zbB-gr-SYg"/>
+                                    </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="Kd2-hD-DrY"/>
+                                        </mask>
+                                    </variation>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="grouopMemberLabel" destination="CLk-P3-i3D" id="bQ7-XC-qk2"/>
+                                    <outlet property="groupImagePic" destination="hFw-Hw-Jap" id="BxI-5K-EXk"/>
+                                    <outlet property="groupNameLabel" destination="Faq-De-apm" id="kjb-PY-erf"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -637,6 +679,7 @@
         <image name="ButtonRoundBackground" width="310" height="80"/>
         <image name="CompleteNoWord" width="80" height="60"/>
         <image name="Edit" width="80" height="60"/>
+        <image name="GroupDefaultPic" width="550" height="550"/>
         <image name="GroupGray" width="60" height="45"/>
         <image name="ScheduleNoWord" width="80" height="60"/>
         <image name="UserDefaultPic" width="1145" height="1054"/>

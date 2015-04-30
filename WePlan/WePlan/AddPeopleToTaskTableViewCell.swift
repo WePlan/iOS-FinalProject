@@ -37,13 +37,14 @@ class AddPeopleToTaskTableViewCell: UITableViewCell {
             //            if let userImage = user.image {
             //            userProfileImage?.image = UIImage()
             //            }
-        }else{
-            userNameLabel?.text = nil
-            userEmailLabel?.text = nil
-            //            userProfileImage?.image = UIImage(named: StoryBoardConstant.UserDetaultImage)
-            userProfileImage.defaultImageName = StoryBoardConstant.UserDetaultImage
-            
         }
+//        else{
+//            userNameLabel?.text = nil
+//            userEmailLabel?.text = nil
+//            //            userProfileImage?.image = UIImage(named: StoryBoardConstant.UserDetaultImage)
+//            userProfileImage.defaultImageName = StoryBoardConstant.UserDetaultImage
+//            
+//        }
     }
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

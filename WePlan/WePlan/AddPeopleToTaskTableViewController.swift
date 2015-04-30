@@ -31,7 +31,9 @@ class AddPeopleToTaskTableViewController: UITableViewController {
         
         self.tableView.allowsMultipleSelectionDuringEditing = true
     }
-
+    override func viewWillAppear(animated: Bool) {
+        self.view.backgroundColor = UIColor.whiteColor()
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

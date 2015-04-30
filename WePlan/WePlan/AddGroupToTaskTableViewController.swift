@@ -13,7 +13,7 @@ protocol AssignTaskToGroupDelegate {
 class AddGroupToTaskTableViewController: UITableViewController {
     var delegate:AssignTaskToGroupDelegate?
     var alreadyAssignedGroup:Group?
-    var groupList:[Group] = []
+    var groupList:[Group] = LocalGroupList.sharedInstance.groupList
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.delegate = self
@@ -46,16 +46,55 @@ class AddGroupToTaskTableViewController: UITableViewController {
         // Return the number of rows in the section.
         return self.groupList.count
     }
+    var selectedIndex:NSIndexPath?
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if delegate != nil {
-            delegate!.assignTaskToGroup(groupList[indexPath.row])
+        if let cell = tableView.cellForRowAtIndexPath(indexPath) {
+            if selectedIndex == indexPath {
+                cell.accessoryType = UITableViewCellAccessoryType.None
+                selectedIndex = nil
+                alreadyAssignedGroup = nil
+                return
+            }
+            if selectedIndex != nil {
+                //                selectedIndex = indexPath
+                if let prevCell = tableView.cellForRowAtIndexPath(selectedIndex!) {
+                    prevCell.accessoryType = UITableViewCellAccessoryType.None
+                    
+                    
+                }
+                
+            }
+            selectedIndex = indexPath
+            alreadyAssignedGroup = groupList[indexPath.row]
+            cell.tintColor = WePlanColors.blueColor()
+            cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+            
+            var myBackView = UIView(frame: cell.frame)
+            myBackView.backgroundColor = WePlanColors.blueColor()
+            cell.selectedBackgroundView = myBackView
+            if delegate != nil {
+                delegate!.assignTaskToGroup(groupList[indexPath.row])
+            }
+            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            
         }
+        
+        
+        
     }
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as! UITableViewCell
-
+        let cell = tableView.dequeueReusableCellWithIdentifier(AddGroupToTastConstants.cellIdentifier, forIndexPath: indexPath) as! addGroupToTaskTableViewCell
+        cell.groupItem = groupList[indexPath.row]
+        if alreadyAssignedGroup != nil && alreadyAssignedGroup?.id == cell.groupItem?.id {
+                cell.tintColor = WePlanColors.blueColor()
+                cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+                var myBackView = UIView(frame: cell.frame)
+                myBackView.backgroundColor = WePlanColors.blueColor()
+                cell.selectedBackgroundView = myBackView
+                selectedIndex = indexPath
+        }
         // Configure the cell...
 
         return cell
