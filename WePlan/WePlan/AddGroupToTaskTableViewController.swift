@@ -82,7 +82,10 @@ class AddGroupToTaskTableViewController: UITableViewController {
         
         
     }
-
+    
+    override func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+        //TODO: update UI interaction, 1: deselected animation, 2:select the same one
+    }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(AddGroupToTastConstants.cellIdentifier, forIndexPath: indexPath) as! addGroupToTaskTableViewCell

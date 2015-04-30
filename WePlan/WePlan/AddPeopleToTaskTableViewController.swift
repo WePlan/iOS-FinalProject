@@ -28,7 +28,7 @@ class AddPeopleToTaskTableViewController: UITableViewController {
             self.friendList = userList
             self.tableView.reloadData()
         }
-        
+        //TODO: use singleton instance to improve efficient
         self.tableView.allowsMultipleSelectionDuringEditing = true
     }
     override func viewWillAppear(animated: Bool) {
@@ -125,6 +125,9 @@ class AddPeopleToTaskTableViewController: UITableViewController {
         
     }
 
+    override func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+        //TODO: update UI interaction, 1: deselected animation, 2:select the same one
+    }
     /*
     // Override to support editing the table view.
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {

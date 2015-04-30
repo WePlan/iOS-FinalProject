@@ -153,6 +153,7 @@ class ParseGroupAction : ParseGroup{
                 }
             }
         }
+        //TODO: assert user's count == tmp's count
     }
     
     static func createNewRowForGroupUser (userId : String, groupId : String) {
@@ -338,7 +339,7 @@ class ParseGroupAction : ParseGroup{
     
     //tsort = 3, towner = groupId, uid = member's objectId
     //Add task to Task Class
-    class func assignGroupTask (task : TaskItem, groupId : String, members : [String], complete : (Bool) -> Void) {
+    class func assignGroupTask (task : TaskItem, groupId : String, members : [String], complete : () -> Void) {
         var objects : [PFObject] = []
         for member in members {
             var newRow = PFObject(className: TaskConstants.classname)
@@ -353,8 +354,8 @@ class ParseGroupAction : ParseGroup{
         }
         PFObject.saveAllInBackground(objects) { (success : Bool, error : NSError?) -> Void in
             if success {
-                println("Group Task Added!")
-                complete(true)
+                println("Group Task Added! Count: \(objects.count)")
+                complete()
             }
             else{
                 println(error?.userInfo)

@@ -13,29 +13,31 @@ enum TaskKind: Int {
 
 //Task struture needs to be modified and updated, it's outdated.
 class TaskItem {
-    //attributes
-   
+    //basic
     var taskName: String
     var dueTime: NSDate
     var location: String = ""
     var descript: String = ""
+    //advance
     var kind: TaskKind
     var owner: String = ""
     //ui attributes
     var checked: Bool
-    var tagColorName: String
+//    var tagColorName: String
     
-    var uniqueId: String
+    var uniqueId: String // objectId in Parse
     
-    init (name: String, id: String ,due: NSDate,tagcolor: String,taskOwner:String = "", kind: TaskKind = TaskKind.Individual,descript:String = ""){
+    init (name: String, id: String = "",due: NSDate,taskOwner:String = "", kind: TaskKind = TaskKind.Individual,descript:String = ""){
         taskName = name
         dueTime = due
-        tagColorName = tagcolor
-        checked = false
+        self.descript = descript
+        
         uniqueId = id
         owner = taskOwner
         self.kind = kind
-        self.descript = descript
+        
+        
+        checked = false
     }
     
 }

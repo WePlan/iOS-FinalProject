@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
@@ -517,9 +517,9 @@
                         <outlet property="cancelButton" destination="ZFJ-VW-JQn" id="ZWy-WM-dpJ"/>
                         <outlet property="dateLabel" destination="4xV-cs-2ak" id="oFj-kH-h6S"/>
                         <outlet property="datePicker" destination="EkQ-ow-7fZ" id="0gK-g8-bmA"/>
-                        <outlet property="groupButtonLabel" destination="Enm-v3-9Xk" id="UtZ-cS-1nA"/>
-                        <outlet property="mySelfButtonLabel" destination="jtq-3Z-Nvw" id="X50-5u-sCv"/>
-                        <outlet property="otherPeopleButtonLabel" destination="Dzt-do-mU7" id="FJs-pm-hSz"/>
+                        <outlet property="groupButton" destination="Enm-v3-9Xk" id="OIE-pU-aul"/>
+                        <outlet property="mySelfButton" destination="jtq-3Z-Nvw" id="MCC-ix-t25"/>
+                        <outlet property="otherPeopleButton" destination="Dzt-do-mU7" id="uUy-tS-eqP"/>
                         <outlet property="pickerView" destination="KSC-rh-pAB" id="J99-u2-iW8"/>
                         <outlet property="pickerViewBackgroundImageView" destination="77Q-bf-5CK" id="gRR-ON-pQu"/>
                         <outlet property="pickerViewBottomConstraint" destination="fsT-xr-2Rp" id="Cbj-Wo-fDh"/>
@@ -604,7 +604,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xDY-eN-qss" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3040" y="1018"/>
+            <point key="canvasLocation" x="2730" y="1097"/>
         </scene>
         <!--Add People To Task Table View Controller-->
         <scene sceneID="gRe-zW-4eZ">
