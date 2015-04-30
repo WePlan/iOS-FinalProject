@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -538,6 +538,9 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="w0g-Ym-y5W">
+                                <rect key="frame" x="290" y="240" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -557,10 +560,12 @@
                             <constraint firstItem="9jQ-0O-K6W" firstAttribute="top" secondItem="YLB-ty-ngp" secondAttribute="bottom" constant="8" symbolic="YES" id="cf3-mM-ROq"/>
                             <constraint firstAttribute="trailingMargin" secondItem="mRm-z1-bmR" secondAttribute="trailing" id="e4j-4O-8VZ"/>
                             <constraint firstItem="FnX-sI-uZf" firstAttribute="centerX" secondItem="lC2-rl-H5x" secondAttribute="centerX" constant="10" id="el8-bb-sNX"/>
+                            <constraint firstAttribute="centerX" secondItem="w0g-Ym-y5W" secondAttribute="centerX" id="iG0-gy-F9k"/>
                             <constraint firstAttribute="trailingMargin" secondItem="9jQ-0O-K6W" secondAttribute="trailing" id="mgC-uP-Wca"/>
                             <constraint firstItem="nuj-d4-feL" firstAttribute="leading" secondItem="ldC-VG-fL6" secondAttribute="leadingMargin" constant="8" id="t8j-gv-SXD"/>
                             <constraint firstItem="nuj-d4-feL" firstAttribute="centerY" secondItem="mRm-z1-bmR" secondAttribute="centerY" id="vfu-MC-lMA"/>
                             <constraint firstItem="mRm-z1-bmR" firstAttribute="leading" secondItem="nuj-d4-feL" secondAttribute="trailing" constant="8" symbolic="YES" id="w3b-g1-Hgb"/>
+                            <constraint firstAttribute="centerY" secondItem="w0g-Ym-y5W" secondAttribute="centerY" constant="50" id="zDl-Tw-vRc"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -582,6 +587,7 @@
                         <outlet property="groupImageView" destination="nuj-d4-feL" id="ao2-cH-tvt"/>
                         <outlet property="gruopNameTextField" destination="mRm-z1-bmR" id="u1q-wa-Wj8"/>
                         <outlet property="memberNumLabel" destination="FnX-sI-uZf" id="XyF-19-eNo"/>
+                        <outlet property="spinner" destination="w0g-Ym-y5W" id="uEq-hk-9Ze"/>
                         <segue destination="hRJ-o1-30q" kind="unwind" identifier="unwindGroupTable" unwindAction="unwindGroupTable:" id="bWa-Kv-0Dh"/>
                     </connections>
                 </viewController>
