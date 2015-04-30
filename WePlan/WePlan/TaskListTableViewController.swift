@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TaskListTableViewController: UITableViewController, TasksTableViewCellDelegate {
+class TaskListTableViewController: UITableViewController, TasksTableViewCellDelegate,MBProgressHUDDelegate {
     var tasks:[TaskItem] = []
     
     private func initialUISettings() {
@@ -17,9 +17,6 @@ class TaskListTableViewController: UITableViewController, TasksTableViewCellDele
 //        self.tabBarItem = UITabBarItem.init(title: nil, image: UIImage.init(named: "TapBarTaskGrey")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal), selectedImage: UIImage.init(named: "TapBarTaskBlue")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal))
 //        
 //        self.tabBarItem.imageInsets = UIEdgeInsets(top: 9, left: 0, bottom: -9, right: 0)
-//        self.tabBarItem = UITabBarItem.init(title: "as", image: UIImage.init(named: "TapBarFriendGrey"), selectedImage: UIImage.init(named: "TapBarFriendBlue"))
-//        self.tabBarItem = UITabBarItem.init(title: "as", image: UIImage.init(named: "TapBarGroupGrey"), selectedImage: UIImage.init(named: "TapBarGroupBlue"))
-//        self.tabBarItem = UITabBarItem.init(title: "as", image: UIImage.init(named: "TapBarSettingGrey"), selectedImage: UIImage.init(named: "TapBarSettingBlue"))
         self.view.backgroundColor = UIColor.whiteColor()
         
     }
@@ -29,11 +26,7 @@ class TaskListTableViewController: UITableViewController, TasksTableViewCellDele
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.allowsMultipleSelectionDuringEditing = false
-        
-        ParseAction.getInitialDataFromParse { (data) -> Void in
-            self.tasks = data
-            self.tableView.reloadData()
-        }
+        self.initialLocalFriendAndGroupandTask()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -44,6 +37,30 @@ class TaskListTableViewController: UITableViewController, TasksTableViewCellDele
     
     override func viewWillAppear(animated: Bool) {
         initialUISettings()
+    }
+    
+    private func initialLocalFriendAndGroupandTask() {
+        var hud = MBProgressHUD(view: self.view)
+        self.view.addSubview(hud)
+        hud.delegate = self
+        hud.show(true)
+        hud.labelText = "Loading..."
+        
+        LocalFriendList.sharedInstance.getFriendListFromParse { () -> Void in
+            //
+            println("friendlist initial at start")
+            LocalGroupList.sharedInstance.updateAll { () -> Void in
+                //
+                println("grouplist initial at start")
+                ParseAction.getInitialDataFromParse { (data) -> Void in
+                    self.tasks = data
+                    self.tableView.reloadData()
+                    hud.hide(true)
+                }
+
+            }
+        }
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -230,12 +247,13 @@ class TaskListTableViewController: UITableViewController, TasksTableViewCellDele
     @IBAction func unwindTaskList (segue: UIStoryboardSegue){
         var src = segue.sourceViewController as! AddTaskItemViewController
         var task = src.newTask
-        if task != nil {
-            tasks.append(task!)
-            self.tableView.reloadData()
-            ParseAction.addTaskItem(task!, completion: { (resultId: String) -> Void in
-                task!.uniqueId = resultId
-            })
+        if let task = task {
+            if task.kind != TaskKind.People {
+                ParseAction.getInitialDataFromParse { (data) -> Void in
+                    self.tasks = data
+                    self.tableView.reloadData()
+                }
+            }
         }
     }
 

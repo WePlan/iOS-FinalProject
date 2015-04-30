@@ -51,17 +51,21 @@ class TasksTableViewCell: UITableViewCell {
             }else {
                 taskDescribLabel.text = item.descript
             }
-            taskKindLabel.text = item.owner
+            let id = item.owner
+            
+            
             taskTitle.text = item.taskName
-            switch (item.kind.rawValue) {
-            case 1:
+            switch item.kind {
+            case .Individual:
+                taskKindLabel.text = "Self"
                 taskKindLabel.textColor = WePlanColors.blueColor()
-            case 2:
+            case .People:
+                taskKindLabel.text = LocalFriendList.sharedInstance.getFriendName(objectId: id)
                 taskKindLabel.textColor = WePlanColors.otherPeopleColor()
-            case 3:
+            case .Group:
+                taskKindLabel.text = LocalGroupList.sharedInstance.getGroupName(objectId: id)
                 taskKindLabel.textColor = WePlanColors.groupColor()
-            default:
-                taskKindLabel.textColor = WePlanColors.blueColor()
+            
             }
             
             

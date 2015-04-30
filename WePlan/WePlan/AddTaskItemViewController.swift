@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AddTaskItemViewController: UIViewController, UITextFieldDelegate,AssignTaskToOtherPeopleDelegate, AssignTaskToGroupDelegate {
+class AddTaskItemViewController: UIViewController, UITextFieldDelegate,AssignTaskToOtherPeopleDelegate, AssignTaskToGroupDelegate , MBProgressHUDDelegate {
     var newTask: TaskItem?
 
     private struct StoryBoardConstants {
@@ -183,25 +183,43 @@ class AddTaskItemViewController: UIViewController, UITextFieldDelegate,AssignTas
         if count(taskTitleTextField.text) < 1 {
             return
         }
+        var hub = MBProgressHUD(view: self.view)
+        self.view.addSubview(hub)
+        hub.delegate = self
+        hub.show(true)
+        hub.labelText = "Processing..."
+        
         newTask = TaskItem(name: taskTitleTextField.text, due: datePicker.date, descript: shortDescriptionTextField.text)
         switch self.taskFor {
             case .Individual:
+                newTask!.kind = TaskKind.Individual
+                newTask!.owner = PFUser.currentUser()!.objectId!
                 ParseAction.addTaskItem(newTask!, completion: { (id:String) -> Void in
                     //
+                    hub.hide(true)
+                    self.performUnwindSegue(self.addButton)
                 })
             case .People:
                 assert(assignPeople != nil, "assignPeople is nil")
+                newTask!.kind = TaskKind.People
+                newTask!.owner = assignPeople!.uid
                 ParseFriendAction.addFriendTask(newTask!, toFriendId: assignPeople!.uid, completion: { (id: String) -> Void in
                     //
+                    hub.hide(true)
+                    self.performUnwindSegue(self.addButton)
                 })
             
             case .Group:
                 assert(assignGroup != nil, "assign group is nil") // TODO: segue group assign value
+                newTask!.kind = TaskKind.Group
+                newTask!.owner = assignGroup!.id
                 ParseGroupAction.assignGroupTask(newTask!, groupId: assignGroup!.id, members: assignGroup!.memberIds, complete: { () -> Void in
                     //
+                    hub.hide(true)
+                    self.performUnwindSegue(self.addButton)
                 })
         }
-        performUnwindSegue(self.addButton)
+        
     }
     
     @IBAction func clickBackButton(sender: AnyObject) {
