@@ -195,7 +195,6 @@ class CreateGroupVC: UIViewController ,UITableViewDataSource, UITableViewDelegat
         
         groupImageView.image = newImage
         self.imageGiven = true
-        // TODO: initial friend is empty, fix it!
         
         picker.dismissViewControllerAnimated(true, completion: nil)
     }

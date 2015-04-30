@@ -20,7 +20,7 @@ class TaskItem {
     var descript: String = ""
     //advance
     var kind: TaskKind
-    var owner: String = ""
+    var owner: String = "" // its object Id in parse
     //ui attributes
     var checked: Bool
 //    var tagColorName: String

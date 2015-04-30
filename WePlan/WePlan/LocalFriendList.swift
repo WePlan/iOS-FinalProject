@@ -50,4 +50,16 @@ class LocalFriendList {
         }
     }
     
+    func getFriendName(# objectId: String) -> String {
+        var name:String?
+        for friend in friendList {
+            if friend.uid == objectId {
+                name = friend.name
+                break
+            }
+        }
+        assert(name != nil, "friend name should exist")
+        return name!
+    }
+    
 }

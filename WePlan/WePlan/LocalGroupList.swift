@@ -26,4 +26,16 @@ class LocalGroupList {
             completion()
         }
     }
+    
+    func getGroupName(# objectId: String) -> String{
+        var name:String?
+        for group in groupList {
+            if group.id == objectId {
+                name = group.name
+                break
+            }
+        }
+        assert(name != nil, "group name should exist")
+        return name!
+    }
 }
