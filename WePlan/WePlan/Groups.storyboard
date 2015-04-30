@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -427,10 +427,93 @@
                             <outlet property="delegate" destination="vY3-1F-eDs" id="8Pq-R0-IeI"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <segue destination="jYM-Cc-Ek1" kind="show" id="hzk-tE-N75"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y2v-GT-Drp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2676" y="950"/>
+        </scene>
+        <!--Group Name-->
+        <scene sceneID="nyS-sa-G1h">
+            <objects>
+                <tableViewController id="jYM-Cc-Ek1" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Aj5-RF-CR1">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="70" id="k4v-gS-VC2">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="k4v-gS-VC2" id="ScY-xn-F5X">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="UserDefaultPic" translatesAutoresizingMaskIntoConstraints="NO" id="7Hq-9g-Jtp">
+                                            <rect key="frame" x="8" y="8" width="45" height="45"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="7Hq-9g-Jtp" secondAttribute="height" multiplier="1:1" id="ltG-oW-LPA"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="260" verticalHuggingPriority="260" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ba4-Ng-pZn">
+                                            <rect key="frame" x="61" y="8" width="531" height="20"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="VerticalDivider" translatesAutoresizingMaskIntoConstraints="NO" id="wfv-yb-PLm">
+                                            <rect key="frame" x="8" y="61" width="584" height="1"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="1" id="T52-nF-F7A"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="255" verticalHuggingPriority="255" text="email" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sGe-Mj-jVP">
+                                            <rect key="frame" x="61" y="36" width="531" height="17"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleCaption2"/>
+                                            <color key="textColor" red="0.3221312831" green="0.3221312831" blue="0.3221312831" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="ba4-Ng-pZn" firstAttribute="top" secondItem="ScY-xn-F5X" secondAttribute="topMargin" id="7YQ-rL-akL"/>
+                                        <constraint firstItem="ba4-Ng-pZn" firstAttribute="top" secondItem="ScY-xn-F5X" secondAttribute="topMargin" id="Bve-OA-yU7"/>
+                                        <constraint firstItem="wfv-yb-PLm" firstAttribute="top" secondItem="7Hq-9g-Jtp" secondAttribute="bottom" constant="8" symbolic="YES" id="HP4-fP-10u"/>
+                                        <constraint firstItem="7Hq-9g-Jtp" firstAttribute="top" secondItem="ScY-xn-F5X" secondAttribute="topMargin" id="HgJ-P7-Scn"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="sGe-Mj-jVP" secondAttribute="trailing" id="XUm-XU-0XV"/>
+                                        <constraint firstItem="wfv-yb-PLm" firstAttribute="bottom" secondItem="ScY-xn-F5X" secondAttribute="bottomMargin" id="Ye4-gh-Urf"/>
+                                        <constraint firstItem="sGe-Mj-jVP" firstAttribute="bottom" secondItem="ScY-xn-F5X" secondAttribute="bottomMargin" id="ZPC-gD-BLb"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="ba4-Ng-pZn" secondAttribute="trailing" id="ZpC-ZH-82j"/>
+                                        <constraint firstItem="wfv-yb-PLm" firstAttribute="leading" secondItem="ScY-xn-F5X" secondAttribute="leadingMargin" id="eP1-lT-5MS"/>
+                                        <constraint firstItem="wfv-yb-PLm" firstAttribute="top" secondItem="sGe-Mj-jVP" secondAttribute="bottom" constant="8" symbolic="YES" id="epy-6Z-qXO"/>
+                                        <constraint firstItem="ba4-Ng-pZn" firstAttribute="leading" secondItem="7Hq-9g-Jtp" secondAttribute="trailing" constant="8" symbolic="YES" id="gFD-UV-1bf"/>
+                                        <constraint firstItem="7Hq-9g-Jtp" firstAttribute="leading" secondItem="ScY-xn-F5X" secondAttribute="leadingMargin" id="iY4-LA-Hdj"/>
+                                        <constraint firstItem="sGe-Mj-jVP" firstAttribute="top" secondItem="ba4-Ng-pZn" secondAttribute="bottom" constant="8" symbolic="YES" id="k1v-Pv-ar7"/>
+                                        <constraint firstItem="sGe-Mj-jVP" firstAttribute="leading" secondItem="7Hq-9g-Jtp" secondAttribute="trailing" constant="8" symbolic="YES" id="miV-zT-YCS"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="7Hq-9g-Jtp" secondAttribute="bottom" id="nyj-fk-YPH"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="wfv-yb-PLm" secondAttribute="trailing" id="vWA-Yz-FDI"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="sGe-Mj-jVP" secondAttribute="bottom" id="zHD-KQ-SFf"/>
+                                    </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="nyj-fk-YPH"/>
+                                            <exclude reference="Bve-OA-yU7"/>
+                                            <exclude reference="ZPC-gD-BLb"/>
+                                            <exclude reference="zHD-KQ-SFf"/>
+                                        </mask>
+                                    </variation>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="jYM-Cc-Ek1" id="Ml3-ge-ZyJ"/>
+                            <outlet property="delegate" destination="jYM-Cc-Ek1" id="6x8-kT-U0N"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Group Name" id="F8w-Ns-uW9"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nrP-2u-EfP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3374" y="950"/>
         </scene>
         <!--Create Group-->
         <scene sceneID="Gwt-fu-shy">
@@ -656,6 +739,7 @@
         <image name="DeleteButtonBorder" width="310" height="80"/>
         <image name="GroupDefaultPic" width="550" height="550"/>
         <image name="UserDefaultPic" width="1145" height="1054"/>
+        <image name="VerticalDivider" width="1" height="99"/>
         <image name="top divider" width="640" height="1"/>
     </resources>
 </document>
