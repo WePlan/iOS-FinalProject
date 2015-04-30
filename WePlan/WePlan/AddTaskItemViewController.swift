@@ -8,12 +8,13 @@
 
 import UIKit
 
-class AddTaskItemViewController: UIViewController, UITextFieldDelegate,AssignTaskToOtherPeopleDelegate {
+class AddTaskItemViewController: UIViewController, UITextFieldDelegate,AssignTaskToOtherPeopleDelegate, AssignTaskToGroupDelegate {
     var newTask: TaskItem?
-    var group: Group?
+
     private struct StoryBoardConstants {
         static let backgroundImageName = "BackgroundButtonBlue-50%trans"
         static let assignTaskToOtherPeopleSegue = "AddPeopleToTask"
+        static let assignTaskToGroupSegue = "AddGroupToNewTask"
     }
     var entrypoint:String?
     
@@ -46,6 +47,7 @@ class AddTaskItemViewController: UIViewController, UITextFieldDelegate,AssignTas
     //for assign to other people
     var taskUID:String?
     var assignPeople:User?
+    var assignGroup:Group?
     let buttonBackgroundImage = UIImage(named: StoryBoardConstants.backgroundImageName)
     @IBAction func mySelfButton(sender: UIButton) {
         taskFor = TaskKind(rawValue: 1)!
@@ -86,13 +88,24 @@ class AddTaskItemViewController: UIViewController, UITextFieldDelegate,AssignTas
 ////        }
 //        
 //    }
-    @IBAction func groupButton(sender: UIButton) {
+    func assignTaskToGroup(assignGroup:Group) {
         taskFor = TaskKind(rawValue: 3)!
-        taskOwner = group?.name ?? ""
+        taskOwner = assignGroup.name ?? ""
         mySelfButtonLabel.setBackgroundImage(nil, forState: UIControlState.Normal)
         groupButtonLabel.setBackgroundImage(buttonBackgroundImage, forState: UIControlState.Normal)
         otherPeopleButtonLabel.setBackgroundImage(nil, forState: UIControlState.Normal)
+        
+        self.assignGroup = assignGroup
+        taskForMemberLabel.text = assignGroup.name
+        taskUID = assignGroup.id
     }
+//    @IBAction func groupButton(sender: UIButton) {
+//        taskFor = TaskKind(rawValue: 3)!
+//        taskOwner = assignGroup?.name ?? ""
+//        mySelfButtonLabel.setBackgroundImage(nil, forState: UIControlState.Normal)
+//        groupButtonLabel.setBackgroundImage(buttonBackgroundImage, forState: UIControlState.Normal)
+//        otherPeopleButtonLabel.setBackgroundImage(nil, forState: UIControlState.Normal)
+//    }
     //AbovePart Not Implementd
     
     
@@ -162,6 +175,11 @@ class AddTaskItemViewController: UIViewController, UITextFieldDelegate,AssignTas
             mySelfButtonLabel.enabled = false
             groupButtonLabel.enabled = false
             assignTaskToOtherPeople(assignPeople!)
+        }
+        if "Group" == entrypoint && assignGroup != nil {
+            mySelfButtonLabel.enabled = false
+            otherPeopleButtonLabel.enabled = false
+            assignTaskToGroup(assignGroup!)
         }
         let current = datePicker.date
         dateLabel.text = format.stringFromDate(current)
@@ -247,6 +265,15 @@ class AddTaskItemViewController: UIViewController, UITextFieldDelegate,AssignTas
                 }
             }
         }
+        if segue.identifier == StoryBoardConstants.assignTaskToGroupSegue {
+            if let tvc = segue.destinationViewController as? AddGroupToTaskTableViewController {
+                tvc.delegate = self
+                if assignGroup != nil {
+                    tvc.alreadyAssignedGroup = assignGroup
+                }
+            }
+        }
+        
         if sender as? UIButton != self.addButton {
             return
         }
