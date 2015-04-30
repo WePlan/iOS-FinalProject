@@ -18,6 +18,7 @@ class ParseAction : ParseTask{
         static let taskDate = "tdate"
         static let taskLocation = "tlocation"
         static let taskDescription = "tdescription"
+        
         static let taskSort = "tsort"
         static let taskOwner = "towner"
         
@@ -35,7 +36,6 @@ class ParseAction : ParseTask{
         taskItems[TaskConstants.taskTitle] = task.taskName
         taskItems[TaskConstants.taskDate] = task.dueTime
         taskItems[TaskConstants.taskSort] = task.kind.rawValue
-//        taskItems[TaskConstants.uid] = task.uniqueId
         taskItems[TaskConstants.uid] = PFUser.currentUser()!.objectId!
         taskItems[TaskConstants.taskOwner] = task.owner
         taskItems[TaskConstants.taskDescription] = task.descript
@@ -89,9 +89,9 @@ class ParseAction : ParseTask{
                         var item: TaskItem
                         if kindInt != nil && owner != nil && descrip != nil{
                             let kind = TaskKind(rawValue: kindInt!)
-                        item = TaskItem(name: title, id:id!,due: due ,tagcolor: "",taskOwner:owner!,kind:kind!,descript:descrip!)
+                        item = TaskItem(name: title, id:id!,due: due ,taskOwner:owner!,kind:kind!,descript:descrip!)
                         }else {
-                            item = TaskItem(name: title, id:id!,due: due ,tagcolor: "")
+                            item = TaskItem(name: title, id:id!,due: due)
                         }
                         
                         

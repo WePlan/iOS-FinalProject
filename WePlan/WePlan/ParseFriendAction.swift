@@ -23,6 +23,41 @@ class ParseFriendAction : ParseFriend {
         static let userEmail = "email"
     }
     
+    private struct TaskConstants {
+        static let taskClass = "Task"
+        static let taskTitle = "tname"
+        static let taskDate = "tdate"
+        static let taskLocation = "tlocation"
+        static let taskDescription = "tdescription"
+        
+        static let taskSort = "tsort"
+        static let taskOwner = "towner"
+        static let uid = "uid"
+    }
+    class func addFriendTask (task: TaskItem) {
+        var pfTask = PFObject(className: TaskConstants.taskClass)
+        
+        pfTask[TaskConstants.taskTitle] = task.taskName
+        pfTask[TaskConstants.taskDate] = task.dueTime
+        
+        
+        taskItems[TaskConstants.taskSort] = task.kind.rawValue
+        taskItems[TaskConstants.uid] = PFUser.currentUser()!.objectId!
+        taskItems[TaskConstants.taskOwner] = task.owner
+        taskItems[TaskConstants.taskDescription] = task.descript
+        
+        
+        taskItems.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
+            if success {
+                println("Obj created with id: \(taskItems.objectId)")
+                completion(taskItems.objectId!)
+            }else {
+                println("\(error)")
+            }
+        }
+    }
+    
+    
     class func searchPeopleByNickname (nickname : String, friendSet : Set<String>, complete : ([User]) -> Void) {
         if !nickname.isEmpty {
             var resultList : [User] = []
