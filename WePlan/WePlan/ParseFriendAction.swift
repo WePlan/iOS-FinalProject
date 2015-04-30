@@ -34,26 +34,27 @@ class ParseFriendAction : ParseFriend {
         static let taskOwner = "towner"
         static let uid = "uid"
     }
-    class func addFriendTask (task: TaskItem) {
+    class func addFriendTask (task: TaskItem,toFriendId: String , completion: (String) -> Void) {
         var pfTask = PFObject(className: TaskConstants.taskClass)
-        
+        //basic
         pfTask[TaskConstants.taskTitle] = task.taskName
         pfTask[TaskConstants.taskDate] = task.dueTime
+        pfTask[TaskConstants.taskLocation] = task.location
+        pfTask[TaskConstants.taskDescription] = task.descript
+        //advanced
+        pfTask[TaskConstants.taskSort] = 2
+        pfTask[TaskConstants.taskOwner] = PFUser.currentUser()!.objectId!
+        pfTask[TaskConstants.uid] = toFriendId
         
-        
-//        taskItems[TaskConstants.taskSort] = task.kind.rawValue
-//        taskItems[TaskConstants.uid] = PFUser.currentUser()!.objectId!
-//        taskItems[TaskConstants.taskOwner] = task.owner
-//        taskItems[TaskConstants.taskDescription] = task.descript
         
         
         pfTask.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
-//            if success {
-//                println("Obj created with id: \(taskItems.objectId)")
-//                completion(taskItems.objectId!)
-//            }else {
-//                println("\(error)")
-//            }
+            if success {
+                println("Obj created with id: \(pfTask.objectId). Assigned to "+toFriendId)
+                completion(pfTask.objectId!)
+            }else {
+                println("\(error)")
+            }
         }
     }
     
