@@ -27,7 +27,7 @@ class TaskItem {
     
     var uniqueId: String
     
-    init (name: String, id: String ,due: NSDate,tagcolor: String,taskOwner:String = "", kind: TaskKind = TaskKind.Individual ){
+    init (name: String, id: String ,due: NSDate,tagcolor: String,taskOwner:String = "", kind: TaskKind = TaskKind.Individual,descript:String = ""){
         taskName = name
         dueTime = due
         tagColorName = tagcolor
@@ -35,6 +35,7 @@ class TaskItem {
         uniqueId = id
         owner = taskOwner
         self.kind = kind
+        self.descript = descript
     }
     
 }

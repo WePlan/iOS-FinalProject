@@ -51,7 +51,7 @@ class AddTaskItemViewController: UIViewController, UITextFieldDelegate,AssignTas
     let buttonBackgroundImage = UIImage(named: StoryBoardConstants.backgroundImageName)
     @IBAction func mySelfButton(sender: UIButton) {
         taskFor = TaskKind(rawValue: 1)!
-        taskUID = PFUser.currentUser()!.username!
+//        taskUID = PFUser.currentUser()!.objectId!
         taskOwner = PFUser.currentUser()!.username!
         taskForMemberLabel.text = PFUser.currentUser()!.username!
        mySelfButtonLabel.setBackgroundImage(buttonBackgroundImage, forState: UIControlState.Normal)
@@ -69,7 +69,7 @@ class AddTaskItemViewController: UIViewController, UITextFieldDelegate,AssignTas
         
         self.assignPeople = assignPeople
         taskForMemberLabel.text = assignPeople.name
-        taskUID = assignPeople.uid
+//        taskUID = assignPeople.uid
         
     }
     
@@ -97,7 +97,7 @@ class AddTaskItemViewController: UIViewController, UITextFieldDelegate,AssignTas
         
         self.assignGroup = assignGroup
         taskForMemberLabel.text = assignGroup.name
-        taskUID = assignGroup.id
+//        taskUID = assignGroup.id
     }
 //    @IBAction func groupButton(sender: UIButton) {
 //        taskFor = TaskKind(rawValue: 3)!
@@ -279,10 +279,10 @@ class AddTaskItemViewController: UIViewController, UITextFieldDelegate,AssignTas
         }
         if count(taskTitleTextField.text) > 0 {
 //            newTask = TaskItem(name: taskTitleTextField.text, id: "", due: datePicker.date, tagcolor: "")
-            if taskUID != nil  {
-                
-                newTask = TaskItem(name: taskTitleTextField.text, id: taskUID!, due: datePicker.date, tagcolor: "",taskOwner:taskOwner, kind: taskFor)
-            }
+//            if taskUID != nil  {
+            
+            newTask = TaskItem(name: taskTitleTextField.text, id: taskUID ?? "", due: datePicker.date, tagcolor: "",taskOwner:taskOwner, kind: taskFor, descript: shortDescriptionTextField?.text ?? "")
+//            }
             
         }
     }

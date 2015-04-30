@@ -35,8 +35,10 @@ class ParseAction : ParseTask{
         taskItems[TaskConstants.taskTitle] = task.taskName
         taskItems[TaskConstants.taskDate] = task.dueTime
         taskItems[TaskConstants.taskSort] = task.kind.rawValue
-        taskItems[TaskConstants.uid] = task.uniqueId
+//        taskItems[TaskConstants.uid] = task.uniqueId
+        taskItems[TaskConstants.uid] = PFUser.currentUser()!.objectId!
         taskItems[TaskConstants.taskOwner] = task.owner
+        taskItems[TaskConstants.taskDescription] = task.descript
 
         
         taskItems.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
@@ -82,12 +84,12 @@ class ParseAction : ParseTask{
                         let due = object.objectForKey(TaskConstants.taskDate) as! NSDate
                         let id = object.objectId
                         let kindInt = object.objectForKey(TaskConstants.taskSort) as? Int
-                        
+                        let descrip = object.objectForKey(TaskConstants.taskDescription) as? String
                         let owner = object.objectForKey(TaskConstants.taskOwner) as? String
                         var item: TaskItem
-                        if kindInt != nil && owner != nil{
+                        if kindInt != nil && owner != nil && descrip != nil{
                             let kind = TaskKind(rawValue: kindInt!)
-                            item = TaskItem(name: title, id:id!,due: due ,tagcolor: "",taskOwner:owner!,kind:kind!)
+                        item = TaskItem(name: title, id:id!,due: due ,tagcolor: "",taskOwner:owner!,kind:kind!,descript:descrip!)
                         }else {
                             item = TaskItem(name: title, id:id!,due: due ,tagcolor: "")
                         }

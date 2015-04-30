@@ -19,6 +19,8 @@ class TasksTableViewCell: UITableViewCell {
             updateCell()
         }
     }
+    @IBOutlet weak var taskDescribLabel: UILabel!
+    
     @IBOutlet weak var taskTitle: UILabel!
     @IBOutlet weak var checkButton: UIButton!
     @IBOutlet weak var taskKindLabel: UILabel!
@@ -42,6 +44,12 @@ class TasksTableViewCell: UITableViewCell {
                 expandCellGroupImage.image = tintedImage
                 expandCellGroupImage.tintColor = UIColor.grayColor()
                 groupButton.enabled = false
+                
+            }
+            if item.descript == "" {
+                taskDescribLabel.text = "No Description!"
+            }else {
+                taskDescribLabel.text = item.descript
             }
             taskKindLabel.text = item.owner
             taskTitle.text = item.taskName

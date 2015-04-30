@@ -67,8 +67,8 @@ class TaskListTableViewController: UITableViewController, TasksTableViewCellDele
     
     private struct TaskTableViewConstant {
 //        static let cellHeight: CGFloat = 60
-        static let commonCellHeight: CGFloat = 49
-        static let expandingCellHeight: CGFloat = 90
+        static let commonCellHeight: CGFloat = 54
+        static let expandingCellHeight: CGFloat = 87
         
     }
     
@@ -103,6 +103,7 @@ class TaskListTableViewController: UITableViewController, TasksTableViewCellDele
         
         cell.checkState = item.checked
         cell.taskItem = item
+        println("kind+\(item.kind.rawValue)")
 //        cell.taskTitle.text = item.taskName
 
         cell.selectionStyle = UITableViewCellSelectionStyle.None
