@@ -9,7 +9,7 @@
 import UIKit
 
 protocol FriendTableCellDeleget {
-    func toAddTask()
+    func toAddTask(friend:User)
 }
 
 class FriendTableViewCell: UITableViewCell {
@@ -42,7 +42,10 @@ class FriendTableViewCell: UITableViewCell {
 //        
 //    }
     @IBAction func clickAssign(sender: AnyObject) {
-        self.delegate?.toAddTask()
+        if let friend = self.friend {
+            self.delegate?.toAddTask(friend)
+        }
+        
         
     }
 

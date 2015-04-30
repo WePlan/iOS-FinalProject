@@ -214,11 +214,12 @@ class FriendsTableVC: UITableViewController , FriendTableCellDeleget{
         
     }
     
-    func toAddTask() {
+    func toAddTask(friend:User) {
         let taskSB:UIStoryboard = UIStoryboard(name: "Tasks", bundle: NSBundle.mainBundle())
         let vc = taskSB.instantiateViewControllerWithIdentifier("addTaskEntry") as! UINavigationController
         let a = vc.childViewControllers[0] as! AddTaskItemViewController
         a.entrypoint = "Friend"
+        a.assignPeople = friend 
         presentViewController(vc, animated: true, completion: nil)
     }
 }
