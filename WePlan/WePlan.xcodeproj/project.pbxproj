@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		544057961AF1E2A900F7B7A3 /* AddGroupToTaskTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544057951AF1E2A900F7B7A3 /* AddGroupToTaskTableViewController.swift */; };
 		546F2CCD1AE55BC900722AE7 /* AssignATaskToFriendTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546F2CCC1AE55BC900722AE7 /* AssignATaskToFriendTableViewController.swift */; };
 		546F2CD01AE5651100722AE7 /* AssignTaskToFriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546F2CCF1AE5651100722AE7 /* AssignTaskToFriendTableViewCell.swift */; };
 		546F2CD21AE5D57300722AE7 /* AddPeopleToTaskTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546F2CD11AE5D57300722AE7 /* AddPeopleToTaskTableViewController.swift */; };
@@ -88,6 +89,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		544057951AF1E2A900F7B7A3 /* AddGroupToTaskTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddGroupToTaskTableViewController.swift; sourceTree = "<group>"; };
 		546F2CCC1AE55BC900722AE7 /* AssignATaskToFriendTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignATaskToFriendTableViewController.swift; sourceTree = "<group>"; };
 		546F2CCF1AE5651100722AE7 /* AssignTaskToFriendTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignTaskToFriendTableViewCell.swift; sourceTree = "<group>"; };
 		546F2CD11AE5D57300722AE7 /* AddPeopleToTaskTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPeopleToTaskTableViewController.swift; sourceTree = "<group>"; };
@@ -201,6 +203,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		544057941AF1E16A00F7B7A3 /* AddGroupToTask */ = {
+			isa = PBXGroup;
+			children = (
+				544057951AF1E2A900F7B7A3 /* AddGroupToTaskTableViewController.swift */,
+			);
+			name = AddGroupToTask;
+			sourceTree = "<group>";
+		};
 		546F2CCE1AE564DE00722AE7 /* AssignTaskTo Friend */ = {
 			isa = PBXGroup;
 			children = (
@@ -337,6 +347,7 @@
 				54FDA3751AF1A20200D41623 /* CreateTask */,
 				66AF5DFE1ACD1372006AA027 /* TasksViews */,
 				546F2CD41AE5D5AE00722AE7 /* AddPeopleToTask */,
+				544057941AF1E16A00F7B7A3 /* AddGroupToTask */,
 			);
 			name = "TasksViews&Controllers";
 			sourceTree = "<group>";
@@ -541,6 +552,7 @@
 				66D746461ACA0D3A0077290A /* SettingsTableVC.swift in Sources */,
 				6668893C1AF1278E00DFB054 /* ImageProcess.swift in Sources */,
 				546F2CD21AE5D57300722AE7 /* AddPeopleToTaskTableViewController.swift in Sources */,
+				544057961AF1E2A900F7B7A3 /* AddGroupToTaskTableViewController.swift in Sources */,
 				66C606051AEA12690096D3CF /* ParseBaseAction.swift in Sources */,
 				663053E31ACCC2180073FB96 /* Friend.swift in Sources */,
 				66C606141AEFF4C70096D3CF /* GroupDetailVC.swift in Sources */,

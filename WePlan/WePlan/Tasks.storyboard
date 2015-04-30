@@ -350,7 +350,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="groupButton:" destination="kF5-Jw-de5" eventType="touchUpInside" id="oV4-7T-yse"/>
+                                    <segue destination="Nes-KM-GpR" kind="show" identifier="AddGroupToNewTask" id="4Hy-jI-Wse"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dzt-do-mU7">
@@ -522,6 +522,32 @@
                 <exit id="mDd-Fu-u89" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2730" y="324"/>
+        </scene>
+        <!--Add Group To Task Table View Controller-->
+        <scene sceneID="BKv-YE-WYU">
+            <objects>
+                <tableViewController id="Nes-KM-GpR" customClass="AddGroupToTaskTableViewController" customModule="WePlan" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="GDc-59-ade">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="hAT-Yz-fZU">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hAT-Yz-fZU" id="Qzi-qp-ZjW">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Nes-KM-GpR" id="i7U-er-JPH"/>
+                            <outlet property="delegate" destination="Nes-KM-GpR" id="cuO-Xe-1EN"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xDY-eN-qss" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3040" y="1018"/>
         </scene>
         <!--Add People To Task Table View Controller-->
         <scene sceneID="gRe-zW-4eZ">
