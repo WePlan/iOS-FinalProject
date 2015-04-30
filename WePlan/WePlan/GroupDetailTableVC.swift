@@ -10,13 +10,46 @@ import UIKit
 
 class GroupDetailTableVC: UITableViewController {
 
+    var user = LocalUser.singleInstance
     var group:Group!
     
     @IBOutlet weak var groupNameLabel: UILabel!
+    @IBOutlet weak var groupDetailLabel: UILabel!
+    @IBOutlet weak var groupMemberCount: UILabel!
+    
+    
+    @IBOutlet weak var DismissButton: UIButton!
+    @IBOutlet weak var QuitButton: UIButton!
+    
+    
+    @IBOutlet weak var GroupImage: AsyncUIImageView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.GroupImage.layer.borderWidth = 3.0
+        self.GroupImage.layer.borderColor = UIColor.whiteColor().CGColor
+       // self.GroupImage.layer.cornerRadius = 20.0
+        ImageProcess.changeImageViewRounded(self.GroupImage)
+        
+        GroupImage.imageFile = group.groupImage
+        if group.ownerId == user.uniqueId{
+            //QuitButton.hidden=true
+            //QuitButton.titleLabel?.textColor=UIColor.redColor()
+            QuitButton.enabled=false
+            QuitButton.alpha=0.6
+        }
+        else{
+            //DismissButton.hidden=true
+            //DismissButton.titleLabel?.textColor=UIColor.blueColor()
+            DismissButton.enabled=false
+            DismissButton.alpha=0.6
+            
+        }
         groupNameLabel.text=group.name
+        groupDetailLabel.text=group.description
+        groupMemberCount.text=String(group.memberIds.count)
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -24,6 +57,8 @@ class GroupDetailTableVC: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -31,7 +66,7 @@ class GroupDetailTableVC: UITableViewController {
 
     
     @IBAction func ToShowGroupMembers(sender: AnyObject) {
-        
+        performSegueWithIdentifier("ShowGroupMember", sender: self)
     }
     
     
@@ -125,6 +160,8 @@ class GroupDetailTableVC: UITableViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using [segue destinationViewController].
         // Pass the selected object to the new view controller.
+        
+        
     }
     
 

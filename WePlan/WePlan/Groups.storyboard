@@ -216,7 +216,7 @@
                         <sections>
                             <tableViewSection id="OJ8-1W-UkP" userLabel="GroupInfo">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="250" id="Slu-XM-ywq">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="250" id="Slu-XM-ywq">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Slu-XM-ywq" id="hDf-PA-C4j">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -241,13 +241,14 @@
                                                         </mask>
                                                     </variation>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" image="GroupDefaultPic" translatesAutoresizingMaskIntoConstraints="NO" id="hqT-ig-TSG">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" image="GroupDefaultPic" translatesAutoresizingMaskIntoConstraints="NO" id="hqT-ig-TSG" customClass="AsyncUIImageView" customModule="WePlan" customModuleProvider="target">
                                                     <rect key="frame" x="208" y="8" width="184" height="184"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="hqT-ig-TSG" secondAttribute="height" multiplier="1:1" id="hIn-mq-okJ"/>
                                                     </constraints>
                                                 </imageView>
                                             </subviews>
+                                            <color key="backgroundColor" red="0.2470588235" green="0.63137254899999995" blue="0.97254901959999995" alpha="0.46000000000000002" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstItem="hqT-ig-TSG" firstAttribute="top" secondItem="hDf-PA-C4j" secondAttribute="topMargin" id="6jJ-qA-qzc"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="SSj-0O-2x7" secondAttribute="bottom" id="Hwc-ED-Lel"/>
@@ -263,7 +264,7 @@
                             </tableViewSection>
                             <tableViewSection id="U7W-4Q-api" userLabel="DetailList">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="15" id="LXm-KZ-trJ" userLabel="DividerCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="15" id="LXm-KZ-trJ" userLabel="DividerCell">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="LXm-KZ-trJ" id="wZi-iI-Qg7">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -285,7 +286,7 @@
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Group Members" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PnA-dg-9gA">
-                                                    <rect key="frame" x="8" y="8" width="532" height="38"/>
+                                                    <rect key="frame" x="8" y="8" width="536" height="38"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -297,9 +298,9 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" text="20" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FyY-7x-gQd">
-                                                    <rect key="frame" x="548" y="8" width="20" height="38"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <rect key="frame" x="552" y="8" width="16" height="38"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -357,14 +358,14 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="25" id="hhM-xQ-Ltb" userLabel="Divider1Cell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="25" id="hhM-xQ-Ltb" userLabel="Divider1Cell">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hhM-xQ-Ltb" id="22s-M1-aD1">
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="45" id="Ec8-0n-fG8" userLabel="ButtonCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="45" id="Ec8-0n-fG8" userLabel="ButtonCell">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ec8-0n-fG8" id="0aG-n4-Zsl">
@@ -431,6 +432,11 @@
                         </connections>
                     </tableView>
                     <connections>
+                        <outlet property="DismissButton" destination="GP9-Mr-iUl" id="CxT-IT-rd3"/>
+                        <outlet property="GroupImage" destination="hqT-ig-TSG" id="YiN-7M-b2H"/>
+                        <outlet property="QuitButton" destination="3hG-oB-zq2" id="S2j-ZO-85T"/>
+                        <outlet property="groupDetailLabel" destination="SSj-0O-2x7" id="ACm-f4-Idm"/>
+                        <outlet property="groupMemberCount" destination="FyY-7x-gQd" id="UeU-0H-AT4"/>
                         <outlet property="groupNameLabel" destination="7dd-kV-IK4" id="GDC-Pj-DgE"/>
                         <segue destination="jYM-Cc-Ek1" kind="show" identifier="ShowGroupMember" id="hzk-tE-N75"/>
                     </connections>
