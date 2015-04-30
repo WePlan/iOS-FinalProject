@@ -1,14 +1,14 @@
 //
-//  GroupDetailTableVC.swift
+//  ShowGroupMemberVC.swift
 //  WePlan
 //
-//  Created by Huibo Li on 4/29/15.
+//  Created by Huibo Li on 4/30/15.
 //  Copyright (c) 2015 WP Group. All rights reserved.
 //
 
 import UIKit
 
-class GroupDetailTableVC: UITableViewController {
+class ShowGroupMemberVC: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,45 +25,19 @@ class GroupDetailTableVC: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    
-    @IBAction func ToShowGroupMembers(sender: AnyObject) {
-        
-    }
-    
-    
-    
-    
     // MARK: - Table view data source
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.section==1{
-            //Go to GroupMemberView
-            if indexPath.row==1{
-                performSegueWithIdentifier("ShowGroupMember", sender: self)
-            }
-            //Go to Assign a Task
-            if indexPath.row==2{
-                let taskSB:UIStoryboard = UIStoryboard(name: "Tasks", bundle: NSBundle.mainBundle())
-                let vc = taskSB.instantiateViewControllerWithIdentifier("addTaskEntry") as! UINavigationController
-                let a = vc.childViewControllers[0] as! AddTaskItemViewController
-                a.entrypoint = "Group"
-                presentViewController(vc, animated: true, completion: nil)
-            }
-        }
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        // #warning Potentially incomplete method implementation.
+        // Return the number of sections.
+        return 0
     }
-    
-    
-//    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-//        // #warning Potentially incomplete method implementation.
-//        // Return the number of sections.
-//        return 0
-//    }
 
-//    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        // #warning Incomplete method implementation.
-//        // Return the number of rows in the section.
-//        return 0
-//    }
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // #warning Incomplete method implementation.
+        // Return the number of rows in the section.
+        return 0
+    }
 
     /*
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -110,17 +84,14 @@ class GroupDetailTableVC: UITableViewController {
     }
     */
 
-    
+    /*
     // MARK: - Navigation
-    @IBAction func unwindGroupDetail(segue: UIStoryboardSegue){
-        
-    }
-    
+
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using [segue destinationViewController].
         // Pass the selected object to the new view controller.
     }
-    
+    */
 
 }

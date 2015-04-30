@@ -280,6 +280,9 @@
                                                     <state key="normal" image="Arrow-1">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="ToShowGroupMembers:" destination="vY3-1F-eDs" eventType="touchUpInside" id="4c1-OZ-MIA"/>
+                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Group Members" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PnA-dg-9gA">
                                                     <rect key="frame" x="8" y="8" width="532" height="38"/>
@@ -428,7 +431,7 @@
                         </connections>
                     </tableView>
                     <connections>
-                        <segue destination="jYM-Cc-Ek1" kind="show" id="hzk-tE-N75"/>
+                        <segue destination="jYM-Cc-Ek1" kind="show" identifier="ShowGroupMember" id="hzk-tE-N75"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y2v-GT-Drp" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -438,7 +441,7 @@
         <!--Group Name-->
         <scene sceneID="nyS-sa-G1h">
             <objects>
-                <tableViewController id="jYM-Cc-Ek1" sceneMemberID="viewController">
+                <tableViewController id="jYM-Cc-Ek1" customClass="ShowGroupMemberVC" customModule="WePlan" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Aj5-RF-CR1">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
