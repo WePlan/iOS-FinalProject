@@ -51,6 +51,7 @@ class GroupDetailTableVC: UITableViewController {
                 let vc = taskSB.instantiateViewControllerWithIdentifier("addTaskEntry") as! UINavigationController
                 let a = vc.childViewControllers[0] as! AddTaskItemViewController
                 a.entrypoint = "Group"
+                a.assignGroup = group
                 presentViewController(vc, animated: true, completion: nil)
             }
         }
