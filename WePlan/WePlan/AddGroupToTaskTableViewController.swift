@@ -25,6 +25,9 @@ class AddGroupToTaskTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
+    private struct AddGroupToTastConstants {
+        static let cellIdentifier = "addGroupToTaskCellIdentifier"
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

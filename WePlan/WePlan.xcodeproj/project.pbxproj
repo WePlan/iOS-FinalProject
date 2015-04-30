@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		544057961AF1E2A900F7B7A3 /* AddGroupToTaskTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544057951AF1E2A900F7B7A3 /* AddGroupToTaskTableViewController.swift */; };
+		544057981AF1E85000F7B7A3 /* addGroupToTaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544057971AF1E85000F7B7A3 /* addGroupToTaskTableViewCell.swift */; };
 		546F2CCD1AE55BC900722AE7 /* AssignATaskToFriendTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546F2CCC1AE55BC900722AE7 /* AssignATaskToFriendTableViewController.swift */; };
 		546F2CD01AE5651100722AE7 /* AssignTaskToFriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546F2CCF1AE5651100722AE7 /* AssignTaskToFriendTableViewCell.swift */; };
 		546F2CD21AE5D57300722AE7 /* AddPeopleToTaskTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546F2CD11AE5D57300722AE7 /* AddPeopleToTaskTableViewController.swift */; };
@@ -90,6 +91,7 @@
 
 /* Begin PBXFileReference section */
 		544057951AF1E2A900F7B7A3 /* AddGroupToTaskTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddGroupToTaskTableViewController.swift; sourceTree = "<group>"; };
+		544057971AF1E85000F7B7A3 /* addGroupToTaskTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = addGroupToTaskTableViewCell.swift; sourceTree = "<group>"; };
 		546F2CCC1AE55BC900722AE7 /* AssignATaskToFriendTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignATaskToFriendTableViewController.swift; sourceTree = "<group>"; };
 		546F2CCF1AE5651100722AE7 /* AssignTaskToFriendTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignTaskToFriendTableViewCell.swift; sourceTree = "<group>"; };
 		546F2CD11AE5D57300722AE7 /* AddPeopleToTaskTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPeopleToTaskTableViewController.swift; sourceTree = "<group>"; };
@@ -207,6 +209,7 @@
 			isa = PBXGroup;
 			children = (
 				544057951AF1E2A900F7B7A3 /* AddGroupToTaskTableViewController.swift */,
+				544057971AF1E85000F7B7A3 /* addGroupToTaskTableViewCell.swift */,
 			);
 			name = AddGroupToTask;
 			sourceTree = "<group>";
@@ -566,6 +569,7 @@
 				663053DC1ACC83BF0073FB96 /* NSMutableArray+SWUtilityButtons.m in Sources */,
 				66C606121AEF4E140096D3CF /* FriendSelectTableViewCell.swift in Sources */,
 				546F2CCD1AE55BC900722AE7 /* AssignATaskToFriendTableViewController.swift in Sources */,
+				544057981AF1E85000F7B7A3 /* addGroupToTaskTableViewCell.swift in Sources */,
 				66E575711AA7C19B00F0890A /* AppDelegate.swift in Sources */,
 				66C6060B1AEAD8A50096D3CF /* CreateGroupVC.swift in Sources */,
 				663053E11ACC83BF0073FB96 /* SWUtilityButtonView.m in Sources */,
