@@ -180,6 +180,27 @@ class AddTaskItemViewController: UIViewController, UITextFieldDelegate,AssignTas
     }
     // MARK: - Navigation
     @IBAction func clickAddButton(sender: AnyObject) {
+        if count(taskTitleTextField.text) < 1 {
+            return
+        }
+        newTask = TaskItem(name: taskTitleTextField.text, due: datePicker.date, descript: shortDescriptionTextField.text)
+        switch self.taskFor {
+            case .Individual:
+                ParseAction.addTaskItem(newTask!, completion: { (id:String) -> Void in
+                    //
+                })
+            case .People:
+                assert(assignPeople != nil, "assignPeople is nil")
+                ParseFriendAction.addFriendTask(newTask!, toFriendId: assignPeople!.uid, completion: { (id: String) -> Void in
+                    //
+                })
+            
+            case .Group:
+                assert(assignGroup != nil, "assign group is nil") // TODO: segue group assign value
+                ParseGroupAction.assignGroupTask(newTask!, groupId: assignGroup!.id, members: assignGroup!.memberIds, complete: { () -> Void in
+                    //
+                })
+        }
         performUnwindSegue(self.addButton)
     }
     
@@ -227,14 +248,9 @@ class AddTaskItemViewController: UIViewController, UITextFieldDelegate,AssignTas
         if sender as? UIButton != self.addButton {
             return
         }
-        if count(taskTitleTextField.text) > 0 {
-//            newTask = TaskItem(name: taskTitleTextField.text, id: "", due: datePicker.date, tagcolor: "")
-//            if taskUID != nil  {
-            
-            newTask = TaskItem(name: taskTitleTextField.text, id: taskUID ?? "", due: datePicker.date,taskOwner:taskOwner, kind: taskFor, descript: shortDescriptionTextField?.text ?? "")
-//            }
-            
-        }
+
+        
+
     }
     
     

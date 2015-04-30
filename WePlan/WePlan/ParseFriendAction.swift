@@ -34,7 +34,7 @@ class ParseFriendAction : ParseFriend {
         static let taskOwner = "towner"
         static let uid = "uid"
     }
-    class func addFriendTask (task: TaskItem,toFriendId: String ) {
+    class func addFriendTask (task: TaskItem,toFriendId: String , completion: (String) -> Void) {
         var pfTask = PFObject(className: TaskConstants.taskClass)
         //basic
         pfTask[TaskConstants.taskTitle] = task.taskName
@@ -51,7 +51,7 @@ class ParseFriendAction : ParseFriend {
         pfTask.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
             if success {
                 println("Obj created with id: \(pfTask.objectId). Assigned to "+toFriendId)
-//                completion(pfTask.objectId!)
+                completion(pfTask.objectId!)
             }else {
                 println("\(error)")
             }

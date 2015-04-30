@@ -11,18 +11,6 @@ import UIKit
 class TaskListTableViewController: UITableViewController, TasksTableViewCellDelegate {
     var tasks:[TaskItem] = []
     
-    @IBAction func unwindTaskList (segue: UIStoryboardSegue){
-        var src = segue.sourceViewController as! AddTaskItemViewController
-        var task = src.newTask
-        if task != nil {
-            tasks.append(task!)
-            self.tableView.reloadData()
-            ParseAction.addTaskItem(task!, completion: { (resultId: String) -> Void in
-                task!.uniqueId = resultId
-            })
-        }
-    }
-    
     private func initialUISettings() {
         DefaultSetting.setNavigationBar(self.navigationController!)
        
@@ -239,5 +227,17 @@ class TaskListTableViewController: UITableViewController, TasksTableViewCellDele
         }
     }
     
+    @IBAction func unwindTaskList (segue: UIStoryboardSegue){
+        var src = segue.sourceViewController as! AddTaskItemViewController
+        var task = src.newTask
+        if task != nil {
+            tasks.append(task!)
+            self.tableView.reloadData()
+            ParseAction.addTaskItem(task!, completion: { (resultId: String) -> Void in
+                task!.uniqueId = resultId
+            })
+        }
+    }
+
 
 }
