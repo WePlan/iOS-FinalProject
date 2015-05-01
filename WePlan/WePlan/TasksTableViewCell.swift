@@ -11,6 +11,7 @@ import UIKit
 protocol TasksTableViewCellDelegate {
     func checkButtonPressed(index: NSIndexPath)
     func checkDeletePressed(index: NSIndexPath)
+//    func checkEditButtonPressed(task:TaskItem,index:NSIndexPath)
 }
 
 class TasksTableViewCell: UITableViewCell {
@@ -27,31 +28,46 @@ class TasksTableViewCell: UITableViewCell {
     @IBOutlet weak var taskTitle: UILabel!
     @IBOutlet weak var checkButton: UIButton!
     @IBOutlet weak var taskKindLabel: UILabel!
+    
+    
     @IBOutlet weak var expandCellGroupImage: UIImageView!
+    @IBOutlet weak var expandCellScheduleImage: UIImageView!
+    
+    @IBOutlet weak var expandCellEditImage: UIImageView!
+    
     @IBOutlet weak var groupButton: UIButton!
-    var checkState: Bool? {
-        didSet{
-            if checkState != nil && checkState!{
-                checkButton.setBackgroundImage(UIImage(named: "checked"), forState: UIControlState())
-            }else {
-                checkButton.setBackgroundImage(UIImage(named: "unchecked"), forState: UIControlState())
-            }
-        }
-    }
+    @IBOutlet weak var scheduleButton: UIButton!
+    @IBOutlet weak var editButton: UIButton!
     
     func updateCell() {
         if let item = self.taskItem {
-            if item.kind != TaskKind.Group {
-                let preImage = UIImage(named: "AddPeople")
-                let tintedImage = preImage?.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
-                self.expandCellGroupImage.image = tintedImage
-                self.expandCellGroupImage.tintColor = UIColor.grayColor()
-                self.groupButton.enabled = false
-    
-            }else{
+            let preImage = UIImage(named: "AddPeople")
+            let tintedImage = preImage?.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
+            self.expandCellGroupImage.image = tintedImage
+            self.expandCellGroupImage.tintColor = UIColor.lightGrayColor()
+            self.groupButton.enabled = false
+            
+            self.scheduleButton.enabled = false
+            
+            let editTintedImage = UIImage(named: "Edit")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
+            self.expandCellEditImage.image = editTintedImage
+            self.expandCellEditImage.tintColor = UIColor.lightGrayColor()
+            self.editButton.enabled = false
+            
+            
+            if item.kind == TaskKind.Group {
                 self.expandCellGroupImage.image = UIImage(named: "AddPeople")
+//                self.expandCellGroupImage.tintColor = WePlanColors.blueColor()
                 self.groupButton.enabled = true
+                
             }
+            if item.kind == TaskKind.Individual {
+                self.expandCellEditImage.image = UIImage(named: "Edit")
+                self.scheduleButton.enabled = true
+                self.editButton.enabled = true
+            }
+            
+            //description
             if item.descript == "" {
                 taskDescribLabel.text = "No Description!"
             }else {
@@ -83,6 +99,11 @@ class TasksTableViewCell: UITableViewCell {
                 let diffYears = item.dueTime.yearsDiff(currentDate)
                 taskDueDate.text = "In \(diffYears) years"
             }
+            if diffDays == 0 {
+                expandCellScheduleImage.image = UIImage(named: "ScheduleNoWordRedDot")
+            }else{
+                expandCellScheduleImage.image = UIImage(named: "ScheduleNoWord")
+            }
             
             
             taskTitle.text = item.taskName
@@ -96,16 +117,34 @@ class TasksTableViewCell: UITableViewCell {
             case .Group:
                 taskKindLabel.text = LocalGroupList.sharedInstance.getGroupName(objectId: id)
                 taskKindLabel.textColor = WePlanColors.groupColor()
-            
+                
             }
             
             
         }
         
     }
-    var index: NSIndexPath?
+
+    
+
+    var checkState: Bool? {
+        didSet{
+            if checkState != nil && checkState!{
+                checkButton.setBackgroundImage(UIImage(named: "checked"), forState: UIControlState())
+            }else {
+                checkButton.setBackgroundImage(UIImage(named: "unchecked"), forState: UIControlState())
+            }
+        }
+    }
+    
+        var index: NSIndexPath?
     var delegate: TasksTableViewCellDelegate?
     
+//    @IBAction func clickEditButton(sender: UIButton) {
+//        if delegate != nil {
+//            self.delegate!.checkEditButtonPressed(self.taskItem!,index: self.index!)
+//        }
+//    }
     @IBAction func clickCheckButton(sender: AnyObject) {
         if delegate != nil {
             self.delegate!.checkButtonPressed(self.index!)

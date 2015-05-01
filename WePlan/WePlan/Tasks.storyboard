@@ -92,6 +92,9 @@
                                             <state key="normal">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
+                                            <connections>
+                                                <segue destination="rn8-S5-m1x" kind="presentation" identifier="EditTaskIdentifier" id="2IB-Mz-TVz"/>
+                                            </connections>
                                         </button>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CompleteNoWord" translatesAutoresizingMaskIntoConstraints="NO" id="wB6-Fn-9bd">
                                             <rect key="frame" x="43" y="60" width="40" height="30"/>
@@ -238,8 +241,12 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="checkButton" destination="f8I-np-2TP" id="uOz-be-paU"/>
+                                    <outlet property="editButton" destination="Mac-zC-SoX" id="cSr-60-EUi"/>
+                                    <outlet property="expandCellEditImage" destination="7gL-gZ-YfQ" id="3gU-mH-EDm"/>
                                     <outlet property="expandCellGroupImage" destination="3XC-P8-cYC" id="ck1-Qw-p8E"/>
+                                    <outlet property="expandCellScheduleImage" destination="39u-3H-TvY" id="aUS-aV-15e"/>
                                     <outlet property="groupButton" destination="KPc-7m-c1m" id="Ew2-0H-TXW"/>
+                                    <outlet property="scheduleButton" destination="Vyd-N0-ib2" id="1NW-pR-GvH"/>
                                     <outlet property="taskDescribLabel" destination="kkS-0K-EqF" id="IIf-4C-WDy"/>
                                     <outlet property="taskDueDate" destination="d6K-9W-XXW" id="0iK-5g-FcJ"/>
                                     <outlet property="taskKindLabel" destination="L4j-sD-Bng" id="bBg-8C-mx2"/>
@@ -701,7 +708,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CTb-zh-Fi1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1997" y="329"/>
+            <point key="canvasLocation" x="1897" y="482"/>
         </scene>
     </scenes>
     <resources>
@@ -719,4 +726,7 @@
         <image name="self" width="31" height="44"/>
         <image name="top divider" width="640" height="1"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="S5m-d9-5rp"/>
+    </inferredMetricsTieBreakers>
 </document>

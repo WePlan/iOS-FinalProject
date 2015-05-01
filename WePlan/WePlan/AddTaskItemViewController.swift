@@ -47,7 +47,7 @@ class AddTaskItemViewController: UIViewController, UITextFieldDelegate,AssignTas
         prepareDatePicker()
         
         self.taskTitleTextField.delegate = self
-        
+
         taskForMemberLabel.text = ""
         if assignPeople != nil && "Friend" == entrypoint{
             mySelfButton.enabled = false
@@ -58,6 +58,21 @@ class AddTaskItemViewController: UIViewController, UITextFieldDelegate,AssignTas
             mySelfButton.enabled = false
             otherPeopleButton.enabled = false
             assignTaskToGroup(assignGroup!)
+        }
+        if newTask != nil && "Task" == entrypoint{
+            taskTitleTextField.text = newTask?.taskName ?? ""
+            taskLocationTextField.text = newTask?.location ?? ""
+            shortDescriptionTextField.text = newTask?.descript ?? ""
+            
+            assignTaskToMyself()
+            format.timeStyle = NSDateFormatterStyle.ShortStyle
+            format.dateStyle = NSDateFormatterStyle.MediumStyle
+
+            if let prevDueDate = newTask?.dueTime {
+                dateLabel.text = format.stringFromDate(prevDueDate)
+            }
+            addButton.setTitle("Save", forState: UIControlState.Normal)
+            
         }
         
         
@@ -91,15 +106,26 @@ class AddTaskItemViewController: UIViewController, UITextFieldDelegate,AssignTas
     var assignGroup:Group?
     let buttonBackgroundImage = UIImage(named: StoryBoardConstants.backgroundImageName)
     @IBAction func mySelfButton(sender: UIButton) {
+        assignTaskToMyself()
+//        taskFor = TaskKind(rawValue: 1)!
+////        taskUID = PFUser.currentUser()!.objectId!
+//        taskOwner = PFUser.currentUser()!.username!
+//        taskForMemberLabel.text = PFUser.currentUser()!.username!
+//        
+//       mySelfButton.setBackgroundImage(buttonBackgroundImage, forState: UIControlState.Normal)
+//        groupButton.setBackgroundImage(nil, forState: UIControlState.Normal)
+//        otherPeopleButton.setBackgroundImage(nil, forState: UIControlState.Normal)
+        
+    }
+    func assignTaskToMyself(){
         taskFor = TaskKind(rawValue: 1)!
-//        taskUID = PFUser.currentUser()!.objectId!
+        //        taskUID = PFUser.currentUser()!.objectId!
         taskOwner = PFUser.currentUser()!.username!
         taskForMemberLabel.text = PFUser.currentUser()!.username!
         
-       mySelfButton.setBackgroundImage(buttonBackgroundImage, forState: UIControlState.Normal)
+        mySelfButton.setBackgroundImage(buttonBackgroundImage, forState: UIControlState.Normal)
         groupButton.setBackgroundImage(nil, forState: UIControlState.Normal)
         otherPeopleButton.setBackgroundImage(nil, forState: UIControlState.Normal)
-        
     }
     
     func assignTaskToOtherPeople(assignPeople: User) {

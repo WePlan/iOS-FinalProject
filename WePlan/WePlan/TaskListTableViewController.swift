@@ -243,6 +243,19 @@ class TaskListTableViewController: UITableViewController, TasksTableViewCellDele
             let first = dest.childViewControllers[0] as! AddTaskItemViewController
             first.entrypoint = "Task"
         }
+        if segue.identifier == "EditTaskIdentifier" {
+            let dvc = segue.destinationViewController as! UINavigationController
+            let first = dvc.childViewControllers[0] as! AddTaskItemViewController
+            first.entrypoint = "Task"
+//            if let indexPath = self.tableView.indexPathForCell((sender?.superview!!.superview as! TasksTableViewCell)) {
+//                first.newTask = tasks[indexPath.row]
+//                
+//            }
+            first.newTask = tasks[selectedTask]
+            
+            
+            
+        }
     }
     
     @IBAction func unwindTaskList (segue: UIStoryboardSegue){
