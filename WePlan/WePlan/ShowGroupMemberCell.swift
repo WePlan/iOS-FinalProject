@@ -10,12 +10,17 @@ import UIKit
 
 class ShowGroupMemberCell: UITableViewCell {
 
+    var Member:User?{
+        didSet{
+            updateCell()
+        }
+    }
     
     @IBOutlet weak var MemberImage: AsyncUIImageView!
     @IBOutlet weak var MemberNameLabel: UILabel!
     @IBOutlet weak var MemberEmailLabel: UILabel!
     
-    var Member:User!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -25,6 +30,13 @@ class ShowGroupMemberCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    func updateCell(){
+        MemberImage.imageObjectId=Member?.imageId
+        ImageProcess.changeImageViewRounded(MemberImage)
+        MemberNameLabel.text=Member?.name
+        MemberEmailLabel.text=Member?.uemail
     }
 
 }

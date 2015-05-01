@@ -12,6 +12,14 @@ class GroupDetailTableVC: UITableViewController {
 
     var user = LocalUser.singleInstance
     var group:Group!
+    var MemberList:[User]!
+    
+    func getGroupMembersListFromParse(completion: () -> Void) {
+        ParseGroupAction.getGroupMembers(group.memberIds, complete: { (UserList:[User]) -> Void in
+            self.MemberList=UserList
+            completion()
+        })
+    }
     
     @IBOutlet weak var groupNameLabel: UILabel!
     @IBOutlet weak var groupDetailLabel: UILabel!
@@ -24,6 +32,10 @@ class GroupDetailTableVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.getGroupMembersListFromParse { () -> Void in
+            println("Init current members")
+        }
+        
         //Group image
         GroupImage.imageFile = group.groupImage
         self.GroupImage.layer.borderWidth = 3.0
@@ -162,6 +174,7 @@ class GroupDetailTableVC: UITableViewController {
         if segue.identifier=="ShowGroupMember"{
             var nextvc=segue.destinationViewController as! ShowGroupMemberVC
             nextvc.group=group
+            nextvc.MemberList=self.MemberList
         }
         
     }

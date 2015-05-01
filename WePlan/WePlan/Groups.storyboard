@@ -454,7 +454,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="GroupMemberCell" rowHeight="70" id="k4v-gS-VC2" customClass="ShowGroupMemberCell" customModule="WePlan" customModuleProvider="target">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="70" id="k4v-gS-VC2" customClass="ShowGroupMemberCell" customModule="WePlan" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="k4v-gS-VC2" id="ScY-xn-F5X">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -471,8 +471,8 @@
                                                 <constraint firstAttribute="height" constant="1" id="T52-nF-F7A"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="255" verticalHuggingPriority="255" text="email" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sGe-Mj-jVP">
-                                            <rect key="frame" x="69" y="36" width="523" height="25"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="255" verticalHuggingPriority="255" horizontalCompressionResistancePriority="760" verticalCompressionResistancePriority="760" text="email" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sGe-Mj-jVP">
+                                            <rect key="frame" x="69" y="36" width="523" height="33"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleCaption2"/>
                                             <color key="textColor" red="0.3221312831" green="0.3221312831" blue="0.3221312831" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -494,7 +494,7 @@
                                         <constraint firstItem="sGe-Mj-jVP" firstAttribute="bottom" secondItem="ScY-xn-F5X" secondAttribute="bottomMargin" id="ZPC-gD-BLb"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="ba4-Ng-pZn" secondAttribute="trailing" id="ZpC-ZH-82j"/>
                                         <constraint firstItem="wfv-yb-PLm" firstAttribute="leading" secondItem="ScY-xn-F5X" secondAttribute="leadingMargin" id="eP1-lT-5MS"/>
-                                        <constraint firstItem="wfv-yb-PLm" firstAttribute="top" secondItem="sGe-Mj-jVP" secondAttribute="bottom" constant="8" symbolic="YES" id="epy-6Z-qXO"/>
+                                        <constraint firstItem="wfv-yb-PLm" firstAttribute="top" secondItem="sGe-Mj-jVP" secondAttribute="bottom" id="epy-6Z-qXO"/>
                                         <constraint firstItem="ba4-Ng-pZn" firstAttribute="leading" secondItem="7Hq-9g-Jtp" secondAttribute="trailing" constant="8" symbolic="YES" id="gFD-UV-1bf"/>
                                         <constraint firstItem="7Hq-9g-Jtp" firstAttribute="leading" secondItem="ScY-xn-F5X" secondAttribute="leadingMargin" id="iY4-LA-Hdj"/>
                                         <constraint firstItem="sGe-Mj-jVP" firstAttribute="top" secondItem="ba4-Ng-pZn" secondAttribute="bottom" priority="750" constant="8" symbolic="YES" id="k1v-Pv-ar7"/>

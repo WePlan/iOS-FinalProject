@@ -11,11 +11,18 @@ import UIKit
 class ShowGroupMemberVC: UITableViewController {
 
     var group:Group!
+    var MemberList:[User]!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        if let list=MemberList{
+            println("Nice!!")
+        }
+        else{
+            println("NothingT T")
+        }
+        println("Get Member\(MemberList.count)")
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -43,15 +50,14 @@ class ShowGroupMemberVC: UITableViewController {
     }
 
     private struct StoryBoard{
-        static let GroupMemberCell="GroupMemberCell"
+        static let GroupMemberCell="Cell"
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(StoryBoard.GroupMemberCell, forIndexPath: indexPath) as! UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(StoryBoard.GroupMemberCell, forIndexPath: indexPath) as! ShowGroupMemberCell
 
         // Configure the cell...
-        
-        
+        cell.Member=self.MemberList[indexPath.row]
         return cell
     }
     
