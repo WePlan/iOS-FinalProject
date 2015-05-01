@@ -1,3 +1,11 @@
+###Bug and missing:
+- 1. update self task
+- 3  sort in local list singleton?
+- 4. create task in grouplist view, than show task list, miss the new task.
+- 5. task checked animation, task unchecked animation.
+- 6. LocalTaskList singleton
+- 7. Refactoring the friend struct and database by PFfile
+
 # The functions or modules that need to be implemented or updated：
 
 ## Group Module:
@@ -11,6 +19,7 @@
   - Showing detailed information of the group. (Data has already been fetched from the database.)
   - "Quit/Dismiss" button needs to be implemented. (Group owner or Group member.)
   - Assign task for this group. (New View, which can be named as AssignGroupTaskView.)
+4. SearchBar for GroupList
 
 ## Friend Module:
 
