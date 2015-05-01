@@ -5,19 +5,12 @@
 ### UI Part :
 
 1. CreateGroupView:
-  - need activity indicator view
+  - Improve Layout 
 2. Cell of group need to be updated. (New style, arrangement, etc. Needs to be redesigned.)
 3. GroupDetailView. Including :
   - Showing detailed information of the group. (Data has already been fetched from the database.)
   - "Quit/Dismiss" button needs to be implemented. (Group owner or Group member.)
   - Assign task for this group. (New View, which can be named as AssignGroupTaskView.)
-
-### Backend Part:
-
-1. func QuitGroup (PFUser.currentUser().objectId)
-2. func DeleteGroup (groupId)
-3. func GetGroupUserList ([memberId])
-4. func AssignGroupTask() with tsort = 3, towner = groupId, uid = each member's objectId of the groupId.
 
 ## Friend Module:
 
@@ -28,24 +21,18 @@
   - Showing detailed information of the selected friend. (Data has already been fetched from the database.)
   - "Delete" the friendship button. (Function has already been implemented.)
   - Assign task for this friend. (New View, which can be named as AssignFriendTaskView.)
-3. Remove "Touch-shown list" function for Friend Module.
-4. Remove "Slide to delete" function for Friend Module.
-5. Search Bar for my friend list.
+3. Search Bar for my friend list.
 
 ### Backend Part :
 
-1. AssignFriendTask() with tsort = 2, towner = sender's objectId, uid = receiver's objectId.
-
-2. Send Email invitation to new user. Use Parse notification.
+1. Send Email invitation to new user. Use Parse notification.
 
 ## Task Module :
 
 ### UI Part :
 
-1. Remove "Slide to delete" function for Task Module.
 2. Hide the touch-shown list when the user touches some blank place or other items of the menu.
 3. Expand the cell of the Task to support more information and buttons.
-4. "Colored Label", which is used for showing different types of the task. (Self task or Group task or Friend assigned task)
 
 ### Backend Part :
 
@@ -84,19 +71,4 @@ Huibo Li (hl1487@nyu.edu)
 
 Prototype link:
 http://invis.io/3Q2E2L95X
-
-Project Progress:
-
-1. Model 里是一些用来接数据的对象或者结构， 可以根据需求改变
-
-2. 每个storyboard 只负责自己的部分
-
-3. ParseAction.swift: 和parse相关的方法, 详细要求见文件内注释
-
-4. Friend 和 group 的tableviewcell 可以设计dynamic prototype 在storyboard里直接设计就可以了
-
-Settings 的 table view 用静态的 设计就可以了
-
-5.  在每个storyboard里加入相关的viewcontroller： 比如好友的详细界面  添加界面等， 也可以写相关的功能方法
-
 
