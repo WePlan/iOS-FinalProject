@@ -77,7 +77,7 @@ class FriendsTableVC: UITableViewController , FriendTableCellDeleget{
 //        cell.detailTextLabel?.text = friendList[indexPath.row].uemail
 //        println("\(friendList[indexPath.row].uid)")
         cell.clipsToBounds = true;
-        
+        cell.selectionStyle = UITableViewCellSelectionStyle.None
         //Custom cell configure
         cell.delegate = self
         cell.friend = localFriendList.getFriendAtIndex(indexPath.row)

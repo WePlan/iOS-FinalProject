@@ -54,7 +54,7 @@ class FriendTableViewCell: UITableViewCell {
     
    
     
-        private struct StoryBoardConstant{
+    private struct StoryBoardConstant{
         static let UserDetaultImage = "UserDefaultPic"
         static let expandingHeight:CGFloat = 90
         static let commonHeight:CGFloat = 55
@@ -71,14 +71,17 @@ class FriendTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        ImageProcess.changeImageViewToCircle(self.userProfileImage)
     }
     func updateCell() {
-        
-        
         if let user = self.friend {
             userNameLabel?.text = user.name
             userEmailLabel?.text = user.uemail
-            userProfileImage.imageObjectId = user.imageId
+            if user.imageId == nil {
+                userProfileImage.defaultImageName = StoryBoardConstant.UserDetaultImage
+            }else{
+                userProfileImage.imageObjectId = user.imageId
+            }
             //UserImage part
 //            if let userImage = user.image {
 //            userProfileImage?.image = UIImage()
@@ -86,7 +89,6 @@ class FriendTableViewCell: UITableViewCell {
         }else{
             userNameLabel?.text = nil
             userEmailLabel?.text = nil
-//            userProfileImage?.image = UIImage(named: StoryBoardConstant.UserDetaultImage)
             userProfileImage.defaultImageName = StoryBoardConstant.UserDetaultImage
             
         }

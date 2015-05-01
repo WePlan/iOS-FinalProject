@@ -17,8 +17,11 @@ class GroupTableViewCell: UITableViewCell {
                 memberNumLabel.text = "\(count) members"
                 
                 let pfFile = group.groupImage
-                
-                asyncImageView.imageFile = pfFile
+                if pfFile != nil {
+                    asyncImageView.imageFile = pfFile
+                }else{
+                    asyncImageView.defaultImageName = "GroupDefaultPic"
+                }
             }
         }
     }

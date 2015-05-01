@@ -190,7 +190,7 @@ class CreateGroupVC: UIViewController ,UITableViewDataSource, UITableViewDelegat
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
         println("image picked!")
-        let newSize = CGSizeMake(180, 180)
+        let newSize = CGSizeMake(300, 300)
         var newImage = ImageProcess.resizeImage(image, size: newSize)
         
         groupImageView.image = newImage

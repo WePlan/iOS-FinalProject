@@ -62,7 +62,7 @@ class GroupsTableVC: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 //        let cell = tableView.dequeueReusableCellWithIdentifier(StoryBoard.cell, forIndexPath: indexPath) as! UITableViewCell
         let cell = tableView.dequeueReusableCellWithIdentifier(StoryBoard.cell2, forIndexPath: indexPath) as! GroupTableViewCell
-        // Configure the cell...
+        cell.selectionStyle = UITableViewCellSelectionStyle.None
 //        cell.textLabel?.text = groups.groupList[indexPath.row].name
 //        cell.detailTextLabel?.text = groups.groupList[indexPath.row].i
         cell.group = groups.groupList[indexPath.row]
@@ -75,7 +75,8 @@ class GroupsTableVC: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        IndexChosen=indexPath.row
+        tableView.deselectRowAtIndexPath(indexPath, animated: false)
+        IndexChosen = indexPath.row
         performSegueWithIdentifier("GroupDetail", sender: self)
     }
     /*

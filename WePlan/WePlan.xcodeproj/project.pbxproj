@@ -260,8 +260,7 @@
 				66C6060F1AEE050B0096D3CF /* GroupTableViewCell.swift */,
 				8A2CFDD11AF1726E006407E7 /* GroupDetailTableVC.swift */,
 				8A990E721AF2AE3C002EA461 /* ShowGroupMemberVC.swift */,
-				66C6060A1AEAD8A50096D3CF /* CreateGroupVC.swift */,
-				66C606111AEF4E140096D3CF /* FriendSelectTableViewCell.swift */,
+				66DFE33C1AF2FB250036D406 /* CreateGroup */,
 			);
 			name = "GroupsViews&Controllers";
 			sourceTree = "<group>";
@@ -353,6 +352,15 @@
 				544057941AF1E16A00F7B7A3 /* AddGroupToTask */,
 			);
 			name = "TasksViews&Controllers";
+			sourceTree = "<group>";
+		};
+		66DFE33C1AF2FB250036D406 /* CreateGroup */ = {
+			isa = PBXGroup;
+			children = (
+				66C606111AEF4E140096D3CF /* FriendSelectTableViewCell.swift */,
+				66C6060A1AEAD8A50096D3CF /* CreateGroupVC.swift */,
+			);
+			name = CreateGroup;
 			sourceTree = "<group>";
 		};
 		66E575621AA7C19A00F0890A = {
