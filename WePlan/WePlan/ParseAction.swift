@@ -59,13 +59,32 @@ class ParseAction : ParseTask{
     class func deleteItem(objectId: String) {
         ParseBaseAction.deleteItem(objectId: objectId, inClass: TaskConstants.taskClass)
     }
-    
-    class func updateTask(completion: Void -> Void) {
-        //TODO:
-        
-        var predicate = NSPredicate(format: "ttitle = 123 AND towner = 321")
-        var query = PFQuery(className: TaskConstants.taskClass, predicate: predicate)
-        var resultArray = NSArray(array: query.findObjects()!)
+    /**
+    update self task
+    */
+    class func updateTask(newTask: TaskItem,completion: () -> Void) {
+        assert(count(newTask.uniqueId) > 0, "unvalid task id to update")
+        var query = PFQuery(className: TaskConstants.taskClass)
+        query.getObjectInBackgroundWithId(newTask.uniqueId, block: { (updatingTask:PFObject?, error:NSError?) -> Void in
+            if error == nil {
+                if let updatingTask = updatingTask {
+                    updatingTask[TaskConstants.taskTitle] = newTask.taskName
+                    updatingTask[TaskConstants.taskDate] = newTask.dueTime
+                    updatingTask[TaskConstants.taskDescription] = newTask.descript
+                    updatingTask[TaskConstants.taskLocation] = newTask.location
+                    
+                    updatingTask.saveInBackgroundWithBlock({ (success:Bool, error:NSError?) -> Void in
+                        if success {
+                            println("update taskItem succeeded")
+                            completion()
+                        }
+                    })
+                }
+            }else{
+                println("Error \(error)     \(error!.userInfo)")
+
+            }
+        })
         
     }
     
@@ -122,5 +141,5 @@ protocol ParseTask {
     
     callback: update task in model
     */
-    static func updateTask(completion: Void -> Void)
+//    static func updateTask(objectId: String,completion: Void -> Void)
 }
