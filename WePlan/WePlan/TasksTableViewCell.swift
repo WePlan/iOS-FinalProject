@@ -21,6 +21,7 @@ class TasksTableViewCell: UITableViewCell {
     }
     
     
+    @IBOutlet weak var taskDescribLabel: UILabel!
     @IBOutlet weak var taskDueDate: UILabel!
     
     @IBOutlet weak var taskTitle: UILabel!
@@ -52,9 +53,9 @@ class TasksTableViewCell: UITableViewCell {
                 self.groupButton.enabled = true
             }
             if item.descript == "" {
-//                taskDescribLabel.text = "No Description!"
+                taskDescribLabel.text = "No Description!"
             }else {
-//                taskDescribLabel.text = item.descript
+                taskDescribLabel.text = item.descript
             }
             let id = item.owner
             
@@ -67,20 +68,20 @@ class TasksTableViewCell: UITableViewCell {
             
             switch (diffDays) {
             case 0:
-                taskDueDate.text = "Due today at \(hourMins)"
+                taskDueDate.text = "Today at \(hourMins)"
             case 1:
-                taskDueDate.text = "Due tomorrow at \(hourMins)"
+                taskDueDate.text = "Tomorrow at \(hourMins)"
             case 2...7:
-                taskDueDate.text = "Due in \(diffDays) days at \(hourMins)"
+                taskDueDate.text = "In \(diffDays) days at \(hourMins)"
             case 8...30:
                 let diffWeeks = item.dueTime.weeksDiff(currentDate)
-                taskDueDate.text = "Due in \(diffWeeks) weeks at \(hourMins)"
+                taskDueDate.text = "In \(diffWeeks) weeks at \(hourMins)"
             case 31...366:
                 let diffMonths = item.dueTime.monthsDiff(currentDate)
-                taskDueDate.text = "Due in \(diffMonths) months"
+                taskDueDate.text = "In \(diffMonths) months"
             default:
                 let diffYears = item.dueTime.yearsDiff(currentDate)
-                taskDueDate.text = "Due in \(diffYears) years"
+                taskDueDate.text = "In \(diffYears) years"
             }
             
             
