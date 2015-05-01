@@ -38,13 +38,16 @@ class TasksTableViewCell: UITableViewCell {
     
     func updateCell() {
         if let item = self.taskItem {
-            if item.kind.rawValue != 3 {
-                let preImage = UIImage(named: "AddPeople");
+            if item.kind != TaskKind.Group {
+                let preImage = UIImage(named: "AddPeople")
                 let tintedImage = preImage?.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
-                expandCellGroupImage.image = tintedImage
-                expandCellGroupImage.tintColor = UIColor.grayColor()
-                groupButton.enabled = false
-                
+                self.expandCellGroupImage.image = tintedImage
+                self.expandCellGroupImage.tintColor = UIColor.grayColor()
+                self.groupButton.enabled = false
+    
+            }else{
+                self.expandCellGroupImage.image = UIImage(named: "AddPeople")
+                self.groupButton.enabled = true
             }
             if item.descript == "" {
                 taskDescribLabel.text = "No Description!"
