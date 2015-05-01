@@ -17,34 +17,33 @@ class GroupDetailTableVC: UITableViewController {
     @IBOutlet weak var groupDetailLabel: UILabel!
     @IBOutlet weak var groupMemberCount: UILabel!
     
-    
     @IBOutlet weak var DismissButton: UIButton!
     @IBOutlet weak var QuitButton: UIButton!
-    
-    
     @IBOutlet weak var GroupImage: AsyncUIImageView!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //Group image
+        GroupImage.imageFile = group.groupImage
         self.GroupImage.layer.borderWidth = 3.0
         self.GroupImage.layer.borderColor = UIColor.whiteColor().CGColor
-       // self.GroupImage.layer.cornerRadius = 20.0
+        //self.GroupImage.layer.cornerRadius = 20.0
         ImageProcess.changeImageViewRounded(self.GroupImage)
         
-        GroupImage.imageFile = group.groupImage
-        if group.ownerId == user.uniqueId{
+        
+        //Button
+        if group.ownerId == user.uniqueId{   //Owner of the group
             //QuitButton.hidden=true
-            //QuitButton.titleLabel?.textColor=UIColor.redColor()
+            //QuitButton.titleLabel?.textColor=UIColor.grayColor()
             QuitButton.enabled=false
             QuitButton.alpha=0.6
         }
         else{
             //DismissButton.hidden=true
-            //DismissButton.titleLabel?.textColor=UIColor.blueColor()
+            //DismissButton.titleLabel?.textColor=UIColor.grayColor()
             DismissButton.enabled=false
             DismissButton.alpha=0.6
-            
         }
         groupNameLabel.text=group.name
         groupDetailLabel.text=group.description
@@ -160,7 +159,10 @@ class GroupDetailTableVC: UITableViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using [segue destinationViewController].
         // Pass the selected object to the new view controller.
-        
+        if segue.identifier=="ShowGroupMember"{
+            var nextvc=segue.destinationViewController as! ShowGroupMemberVC
+            nextvc.group=group
+        }
         
     }
     
