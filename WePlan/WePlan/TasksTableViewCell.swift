@@ -18,6 +18,9 @@ class TasksTableViewCell: UITableViewCell {
     var taskItem:TaskItem? {
         didSet{
             updateCell()
+            let w = self.frame.size.width
+            lineLength = w - 50
+//            println("linelength \(lineLength)")
         }
     }
     
@@ -162,10 +165,7 @@ class TasksTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
 //        self.backgroundView = UIImageView(image: UIImage(named: "CellBackground"))
-        var swipe: UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: "swipe")
-        swipe.direction = UISwipeGestureRecognizerDirection.Right
-        swipe.numberOfTouchesRequired = 1
-        self.addGestureRecognizer(swipe)
+        setupSwipeGesture()
 //        swipe.state =
     }
 
@@ -175,11 +175,30 @@ class TasksTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func swipe() {
-        println("swiped!")
-        if delegate != nil {
-            self.delegate!.checkButtonPressed(self.index!)
-        }
+    func setupSwipeGesture() {
+        var swipe: UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: "swipeRight")
+        swipe.direction = UISwipeGestureRecognizerDirection.Right
+        swipe.numberOfTouchesRequired = 1
+        self.addGestureRecognizer(swipe)
+        
+        var swipeleft: UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: "swipeLeft")
+        swipeleft.direction = UISwipeGestureRecognizerDirection.Left
+        swipeleft.numberOfTouchesRequired = 1
+        self.addGestureRecognizer(swipeleft)
+    }
+    
+    func swipeRight() {
+        println("swiped! right")
+        crossLine()
+        // TODO: conflict with this delegate, WHY?????
+//        if delegate != nil {
+//            self.delegate!.checkButtonPressed(self.index!)
+//        }
+    }
+    
+    func swipeLeft() {
+        println("left")
+        uncrossLine()
     }
     
 //    func swipe2(gesture: UISwipeGestureRecognizer) {
@@ -188,6 +207,30 @@ class TasksTableViewCell: UITableViewCell {
 //        }
 //    }
     
-    
+    // MARK: Cross out animation
 
+    @IBOutlet weak var line: UIView!
+    @IBOutlet weak var width: NSLayoutConstraint!
+    
+    var lineLength: CGFloat!
+    
+    private func crossLine() {
+        UIView.animateWithDuration(0.6, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
+            //
+            self.width.constant = self.lineLength
+            self.layoutIfNeeded()
+            }) { (finished:Bool) -> Void in
+            //
+        }
+    }
+    
+    private func uncrossLine() {
+        UIView.animateWithDuration(0.6, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
+            self.width.constant = 0
+            self.layoutIfNeeded()
+            }) { (finished:Bool) -> Void in
+            //
+        }
+    }
+    
 }
