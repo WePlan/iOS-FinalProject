@@ -36,7 +36,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" verticalHuggingPriority="300" verticalCompressionResistancePriority="800" selectionStyle="none" indentationWidth="10" reuseIdentifier="taskCellPrototype" rowHeight="85" id="mGe-fM-Qsl" customClass="TasksTableViewCell" customModule="WePlan" customModuleProvider="target">
+                            <tableViewCell contentMode="scaleToFill" verticalHuggingPriority="300" verticalCompressionResistancePriority="800" selectionStyle="none" indentationWidth="10" reuseIdentifier="taskCellPrototype" rowHeight="97" id="mGe-fM-Qsl" customClass="TasksTableViewCell" customModule="WePlan" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mGe-fM-Qsl" id="dVd-5Z-jug">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -61,25 +61,25 @@
                                             </constraints>
                                         </imageView>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vyd-N0-ib2">
-                                            <rect key="frame" x="126" y="52" width="111" height="30"/>
+                                            <rect key="frame" x="126" y="60" width="111" height="30"/>
                                             <state key="normal">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="anQ-rh-dMm">
-                                            <rect key="frame" x="8" y="52" width="110" height="30"/>
+                                            <rect key="frame" x="8" y="60" width="110" height="30"/>
                                             <state key="normal">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KPc-7m-c1m">
-                                            <rect key="frame" x="245" y="52" width="110" height="30"/>
+                                            <rect key="frame" x="245" y="60" width="110" height="30"/>
                                             <state key="normal">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3qP-ZR-FBl">
-                                            <rect key="frame" x="482" y="52" width="110" height="30"/>
+                                            <rect key="frame" x="482" y="60" width="110" height="30"/>
                                             <state key="normal">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
@@ -88,26 +88,26 @@
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mac-zC-SoX">
-                                            <rect key="frame" x="363" y="52" width="111" height="30"/>
+                                            <rect key="frame" x="363" y="60" width="111" height="30"/>
                                             <state key="normal">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                         </button>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CompleteNoWord" translatesAutoresizingMaskIntoConstraints="NO" id="wB6-Fn-9bd">
-                                            <rect key="frame" x="43" y="52" width="40" height="30"/>
+                                            <rect key="frame" x="43" y="60" width="40" height="30"/>
                                         </imageView>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ScheduleNoWord" translatesAutoresizingMaskIntoConstraints="NO" id="39u-3H-TvY">
-                                            <rect key="frame" x="162" y="52" width="40" height="30"/>
+                                            <rect key="frame" x="162" y="60" width="40" height="30"/>
                                         </imageView>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AddPeople" translatesAutoresizingMaskIntoConstraints="NO" id="3XC-P8-cYC">
-                                            <rect key="frame" x="280" y="52" width="40" height="30"/>
+                                            <rect key="frame" x="280" y="60" width="40" height="30"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="40" id="LJC-fW-1cM"/>
                                                 <constraint firstAttribute="height" constant="30" id="nFh-Sg-yQY"/>
                                             </constraints>
                                         </imageView>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Edit" translatesAutoresizingMaskIntoConstraints="NO" id="7gL-gZ-YfQ">
-                                            <rect key="frame" x="398" y="52" width="40" height="30"/>
+                                            <rect key="frame" x="398" y="60" width="40" height="30"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="30" id="LMH-Su-DJh"/>
                                                 <constraint firstAttribute="width" constant="30" id="zfl-fC-nAi"/>
@@ -120,7 +120,7 @@
                                             </variation>
                                         </imageView>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="delete" translatesAutoresizingMaskIntoConstraints="NO" id="FJS-SV-KXy">
-                                            <rect key="frame" x="517" y="52" width="40" height="30"/>
+                                            <rect key="frame" x="517" y="60" width="40" height="30"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="30" id="61Z-OU-ttI"/>
                                                 <constraint firstAttribute="width" constant="30" id="Gqs-0h-ITj"/>
@@ -154,7 +154,7 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <constraints>
-                                        <constraint firstItem="KPc-7m-c1m" firstAttribute="top" secondItem="1yi-Ke-GfN" secondAttribute="bottom" id="2m1-jH-mFQ"/>
+                                        <constraint firstItem="KPc-7m-c1m" firstAttribute="top" secondItem="1yi-Ke-GfN" secondAttribute="bottom" constant="8" symbolic="YES" id="2m1-jH-mFQ"/>
                                         <constraint firstItem="L4j-sD-Bng" firstAttribute="leading" secondItem="Ulm-3S-etZ" secondAttribute="trailing" constant="8" symbolic="YES" id="785-aS-gBn"/>
                                         <constraint firstItem="Ulm-3S-etZ" firstAttribute="bottom" secondItem="f8I-np-2TP" secondAttribute="centerY" id="7nf-Sw-VOJ"/>
                                         <constraint firstItem="FJS-SV-KXy" firstAttribute="centerY" secondItem="3qP-ZR-FBl" secondAttribute="centerY" id="9Rk-5r-vZB"/>
@@ -224,12 +224,12 @@
                                     <outlet property="checkButton" destination="f8I-np-2TP" id="uOz-be-paU"/>
                                     <outlet property="expandCellGroupImage" destination="3XC-P8-cYC" id="ck1-Qw-p8E"/>
                                     <outlet property="groupButton" destination="KPc-7m-c1m" id="Ew2-0H-TXW"/>
-                                    <outlet property="taskDescribLabel" destination="kkS-0K-EqF" id="bmK-aq-1KN"/>
+                                    <outlet property="taskDueDate" destination="kkS-0K-EqF" id="STf-fV-pEW"/>
                                     <outlet property="taskKindLabel" destination="L4j-sD-Bng" id="bBg-8C-mx2"/>
                                     <outlet property="taskTitle" destination="Ulm-3S-etZ" id="ska-5a-fMo"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Empty" id="0H0-CQ-1lG">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Empty" rowHeight="80" id="0H0-CQ-1lG">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0H0-CQ-1lG" id="AQW-1U-H8T">

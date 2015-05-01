@@ -19,7 +19,9 @@ class TasksTableViewCell: UITableViewCell {
             updateCell()
         }
     }
-    @IBOutlet weak var taskDescribLabel: UILabel!
+    
+    
+    @IBOutlet weak var taskDueDate: UILabel!
     
     @IBOutlet weak var taskTitle: UILabel!
     @IBOutlet weak var checkButton: UIButton!
@@ -38,20 +40,48 @@ class TasksTableViewCell: UITableViewCell {
     
     func updateCell() {
         if let item = self.taskItem {
-            if item.kind.rawValue != 3 {
-                let preImage = UIImage(named: "AddPeople");
+            if item.kind != TaskKind.Group {
+                let preImage = UIImage(named: "AddPeople")
                 let tintedImage = preImage?.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
-                expandCellGroupImage.image = tintedImage
-                expandCellGroupImage.tintColor = UIColor.grayColor()
-                groupButton.enabled = false
-                
+                self.expandCellGroupImage.image = tintedImage
+                self.expandCellGroupImage.tintColor = UIColor.grayColor()
+                self.groupButton.enabled = false
+    
+            }else{
+                self.expandCellGroupImage.image = UIImage(named: "AddPeople")
+                self.groupButton.enabled = true
             }
             if item.descript == "" {
-                taskDescribLabel.text = "No Description!"
+//                taskDescribLabel.text = "No Description!"
             }else {
-                taskDescribLabel.text = item.descript
+//                taskDescribLabel.text = item.descript
             }
             let id = item.owner
+            
+            //cal the date diff
+            let format = NSDateFormatter()
+            let currentDate = NSDate()
+            format.timeStyle = NSDateFormatterStyle.ShortStyle
+            let diffDays = item.dueTime.daysDiff(currentDate)
+            let hourMins = format.stringFromDate(item.dueTime)
+            
+            switch (diffDays) {
+            case 0:
+                taskDueDate.text = "Due today at \(hourMins)"
+            case 1:
+                taskDueDate.text = "Due tomorrow at \(hourMins)"
+            case 2...7:
+                taskDueDate.text = "Due in \(diffDays) days at \(hourMins)"
+            case 8...30:
+                let diffWeeks = item.dueTime.weeksDiff(currentDate)
+                taskDueDate.text = "Due in \(diffWeeks) weeks at \(hourMins)"
+            case 31...366:
+                let diffMonths = item.dueTime.monthsDiff(currentDate)
+                taskDueDate.text = "Due in \(diffMonths) months"
+            default:
+                let diffYears = item.dueTime.yearsDiff(currentDate)
+                taskDueDate.text = "Due in \(diffYears) years"
+            }
             
             
             taskTitle.text = item.taskName
