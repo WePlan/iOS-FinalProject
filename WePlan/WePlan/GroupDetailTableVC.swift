@@ -13,7 +13,8 @@ class GroupDetailTableVC: UITableViewController {
     var user = LocalUser.singleInstance
     var group:Group!
     var MemberList:[User]!
-    
+    //TODO: Local User is pfuser.currentuser
+    //TODO: something wrong with using Parse callback func
     func getGroupMembersListFromParse(completion: () -> Void) {
         ParseGroupAction.getGroupMembers(group.memberIds, complete: { (UserList:[User]) -> Void in
             self.MemberList=UserList

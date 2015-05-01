@@ -83,8 +83,9 @@ class ParseImageAction : ImageAction{
         query.findObjectsInBackgroundWithBlock { (results:[AnyObject]?, error:NSError?) -> Void in
             if error == nil {
                 if let results = results as? [PFObject] {
-                    println("\(results.count)   result should be 1")
-                    
+                    if results.count != 1{
+                        println("\(results.count)   result should be 1")
+                    }
                     let object:PFObject = results[0]
                     let file = object.objectForKey(ParseContants.colImageFile) as! PFFile
                     file.getDataInBackgroundWithBlock{ (imageData: NSData?, error: NSError?) -> Void in
