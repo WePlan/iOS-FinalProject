@@ -197,7 +197,10 @@ class TaskListTableViewController: UITableViewController, TasksTableViewCellDele
         return true
     }
     */
-
+    func move() {
+        //
+//        tableView.moveRowAtIndexPath(indexPath: NSIndexPath, toIndexPath: NSIndexPath)
+    }
     
     // MARK: - Navigation
 

@@ -35,7 +35,10 @@ class LocalGroupList {
                 break
             }
         }
-        assert(name != nil, "group name should exist")
+//        assert(name != nil, "group name should exist")
+        if name == nil {
+            name = "dismissed"
+        }
         return name!
     }
 }

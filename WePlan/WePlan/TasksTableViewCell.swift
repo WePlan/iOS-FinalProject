@@ -121,7 +121,11 @@ class TasksTableViewCell: UITableViewCell {
                 taskKindLabel.textColor = WePlanColors.otherPeopleColor()
             case .Group:
                 taskKindLabel.text = LocalGroupList.sharedInstance.getGroupName(objectId: id)
-                taskKindLabel.textColor = WePlanColors.groupColor()
+                if taskKindLabel.text == "dismissed" {
+                    taskKindLabel.textColor = UIColor.redColor()
+                }else{
+                    taskKindLabel.textColor = WePlanColors.groupColor()
+                }
                 
             }
             
