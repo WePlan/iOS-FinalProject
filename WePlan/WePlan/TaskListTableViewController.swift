@@ -71,7 +71,6 @@ class TaskListTableViewController: UITableViewController, TasksTableViewCellDele
     // MARK: - Table view data source
     
     private struct TaskTableViewConstant {
-//        static let cellHeight: CGFloat = 60
         static let commonCellHeight: CGFloat = 54
         static let expandingCellHeight: CGFloat = 87
         
@@ -87,6 +86,7 @@ class TaskListTableViewController: UITableViewController, TasksTableViewCellDele
         return tasks.count + 1
     }
     var selectedTask: Int = -1
+    
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if selectedTask != -1 && selectedTask == indexPath.row {
             return TaskTableViewConstant.expandingCellHeight
@@ -104,18 +104,16 @@ class TaskListTableViewController: UITableViewController, TasksTableViewCellDele
         let cell = tableView.dequeueReusableCellWithIdentifier("taskCellPrototype", forIndexPath: indexPath) as! TasksTableViewCell
 
         // Configure the cell...
-        var item = tasks[indexPath.row]
-        cell.clipsToBounds = true
-        
-        cell.checkState = item.checked
-        cell.taskItem = item
-        println("kind+\(item.kind.rawValue)")
-//        cell.taskTitle.text = item.taskName
-
         cell.selectionStyle = UITableViewCellSelectionStyle.None
+        let item = tasks[indexPath.row]
+        cell.clipsToBounds = true
+        cell.taskItem = item
+        cell.checkState = item.checked
+        
+//        println("kind+\(item.kind.rawValue)")
+        
         cell.index = indexPath
         cell.delegate = self
-//        cell.taskKindLabel.text = item.owner
         return cell
     }
     
@@ -138,6 +136,8 @@ class TaskListTableViewController: UITableViewController, TasksTableViewCellDele
         }
 
     }
+    
+    
     // MARK: - expanding cell button delegate
     func checkDeletePressed(indexPath:NSIndexPath) {
         let deleteName = tasks[indexPath.row].taskName
@@ -154,67 +154,34 @@ class TaskListTableViewController: UITableViewController, TasksTableViewCellDele
         }))
         self.presentViewController(alert, animated: true, completion: nil)
     }
-    //deleteButton at task cell
-//    @IBAction func deleteTask(sender: UIButton) {
-//        let cell = sender.superview?.superview as! TasksTableViewCell
-//        //        let tableView = cell.superview?.superview as! UITableView
-//
-//        if let indexPath = tableView.indexPathForCell(cell) {
-//            //            ParseAction.deleteItem(self.tasks[indexPath.row].uniqueId)
-//            
-//            //            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-//            let deleteName = tasks[indexPath.row].taskName
-//            let deleteId = self.tasks[indexPath.row].uniqueId
-//            //Alert
-//            var alert = UIAlertController(title: "Delete Task", message: "Are you sure you want to delete \(deleteName)", preferredStyle: UIAlertControllerStyle.Alert)
-//            // Delete the row from the data source
-//            alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default,handler: nil))
-//            alert.addAction(UIAlertAction(title: "Delete", style: UIAlertActionStyle.Default, handler: { action in
-//                self.tasks.removeAtIndex(indexPath.row)
-//                self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-//                ParseAction.deleteItem(deleteId)
-//                
-//            }))
-//            self.presentViewController(alert, animated: true, completion: nil)
-//            
-//        }
-//
-//    }
+    
+
     func checkButtonPressed(index: NSIndexPath) {
         var tappedItem = tasks[index.row]
         tappedItem.checked = !tappedItem.checked
         tableView.reloadRowsAtIndexPaths([index], withRowAnimation: UITableViewRowAnimation.Automatic)
     }
+
+    func swipeLeft(index: NSIndexPath) {
+        //
+        let swipedItem = tasks[index.row]
+        swipedItem.checked = false
+        println("cell \(index.row) is unchecked now")
+    }
     
-//        override func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
-//            selectedTask = -1
-////            self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-//        return UITableViewCellEditingStyle.Delete
-//    }
-    
+    func swipeRight(index: NSIndexPath) {
+        //
+        let swipedItem = tasks[index.row]
+        swipedItem.checked = true
+        println("cell \(index.row) is checked now")
+
+    }
    
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         // Return NO if you do not want the specified item to be editable.
         return false
     }
-    
-
-    
-    // Override to support editing the table view.
-//    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-//        
-//        if editingStyle == .Delete {
-//            
-//            // Delete the row from the data source
-//            ParseAction.deleteItem(self.tasks[indexPath.row].uniqueId)
-//            self.tasks.removeAtIndex(indexPath.row)
-//            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-//        } else if editingStyle == .Insert {
-//            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-//        }    
-//    }
-    
 
     /*
     // Override to support rearranging the table view.

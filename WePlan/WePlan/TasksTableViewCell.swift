@@ -11,6 +11,8 @@ import UIKit
 protocol TasksTableViewCellDelegate {
     func checkButtonPressed(index: NSIndexPath)
     func checkDeletePressed(index: NSIndexPath)
+    func swipeLeft(index:NSIndexPath)
+    func swipeRight(index: NSIndexPath)
 //    func checkEditButtonPressed(task:TaskItem,index:NSIndexPath)
 }
 
@@ -133,14 +135,20 @@ class TasksTableViewCell: UITableViewCell {
     var checkState: Bool? {
         didSet{
             if checkState != nil && checkState!{
+                //checked
+                self.width.constant = self.lineLength
+                self.layoutIfNeeded()
                 checkButton.setBackgroundImage(UIImage(named: "checked"), forState: UIControlState())
             }else {
+                //unchecked
+                self.width.constant = 0
+                self.layoutIfNeeded()
                 checkButton.setBackgroundImage(UIImage(named: "unchecked"), forState: UIControlState())
             }
         }
     }
     
-        var index: NSIndexPath?
+    var index: NSIndexPath?
     var delegate: TasksTableViewCellDelegate?
     
 //    @IBAction func clickEditButton(sender: UIButton) {
@@ -188,17 +196,31 @@ class TasksTableViewCell: UITableViewCell {
     }
     
     func swipeRight() {
-        println("swiped! right")
-        crossLine()
-        // TODO: conflict with this delegate, WHY?????
-//        if delegate != nil {
-//            self.delegate!.checkButtonPressed(self.index!)
-//        }
+        if checkState == false {
+            println("swiped! right")
+            crossLine()
+            if delegate != nil {
+                delegate?.swipeRight(index!)
+            }
+            // TODO: conflict with this delegate, WHY?????
+    //        if delegate != nil {
+    //            self.delegate!.checkButtonPressed(self.index!)
+    //        }
+            checkButton.setBackgroundImage(UIImage(named: "checked"), forState: UIControlState())
+            checkState = true
+        }
     }
     
     func swipeLeft() {
-        println("left")
-        uncrossLine()
+        if checkState == true {
+            println("left")
+            uncrossLine()
+            if delegate != nil {
+                delegate?.swipeLeft(index!)
+            }
+            checkButton.setBackgroundImage(UIImage(named: "unchecked"), forState: UIControlState())
+            checkState = false
+        }
     }
     
 //    func swipe2(gesture: UISwipeGestureRecognizer) {
