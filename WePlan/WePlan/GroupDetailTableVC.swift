@@ -38,12 +38,7 @@ class GroupDetailTableVC: UITableViewController {
     }
     
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.getGroupMembersListFromParse { () -> Void in
-            println("Init current members")
-        }
-        
+    override func viewWillAppear(animated: Bool) {
         //Group image
         GroupImage.imageFile = group.groupImage
         self.GroupImage.layer.borderWidth = 3.0
@@ -60,7 +55,7 @@ class GroupDetailTableVC: UITableViewController {
             QuitButton.enabled=false
             QuitButton.alpha=0.6
             DismissButton.enabled=true
-
+            
         }
         else{
             //DismissButton.hidden=true
@@ -72,6 +67,14 @@ class GroupDetailTableVC: UITableViewController {
         groupNameLabel.text=group.name
         groupDetailLabel.text=group.description
         groupMemberCount.text=String(group.memberIds.count)
+    }
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.getGroupMembersListFromParse { () -> Void in
+            println("Init current members")
+        }
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -107,7 +110,8 @@ class GroupDetailTableVC: UITableViewController {
             ParseGroupAction.dismissGroup(self.group.id)
             self.performSegueWithIdentifier(StoryBoardConstant.DimissBack, sender: self)
         }))
-        self.presentViewController(DismissAlert, animated: true, completion: nil)
+        self.navigationController?.popViewControllerAnimated(true)
+        //self.presentViewController(DismissAlert, animated: true, completion: nil)
         
     }
     
@@ -124,7 +128,8 @@ class GroupDetailTableVC: UITableViewController {
             println("choose yes!!")
             //Quit Group
             ParseGroupAction.quitGroup(self.group.id)
-            self.performSegueWithIdentifier(StoryBoardConstant.QuitBack, sender: self)
+            //self.performSegueWithIdentifier(StoryBoardConstant.QuitBack, sender: self)
+            self.navigationController?.popViewControllerAnimated(true)
         }))
         self.presentViewController(QuitAlert, animated: true, completion: nil)
     }
