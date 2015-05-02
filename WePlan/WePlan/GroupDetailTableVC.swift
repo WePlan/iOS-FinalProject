@@ -33,6 +33,8 @@ class GroupDetailTableVC: UITableViewController {
     private struct StoryBoardConstant{
         static let TopreviousView="BacktoGroupList"
         static let ToNextView="ShowGroupMember"
+        static let DimissBack="Dismissunwind"
+        static let QuitBack="Quitunwind"
     }
     
     
@@ -103,8 +105,10 @@ class GroupDetailTableVC: UITableViewController {
             println("choose yes!!")
             //Dismiss Group
             ParseGroupAction.dismissGroup(self.group.id)
+            self.performSegueWithIdentifier(StoryBoardConstant.DimissBack, sender: self)
         }))
         self.presentViewController(DismissAlert, animated: true, completion: nil)
+        
     }
     
     
@@ -120,6 +124,7 @@ class GroupDetailTableVC: UITableViewController {
             println("choose yes!!")
             //Quit Group
             ParseGroupAction.quitGroup(self.group.id)
+            self.performSegueWithIdentifier(StoryBoardConstant.QuitBack, sender: self)
         }))
         self.presentViewController(QuitAlert, animated: true, completion: nil)
     }
