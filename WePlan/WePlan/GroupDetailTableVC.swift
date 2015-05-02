@@ -24,6 +24,9 @@ class GroupDetailTableVC: UITableViewController {
     
     @IBOutlet weak var groupNameLabel: UILabel!
     @IBOutlet weak var groupDetailLabel: UILabel!
+    @IBOutlet weak var groupOwnerName: UILabel!
+    
+    
     @IBOutlet weak var groupMemberCount: UILabel!
     
     @IBOutlet weak var DismissButton: UIButton!
@@ -65,7 +68,10 @@ class GroupDetailTableVC: UITableViewController {
             QuitButton.enabled=true
         }
         groupNameLabel.text=group.name
-        groupDetailLabel.text=group.description
+        groupDetailLabel.text="Description: \(group.description)"
+        ParseGroupAction.getGroupOwnerDetail(group.ownerId, complete: { (owner:User) -> Void in
+            self.groupOwnerName.text = "Owner: \(owner.name)"
+        })
         groupMemberCount.text=String(group.memberIds.count)
     }
     
