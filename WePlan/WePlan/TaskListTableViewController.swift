@@ -109,7 +109,7 @@ class TaskListTableViewController: UITableViewController, TasksTableViewCellDele
         cell.clipsToBounds = true
         cell.taskItem = item
         cell.checkState = item.checked
-        
+        cell.endIndex = tasks.count-1
 //        println("kind+\(item.kind.rawValue)")
         
         cell.index = indexPath
@@ -176,7 +176,31 @@ class TaskListTableViewController: UITableViewController, TasksTableViewCellDele
         println("cell \(index.row) is checked now")
 
     }
+    
+    func moveToEnd(index: NSIndexPath) {
+        let oldPath = index
+        var newPath = NSIndexPath(forRow: tasks.count-1, inSection: 0)
+        
+        let tmp = tasks[index.row]
+        tasks.removeAtIndex(index.row)
+        tasks.append(tmp)
+        tableView.moveRowAtIndexPath(oldPath, toIndexPath: newPath)
+        tableView.reloadData()
+    }
+    
+    func moveToFirst(index: NSIndexPath) {
+        let oldPath = index
+        var newPath = NSIndexPath(forRow: 0, inSection: 0)
+        
+        let tmp = tasks[index.row]
+        tasks.removeAtIndex(index.row)
+        tasks.insert(tmp, atIndex: 0)
+        tableView.moveRowAtIndexPath(oldPath, toIndexPath: newPath)
+        tableView.reloadData()
+    }
    
+    
+    
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         // Return NO if you do not want the specified item to be editable.
@@ -197,10 +221,7 @@ class TaskListTableViewController: UITableViewController, TasksTableViewCellDele
         return true
     }
     */
-    func move() {
-        //
-//        tableView.moveRowAtIndexPath(indexPath: NSIndexPath, toIndexPath: NSIndexPath)
-    }
+   
     
     // MARK: - Navigation
 

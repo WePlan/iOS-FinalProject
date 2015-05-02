@@ -14,6 +14,8 @@ protocol TasksTableViewCellDelegate {
     func swipeLeft(index:NSIndexPath)
     func swipeRight(index: NSIndexPath)
 //    func checkEditButtonPressed(task:TaskItem,index:NSIndexPath)
+    func moveToEnd(index: NSIndexPath)
+    func moveToFirst(index: NSIndexPath)
 }
 
 class TasksTableViewCell: UITableViewCell {
@@ -25,7 +27,7 @@ class TasksTableViewCell: UITableViewCell {
 //            println("linelength \(lineLength)")
         }
     }
-    
+    var endIndex: Int!
     
     @IBOutlet weak var taskDescribLabel: UILabel!
     @IBOutlet weak var taskDueDate: UILabel!
@@ -247,6 +249,8 @@ class TasksTableViewCell: UITableViewCell {
             self.layoutIfNeeded()
             }) { (finished:Bool) -> Void in
             //
+//                println("going to move")
+            self.delegate?.moveToEnd(self.index!)
         }
     }
     
@@ -256,6 +260,8 @@ class TasksTableViewCell: UITableViewCell {
             self.layoutIfNeeded()
             }) { (finished:Bool) -> Void in
             //
+            self.delegate?.moveToFirst(self.index!)
+            
         }
     }
     
