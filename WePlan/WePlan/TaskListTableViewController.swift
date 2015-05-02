@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class TaskListTableViewController: UITableViewController, TasksTableViewCellDelegate,MBProgressHUDDelegate {
     var tasks:[TaskItem] = []
     
@@ -111,7 +112,7 @@ class TaskListTableViewController: UITableViewController, TasksTableViewCellDele
         cell.checkState = item.checked
         cell.endIndex = tasks.count-1
 //        println("kind+\(item.kind.rawValue)")
-        
+        println("cell index: \(indexPath.row) is loading")
         cell.index = indexPath
         cell.delegate = self
         return cell
@@ -162,43 +163,68 @@ class TaskListTableViewController: UITableViewController, TasksTableViewCellDele
         tableView.reloadRowsAtIndexPaths([index], withRowAnimation: UITableViewRowAnimation.Automatic)
     }
 
-    func swipeLeft(index: NSIndexPath) {
+    func swipeLeft(task: TaskItem) {
         //
+        let index = findIndexPath(task)
         let swipedItem = tasks[index.row]
         swipedItem.checked = false
         println("cell \(index.row) is unchecked now")
     }
     
-    func swipeRight(index: NSIndexPath) {
+    func swipeRight(task: TaskItem) {
         //
+        let index = findIndexPath(task)
         let swipedItem = tasks[index.row]
         swipedItem.checked = true
         println("cell \(index.row) is checked now")
 
     }
     
-    func moveToEnd(index: NSIndexPath) {
+//    func moveToEnd(index: NSIndexPath)
+    func moveToEnd(task: TaskItem)
+    {
+        let index = findIndexPath(task)
+        println("Right move index: \(index.row)")
         let oldPath = index
         var newPath = NSIndexPath(forRow: tasks.count-1, inSection: 0)
-        
-        let tmp = tasks[index.row]
-        tasks.removeAtIndex(index.row)
-        tasks.append(tmp)
+
         tableView.moveRowAtIndexPath(oldPath, toIndexPath: newPath)
-        tableView.reloadData()
+        self.tableView(self.tableView, moveRowAtIndexPath: oldPath, toIndexPath: newPath)
+//        tableView.reloadData()
     }
     
-    func moveToFirst(index: NSIndexPath) {
+    
+    func moveToFirst(task: TaskItem)
+    {
+        let index = findIndexPath(task)
+        println("Left move index: \(index.row)")
         let oldPath = index
         var newPath = NSIndexPath(forRow: 0, inSection: 0)
-        
-        let tmp = tasks[index.row]
-        tasks.removeAtIndex(index.row)
-        tasks.insert(tmp, atIndex: 0)
+
         tableView.moveRowAtIndexPath(oldPath, toIndexPath: newPath)
-        tableView.reloadData()
+        self.tableView(self.tableView, moveRowAtIndexPath: oldPath, toIndexPath: newPath)
+//        tableView.reloadData()
     }
-   
+    private func findIndexPath(task:TaskItem) -> NSIndexPath {
+        var indexPath: NSIndexPath!
+        for var index = 0 ; index < tasks.count ; index++ {
+            if tasks[index].uniqueId == task.uniqueId {
+                indexPath = NSIndexPath(forRow: index, inSection: 0)
+                break
+            }
+        }
+        return indexPath
+    }
+    // Override to support rearranging the table view.
+    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
+        println("datasource func invoked")
+        for each in self.tasks {
+            println( each.taskName)
+        }
+        let tmp = tasks[fromIndexPath.row]
+        tasks.removeAtIndex(fromIndexPath.row)
+        tasks.insert(tmp, atIndex: toIndexPath.row)
+    }
     
     
     // Override to support conditional editing of the table view.
@@ -207,12 +233,9 @@ class TaskListTableViewController: UITableViewController, TasksTableViewCellDele
         return false
     }
 
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
+    
+    
+    
 
     /*
     // Override to support conditional rearranging of the table view.

@@ -11,11 +11,11 @@ import UIKit
 protocol TasksTableViewCellDelegate {
     func checkButtonPressed(index: NSIndexPath)
     func checkDeletePressed(index: NSIndexPath)
-    func swipeLeft(index:NSIndexPath)
-    func swipeRight(index: NSIndexPath)
+    func swipeLeft(task: TaskItem )
+    func swipeRight(task: TaskItem )
 //    func checkEditButtonPressed(task:TaskItem,index:NSIndexPath)
-    func moveToEnd(index: NSIndexPath)
-    func moveToFirst(index: NSIndexPath)
+    func moveToEnd(task: TaskItem )
+    func moveToFirst(task: TaskItem)
 }
 
 class TasksTableViewCell: UITableViewCell {
@@ -206,7 +206,7 @@ class TasksTableViewCell: UITableViewCell {
             println("swiped! right")
             crossLine()
             if delegate != nil {
-                delegate?.swipeRight(index!)
+                delegate?.swipeRight(taskItem!)
             }
             // TODO: conflict with this delegate, WHY?????
     //        if delegate != nil {
@@ -222,7 +222,7 @@ class TasksTableViewCell: UITableViewCell {
             println("left")
             uncrossLine()
             if delegate != nil {
-                delegate?.swipeLeft(index!)
+                delegate?.swipeLeft(taskItem!)
             }
             checkButton.setBackgroundImage(UIImage(named: "unchecked"), forState: UIControlState())
             checkState = false
@@ -250,7 +250,7 @@ class TasksTableViewCell: UITableViewCell {
             }) { (finished:Bool) -> Void in
             //
 //                println("going to move")
-            self.delegate?.moveToEnd(self.index!)
+            self.delegate?.moveToEnd(self.taskItem!)
         }
     }
     
@@ -260,7 +260,7 @@ class TasksTableViewCell: UITableViewCell {
             self.layoutIfNeeded()
             }) { (finished:Bool) -> Void in
             //
-            self.delegate?.moveToFirst(self.index!)
+            self.delegate?.moveToFirst(self.taskItem!)
             
         }
     }
