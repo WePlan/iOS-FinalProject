@@ -221,19 +221,39 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Slu-XM-ywq" id="hDf-PA-C4j">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <view alpha="0.59999999999999998" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="iB2-x4-EXd" userLabel="GroupBackgroundView">
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="250"/>
+                                                    <subviews>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="GroupBackground1" translatesAutoresizingMaskIntoConstraints="NO" id="GsF-m5-sRb" userLabel="BgImage">
+                                                            <rect key="frame" x="0.0" y="0.0" width="600" height="250"/>
+                                                        </imageView>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="GsF-m5-sRb" firstAttribute="leading" secondItem="iB2-x4-EXd" secondAttribute="leading" id="079-ea-fq9"/>
+                                                        <constraint firstItem="GsF-m5-sRb" firstAttribute="top" secondItem="iB2-x4-EXd" secondAttribute="top" id="If1-MH-11C"/>
+                                                        <constraint firstAttribute="trailing" secondItem="GsF-m5-sRb" secondAttribute="trailing" id="af9-1E-STF"/>
+                                                        <constraint firstAttribute="bottom" secondItem="GsF-m5-sRb" secondAttribute="bottom" id="j5C-4S-WJL"/>
+                                                    </constraints>
+                                                </view>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" image="GroupDefaultPic" translatesAutoresizingMaskIntoConstraints="NO" id="hqT-ig-TSG" customClass="AsyncUIImageView" customModule="WePlan" customModuleProvider="target">
+                                                    <rect key="frame" x="253" y="78" width="94" height="94"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="hqT-ig-TSG" secondAttribute="height" multiplier="1:1" id="hIn-mq-okJ"/>
+                                                    </constraints>
+                                                </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="260" verticalHuggingPriority="260" horizontalCompressionResistancePriority="760" verticalCompressionResistancePriority="760" text="Group Details" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SSj-0O-2x7">
-                                                    <rect key="frame" x="250" y="222" width="100" height="20"/>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <rect key="frame" x="265" y="228" width="71" height="14"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="255" verticalHuggingPriority="255" horizontalCompressionResistancePriority="755" verticalCompressionResistancePriority="755" text="Group Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7dd-kV-IK4">
-                                                    <rect key="frame" x="246" y="192" width="109" height="22"/>
+                                                    <rect key="frame" x="243" y="172" width="115" height="23"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="TUH-7i-ezw"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="19"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="default">
                                                         <mask key="constraints">
@@ -241,22 +261,28 @@
                                                         </mask>
                                                     </variation>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" image="GroupDefaultPic" translatesAutoresizingMaskIntoConstraints="NO" id="hqT-ig-TSG" customClass="AsyncUIImageView" customModule="WePlan" customModuleProvider="target">
-                                                    <rect key="frame" x="208" y="8" width="184" height="184"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" secondItem="hqT-ig-TSG" secondAttribute="height" multiplier="1:1" id="hIn-mq-okJ"/>
-                                                    </constraints>
-                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Owner" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lSu-Ql-9X5">
+                                                    <rect key="frame" x="279" y="203" width="43" height="17"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <color key="backgroundColor" red="0.2470588235" green="0.63137254899999995" blue="0.97254901959999995" alpha="0.46000000000000002" colorSpace="calibratedRGB"/>
                                             <constraints>
-                                                <constraint firstItem="hqT-ig-TSG" firstAttribute="top" secondItem="hDf-PA-C4j" secondAttribute="topMargin" id="6jJ-qA-qzc"/>
+                                                <constraint firstAttribute="trailing" secondItem="iB2-x4-EXd" secondAttribute="trailing" id="Av5-4L-cYt"/>
+                                                <constraint firstItem="SSj-0O-2x7" firstAttribute="top" secondItem="lSu-Ql-9X5" secondAttribute="bottom" constant="8" symbolic="YES" id="GPx-3W-M4E"/>
+                                                <constraint firstAttribute="bottom" secondItem="iB2-x4-EXd" secondAttribute="bottom" id="Gsu-RE-w4k"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="SSj-0O-2x7" secondAttribute="bottom" id="Hwc-ED-Lel"/>
+                                                <constraint firstItem="iB2-x4-EXd" firstAttribute="leading" secondItem="hDf-PA-C4j" secondAttribute="leading" id="ITs-NM-CeB"/>
                                                 <constraint firstItem="7dd-kV-IK4" firstAttribute="top" secondItem="hqT-ig-TSG" secondAttribute="bottom" id="Ig4-M7-JiX"/>
-                                                <constraint firstItem="SSj-0O-2x7" firstAttribute="top" secondItem="7dd-kV-IK4" secondAttribute="bottom" constant="8" symbolic="YES" id="MhY-GK-SGg"/>
+                                                <constraint firstItem="iB2-x4-EXd" firstAttribute="top" secondItem="hDf-PA-C4j" secondAttribute="top" id="Irl-IY-PYN"/>
+                                                <constraint firstAttribute="centerX" secondItem="lSu-Ql-9X5" secondAttribute="centerX" id="J5w-s8-ME1"/>
+                                                <constraint firstItem="lSu-Ql-9X5" firstAttribute="top" secondItem="7dd-kV-IK4" secondAttribute="bottom" constant="8" symbolic="YES" id="LYL-O4-5Nz"/>
                                                 <constraint firstAttribute="centerX" secondItem="7dd-kV-IK4" secondAttribute="centerX" id="UQ4-ne-SLx"/>
                                                 <constraint firstAttribute="centerX" secondItem="SSj-0O-2x7" secondAttribute="centerX" id="ZUh-P2-eab"/>
                                                 <constraint firstAttribute="centerX" secondItem="hqT-ig-TSG" secondAttribute="centerX" id="dkb-BB-z1y"/>
+                                                <constraint firstAttribute="centerY" secondItem="hqT-ig-TSG" secondAttribute="centerY" id="tnU-nP-wWo"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -446,6 +472,7 @@
                         <outlet property="groupDetailLabel" destination="SSj-0O-2x7" id="ACm-f4-Idm"/>
                         <outlet property="groupMemberCount" destination="FyY-7x-gQd" id="UeU-0H-AT4"/>
                         <outlet property="groupNameLabel" destination="7dd-kV-IK4" id="GDC-Pj-DgE"/>
+                        <outlet property="groupOwnerName" destination="lSu-Ql-9X5" id="20T-OD-Fus"/>
                         <segue destination="jYM-Cc-Ek1" kind="show" identifier="ShowGroupMember" id="hzk-tE-N75"/>
                     </connections>
                 </tableViewController>
@@ -761,6 +788,7 @@
     <resources>
         <image name="Arrow-1" width="16" height="27"/>
         <image name="DeleteButtonBorder" width="310" height="80"/>
+        <image name="GroupBackground1" width="428" height="600"/>
         <image name="GroupDefaultPic" width="550" height="550"/>
         <image name="UserDefaultPic" width="1145" height="1054"/>
         <image name="VerticalDivider" width="1" height="99"/>
