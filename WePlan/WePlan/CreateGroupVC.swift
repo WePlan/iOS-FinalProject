@@ -31,7 +31,7 @@ class CreateGroupVC: UIViewController ,UITableViewDataSource, UITableViewDelegat
 
         self.gruopNameTextField.delegate = self
         self.descTextField.delegate = self
-        memberNumLabel.text = "1 members"
+        memberNumLabel.text = "Members: 1 members"
     }
     
     // MARK: - TableView
@@ -55,7 +55,7 @@ class CreateGroupVC: UIViewController ,UITableViewDataSource, UITableViewDelegat
     // MARK: deleget for Cell
     func selectFriend(uid: String) {
         selectedFriends.append(uid)
-        memberNumLabel.text = "\(selectedFriends.count)"
+        memberNumLabel.text = "\(selectedFriends.count) members"
     }
     func deselectFriend(uid: String) {
         var find = -1
@@ -68,7 +68,7 @@ class CreateGroupVC: UIViewController ,UITableViewDataSource, UITableViewDelegat
         
         if find != -1{
             selectedFriends.removeAtIndex(find)
-            memberNumLabel.text = "\(selectedFriends.count)"
+            memberNumLabel.text = "\(selectedFriends.count) members"
         }
     }
     // MARK: - TextFiled
