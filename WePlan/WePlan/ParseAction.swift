@@ -87,6 +87,25 @@ class ParseAction : ParseTask{
         })
         
     }
+    class func changeTaskCheck(task: TaskItem, checked: Bool) {
+        assert(count(task.uniqueId) > 0, "unvalid task id to update")
+        var query = PFQuery(className: TaskConstants.taskClass)
+        query.getObjectInBackgroundWithId(task.uniqueId, block: { (updatingTask:PFObject?, error: NSError?) -> Void in
+            if error == nil {
+                if let updatingTask = updatingTask {
+                    updatingTask["checked"] = checked
+                    updatingTask.saveInBackgroundWithBlock({ (success:Bool, error:NSError?) -> Void in
+                        if success {
+                            println("check or unchecked taskItem succeeded")
+                            
+                        }
+                    })
+                }
+            }else{
+                println("Error \(error)     \(error!.userInfo)")
+            }
+        })
+    }
     
     class func getInitialDataFromParse(completion: ([TaskItem]) -> Void) {
         var data:[TaskItem] = []
@@ -115,7 +134,10 @@ class ParseAction : ParseTask{
                         }else {
                             item = TaskItem(name: title, id:id!,due: due, descript: descript)
                         }
-                        
+                        let checked = object.objectForKey("checked") as? Bool
+                        if checked != nil && checked! {
+                            item.checked = true
+                        }
                         
                         data.append(item)
                     }

@@ -144,6 +144,7 @@ class TasksTableViewCell: UITableViewCell {
                 //checked
                 self.width.constant = self.lineLength
                 self.layoutIfNeeded()
+                
                 checkButton.setBackgroundImage(UIImage(named: "checked"), forState: UIControlState())
             }else {
                 //unchecked

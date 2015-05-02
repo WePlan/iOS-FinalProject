@@ -168,6 +168,8 @@ class TaskListTableViewController: UITableViewController, TasksTableViewCellDele
         let index = findIndexPath(task)
         let swipedItem = tasks[index.row]
         swipedItem.checked = false
+        
+        ParseAction.changeTaskCheck(swipedItem, checked: false)
         println("cell \(index.row) is unchecked now")
     }
     
@@ -176,6 +178,7 @@ class TaskListTableViewController: UITableViewController, TasksTableViewCellDele
         let index = findIndexPath(task)
         let swipedItem = tasks[index.row]
         swipedItem.checked = true
+        ParseAction.changeTaskCheck(swipedItem, checked: true)
         println("cell \(index.row) is checked now")
 
     }
