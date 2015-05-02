@@ -10,7 +10,7 @@ import UIKit
 
 class GroupDetailTableVC: UITableViewController {
 
-    var user = LocalUser.singleInstance
+    var user = PFUser.currentUser()!
     var group:Group!
     var MemberList:[User]!
     //TODO: Local User is pfuser.currentuser
@@ -30,6 +30,11 @@ class GroupDetailTableVC: UITableViewController {
     @IBOutlet weak var QuitButton: UIButton!
     @IBOutlet weak var GroupImage: AsyncUIImageView!
     
+    private struct StoryBoardConstant{
+        static let TopreviousView="BacktoGroupList"
+        static let ToNextView="ShowGroupMember"
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,19 +49,23 @@ class GroupDetailTableVC: UITableViewController {
         //self.GroupImage.layer.cornerRadius = 20.0
         ImageProcess.changeImageViewRounded(self.GroupImage)
         
-        
+        var currentID=user.objectId
+        println("\(group.ownerId) and \(currentID)")
         //Button
-        if group.ownerId == user.uniqueId{   //Owner of the group
+        if group.ownerId == currentID{   //Owner of the group
             //QuitButton.hidden=true
             //QuitButton.titleLabel?.textColor=UIColor.grayColor()
             QuitButton.enabled=false
             QuitButton.alpha=0.6
+            DismissButton.enabled=true
+
         }
         else{
             //DismissButton.hidden=true
             //DismissButton.titleLabel?.textColor=UIColor.grayColor()
             DismissButton.enabled=false
             DismissButton.alpha=0.6
+            QuitButton.enabled=true
         }
         groupNameLabel.text=group.name
         groupDetailLabel.text=group.description
@@ -81,6 +90,39 @@ class GroupDetailTableVC: UITableViewController {
         performSegueWithIdentifier("ShowGroupMember", sender: self)
     }
     
+    
+    @IBAction func DismisGroup(sender: AnyObject) {
+        var DismissAlert = UIAlertController(title: "Sure to Dismiss?", message:
+            "The group will not exist.", preferredStyle: UIAlertControllerStyle.Alert)
+        DismissAlert.addAction(UIAlertAction(title: "Cancle", style: .Default, handler: { (action:UIAlertAction!) -> Void in
+            println("choose cancle")
+            return
+        }))
+        DismissAlert.addAction(UIAlertAction(title: "Yes", style: .Default, handler:{
+            (action:UIAlertAction!) -> Void in
+            println("choose yes!!")
+            //Dismiss Group
+            ParseGroupAction.dismissGroup(self.group.id)
+        }))
+        self.presentViewController(DismissAlert, animated: true, completion: nil)
+    }
+    
+    
+    
+    @IBAction func QuitGroup(sender: AnyObject) {
+        var QuitAlert = UIAlertController(title: "Sure to Quit?", message:
+            "You will not get task send form this group.", preferredStyle: UIAlertControllerStyle.Alert)
+        QuitAlert.addAction(UIAlertAction(title: "Cancle", style: .Default, handler: { (action:UIAlertAction!) -> Void in
+            println("choose cancle")
+        }))
+        QuitAlert.addAction(UIAlertAction(title: "Yes", style: .Default, handler:{
+            (action:UIAlertAction!) -> Void in
+            println("choose yes!!")
+            //Quit Group
+            ParseGroupAction.quitGroup(self.group.id)
+        }))
+        self.presentViewController(QuitAlert, animated: true, completion: nil)
+    }
     
     
     
