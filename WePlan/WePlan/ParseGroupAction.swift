@@ -294,8 +294,9 @@ class ParseGroupAction : ParseGroup{
                 if let object = object {
                     var groups = object[GroupUserConstant.groupIds] as! [String]
                     var index = 0
+                    println("---------\(uid),")
                     for each in groups {
-                        if each == uid {
+                        if each == groupId{
                             break
                         }
                         else{
