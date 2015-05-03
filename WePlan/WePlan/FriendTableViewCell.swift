@@ -10,6 +10,7 @@ import UIKit
 
 protocol FriendTableCellDeleget {
     func toAddTask(friend:User)
+    func removeFriendDelegate(friend:User)
 }
 
 class FriendTableViewCell: UITableViewCell {
@@ -19,6 +20,7 @@ class FriendTableViewCell: UITableViewCell {
             updateCell()
         }
     }
+//    var indexPath:NSIndexPath?
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var userProfileImage: AsyncUIImageView!
     @IBOutlet weak var userEmailLabel: UILabel!
@@ -49,6 +51,12 @@ class FriendTableViewCell: UITableViewCell {
         
     }
 
+    @IBAction func clickRemoveFriend(sender: UIButton) {
+        if delegate != nil {
+            self.delegate!.removeFriendDelegate(self.friend!)
+        }
+        
+    }
     @IBAction func userDetail(sender: UIButton) {
     }
     

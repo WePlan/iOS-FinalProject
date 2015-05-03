@@ -62,4 +62,8 @@ class LocalFriendList {
         return name!
     }
     
+    func deleteFriendAtIndex (index: Int , completion: () -> Void) {
+        self.friendList.removeAtIndex(index)
+        
+    }
 }

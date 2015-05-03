@@ -91,37 +91,37 @@ class FriendsTableVC: UITableViewController , FriendTableCellDeleget{
         return false
     }
     
-    override func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
-        return UITableViewCellEditingStyle.Delete
-    }
+//    override func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
+//        return UITableViewCellEditingStyle.Delete
+//    }
 
     
     // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            let deleteId = localFriendList.getFriendAtIndex(indexPath.row)?.uid
-            let deleteName = localFriendList.getFriendAtIndex(indexPath.row)?.name
-            //Alert
-            var alert = UIAlertController(title: "Delete Friend", message: "Are you sure you want to delete \(deleteName)", preferredStyle: UIAlertControllerStyle.Alert)
-            // Delete the row from the data source
-            alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default,handler: nil))
-            alert.addAction(UIAlertAction(title: "Delete", style: UIAlertActionStyle.Default, handler: { action in
-                self.localFriendList.friendList.removeAtIndex(indexPath.row)
-                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-                ParseFriendAction.deleteFriend(deleteId!, complete: { (result :Bool) -> Void in
-                    if result == true {
-                        println("Deleted!")
-                    }else {
-                        println("fail!")
-                    }
-                })
-            }))
-            self.presentViewController(alert, animated: true, completion: nil)
-            
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
+//    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+//        if editingStyle == .Delete {
+//            let deleteId = localFriendList.getFriendAtIndex(indexPath.row)?.uid
+//            let deleteName = localFriendList.getFriendAtIndex(indexPath.row)?.name
+//            //Alert
+//            var alert = UIAlertController(title: "Delete Friend", message: "Are you sure you want to delete \(deleteName)", preferredStyle: UIAlertControllerStyle.Alert)
+//            // Delete the row from the data source
+//            alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default,handler: nil))
+//            alert.addAction(UIAlertAction(title: "Delete", style: UIAlertActionStyle.Default, handler: { action in
+//                self.localFriendList.friendList.removeAtIndex(indexPath.row)
+//                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+//                ParseFriendAction.deleteFriend(deleteId!, complete: { (result :Bool) -> Void in
+//                    if result == true {
+//                        println("Deleted!")
+//                    }else {
+//                        println("fail!")
+//                    }
+//                })
+//            }))
+//            self.presentViewController(alert, animated: true, completion: nil)
+//            
+//        } else if editingStyle == .Insert {
+//            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+//        }    
+//    }
     
 
     /*
@@ -207,6 +207,31 @@ class FriendsTableVC: UITableViewController , FriendTableCellDeleget{
 //        (cell as! FriendTableViewCell).endNoticeCell()
 //    }
     
+    func removeFriendDelegate(friend:User) {
+        let index = findIndexPath(friend)
+        
+        let deleteId = friend.uid
+        let deleteName = friend.name
+        
+        //Alert
+        var alert = UIAlertController(title: "Delete Friend", message: "Are you sure you want to delete \(deleteName)", preferredStyle: UIAlertControllerStyle.Alert)
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default,handler: nil))
+        alert.addAction(UIAlertAction(title: "Delete", style: UIAlertActionStyle.Default, handler: { action in
+            self.localFriendList.friendList.removeAtIndex(self.selected)
+            self.tableView.deleteRowsAtIndexPaths([index], withRowAnimation: .Fade)
+            // Delete the row from the data source
+            ParseFriendAction.deleteFriend(deleteId, complete: { (result :Bool) -> Void in
+                if result == true {
+                    println("Deleted!")
+                }else {
+                    println("fail!")
+                }
+            })
+        }))
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
 //
     //MARK: - Navigation
     
@@ -221,5 +246,15 @@ class FriendsTableVC: UITableViewController , FriendTableCellDeleget{
         a.entrypoint = "Friend"
         a.assignPeople = friend 
         presentViewController(vc, animated: true, completion: nil)
+    }
+    private func findIndexPath(friend:User) -> NSIndexPath {
+        var indexPath: NSIndexPath!
+        for var index = 0 ; index < localFriendList.friendList.count ; index++ {
+            if localFriendList.friendList[index].uid == friend.uid {
+                indexPath = NSIndexPath(forRow: index, inSection: 0)
+                break
+            }
+        }
+        return indexPath
     }
 }
