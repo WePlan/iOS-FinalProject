@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		542376841AF6BC3B00FD53E2 /* SetUpScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 542376831AF6BC3B00FD53E2 /* SetUpScheduleViewController.swift */; };
 		544057961AF1E2A900F7B7A3 /* AddGroupToTaskTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544057951AF1E2A900F7B7A3 /* AddGroupToTaskTableViewController.swift */; };
 		544057981AF1E85000F7B7A3 /* addGroupToTaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544057971AF1E85000F7B7A3 /* addGroupToTaskTableViewCell.swift */; };
 		546F2CCD1AE55BC900722AE7 /* AssignATaskToFriendTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546F2CCC1AE55BC900722AE7 /* AssignATaskToFriendTableViewController.swift */; };
@@ -92,6 +93,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		542376831AF6BC3B00FD53E2 /* SetUpScheduleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetUpScheduleViewController.swift; sourceTree = "<group>"; };
 		544057951AF1E2A900F7B7A3 /* AddGroupToTaskTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddGroupToTaskTableViewController.swift; sourceTree = "<group>"; };
 		544057971AF1E85000F7B7A3 /* addGroupToTaskTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = addGroupToTaskTableViewCell.swift; sourceTree = "<group>"; };
 		546F2CCC1AE55BC900722AE7 /* AssignATaskToFriendTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignATaskToFriendTableViewController.swift; sourceTree = "<group>"; };
@@ -352,6 +354,7 @@
 			isa = PBXGroup;
 			children = (
 				6689E50D1ABCA3680079C8ED /* TaskListTableViewController.swift */,
+				542376831AF6BC3B00FD53E2 /* SetUpScheduleViewController.swift */,
 				54FDA3751AF1A20200D41623 /* CreateTask */,
 				66AF5DFE1ACD1372006AA027 /* TasksViews */,
 				546F2CD41AE5D5AE00722AE7 /* AddPeopleToTask */,
@@ -563,6 +566,7 @@
 				8A990E731AF2AE3C002EA461 /* ShowGroupMemberVC.swift in Sources */,
 				546F2CD01AE5651100722AE7 /* AssignTaskToFriendTableViewCell.swift in Sources */,
 				546F2CD61AE5DA1F00722AE7 /* AddPeopleToTaskTableViewCell.swift in Sources */,
+				542376841AF6BC3B00FD53E2 /* SetUpScheduleViewController.swift in Sources */,
 				6689E5101ABCCD120079C8ED /* TaskItem.swift in Sources */,
 				66E575951AA91E3400F0890A /* TabBarViewController.swift in Sources */,
 				66FC89E61AD7173000A9017A /* FriendTableViewCell.swift in Sources */,
