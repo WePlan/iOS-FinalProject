@@ -58,7 +58,7 @@ class SearchFriendTableViewCell: UITableViewCell {
         if delegate != nil {
             self.addButton.enabled = false
             self.addButton.setTitleColor(UIColor.grayColor(), forState: UIControlState.Normal)
-            addButton.setTitleColor(UIColor.grayColor(), forState: UIControlState.Normal)
+            addButton.setBackgroundImage(UIImage(named: "ButtonBorderGray"), forState: UIControlState.Normal)
             if user == nil {
                 println("user is nil!")
             }else{
