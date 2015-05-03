@@ -26,7 +26,22 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
     }
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+        pulldownView()
         view.endEditing(true)
+    }
+    
+    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+        let frame = self.view.frame
+        if frame.origin == CGPoint(x: 0, y: 0) {
+//            println( "0,0")
+            UIView.animateWithDuration(0.3, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
+                let size = self.view.frame.size
+                self.view.frame = CGRectMake(0, -100, size.width, size.height)
+                }, completion: { (finished:Bool) -> Void in
+                //
+            })
+        }
+        return true
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -35,9 +50,22 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
         }
         else{
             view.endEditing(true)
+            pulldownView()
+            signIn()
             return true
         }
         return false
+    }
+    
+    func pulldownView() {
+        if self.view.frame.origin == CGPoint(x: 0 , y: -100) {
+            let size = self.view.frame.size
+            UIView.animateWithDuration(0.2, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
+                self.view.frame = CGRectMake(0, 0, size.width, size.height)
+                }) { (finished:Bool) -> Void in
+                    //
+            }
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -71,35 +99,35 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
     
 
     @IBAction func clickSignin(sender: AnyObject) {
+        view.endEditing(true)
+        pulldownView()
+        signIn()
+    }
+    
+    private func signIn() {
         let username = usernameText.text
         let pwd = pwdText.text
         if !validEmail(username) {
-            errorLabel.text = Login.notifyEmailInvalid
-            return
+        errorLabel.text = Login.notifyEmailInvalid
+        return
         }
         if !validPassword(pwd) {
-            errorLabel.text = Login.notifyPasswordInvalid
-            return
+        errorLabel.text = Login.notifyPasswordInvalid
+        return
         }
         
         
         PFUser.logInWithUsernameInBackground(username, password: pwd) { (user: PFUser?, error: NSError?) -> Void in
-            if user != nil {
-                if self.displayed {
-                    self.performSegueWithIdentifier(Login.LoginSegueId, sender: self)
-                }
-            }else {
-                let errorString = error!.userInfo!["error"] as! String
-                self.errorLabel.text = errorString
-            }
+        if user != nil {
+        if self.displayed {
+        self.performSegueWithIdentifier(Login.LoginSegueId, sender: self)
         }
-//        ParseAction.signIn(email, password: pwd) { (result) -> Void in
-//            if result == "success" {
-//                 self.performSegueWithIdentifier(Login.LoginSegueId, sender: self)
-//            }
-//        }
-        
-        
+        }else {
+        let errorString = error!.userInfo!["error"] as! String
+        self.errorLabel.text = errorString
+        }
+        }
+
     }
     
     private func validEmail(String) -> Bool {
