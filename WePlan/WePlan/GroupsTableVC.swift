@@ -9,7 +9,18 @@
 import UIKit
 
 class GroupsTableVC: UITableViewController {
+
+    @IBOutlet weak var searchBar: UISearchBar!
+    
+
     var groups = LocalGroupList.sharedInstance
+    
+    //SearchBar
+    var Filtergroups:[Group]=[]
+    var selected: Int = 0
+    var searchState: Bool = false
+    
+    
     var IndexChosen:Int!
     
     private struct StoryBoard {
@@ -47,6 +58,48 @@ class GroupsTableVC: UITableViewController {
         }
     }
 
+    
+    // MARK: - Search Bar
+    
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        self.searchBar.showsCancelButton = true
+        if count(searchText) == 0 {
+            self.searchState = false
+            self.searchBar.showsCancelButton = false
+            self.tableView.reloadData()
+            return
+        }
+        self.searchState = true
+        
+        var originArray = NSArray()
+        self.Filtergroups = []
+        for var i = 0; i < groups.count; i++ {
+            let predicate: NSPredicate = NSPredicate(format:"self contains [cd] %@", searchText)
+            if predicate.evaluateWithObject(groups.groupList[i].name){
+                self.Filtergroups.append(self.groups.groupList[i])
+            }
+        }
+        self.tableView.reloadData()
+    }
+    
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        self.searchBar.text = ""
+        self.searchBar(self.searchBar, textDidChange: "")
+        self.searchBar.showsCancelButton = false
+        self.searchBar.resignFirstResponder()
+    }
+    
+    
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        self.searchBar.showsCancelButton = false
+        self.searchBar.resignFirstResponder()
+    }
+    
+
+    
+    
+    
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {

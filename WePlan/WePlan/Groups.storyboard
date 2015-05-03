@@ -15,6 +15,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" id="fCL-iC-tpg">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </searchBar>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="groupCellPrototype" textLabel="4qg-f8-wjC" detailTextLabel="Dsu-Re-BPt" rowHeight="106" style="IBUITableViewCellStyleSubtitle" id="aCo-dJ-DXf">
                                 <autoresizingMask key="autoresizingMask"/>
@@ -120,13 +125,14 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="searchBar" destination="fCL-iC-tpg" id="lAY-Pt-554"/>
                         <segue destination="xAx-d3-CHo" kind="show" identifier="groupDeatil" id="Dhh-jI-5L5"/>
                         <segue destination="vY3-1F-eDs" kind="show" identifier="GroupDetail" id="e7n-2C-o7B"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PIz-Is-rVZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2232" y="167"/>
+            <point key="canvasLocation" x="2210" y="172"/>
         </scene>
         <!--Group DetailVC-->
         <scene sceneID="Wya-rE-3Vh">
@@ -241,8 +247,11 @@
                                                         <constraint firstAttribute="width" secondItem="hqT-ig-TSG" secondAttribute="height" multiplier="1:1" id="hIn-mq-okJ"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="260" verticalHuggingPriority="260" horizontalCompressionResistancePriority="760" verticalCompressionResistancePriority="760" text="Group Details" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SSj-0O-2x7">
-                                                    <rect key="frame" x="265" y="228" width="71" height="14"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="260" verticalHuggingPriority="260" horizontalCompressionResistancePriority="760" verticalCompressionResistancePriority="760" text="Group Details" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SSj-0O-2x7">
+                                                    <rect key="frame" x="150" y="228" width="300" height="14"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="300" id="Sl9-2s-abo"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
@@ -279,11 +288,17 @@
                                                 <constraint firstItem="iB2-x4-EXd" firstAttribute="top" secondItem="hDf-PA-C4j" secondAttribute="top" id="Irl-IY-PYN"/>
                                                 <constraint firstAttribute="centerX" secondItem="lSu-Ql-9X5" secondAttribute="centerX" id="J5w-s8-ME1"/>
                                                 <constraint firstItem="lSu-Ql-9X5" firstAttribute="top" secondItem="7dd-kV-IK4" secondAttribute="bottom" constant="8" symbolic="YES" id="LYL-O4-5Nz"/>
+                                                <constraint firstItem="SSj-0O-2x7" firstAttribute="leading" secondItem="GsF-m5-sRb" secondAttribute="trailing" constant="-335" id="UNh-oN-ZxQ"/>
                                                 <constraint firstAttribute="centerX" secondItem="7dd-kV-IK4" secondAttribute="centerX" id="UQ4-ne-SLx"/>
                                                 <constraint firstAttribute="centerX" secondItem="SSj-0O-2x7" secondAttribute="centerX" id="ZUh-P2-eab"/>
                                                 <constraint firstAttribute="centerX" secondItem="hqT-ig-TSG" secondAttribute="centerX" id="dkb-BB-z1y"/>
                                                 <constraint firstAttribute="centerY" secondItem="hqT-ig-TSG" secondAttribute="centerY" id="tnU-nP-wWo"/>
                                             </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="UNh-oN-ZxQ"/>
+                                                </mask>
+                                            </variation>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -365,7 +380,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sJq-Xq-Ahg">
-                                                    <rect key="frame" x="576" y="8" width="16" height="46"/>
+                                                    <rect key="frame" x="576" y="8" width="16" height="38"/>
                                                     <state key="normal" image="Arrow-1">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
@@ -373,7 +388,7 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailingMargin" secondItem="1Gu-hj-YqY" secondAttribute="trailing" id="1j7-xc-77R"/>
-                                                <constraint firstItem="1Gu-hj-YqY" firstAttribute="top" secondItem="sJq-Xq-Ahg" secondAttribute="bottom" id="2T7-Sa-BMt"/>
+                                                <constraint firstItem="1Gu-hj-YqY" firstAttribute="top" secondItem="sJq-Xq-Ahg" secondAttribute="bottom" constant="8" symbolic="YES" id="2T7-Sa-BMt"/>
                                                 <constraint firstItem="sJq-Xq-Ahg" firstAttribute="top" secondItem="yDg-z8-hKP" secondAttribute="topMargin" id="8Ez-7k-iXd"/>
                                                 <constraint firstItem="1Gu-hj-YqY" firstAttribute="bottomMargin" secondItem="yDg-z8-hKP" secondAttribute="bottomMargin" id="AaQ-TS-cNU"/>
                                                 <constraint firstItem="1Gu-hj-YqY" firstAttribute="top" secondItem="QSd-FA-Yja" secondAttribute="bottom" constant="8" symbolic="YES" id="aB7-93-yDO"/>
@@ -485,7 +500,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y2v-GT-Drp" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="Jbj-Ui-wyQ" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2676" y="950"/>
+            <point key="canvasLocation" x="2562" y="955"/>
         </scene>
         <!--Group Name-->
         <scene sceneID="nyS-sa-G1h">
