@@ -163,6 +163,14 @@ class TaskListTableViewController: UITableViewController, TasksTableViewCellDele
         tableView.reloadRowsAtIndexPaths([index], withRowAnimation: UITableViewRowAnimation.Automatic)
     }
 
+    func deleteCell(task: TaskItem) {
+        let index = findIndexPath(task)
+        tasks.removeAtIndex(index.row)
+        tableView.deleteRowsAtIndexPaths([index], withRowAnimation: UITableViewRowAnimation.Automatic)
+        ParseAction.deleteItem(task.uniqueId)
+        
+    }
+    
     func swipeLeft(task: TaskItem) {
         //
         let index = findIndexPath(task)

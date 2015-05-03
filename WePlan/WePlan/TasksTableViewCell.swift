@@ -16,6 +16,8 @@ protocol TasksTableViewCellDelegate {
 //    func checkEditButtonPressed(task:TaskItem,index:NSIndexPath)
     func moveToEnd(task: TaskItem )
     func moveToFirst(task: TaskItem)
+    
+    func deleteCell(task:TaskItem)
 }
 
 class TasksTableViewCell: UITableViewCell {
@@ -23,7 +25,7 @@ class TasksTableViewCell: UITableViewCell {
         didSet{
             updateCell()
             let w = self.frame.size.width
-            lineLength = w - 50
+            lineLength = w - 60
 //            println("linelength \(lineLength)")
         }
     }
@@ -33,7 +35,7 @@ class TasksTableViewCell: UITableViewCell {
     @IBOutlet weak var taskDueDate: UILabel!
     
     @IBOutlet weak var taskTitle: UILabel!
-    @IBOutlet weak var checkButton: UIButton!
+//    @IBOutlet weak var checkButton: UIButton!
     @IBOutlet weak var taskKindLabel: UILabel!
     @IBOutlet weak var kindLabel: UILabel!
     @IBOutlet weak var kindCircleView: UIView!
@@ -47,6 +49,7 @@ class TasksTableViewCell: UITableViewCell {
     @IBOutlet weak var scheduleButton: UIButton!
     @IBOutlet weak var editButton: UIButton!
     
+    @IBOutlet weak var deleteCellButton: UIButton!
     
     func updateCell() {
         if let item = self.taskItem {
@@ -139,6 +142,13 @@ class TasksTableViewCell: UITableViewCell {
                 
             }
             
+            if item.checked {
+                self.taskTitle.textColor = UIColor.grayColor()
+                self.deleteCellButton.hidden = false
+            }else{
+                self.taskTitle.textColor = UIColor.blackColor()
+                self.deleteCellButton.hidden = true
+            }
             
         }
         
@@ -153,12 +163,12 @@ class TasksTableViewCell: UITableViewCell {
                 self.width.constant = self.lineLength
                 self.layoutIfNeeded()
                 
-                checkButton.setBackgroundImage(UIImage(named: "checked"), forState: UIControlState())
+//                checkButton.setBackgroundImage(UIImage(named: "checked"), forState: UIControlState())
             }else {
                 //unchecked
                 self.width.constant = 0
                 self.layoutIfNeeded()
-                checkButton.setBackgroundImage(UIImage(named: "unchecked"), forState: UIControlState())
+//                checkButton.setBackgroundImage(UIImage(named: "unchecked"), forState: UIControlState())
             }
         }
     }
@@ -171,9 +181,16 @@ class TasksTableViewCell: UITableViewCell {
 //            self.delegate!.checkEditButtonPressed(self.taskItem!,index: self.index!)
 //        }
 //    }
-    @IBAction func clickCheckButton(sender: AnyObject) {
+    
+//    @IBAction func clickCheckButton(sender: AnyObject) {
+//        if delegate != nil {
+//            self.delegate!.checkButtonPressed(self.index!)
+//        }
+//    }
+    
+    @IBAction func clickCellDeleteButtonn(sender: AnyObject) {
         if delegate != nil {
-            self.delegate!.checkButtonPressed(self.index!)
+            self.delegate!.deleteCell(self.taskItem!)
         }
     }
     // MARK: -ExpandCellButtonFunction
@@ -218,11 +235,8 @@ class TasksTableViewCell: UITableViewCell {
             if delegate != nil {
                 delegate?.swipeRight(taskItem!)
             }
-            // TODO: conflict with this delegate, WHY?????
-    //        if delegate != nil {
-    //            self.delegate!.checkButtonPressed(self.index!)
-    //        }
-            checkButton.setBackgroundImage(UIImage(named: "checked"), forState: UIControlState())
+
+            
             checkState = true
         }
     }
@@ -234,16 +248,10 @@ class TasksTableViewCell: UITableViewCell {
             if delegate != nil {
                 delegate?.swipeLeft(taskItem!)
             }
-            checkButton.setBackgroundImage(UIImage(named: "unchecked"), forState: UIControlState())
+            
             checkState = false
         }
     }
-    
-//    func swipe2(gesture: UISwipeGestureRecognizer) {
-//        switch gesture.state {
-//            case .
-//        }
-//    }
     
     // MARK: Cross out animation
 
@@ -258,18 +266,21 @@ class TasksTableViewCell: UITableViewCell {
             self.width.constant = self.lineLength
             self.layoutIfNeeded()
             }) { (finished:Bool) -> Void in
-            //
+            self.deleteCellButton.hidden = false
+            self.taskTitle.textColor = UIColor.grayColor()
 //                println("going to move")
             self.delegate?.moveToEnd(self.taskItem!)
         }
     }
     
     private func uncrossLine() {
+        self.deleteCellButton.hidden = true
         UIView.animateWithDuration(0.6, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
             self.width.constant = 0
             self.layoutIfNeeded()
             }) { (finished:Bool) -> Void in
-            //
+            
+            self.taskTitle.textColor = UIColor.blackColor()
             self.delegate?.moveToFirst(self.taskItem!)
             
         }
