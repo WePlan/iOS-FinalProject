@@ -11,9 +11,11 @@ import UIKit
 protocol TasksTableViewCellDelegate {
     func checkButtonPressed(index: NSIndexPath)
     func checkDeletePressed(index: NSIndexPath)
-    func swipeLeft(index:NSIndexPath)
-    func swipeRight(index: NSIndexPath)
+    func swipeLeft(task: TaskItem )
+    func swipeRight(task: TaskItem )
 //    func checkEditButtonPressed(task:TaskItem,index:NSIndexPath)
+    func moveToEnd(task: TaskItem )
+    func moveToFirst(task: TaskItem)
 }
 
 class TasksTableViewCell: UITableViewCell {
@@ -25,7 +27,7 @@ class TasksTableViewCell: UITableViewCell {
 //            println("linelength \(lineLength)")
         }
     }
-    
+    var endIndex: Int!
     
     @IBOutlet weak var taskDescribLabel: UILabel!
     @IBOutlet weak var taskDueDate: UILabel!
@@ -33,7 +35,8 @@ class TasksTableViewCell: UITableViewCell {
     @IBOutlet weak var taskTitle: UILabel!
     @IBOutlet weak var checkButton: UIButton!
     @IBOutlet weak var taskKindLabel: UILabel!
-    
+    @IBOutlet weak var kindLabel: UILabel!
+    @IBOutlet weak var kindCircleView: UIView!
     
     @IBOutlet weak var expandCellGroupImage: UIImageView!
     @IBOutlet weak var expandCellScheduleImage: UIImageView!
@@ -43,6 +46,7 @@ class TasksTableViewCell: UITableViewCell {
     @IBOutlet weak var groupButton: UIButton!
     @IBOutlet weak var scheduleButton: UIButton!
     @IBOutlet weak var editButton: UIButton!
+    
     
     func updateCell() {
         if let item = self.taskItem {
@@ -114,18 +118,24 @@ class TasksTableViewCell: UITableViewCell {
             taskTitle.text = item.taskName
             switch item.kind {
             case .Individual:
+                kindLabel.text = ""
                 taskKindLabel.text = "Self"
                 taskKindLabel.textColor = WePlanColors.blueColor()
+                kindCircleView.backgroundColor = WePlanColors.blueColor()
             case .People:
+                kindLabel.text = "Friend"
                 taskKindLabel.text = LocalFriendList.sharedInstance.getFriendName(objectId: id)
                 taskKindLabel.textColor = WePlanColors.otherPeopleColor()
+                kindCircleView.backgroundColor = WePlanColors.otherPeopleColor()
             case .Group:
+                kindLabel.text = "Group"
                 taskKindLabel.text = LocalGroupList.sharedInstance.getGroupName(objectId: id)
                 if taskKindLabel.text == "dismissed" {
                     taskKindLabel.textColor = UIColor.redColor()
                 }else{
                     taskKindLabel.textColor = WePlanColors.groupColor()
                 }
+                kindCircleView.backgroundColor = WePlanColors.groupColor()
                 
             }
             
@@ -142,6 +152,7 @@ class TasksTableViewCell: UITableViewCell {
                 //checked
                 self.width.constant = self.lineLength
                 self.layoutIfNeeded()
+                
                 checkButton.setBackgroundImage(UIImage(named: "checked"), forState: UIControlState())
             }else {
                 //unchecked
@@ -176,6 +187,7 @@ class TasksTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        ImageProcess.kindCircle(self.kindCircleView)
 //        self.backgroundView = UIImageView(image: UIImage(named: "CellBackground"))
         setupSwipeGesture()
 //        swipe.state =
@@ -204,7 +216,7 @@ class TasksTableViewCell: UITableViewCell {
             println("swiped! right")
             crossLine()
             if delegate != nil {
-                delegate?.swipeRight(index!)
+                delegate?.swipeRight(taskItem!)
             }
             // TODO: conflict with this delegate, WHY?????
     //        if delegate != nil {
@@ -220,7 +232,7 @@ class TasksTableViewCell: UITableViewCell {
             println("left")
             uncrossLine()
             if delegate != nil {
-                delegate?.swipeLeft(index!)
+                delegate?.swipeLeft(taskItem!)
             }
             checkButton.setBackgroundImage(UIImage(named: "unchecked"), forState: UIControlState())
             checkState = false
@@ -247,6 +259,8 @@ class TasksTableViewCell: UITableViewCell {
             self.layoutIfNeeded()
             }) { (finished:Bool) -> Void in
             //
+//                println("going to move")
+            self.delegate?.moveToEnd(self.taskItem!)
         }
     }
     
@@ -256,6 +270,8 @@ class TasksTableViewCell: UITableViewCell {
             self.layoutIfNeeded()
             }) { (finished:Bool) -> Void in
             //
+            self.delegate?.moveToFirst(self.taskItem!)
+            
         }
     }
     
