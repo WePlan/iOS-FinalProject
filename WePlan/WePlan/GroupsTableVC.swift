@@ -8,11 +8,9 @@
 
 import UIKit
 
-class GroupsTableVC: UITableViewController {
+class GroupsTableVC: UITableViewController,UISearchBarDelegate,UISearchDisplayDelegate{
 
     @IBOutlet weak var searchBar: UISearchBar!
-    
-
     var groups = LocalGroupList.sharedInstance
     
     //SearchBar
@@ -27,9 +25,12 @@ class GroupsTableVC: UITableViewController {
         static let cell = "groupCellPrototype"
         static let cell2 = "groupCellPrototype2"
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        searchBar.delegate = self
+     //   tableView.delegate = self
+     //   tableView.dataSource = self
 //        tableView.estimatedRowHeight = tableView.rowHeight
 //        tableView.rowHeight = UITableViewAutomaticDimension
         // Uncomment the following line to preserve selection between presentations
@@ -60,7 +61,6 @@ class GroupsTableVC: UITableViewController {
 
     
     // MARK: - Search Bar
-    
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
         
         self.searchBar.showsCancelButton = true
@@ -75,10 +75,14 @@ class GroupsTableVC: UITableViewController {
         var originArray = NSArray()
         self.Filtergroups = []
         for var i = 0; i < groups.count; i++ {
+            println("Runing search")
             let predicate: NSPredicate = NSPredicate(format:"self contains [cd] %@", searchText)
             if predicate.evaluateWithObject(groups.groupList[i].name){
                 self.Filtergroups.append(self.groups.groupList[i])
             }
+        }
+        for group in Filtergroups{
+            println(group.name)
         }
         self.tableView.reloadData()
     }
@@ -109,16 +113,31 @@ class GroupsTableVC: UITableViewController {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
-        return groups.count
+//        if tableView == self.searchDisplayController?.searchResultsTableView{
+//            println("Show Search result!")
+//        }
+        var numberOfRows = 0 ;
+        if searchState {
+            numberOfRows = self.Filtergroups.count
+        }else {
+            numberOfRows = self.groups.count
+        }
+        return numberOfRows
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCellWithIdentifier(StoryBoard.cell, forIndexPath: indexPath) as! UITableViewCell
+//      let cell = tableView.dequeueReusableCellWithIdentifier(StoryBoard.cell, forIndexPath: indexPath) as! UITableViewCell
         let cell = tableView.dequeueReusableCellWithIdentifier(StoryBoard.cell2, forIndexPath: indexPath) as! GroupTableViewCell
-        cell.selectionStyle = UITableViewCellSelectionStyle.None
+        if searchState {
+            cell.selectionStyle = UITableViewCellSelectionStyle.None
+            cell.group = Filtergroups[indexPath.row]
+        }
+        else{
+            cell.selectionStyle = UITableViewCellSelectionStyle.None
+            cell.group = groups.groupList[indexPath.row]
+        }
 //        cell.textLabel?.text = groups.groupList[indexPath.row].name
 //        cell.detailTextLabel?.text = groups.groupList[indexPath.row].i
-        cell.group = groups.groupList[indexPath.row]
         return cell
     }
     
@@ -179,9 +198,15 @@ class GroupsTableVC: UITableViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using [segue destinationViewController].
         // Pass the selected object to the new view controller.
+
         if segue.identifier=="GroupDetail"{
             var nextvc=segue.destinationViewController as! GroupDetailTableVC
-            nextvc.group=groups.groupList[IndexChosen]
+            if searchState{
+                nextvc.group=Filtergroups[IndexChosen]
+            }
+            else {
+                nextvc.group=groups.groupList[IndexChosen]
+            }
         }
     }
 
