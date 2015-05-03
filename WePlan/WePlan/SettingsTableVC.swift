@@ -117,7 +117,8 @@ class SettingsTableVC: UITableViewController , UIImagePickerControllerDelegate, 
     
     // MARK: - LifeCycle
     func setUserLabels () {
-        usernameLabel.text = PFUser.currentUser()!.username!
+//        usernameLabel.text = PFUser.currentUser()!.username!
+        usernameLabel.text = PFUser.currentUser()!["nickname"] as? String
         uidLabel.text = PFUser.currentUser()!.objectId!
         emailLabel.text = PFUser.currentUser()!.email!
     }

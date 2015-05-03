@@ -63,7 +63,8 @@ class AddTaskItemViewController: UIViewController, UITextFieldDelegate,AssignTas
             taskTitleTextField.text = newTask?.taskName ?? ""
             taskLocationTextField.text = newTask?.location ?? ""
             shortDescriptionTextField.text = newTask?.descript ?? ""
-            
+            groupButton.enabled = false
+            otherPeopleButton.enabled = false
             assignTaskToMyself()
             format.timeStyle = NSDateFormatterStyle.ShortStyle
             format.dateStyle = NSDateFormatterStyle.MediumStyle
@@ -206,6 +207,7 @@ class AddTaskItemViewController: UIViewController, UITextFieldDelegate,AssignTas
     }
     // MARK: - Navigation
     @IBAction func clickAddButton(sender: AnyObject) {
+        let updateTask = newTask
         if count(taskTitleTextField.text) < 1 {
             return
         }
@@ -218,13 +220,25 @@ class AddTaskItemViewController: UIViewController, UITextFieldDelegate,AssignTas
         newTask = TaskItem(name: taskTitleTextField.text, due: datePicker.date, descript: shortDescriptionTextField.text)
         switch self.taskFor {
             case .Individual:
-                newTask!.kind = TaskKind.Individual
-                newTask!.owner = PFUser.currentUser()!.objectId!
-                ParseAction.addTaskItem(newTask!, completion: { (id:String) -> Void in
-                    //
-                    hub.hide(true)
-                    self.performUnwindSegue(self.addButton)
-                })
+                if addButton.titleLabel?.text == "Save" {
+                    updateTask?.taskName = taskTitleTextField.text
+                    updateTask?.dueTime = datePicker.date
+                    updateTask?.descript = shortDescriptionTextField.text ?? ""
+                    
+                    ParseAction.updateTask(updateTask!, completion: { () -> Void in
+                        hub.hide(true)
+                        self.performUnwindSegue(self.addButton)
+                    })
+                }else{
+                    newTask!.kind = TaskKind.Individual
+                    newTask!.owner = PFUser.currentUser()!.objectId!
+                    ParseAction.addTaskItem(newTask!, completion: { (id:String) -> Void in
+                        //
+                        hub.hide(true)
+                        self.performUnwindSegue(self.addButton)
+                    })
+                }
+            
             case .People:
                 assert(assignPeople != nil, "assignPeople is nil")
                 newTask!.kind = TaskKind.People
