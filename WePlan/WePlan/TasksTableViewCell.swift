@@ -94,23 +94,44 @@ class TasksTableViewCell: UITableViewCell {
             let diffDays = item.dueTime.daysDiff(currentDate)
             let hourMins = format.stringFromDate(item.dueTime)
             
-            switch (diffDays) {
-            case 0:
+            if diffDays < 0 {
+                let diff = -diffDays
+                taskDueDate.text = "\(diff) days before"
+            }else if diffDays == 0 {
+                
                 taskDueDate.text = "Today at \(hourMins)"
-            case 1:
+            }else if diffDays == 1 {
                 taskDueDate.text = "Tomorrow at \(hourMins)"
-            case 2...7:
+            }else if diffDays >= 2 && diffDays <= 7 {
                 taskDueDate.text = "In \(diffDays) days at \(hourMins)"
-            case 8...30:
+            }else if diffDays >= 8 && diffDays <= 30 {
                 let diffWeeks = item.dueTime.weeksDiff(currentDate)
                 taskDueDate.text = "In \(diffWeeks) weeks at \(hourMins)"
-            case 31...366:
+            }else if diffDays >= 31 && diffDays <= 366 {
                 let diffMonths = item.dueTime.monthsDiff(currentDate)
                 taskDueDate.text = "In \(diffMonths) months"
-            default:
-                let diffYears = item.dueTime.yearsDiff(currentDate)
-                taskDueDate.text = "In \(diffYears) years"
             }
+//            switch (diffDays) {
+//            
+//            case 0:
+//                taskDueDate.text = "Today at \(hourMins)"
+//            case 1:
+//                taskDueDate.text = "Tomorrow at \(hourMins)"
+//            case 2...7:
+//                taskDueDate.text = "In \(diffDays) days at \(hourMins)"
+//            case 8...30:
+//                let diffWeeks = item.dueTime.weeksDiff(currentDate)
+//                taskDueDate.text = "In \(diffWeeks) weeks at \(hourMins)"
+//            case 31...366:
+//                let diffMonths = item.dueTime.monthsDiff(currentDate)
+//                taskDueDate.text = "In \(diffMonths) months"
+//            default:
+//                let diffMonths = item.dueTime.monthsDiff(currentDate)
+//                taskDueDate.text = "In \(diffMonths) months"
+//            default:
+//                let diffYears = item.dueTime.yearsDiff(currentDate)
+//                taskDueDate.text = "In \(diffYears) years"
+//            }
             if diffDays == 0 {
                 expandCellScheduleImage.image = UIImage(named: "ScheduleNoWordRedDot")
             }else{
