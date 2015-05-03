@@ -58,7 +58,10 @@ class LocalFriendList {
                 break
             }
         }
-        assert(name != nil, "friend name should exist")
+//        assert(name != nil, "friend name should exist")
+        if name == nil {
+            name = "Stranger"
+        }
         return name!
     }
     
