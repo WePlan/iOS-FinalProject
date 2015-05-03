@@ -35,6 +35,8 @@ class SearchFriendTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        addButton.setBackgroundImage(UIImage(named: "ButtonBorder"), forState: UIControlState.Normal)
+        
     }
     
 //    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
@@ -55,10 +57,12 @@ class SearchFriendTableViewCell: UITableViewCell {
     @IBAction func clickAddButton(sender: AnyObject) {
         if delegate != nil {
             self.addButton.enabled = false
+            self.addButton.setTitleColor(UIColor.grayColor(), forState: UIControlState.Normal)
+            addButton.setTitleColor(UIColor.grayColor(), forState: UIControlState.Normal)
             if user == nil {
                 println("user is nil!")
             }else{
-            delegate!.addNewFriendWithId(user!.uid)
+                delegate!.addNewFriendWithId(user!.uid)
             }
         }
     }
