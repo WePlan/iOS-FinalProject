@@ -35,7 +35,8 @@ class TasksTableViewCell: UITableViewCell {
     @IBOutlet weak var taskTitle: UILabel!
     @IBOutlet weak var checkButton: UIButton!
     @IBOutlet weak var taskKindLabel: UILabel!
-    
+    @IBOutlet weak var kindLabel: UILabel!
+    @IBOutlet weak var kindCircleView: UIView!
     
     @IBOutlet weak var expandCellGroupImage: UIImageView!
     @IBOutlet weak var expandCellScheduleImage: UIImageView!
@@ -45,6 +46,7 @@ class TasksTableViewCell: UITableViewCell {
     @IBOutlet weak var groupButton: UIButton!
     @IBOutlet weak var scheduleButton: UIButton!
     @IBOutlet weak var editButton: UIButton!
+    
     
     func updateCell() {
         if let item = self.taskItem {
@@ -116,18 +118,24 @@ class TasksTableViewCell: UITableViewCell {
             taskTitle.text = item.taskName
             switch item.kind {
             case .Individual:
+                kindLabel.text = ""
                 taskKindLabel.text = "Self"
                 taskKindLabel.textColor = WePlanColors.blueColor()
+                kindCircleView.backgroundColor = WePlanColors.blueColor()
             case .People:
+                kindLabel.text = "Friend"
                 taskKindLabel.text = LocalFriendList.sharedInstance.getFriendName(objectId: id)
                 taskKindLabel.textColor = WePlanColors.otherPeopleColor()
+                kindCircleView.backgroundColor = WePlanColors.otherPeopleColor()
             case .Group:
+                kindLabel.text = "Group"
                 taskKindLabel.text = LocalGroupList.sharedInstance.getGroupName(objectId: id)
                 if taskKindLabel.text == "dismissed" {
                     taskKindLabel.textColor = UIColor.redColor()
                 }else{
                     taskKindLabel.textColor = WePlanColors.groupColor()
                 }
+                kindCircleView.backgroundColor = WePlanColors.groupColor()
                 
             }
             
@@ -179,6 +187,7 @@ class TasksTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        ImageProcess.kindCircle(self.kindCircleView)
 //        self.backgroundView = UIImageView(image: UIImage(named: "CellBackground"))
         setupSwipeGesture()
 //        swipe.state =

@@ -18,6 +18,12 @@ class ImageProcess {
         changeImageView(imageView, radiusRatio: 10)
     }
     
+    class func kindCircle(view: UIView) {
+        let size = view.frame.size
+        let radius = size.width / 2
+        view.layer.cornerRadius = radius
+        view.layer.masksToBounds = true
+    }
     private class func changeImageView(imageView: UIImageView, radiusRatio: CGFloat){
         let size = imageView.frame.size
         let radius: CGFloat

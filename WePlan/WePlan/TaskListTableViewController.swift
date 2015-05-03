@@ -72,8 +72,8 @@ class TaskListTableViewController: UITableViewController, TasksTableViewCellDele
     // MARK: - Table view data source
     
     private struct TaskTableViewConstant {
-        static let commonCellHeight: CGFloat = 54
-        static let expandingCellHeight: CGFloat = 87
+        static let commonCellHeight: CGFloat = 50 //54
+        static let expandingCellHeight: CGFloat = 110 //87
         
     }
     
