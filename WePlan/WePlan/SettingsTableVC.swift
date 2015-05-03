@@ -74,6 +74,7 @@ class SettingsTableVC: UITableViewController , UIImagePickerControllerDelegate, 
     
     // MARK: - ClickAction
     @IBAction func clickLogout(sender: AnyObject) {
+        PFUser.logOut()
         var sb = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
         var vc = sb.instantiateViewControllerWithIdentifier("LoginView") as! LoginViewController
         self.presentViewController(vc, animated: true, completion: nil)

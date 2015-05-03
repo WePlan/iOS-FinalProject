@@ -67,6 +67,7 @@ class GroupsTableVC: UITableViewController,UISearchBarDelegate,UISearchDisplayDe
         if count(searchText) == 0 {
             self.searchState = false
             self.searchBar.showsCancelButton = false
+            self.searchBar.endEditing(true)
             self.tableView.reloadData()
             return
         }

@@ -8,8 +8,9 @@
 
 import UIKit
 
-class FriendsTableVC: UITableViewController , FriendTableCellDeleget{
+class FriendsTableVC: UITableViewController , FriendTableCellDeleget,UISearchBarDelegate, UISearchDisplayDelegate{
     
+    @IBOutlet weak var searchBar: UISearchBar!
     var localFriendList = LocalFriendList.sharedInstance
     
     //MARK: - Life Cycle
@@ -18,6 +19,7 @@ class FriendsTableVC: UITableViewController , FriendTableCellDeleget{
         initialUISettings()
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        searchBar.delegate = self
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -44,7 +46,11 @@ class FriendsTableVC: UITableViewController , FriendTableCellDeleget{
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // Return the number of rows in the section.
-        return localFriendList.count
+        if searchState {
+            return filterFriends.count
+        }else{
+            return localFriendList.count
+        }
     }
     
     private struct StoryBoardConstants {
@@ -77,7 +83,11 @@ class FriendsTableVC: UITableViewController , FriendTableCellDeleget{
         //Custom cell configure
         println("loading friendcell at index: \(indexPath.row)")
         cell.delegate = self
-        cell.friend = localFriendList.getFriendAtIndex(indexPath.row)
+        if searchState {
+            cell.friend = filterFriends[indexPath.row]
+        }else{
+            cell.friend = localFriendList.getFriendAtIndex(indexPath.row)
+        }
         println("with image: \(cell.friend!.imageId)")
         NSLog("%p", cell.userProfileImage)
         return cell
@@ -144,7 +154,7 @@ class FriendsTableVC: UITableViewController , FriendTableCellDeleget{
         if selected != -1 && selected == indexPath.row {
             return 90
         }else{
-            return 56
+            return 60
         }
         
     }
@@ -252,4 +262,43 @@ class FriendsTableVC: UITableViewController , FriendTableCellDeleget{
         }
         return indexPath
     }
+    
+    // MARK: - Search Bar
+    
+    var filterFriends:[User] = []
+    var searchState: Bool = false
+    
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        searchBar.showsCancelButton = true
+        if count(searchText) == 0 {
+            self.searchState = false
+            self.searchBar.showsCancelButton = false
+            self.searchBar.endEditing(true)
+            self.tableView.reloadData()
+            return
+        }
+        self.searchState = true
+        
+        var originArray = NSArray()
+        filterFriends = []
+        for var i = 0; i < localFriendList.count; i++ {
+            let predicate: NSPredicate = NSPredicate(format:"self contains [cd] %@", searchText)
+            if predicate.evaluateWithObject(localFriendList.friendList[i].name){
+                filterFriends.append(self.localFriendList.friendList[i])
+            }
+        }
+        self.tableView.reloadData()
+    }
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        self.searchBar.text = ""
+        self.searchBar(self.searchBar, textDidChange: "")
+        self.searchBar.showsCancelButton = false
+        self.searchBar.resignFirstResponder()
+    }
+    
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        self.searchBar.showsCancelButton = false
+        self.searchBar.resignFirstResponder()
+    }
+    
 }
