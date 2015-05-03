@@ -63,7 +63,8 @@ class AddTaskItemViewController: UIViewController, UITextFieldDelegate,AssignTas
             taskTitleTextField.text = newTask?.taskName ?? ""
             taskLocationTextField.text = newTask?.location ?? ""
             shortDescriptionTextField.text = newTask?.descript ?? ""
-            
+            groupButton.enabled = false
+            otherPeopleButton.enabled = false
             assignTaskToMyself()
             format.timeStyle = NSDateFormatterStyle.ShortStyle
             format.dateStyle = NSDateFormatterStyle.MediumStyle
