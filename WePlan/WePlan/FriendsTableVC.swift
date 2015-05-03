@@ -43,7 +43,6 @@ class FriendsTableVC: UITableViewController , FriendTableCellDeleget{
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete method implementation.
         // Return the number of rows in the section.
         return localFriendList.count
     }
@@ -73,14 +72,14 @@ class FriendsTableVC: UITableViewController , FriendTableCellDeleget{
         var cell = tableView.dequeueReusableCellWithIdentifier(StoryBoardConstants.cell3, forIndexPath: indexPath) as! FriendTableViewCell
         
         // Configure the cell...
-//        cell.textLabel?.text = friendList[indexPath.row].name
-//        cell.detailTextLabel?.text = friendList[indexPath.row].uemail
-//        println("\(friendList[indexPath.row].uid)")
         cell.clipsToBounds = true;
         cell.selectionStyle = UITableViewCellSelectionStyle.None
         //Custom cell configure
+        println("loading friendcell at index: \(indexPath.row)")
         cell.delegate = self
         cell.friend = localFriendList.getFriendAtIndex(indexPath.row)
+        println("with image: \(cell.friend!.imageId)")
+        NSLog("%p", cell.userProfileImage)
         return cell
     }
     
@@ -145,7 +144,7 @@ class FriendsTableVC: UITableViewController , FriendTableCellDeleget{
         if selected != -1 && selected == indexPath.row {
             return 90
         }else{
-            return 55
+            return 56
         }
         
     }
@@ -156,13 +155,15 @@ class FriendsTableVC: UITableViewController , FriendTableCellDeleget{
         if selected == indexPath.row {
             selected = -1
             tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
+//            tableView.reloadData()
             return
         }
         else if selected != -1 {
             let prevIndexPath:NSIndexPath = NSIndexPath(forRow: selected, inSection: 0)
             selected = indexPath.row
+//            tableView.reloadData()
             tableView.reloadRowsAtIndexPaths([prevIndexPath], withRowAnimation: .Fade)
-            self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         }else{
             
             selected = indexPath.row
@@ -199,13 +200,7 @@ class FriendsTableVC: UITableViewController , FriendTableCellDeleget{
 //            }
 //        }
     }
-//    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-//        (cell as! FriendTableViewCell).noticeCell()
-//    }
-//    
-//    override func tableView(tableView: UITableView, didEndDisplayingCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-//        (cell as! FriendTableViewCell).endNoticeCell()
-//    }
+
     
     func removeFriendDelegate(friend:User) {
         let index = findIndexPath(friend)
