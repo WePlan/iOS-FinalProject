@@ -127,6 +127,7 @@ class TasksTableViewCell: UITableViewCell {
                 kindCircleView.backgroundColor = WePlanColors.blueColor()
             case .People:
                 kindLabel.text = "Friend"
+                kindLabel.textColor = WePlanColors.otherPeopleColor()
                 taskKindLabel.text = LocalFriendList.sharedInstance.getFriendName(objectId: id)
                 taskKindLabel.textColor = WePlanColors.otherPeopleColor()
                 kindCircleView.backgroundColor = WePlanColors.otherPeopleColor()
@@ -138,6 +139,7 @@ class TasksTableViewCell: UITableViewCell {
                 }else{
                     taskKindLabel.textColor = WePlanColors.groupColor()
                 }
+                kindLabel.textColor = WePlanColors.groupColor()
                 kindCircleView.backgroundColor = WePlanColors.groupColor()
                 
             }
