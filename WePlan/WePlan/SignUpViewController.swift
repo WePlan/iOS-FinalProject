@@ -25,6 +25,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: - TextFiled
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+        pulldownView()
         view.endEditing(true)
     }
     
@@ -42,10 +43,39 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             self.passwordRepeatTextField.becomeFirstResponder()
         }
         else{
+            pulldownView()
             view.endEditing(true)
+            create()
             return true
         }
         return false
+    }
+    
+    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+        if textField == self.passwordRepeatTextField || textField == self.passwordTextField {
+            let frame = self.view.frame
+            if frame.origin == CGPoint(x: 0, y: 0) {
+//                println( "0,0")
+                UIView.animateWithDuration(0.3, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
+                    let size = self.view.frame.size
+                    self.view.frame = CGRectMake(0, -100, size.width, size.height)
+                    }, completion: { (finished:Bool) -> Void in
+                        //
+                })
+            }
+        }
+        return true
+    }
+    
+    func pulldownView() {
+        if self.view.frame.origin == CGPoint(x: 0 , y: -100) {
+            let size = self.view.frame.size
+            UIView.animateWithDuration(0.2, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
+                self.view.frame = CGRectMake(0, 0, size.width, size.height)
+                }) { (finished:Bool) -> Void in
+                    //
+            }
+        }
     }
     
     override func viewDidLoad() {
@@ -74,6 +104,13 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     
 
     @IBAction func clickCreate(sender: AnyObject) {
+        view.endEditing(true)
+        pulldownView()
+        create()
+        
+    }
+    
+    func create() {
         let email = emailTextField.text
         let username = usernameTextField.text
         let password = passwordTextField.text
@@ -93,37 +130,22 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         user.password = password
         
         user["nickname"] = nickname
-//        println(self.view.window)
-        
         
         user.signUpInBackgroundWithBlock { (succeeded: Bool, error: NSError?) -> Void in
-//            println(NSDate())
-//            sleep(5)
-//            println(NSDate())
             if error == nil{
                 if self.displayed {
-//                    println(self.displayed)
-//                    println("Going to segue")
-//                    println(self.view.window)
                     let pfobject = PFObject(className:"User_Group")
                     assert(user.objectId != nil, "id is nil")
                     pfobject["uid"] = user.objectId
                     pfobject.saveInBackground()
                     self.performSegueWithIdentifier(Constants.segueToTabbar, sender: self)
                 }
-//                if self.isViewLoaded() && self.view.window != nil {
-//                    println(self.displayed)
-//                    println("Going to segue")
-//                    println(self.view.window)
-//                    self.performSegueWithIdentifier(Constants.segueToTabbar, sender: self)
-//                }
+           
             }else {
                 let errorString = error!.userInfo!["error"] as! String
                 self.errorLabel.text = errorString
             }
         }
-        
-//        performSegueWithIdentifier("cancel", sender: self)
     }
     /*
     // MARK: - Navigation
