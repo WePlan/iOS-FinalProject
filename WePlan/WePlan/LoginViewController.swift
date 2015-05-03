@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate{
 
     @IBOutlet weak var usernameText: UITextField!
     @IBOutlet weak var pwdText: UITextField!
@@ -21,10 +21,23 @@ class LoginViewController: UIViewController {
         errorLabel.text = ""
         
         // Do any additional setup after loading the view.
+        self.usernameText.delegate=self
+        self.pwdText.delegate=self
     }
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         view.endEditing(true)
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        if textField == self.usernameText{
+            self.pwdText.becomeFirstResponder()
+        }
+        else{
+            view.endEditing(true)
+            return true
+        }
+        return false
     }
     
     override func viewWillAppear(animated: Bool) {

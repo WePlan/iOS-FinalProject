@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SignUpViewController: UIViewController {
+class SignUpViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var nicknameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
@@ -23,14 +23,40 @@ class SignUpViewController: UIViewController {
         static let segueToTabbar = "signUpSucceeded"
     }
     
+    // MARK: - TextFiled
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         view.endEditing(true)
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        if textField == self.nicknameTextField{
+            self.emailTextField.becomeFirstResponder()
+        }
+        else if textField == self.emailTextField{
+            self.usernameTextField.becomeFirstResponder()
+        }
+        else if textField == self.usernameTextField{
+            self.passwordTextField.becomeFirstResponder()
+        }
+        else if textField == self.passwordTextField{
+            self.passwordRepeatTextField.becomeFirstResponder()
+        }
+        else{
+            view.endEditing(true)
+            return true
+        }
+        return false
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.nicknameTextField.delegate=self
+        self.emailTextField.delegate=self
+        self.usernameTextField.delegate=self
+        self.passwordTextField.delegate=self
+        self.passwordRepeatTextField.delegate=self
     }
     override func viewWillAppear(animated: Bool) {
         errorLabel.text = ""
