@@ -9,7 +9,7 @@
 import UIKit
 
 
-class TaskListTableViewController: UITableViewController, TasksTableViewCellDelegate,MBProgressHUDDelegate {
+class TaskListTableViewController: UITableViewController, TasksTableViewCellDelegate,MBProgressHUDDelegate,UpdateDelegate {
     var tasks:[TaskItem] = []
     
     private func initialUISettings() {
@@ -216,6 +216,10 @@ class TaskListTableViewController: UITableViewController, TasksTableViewCellDele
         self.tableView(self.tableView, moveRowAtIndexPath: oldPath, toIndexPath: newPath)
 //        tableView.reloadData()
     }
+    func updateCell(task: TaskItem) {
+        let index = findIndexPath(task)
+        tableView.reloadRowsAtIndexPaths([index], withRowAnimation: .Automatic)
+    }
     private func findIndexPath(task:TaskItem) -> NSIndexPath {
         var indexPath: NSIndexPath!
         for var index = 0 ; index < tasks.count ; index++ {
@@ -268,6 +272,12 @@ class TaskListTableViewController: UITableViewController, TasksTableViewCellDele
             let first = dest.childViewControllers[0] as! AddTaskItemViewController
             first.entrypoint = "Task"
         }
+        if segue.identifier == "SetUpScheduleIdentifier" {
+            let dvc = segue.destinationViewController as! SetUpScheduleViewController
+            dvc.delegate = self
+            dvc.task = tasks[selectedTask]
+            
+        }
         if segue.identifier == "EditTaskIdentifier" {
             let dvc = segue.destinationViewController as! UINavigationController
             let first = dvc.childViewControllers[0] as! AddTaskItemViewController
@@ -284,6 +294,7 @@ class TaskListTableViewController: UITableViewController, TasksTableViewCellDele
     }
     
     @IBAction func unwindTaskList (segue: UIStoryboardSegue){
+//        self.tableView.reloadData()
         var src = segue.sourceViewController as! AddTaskItemViewController
         var task = src.newTask
         if let task = task {
