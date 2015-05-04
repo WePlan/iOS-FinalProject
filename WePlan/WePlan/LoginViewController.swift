@@ -24,10 +24,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
         case Dark
     }
     
-    
-    func textFieldDidBeginEditing(textField: UITextField) {
-        textField.text=""
+    func setTextFieldStyle(stringText:String,textField:UITextField){
+        var placeHolder=NSAttributedString(string: stringText, attributes:[NSForegroundColorAttributeName: UIColor(white: 1, alpha: 0.5)])
+        textField.attributedPlaceholder = placeHolder
     }
+  
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,9 +37,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
         // Do any additional setup after loading the view.
         self.usernameText.delegate=self
         self.pwdText.delegate=self
-        
+        setTextFieldStyle("Username", textField: usernameText)
+        setTextFieldStyle("Password", textField: pwdText)
         //Add Background BlurEffect
-        
         let blurEffect = UIBlurEffect(style: .Dark)
         let blurView = UIVisualEffectView(effect: blurEffect)
         view.addSubview(blurView)
