@@ -47,8 +47,13 @@ class SettingsTableVC: UITableViewController , UIImagePickerControllerDelegate, 
         // Set default image and frame
         self.photoImageView.defaultImageName = Constants.imageDefault
         ImageProcess.changeImageViewToCircle(photoImageView)
-        if let imageId = PFUser.currentUser()!["imageId"] as? String {
-            self.photoImageView.imageObjectId = imageId
+//        if let imageId = PFUser.currentUser()!["imageId"] as? String {
+//            self.photoImageView.imageObjectId = imageId
+//        }else {
+//            println("Could not find imageId")
+//        }
+        if let imageFile = PFUser.currentUser()!["photo"] as? PFFile {
+            self.photoImageView.imageFile = imageFile
         }else {
             println("Could not find imageId")
         }
@@ -74,6 +79,7 @@ class SettingsTableVC: UITableViewController , UIImagePickerControllerDelegate, 
     
     // MARK: - ClickAction
     @IBAction func clickLogout(sender: AnyObject) {
+        PFUser.logOut()
         var sb = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
         var vc = sb.instantiateViewControllerWithIdentifier("LoginView") as! LoginViewController
         self.presentViewController(vc, animated: true, completion: nil)
@@ -108,8 +114,8 @@ class SettingsTableVC: UITableViewController , UIImagePickerControllerDelegate, 
         
         photoImageView.image = newImage
         
-        ParseImageAction.uploadImage(newImage)
-        
+//        ParseImageAction.uploadImage(newImage)
+        ParseImageAction.uploadImageToUser(newImage)
         picker.dismissViewControllerAnimated(true, completion: nil)
     }
     

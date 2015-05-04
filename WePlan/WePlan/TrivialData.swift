@@ -20,4 +20,10 @@ extension NSDate {
     func daysDiff(date:NSDate) -> Int{
         return NSCalendar.currentCalendar().components(NSCalendarUnit.CalendarUnitDay, fromDate: date, toDate: self, options: nil).day
     }
+    func addDays(days:Int)-> NSDate {
+        return NSCalendar.currentCalendar().dateByAddingUnit(NSCalendarUnit.CalendarUnitDay, value: days, toDate: self, options: nil)!
+    }
+    func addMonths(months: Int) -> NSDate {
+        return NSCalendar.currentCalendar().dateByAddingUnit(NSCalendarUnit.CalendarUnitMonth, value: months, toDate: self, options: nil)!
+    }
 }

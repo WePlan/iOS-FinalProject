@@ -26,7 +26,8 @@ class SearchFriendTableViewCell: UITableViewCell {
             if let user = user {
                 nickNameLabel.text = user.name
                 emailLabel.text = user.uemail
-                userImageView.imageObjectId = user.imageId
+//                userImageView.imageObjectId = user.imageId
+                userImageView.imageFile = user.imageFile
             }
         }
     }

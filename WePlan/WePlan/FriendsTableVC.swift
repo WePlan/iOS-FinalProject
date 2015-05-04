@@ -8,8 +8,9 @@
 
 import UIKit
 
-class FriendsTableVC: UITableViewController , FriendTableCellDeleget{
+class FriendsTableVC: UITableViewController , FriendTableCellDeleget,UISearchBarDelegate, UISearchDisplayDelegate{
     
+    @IBOutlet weak var searchBar: UISearchBar!
     var localFriendList = LocalFriendList.sharedInstance
     
     //MARK: - Life Cycle
@@ -18,6 +19,7 @@ class FriendsTableVC: UITableViewController , FriendTableCellDeleget{
         initialUISettings()
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        searchBar.delegate = self
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -43,9 +45,12 @@ class FriendsTableVC: UITableViewController , FriendTableCellDeleget{
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete method implementation.
         // Return the number of rows in the section.
-        return localFriendList.count
+        if searchState {
+            return filterFriends.count
+        }else{
+            return localFriendList.count
+        }
     }
     
     private struct StoryBoardConstants {
@@ -71,16 +76,20 @@ class FriendsTableVC: UITableViewController , FriendTableCellDeleget{
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCellWithIdentifier(StoryBoardConstants.cell3, forIndexPath: indexPath) as! FriendTableViewCell
-        
+        cell.userProfileImage.image = UIImage(named: "UserDefaultPic")
         // Configure the cell...
-//        cell.textLabel?.text = friendList[indexPath.row].name
-//        cell.detailTextLabel?.text = friendList[indexPath.row].uemail
-//        println("\(friendList[indexPath.row].uid)")
         cell.clipsToBounds = true;
         cell.selectionStyle = UITableViewCellSelectionStyle.None
         //Custom cell configure
+        println("loading friendcell at index: \(indexPath.row)")
         cell.delegate = self
-        cell.friend = localFriendList.getFriendAtIndex(indexPath.row)
+        if searchState {
+            cell.friend = filterFriends[indexPath.row]
+        }else{
+            cell.friend = localFriendList.getFriendAtIndex(indexPath.row)
+        }
+//        println("with image: \(cell.friend!.imageId)")
+        NSLog("%p", cell.userProfileImage)
         return cell
     }
     
@@ -145,7 +154,7 @@ class FriendsTableVC: UITableViewController , FriendTableCellDeleget{
         if selected != -1 && selected == indexPath.row {
             return 90
         }else{
-            return 55
+            return 60
         }
         
     }
@@ -156,13 +165,15 @@ class FriendsTableVC: UITableViewController , FriendTableCellDeleget{
         if selected == indexPath.row {
             selected = -1
             tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
+//            tableView.reloadData()
             return
         }
         else if selected != -1 {
             let prevIndexPath:NSIndexPath = NSIndexPath(forRow: selected, inSection: 0)
             selected = indexPath.row
+//            tableView.reloadData()
             tableView.reloadRowsAtIndexPaths([prevIndexPath], withRowAnimation: .Fade)
-            self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         }else{
             
             selected = indexPath.row
@@ -199,13 +210,7 @@ class FriendsTableVC: UITableViewController , FriendTableCellDeleget{
 //            }
 //        }
     }
-//    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-//        (cell as! FriendTableViewCell).noticeCell()
-//    }
-//    
-//    override func tableView(tableView: UITableView, didEndDisplayingCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-//        (cell as! FriendTableViewCell).endNoticeCell()
-//    }
+
     
     func removeFriendDelegate(friend:User) {
         let index = findIndexPath(friend)
@@ -257,4 +262,43 @@ class FriendsTableVC: UITableViewController , FriendTableCellDeleget{
         }
         return indexPath
     }
+    
+    // MARK: - Search Bar
+    
+    var filterFriends:[User] = []
+    var searchState: Bool = false
+    
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        searchBar.showsCancelButton = true
+        if count(searchText) == 0 {
+            self.searchState = false
+            self.searchBar.showsCancelButton = false
+            self.searchBar.endEditing(true)
+            self.tableView.reloadData()
+            return
+        }
+        self.searchState = true
+        
+        var originArray = NSArray()
+        filterFriends = []
+        for var i = 0; i < localFriendList.count; i++ {
+            let predicate: NSPredicate = NSPredicate(format:"self contains [cd] %@", searchText)
+            if predicate.evaluateWithObject(localFriendList.friendList[i].name){
+                filterFriends.append(self.localFriendList.friendList[i])
+            }
+        }
+        self.tableView.reloadData()
+    }
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        self.searchBar.text = ""
+        self.searchBar(self.searchBar, textDidChange: "")
+        self.searchBar.showsCancelButton = false
+        self.searchBar.resignFirstResponder()
+    }
+    
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        self.searchBar.showsCancelButton = false
+        self.searchBar.resignFirstResponder()
+    }
+    
 }

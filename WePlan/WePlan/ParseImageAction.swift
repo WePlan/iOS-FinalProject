@@ -15,7 +15,7 @@ protocol ImageAction {
 class ParseImageAction : ImageAction{
     
     private struct ParseContants{
-        static let photosClass = "Photos"
+//        static let photosClass = "Photos"
         static let groupImageClass = "GroupImages"
         static let colImageFile = "imageFile"
     }
@@ -41,67 +41,80 @@ class ParseImageAction : ImageAction{
 
     }
     
-    static func uploadImage(image: UIImage) {
+//    static func uploadImage(image: UIImage) {
+//        let imageData: NSData = UIImagePNGRepresentation(image)
+//        let imageFile = PFFile(name:"image.png", data:imageData)
+//        
+//        var userPhoto = PFObject(className: ParseContants.photosClass)
+//        userPhoto["imageName"] = "UserPhoto"
+//        userPhoto[ParseContants.colImageFile] = imageFile
+//        userPhoto["userId"] = PFUser.currentUser()?.objectId
+//        userPhoto.saveInBackgroundWithBlock { (successed: Bool, error:NSError?) -> Void in
+//            if error == nil {
+//                println("image saved with id:"+userPhoto.objectId!)
+//                self.changeImageId(newId: userPhoto.objectId!)
+//            }else {
+//                let errorString = error!.userInfo!["error"] as! String
+//                println(errorString)
+//            }
+//            
+//        }
+//    }
+    
+//    static func changeImageId(# newId: String) {
+//        let localUser = PFUser.currentUser()!
+//        let oldImageId = localUser["imageId"] as? String
+//        
+//        localUser["imageId"] = newId
+//        localUser.saveInBackground()
+//        
+//        if oldImageId != nil {
+//            ParseBaseAction.deleteItem(objectId: oldImageId!, inClass: ParseContants.photosClass)
+//        }
+//    }
+    
+    class func uploadImageToUser(image: UIImage) {
         let imageData: NSData = UIImagePNGRepresentation(image)
         let imageFile = PFFile(name:"image.png", data:imageData)
         
-        var userPhoto = PFObject(className: ParseContants.photosClass)
-        userPhoto["imageName"] = "UserPhoto"
-        userPhoto[ParseContants.colImageFile] = imageFile
-        userPhoto["userId"] = PFUser.currentUser()?.objectId
-        userPhoto.saveInBackgroundWithBlock { (successed: Bool, error:NSError?) -> Void in
-            if error == nil {
-                println("image saved with id:"+userPhoto.objectId!)
-                self.changeImageId(newId: userPhoto.objectId!)
-            }else {
-                let errorString = error!.userInfo!["error"] as! String
-                println(errorString)
-            }
-            
-        }
-    }
-    
-    
-    static func changeImageId(# newId: String) {
         let localUser = PFUser.currentUser()!
-        let oldImageId = localUser["imageId"] as? String
-        
-        localUser["imageId"] = newId
-        localUser.saveInBackground()
-        
-        if oldImageId != nil {
-            ParseBaseAction.deleteItem(objectId: oldImageId!, inClass: ParseContants.photosClass)
-        }
-    }
-    
-
-    static func getImage(objectId: String, completion: (UIImage) -> Void) {
-        var targer: PFFile?
-        
-        var query = PFQuery(className: ParseContants.photosClass)
-        query.whereKey("objectId", equalTo: objectId)
-        query.findObjectsInBackgroundWithBlock { (results:[AnyObject]?, error:NSError?) -> Void in
-            if error == nil {
-                if let results = results as? [PFObject] {
-                    if results.count != 1{
-                        println("\(results.count)   result should be 1")
-                    }
-                    let object:PFObject = results[0]
-                    let file = object.objectForKey(ParseContants.colImageFile) as! PFFile
-                    file.getDataInBackgroundWithBlock{ (imageData: NSData?, error: NSError?) -> Void in
-                        if error == nil {
-                            // have got the image from Parse
-                            if let image = UIImage(data: imageData!) {
-                                completion(image)
-                            }
-                        }
-                    }
-                }
-            }else {
-                println("Error: \(error!.userInfo)")
+        localUser["photo"] = imageFile
+        localUser.saveInBackgroundWithBlock { (success:Bool,error: NSError?) -> Void in
+            if success {
+                
+            }else{
+                println("##upload photo error: \(error?.userInfo)")
             }
         }
     }
+
+//    static func getImage(objectId: String, completion: (UIImage) -> Void) {
+//        var targer: PFFile?
+//        
+//        var query = PFQuery(className: ParseContants.photosClass)
+//        query.whereKey("objectId", equalTo: objectId)
+//        query.findObjectsInBackgroundWithBlock { (results:[AnyObject]?, error:NSError?) -> Void in
+//            if error == nil {
+//                if let results = results as? [PFObject] {
+//                    if results.count != 1{
+//                        println("\(results.count)   result should be 1")
+//                    }
+//                    let object:PFObject = results[0]
+//                    let file = object.objectForKey(ParseContants.colImageFile) as! PFFile
+//                    file.getDataInBackgroundWithBlock{ (imageData: NSData?, error: NSError?) -> Void in
+//                        if error == nil {
+//                            // have got the image from Parse
+//                            if let image = UIImage(data: imageData!) {
+//                                completion(image)
+//                            }
+//                        }
+//                    }
+//                }
+//            }else {
+//                println("Error: \(error!.userInfo)")
+//            }
+//        }
+//    }
     
     static func getImage(imageFile: PFFile, completion: (UIImage) -> Void) {
         imageFile.getDataInBackgroundWithBlock { (imageData:NSData?, error: NSError?) -> Void in

@@ -33,7 +33,8 @@ class ShowGroupMemberCell: UITableViewCell {
     }
     
     func updateCell(){
-        MemberImage.imageObjectId=Member?.imageId
+//        MemberImage.imageObjectId=Member?.imageId
+        MemberImage.imageFile = Member?.imageFile
         ImageProcess.changeImageViewRounded(MemberImage)
         MemberNameLabel.text=Member?.name
         MemberEmailLabel.text=Member?.uemail

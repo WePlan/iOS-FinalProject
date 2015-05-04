@@ -32,7 +32,8 @@ class AddPeopleToTaskTableViewCell: UITableViewCell {
         if let user = self.friend {
             userNameLabel?.text = user.name
             userEmailLabel?.text = user.uemail
-            userProfileImage.imageObjectId = user.imageId
+//            userProfileImage.imageObjectId = user.imageId
+            userProfileImage.imageFile = user.imageFile
             //UserImage part
             //            if let userImage = user.image {
             //            userProfileImage?.image = UIImage()

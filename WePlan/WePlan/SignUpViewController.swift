@@ -137,6 +137,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                     let pfobject = PFObject(className:"User_Group")
                     assert(user.objectId != nil, "id is nil")
                     pfobject["uid"] = user.objectId
+                    pfobject["groupIds"] = []
                     pfobject.saveInBackground()
                     self.performSegueWithIdentifier(Constants.segueToTabbar, sender: self)
                 }
