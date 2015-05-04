@@ -15,6 +15,19 @@ class TaskListTableViewController: UITableViewController, TasksTableViewCellDele
     
     @IBOutlet weak var refreshButton: UIBarButtonItem!
     @IBAction func clickRefresh(sender: AnyObject) {
+        var hud = MBProgressHUD(view: self.view)
+        self.view.addSubview(hud)
+        hud.delegate = self
+        hud.show(true)
+        hud.labelText = "Loading..."
+        
+        refreshButton.enabled = false
+        localTasks.updateAll { () -> Void in
+            self.tableView.reloadData()
+            self.refreshButton.enabled = true
+            
+            hud.hide(true)
+        }
     }
     private func initialUISettings() {
         DefaultSetting.setNavigationBar(self.navigationController!)
