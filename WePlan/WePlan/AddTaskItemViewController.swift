@@ -47,7 +47,9 @@ class AddTaskItemViewController: UIViewController, UITextFieldDelegate,AssignTas
         prepareDatePicker()
         
         self.taskTitleTextField.delegate = self
-
+        self.taskLocationTextField.delegate = self
+        self.shortDescriptionTextField.delegate = self
+        
         taskForMemberLabel.text = ""
         if assignPeople != nil && "Friend" == entrypoint{
             mySelfButton.enabled = false
@@ -187,7 +189,14 @@ class AddTaskItemViewController: UIViewController, UITextFieldDelegate,AssignTas
     
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
+        if textField == self.taskTitleTextField {
+            self.taskLocationTextField.becomeFirstResponder()
+        }else if textField == self.taskLocationTextField {
+            self.shortDescriptionTextField.becomeFirstResponder()
+        }else {
+            textField.resignFirstResponder()
+        }
+        
         return true
     }
     
@@ -201,9 +210,7 @@ class AddTaskItemViewController: UIViewController, UITextFieldDelegate,AssignTas
 //            println("touched")
 //            tapDateLabel()
 //        }
-        taskLocationTextField.resignFirstResponder()
-        shortDescriptionTextField.resignFirstResponder()
-        taskTitleTextField.resignFirstResponder()
+        view.endEditing(true)
     }
     // MARK: - Navigation
     @IBAction func clickAddButton(sender: AnyObject) {
