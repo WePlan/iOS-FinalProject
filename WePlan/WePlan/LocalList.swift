@@ -21,25 +21,13 @@ class LocalList {
     func updateAll(completion: ()->Void) {
         ParseAction.getInitialDataFromParse { (data:[TaskItem]) -> Void in
             self.taskList = data
-            self.sortList()
+            self.sortByDue()
+            self.sortByCheck()
             completion()
         }
     }
     
-    func sortList() {
-        //sort verified
-        var index = 0
-        for var i = 0; i < self.count; i++ {
-            if self.taskList[index].checked == true {
-                let tmp = taskList[index]
-                taskList.removeAtIndex(index)
-                taskList.append(tmp)
-            }else{
-                index++
-            }
-        }
-        //sort due
-    }
+
     
     
     func update() {
@@ -55,4 +43,33 @@ class LocalList {
         taskList.removeAtIndex(from)
         taskList.insert(tmp, atIndex: to)
     }
+    
+    func sortByDue() {
+        taskList.sort { (a: TaskItem, b: TaskItem) -> Bool in
+            let aDate = a.dueTime
+            let bDate = b.dueTime
+            let result = aDate.compare(bDate)
+            if result == NSComparisonResult.OrderedAscending {
+                 //a < b
+                return true
+            }else{
+                return false
+            }
+            
+        }
+    }
+    
+    func sortByCheck() {
+        var index = 0
+        for var i = 0; i < self.count; i++ {
+            if self.taskList[index].checked == true {
+                let tmp = taskList[index]
+                taskList.removeAtIndex(index)
+                taskList.append(tmp)
+            }else{
+                index++
+            }
+        }
+    }
+    
 }

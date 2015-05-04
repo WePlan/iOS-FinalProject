@@ -324,6 +324,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="TaskList" id="XO6-O8-BfL">
+                        <barButtonItem key="leftBarButtonItem" systemItem="refresh" id="Xlt-xw-T4u">
+                            <connections>
+                                <action selector="clickRefresh:" destination="QCe-Hq-JYz" id="dI3-ce-L66"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="nyB-Mp-Iuz">
                             <connections>
                                 <segue destination="rn8-S5-m1x" kind="presentation" identifier="TaskListToAdd" id="S5m-d9-5rp"/>
@@ -331,6 +336,9 @@
                         </barButtonItem>
                     </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="refreshButton" destination="Xlt-xw-T4u" id="bTd-2f-dNt"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wcb-W9-VLK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
