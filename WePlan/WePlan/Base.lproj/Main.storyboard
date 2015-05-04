@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SignInImage4" translatesAutoresizingMaskIntoConstraints="NO" id="2O9-Ep-WzX" userLabel="BackGroundImage">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SignInImage5" translatesAutoresizingMaskIntoConstraints="NO" id="2O9-Ep-WzX" userLabel="BackGroundImage">
                                 <rect key="frame" x="0.0" y="-5" width="600" height="605"/>
                             </imageView>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gOS-RU-HSc">
@@ -344,7 +344,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SignInImage4" translatesAutoresizingMaskIntoConstraints="NO" id="LV5-pL-DUW" userLabel="SignupBackground">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SignInImage" translatesAutoresizingMaskIntoConstraints="NO" id="LV5-pL-DUW" userLabel="SignupBackground">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X5M-1G-OmI">
@@ -767,7 +767,8 @@
         <image name="Email" width="80" height="80"/>
         <image name="Name" width="80" height="80"/>
         <image name="Password" width="80" height="80"/>
-        <image name="SignInImage4" width="620" height="1101"/>
+        <image name="SignInImage" width="1080" height="1920"/>
+        <image name="SignInImage5" width="640" height="960"/>
         <image name="UserName" width="80" height="80"/>
     </resources>
     <inferredMetricsTieBreakers>
