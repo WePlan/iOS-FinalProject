@@ -20,6 +20,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
     
     @IBOutlet weak var BackgroundImage: UIImageView!
     
+    private struct constants {
+        static let pullHeight:CGFloat = -150
+    }
+    
     var displayed: Bool = false
     enum UIBlurEffectStyle : Int {
         case ExtraLight
@@ -162,7 +166,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
 //            println( "0,0")
             UIView.animateWithDuration(0.3, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
                 let size = self.view.frame.size
-                self.view.frame = CGRectMake(0, -100, size.width, size.height)
+                self.view.frame = CGRectMake(0, constants.pullHeight, size.width, size.height)
                 self.view.layoutIfNeeded()
                 }, completion: { (finished:Bool) -> Void in
                 //
@@ -185,7 +189,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
     }
     
     func pulldownView() {
-        if self.view.frame.origin == CGPoint(x: 0 , y: -100) {
+        if self.view.frame.origin == CGPoint(x: 0 , y: constants.pullHeight) {
             let size = self.view.frame.size
             UIView.animateWithDuration(0.3, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
                 self.view.frame = CGRectMake(0, 0, size.width, size.height)

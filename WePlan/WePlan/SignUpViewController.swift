@@ -51,25 +51,41 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         return false
     }
     
+    private struct FrameConstants {
+        static let height:CGFloat = -200
+    }
+    
     func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+        let frame = self.view.frame
         if textField == self.passwordRepeatTextField || textField == self.passwordTextField {
-            let frame = self.view.frame
-            if frame.origin == CGPoint(x: 0, y: 0) {
-//                println( "0,0")
+            if frame.origin != CGPoint(x: 0, y: FrameConstants.height) {
                 UIView.animateWithDuration(0.3, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
                     let size = self.view.frame.size
-                    self.view.frame = CGRectMake(0, -200, size.width, size.height)
+                    self.view.frame = CGRectMake(0, FrameConstants.height, size.width, size.height)
                     self.view.layoutIfNeeded()
                     }, completion: { (finished:Bool) -> Void in
                         //
                 })
             }
+        }else if textField == self.usernameTextField {
+            if frame.origin != CGPoint(x: 0, y: -100) {
+                UIView.animateWithDuration(0.2, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
+                    let size = self.view.frame.size
+                    self.view.frame = CGRectMake(0, -100, size.width, size.height)
+                    self.view.layoutIfNeeded()
+                    }, completion: { (finished:Bool) -> Void in
+                        //
+                })
+            }
+            
+        }else{
+            pulldownView()
         }
         return true
     }
     
     func pulldownView() {
-        if self.view.frame.origin == CGPoint(x: 0 , y: -200) {
+        if self.view.frame.origin != CGPoint(x: 0 , y: 0) {
             let size = self.view.frame.size
             UIView.animateWithDuration(0.3, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
                 self.view.frame = CGRectMake(0, 0, size.width, size.height)
