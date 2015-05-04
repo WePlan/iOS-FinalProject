@@ -147,7 +147,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
                         complete("New user created! For third party account.")
                     }
                     else{
-                        complete(error?.userInfo as! String)
+                        let ee = error!.userInfo!["error"] as? String
+                        complete(ee!)
                     }
                 })
             }
@@ -186,7 +187,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
     func pulldownView() {
         if self.view.frame.origin == CGPoint(x: 0 , y: -100) {
             let size = self.view.frame.size
-            UIView.animateWithDuration(0.2, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
+            UIView.animateWithDuration(0.3, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
                 self.view.frame = CGRectMake(0, 0, size.width, size.height)
                 self.view.layoutIfNeeded()
                 }) { (finished:Bool) -> Void in
