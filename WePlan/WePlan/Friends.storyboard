@@ -158,6 +158,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Friends" id="3gD-jX-aHc">
+                        <barButtonItem key="leftBarButtonItem" systemItem="refresh" id="GFq-GO-VoH">
+                            <connections>
+                                <action selector="clickRefresh:" destination="60p-uk-Fgz" id="nQL-Xo-z1s"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="feN-jc-NSe">
                             <connections>
                                 <segue destination="pxd-RF-Ghc" kind="show" identifier="addFriendSegue" id="Jtm-4U-2No"/>
@@ -166,6 +171,7 @@
                     </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="refreshButton" destination="GFq-GO-VoH" id="TED-4m-wUE"/>
                         <outlet property="searchBar" destination="Xi9-vr-hqX" id="EIb-9G-bce"/>
                         <segue destination="WT1-i1-05Z" kind="show" identifier="UserDetailView" id="Yx5-4Z-Xlg"/>
                     </connections>

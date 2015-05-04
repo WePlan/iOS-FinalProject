@@ -13,6 +13,9 @@ class GroupsTableVC: UITableViewController,UISearchBarDelegate,UISearchDisplayDe
     @IBOutlet weak var searchBar: UISearchBar!
     var groups = LocalGroupList.sharedInstance
     
+    @IBOutlet weak var refreshButton: UIBarButtonItem!
+    @IBAction func clickRefresh(sender: AnyObject) {
+    }
     //SearchBar
     var Filtergroups:[Group]=[]
     var selected: Int = 0

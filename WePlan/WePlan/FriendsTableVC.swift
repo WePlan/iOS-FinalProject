@@ -13,6 +13,9 @@ class FriendsTableVC: UITableViewController , FriendTableCellDeleget,UISearchBar
     @IBOutlet weak var searchBar: UISearchBar!
     var localFriendList = LocalFriendList.sharedInstance
     
+    @IBOutlet weak var refreshButton: UIBarButtonItem!
+    @IBAction func clickRefresh(sender: AnyObject) {
+    }
     //MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()

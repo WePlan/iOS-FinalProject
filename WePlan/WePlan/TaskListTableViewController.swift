@@ -13,6 +13,9 @@ class TaskListTableViewController: UITableViewController, TasksTableViewCellDele
 //    var tasks:[TaskItem] = []
     var localTasks = LocalList.sharedInstance
     
+    @IBOutlet weak var refreshButton: UIBarButtonItem!
+    @IBAction func clickRefresh(sender: AnyObject) {
+    }
     private func initialUISettings() {
         DefaultSetting.setNavigationBar(self.navigationController!)
        
