@@ -215,7 +215,7 @@
                                             <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZAR-9G-ls4" userLabel="FaceBookView">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZAR-9G-ls4" userLabel="FaceBookView" customClass="FBSDKLoginButton">
                                             <rect key="frame" x="150" y="416" width="300" height="40"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
@@ -322,6 +322,7 @@
                     <connections>
                         <outlet property="BackgroundImage" destination="2O9-Ep-WzX" id="Kg8-tP-AVv"/>
                         <outlet property="errorLabel" destination="TcM-ab-rLP" id="1fC-1E-hYA"/>
+                        <outlet property="loginButton" destination="ZAR-9G-ls4" id="hmE-oA-Oht"/>
                         <outlet property="pwdText" destination="TJ0-wI-9ks" id="v2E-pF-zxb"/>
                         <outlet property="usernameText" destination="lHq-Uh-EVK" id="hQZ-r5-PG1"/>
                         <segue destination="7Kd-Ew-dIq" kind="presentation" identifier="Login" id="6QV-us-y5G"/>

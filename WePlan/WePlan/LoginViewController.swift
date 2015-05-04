@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import FBSDKCoreKit
+import FBSDKLoginKit
 
-class LoginViewController: UIViewController, UITextFieldDelegate{
+
+class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButtonDelegate{
 
     @IBOutlet weak var usernameText: UITextField!
     @IBOutlet weak var pwdText: UITextField!
@@ -29,6 +32,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
         textField.attributedPlaceholder = placeHolder
     }
   
+    @IBOutlet weak var loginButton: FBSDKLoginButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +47,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
         let blurEffect = UIBlurEffect(style: .Dark)
         let blurView = UIVisualEffectView(effect: blurEffect)
         view.addSubview(blurView)
+        
+        loginButton.readPermissions = ["public_profile","email"]
+        loginButton.delegate = self
+        if FBSDKAccessToken.currentAccessToken() != nil {
+            println("Already loggined in with facebook!")
+            println(self.returnUserData())
+        }
+        
+        
        // insertBlurView(BackgroundImage, style: UIBlurEffectStyle.Light)
     }
     
@@ -50,6 +63,97 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
         pulldownView()
         view.endEditing(true)
     }
+    
+    func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
+        println("User Logged In")
+        
+        if ((error) != nil)
+        {
+            // Process error
+            println("Error : \(error)")
+        }
+        else if result.isCancelled {
+            // Handle cancellations
+            println("User cancelled logging process.")
+        }
+        else {
+            if result.grantedPermissions.contains("email") {
+                returnUserData()
+            }
+        }
+    }
+    
+    func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
+        println("User Logged Out")
+    }
+    
+    func returnUserData(){
+        let graphRequest : FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "me", parameters: nil)
+        graphRequest.startWithCompletionHandler({ (connection, result, error) -> Void in
+            
+            if ((error) != nil)
+            {
+                // Process error
+                println("Error: \(error)")
+            }
+            else
+            {
+                //println("fetched user: \(result)")
+                let userName : String = result.valueForKey("name") as! String
+                //println("User Name is: \(userName)")
+                let userEmail : String = result.valueForKey("email") as! String
+                //println("User Email is: \(userEmail)")
+                self.signInWithThirdPartyAccount(userName, email: userEmail, complete: { (result : String) -> Void in
+                    println(result)
+                })
+            }
+        })
+    }
+    
+    func signIn (email : String){
+        PFUser.logInWithUsernameInBackground(email, password: email) { (object : PFUser?, error : NSError?) -> Void in
+            if object != nil {
+                if self.displayed {
+                    self.performSegueWithIdentifier(Login.LoginSegueId, sender: self)
+                }
+            }
+            else{
+                println(error?.userInfo)
+            }
+        }
+    }
+    
+    func signInWithThirdPartyAccount (nickname : String, email : String, complete : (String) -> Void) {
+        var query = PFQuery(className: "_User")
+        query.whereKey("email", equalTo: email)
+        query.getFirstObjectInBackgroundWithBlock { (object : PFObject?, error : NSError?) -> Void in
+            if error == nil {
+                self.signIn(email)
+                complete("Account existed! Directly login in!")
+            }
+            else{
+                var user = PFUser()
+                user.email = email
+                user.username = email
+                user.password = email
+                user["nickname"] = nickname
+                user.signUpInBackgroundWithBlock({ (success : Bool, error : NSError?) -> Void in
+                    if success {
+                        let object = PFObject(className: "User_Group")
+                        object["uid"] = user.objectId
+                        object["groupIds"] = []
+                        object.saveInBackground()
+                        self.signIn(email)
+                        complete("New user created! For third party account.")
+                    }
+                    else{
+                        complete(error?.userInfo as! String)
+                    }
+                })
+            }
+        }
+    }
+
     
     func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
         let frame = self.view.frame
