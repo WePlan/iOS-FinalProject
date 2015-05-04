@@ -46,7 +46,8 @@ class CreateGroupVC: UIViewController ,UITableViewDataSource, UITableViewDelegat
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("friendSelectedCell", forIndexPath: indexPath) as! FriendSelectTableViewCell
         cell.nameLabel.text = localFriendsList.friendList[indexPath.row].name
-        cell.friendImageView.imageObjectId = localFriendsList.friendList[indexPath.row].imageId
+//        cell.friendImageView.imageObjectId = localFriendsList.friendList[indexPath.row].imageId
+        cell.friendImageView.imageFile = localFriendsList.friendList[indexPath.row].imageFile
         cell.uid = localFriendsList.friendList[indexPath.row].uid
         cell.delegate = self
         return cell

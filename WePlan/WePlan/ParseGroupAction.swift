@@ -208,8 +208,9 @@ class ParseGroupAction : ParseGroup{
             if error == nil {
                 if let objects = objects as? [PFUser] {
                     for object in objects {
-                        let imgId = object["imageId"] as? String
-                        var tmp = User(uid : ownerId, name : object.objectForKey(UserConstants.userNickname) as! String, uemail : object.email!, imageId: imgId)
+//                        let imgId = object["imageId"] as? String
+                        let imgFile = object["photo"] as? PFFile
+                        var tmp = User(uid : ownerId, name : object.objectForKey(UserConstants.userNickname) as! String, uemail : object.email!, imageFile: imgFile)
                         complete(tmp)
                     }
                 }
@@ -225,8 +226,9 @@ class ParseGroupAction : ParseGroup{
             if error == nil {
                 if let objects = objects as? [PFUser] {
                     for object in objects {
-                        let imgId = object["imageId"] as? String
-                        var tmp = User(uid : object.objectId!, name : object.objectForKey(UserConstants.userNickname) as! String, uemail : object.email!, imageId: imgId)
+//                        let imgId = object["imageId"] as? String
+                        let imgFile = object["photo"] as? PFFile
+                        var tmp = User(uid : object.objectId!, name : object.objectForKey(UserConstants.userNickname) as! String, uemail : object.email!, imageFile: imgFile)
                         memberList.append(tmp)
                     }
                     complete(memberList)

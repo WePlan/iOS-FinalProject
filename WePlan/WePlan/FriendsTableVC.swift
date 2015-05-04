@@ -88,7 +88,7 @@ class FriendsTableVC: UITableViewController , FriendTableCellDeleget,UISearchBar
         }else{
             cell.friend = localFriendList.getFriendAtIndex(indexPath.row)
         }
-        println("with image: \(cell.friend!.imageId)")
+//        println("with image: \(cell.friend!.imageId)")
         NSLog("%p", cell.userProfileImage)
         return cell
     }

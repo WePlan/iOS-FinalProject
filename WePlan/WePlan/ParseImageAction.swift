@@ -15,7 +15,7 @@ protocol ImageAction {
 class ParseImageAction : ImageAction{
     
     private struct ParseContants{
-        static let photosClass = "Photos"
+//        static let photosClass = "Photos"
         static let groupImageClass = "GroupImages"
         static let colImageFile = "imageFile"
     }
@@ -88,33 +88,33 @@ class ParseImageAction : ImageAction{
         }
     }
 
-    static func getImage(objectId: String, completion: (UIImage) -> Void) {
-        var targer: PFFile?
-        
-        var query = PFQuery(className: ParseContants.photosClass)
-        query.whereKey("objectId", equalTo: objectId)
-        query.findObjectsInBackgroundWithBlock { (results:[AnyObject]?, error:NSError?) -> Void in
-            if error == nil {
-                if let results = results as? [PFObject] {
-                    if results.count != 1{
-                        println("\(results.count)   result should be 1")
-                    }
-                    let object:PFObject = results[0]
-                    let file = object.objectForKey(ParseContants.colImageFile) as! PFFile
-                    file.getDataInBackgroundWithBlock{ (imageData: NSData?, error: NSError?) -> Void in
-                        if error == nil {
-                            // have got the image from Parse
-                            if let image = UIImage(data: imageData!) {
-                                completion(image)
-                            }
-                        }
-                    }
-                }
-            }else {
-                println("Error: \(error!.userInfo)")
-            }
-        }
-    }
+//    static func getImage(objectId: String, completion: (UIImage) -> Void) {
+//        var targer: PFFile?
+//        
+//        var query = PFQuery(className: ParseContants.photosClass)
+//        query.whereKey("objectId", equalTo: objectId)
+//        query.findObjectsInBackgroundWithBlock { (results:[AnyObject]?, error:NSError?) -> Void in
+//            if error == nil {
+//                if let results = results as? [PFObject] {
+//                    if results.count != 1{
+//                        println("\(results.count)   result should be 1")
+//                    }
+//                    let object:PFObject = results[0]
+//                    let file = object.objectForKey(ParseContants.colImageFile) as! PFFile
+//                    file.getDataInBackgroundWithBlock{ (imageData: NSData?, error: NSError?) -> Void in
+//                        if error == nil {
+//                            // have got the image from Parse
+//                            if let image = UIImage(data: imageData!) {
+//                                completion(image)
+//                            }
+//                        }
+//                    }
+//                }
+//            }else {
+//                println("Error: \(error!.userInfo)")
+//            }
+//        }
+//    }
     
     static func getImage(imageFile: PFFile, completion: (UIImage) -> Void) {
         imageFile.getDataInBackgroundWithBlock { (imageData:NSData?, error: NSError?) -> Void in

@@ -12,21 +12,20 @@ class AsyncUIImageView: UIImageView {
     
     var defaultImageName: String? {
         didSet{
-            if imageObjectId == nil {
-                self.image = UIImage(named: defaultImageName!)
-            }
+            self.image = UIImage(named: defaultImageName!)
+            
         }
     }
     
-    var imageObjectId: String? {
-        didSet{
-            if let imageObjectId = imageObjectId {
-                ParseImageAction.getImage(imageObjectId, completion: { (returnImage: UIImage) -> Void in
-                    self.image = returnImage
-                    })
-            }
-        }
-    }
+//    var imageObjectId: String? {
+//        didSet{
+//            if let imageObjectId = imageObjectId {
+//                ParseImageAction.getImage(imageObjectId, completion: { (returnImage: UIImage) -> Void in
+//                    self.image = returnImage
+//                    })
+//            }
+//        }
+//    }
     
     var imageFile: PFFile? {
         didSet{

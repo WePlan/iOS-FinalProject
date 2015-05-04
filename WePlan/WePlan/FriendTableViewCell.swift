@@ -58,11 +58,12 @@ class FriendTableViewCell: UITableViewCell {
         if let user = self.friend {
             userNameLabel?.text = user.name
             userEmailLabel?.text = user.uemail
-            if user.imageId == nil {
-                userProfileImage.defaultImageName = StoryBoardConstant.UserDetaultImage
-            }else{
-                userProfileImage.imageObjectId = user.imageId
-            }
+            userProfileImage.imageFile = user.imageFile
+//            if user.imageId == nil {
+//                userProfileImage.defaultImageName = StoryBoardConstant.UserDetaultImage
+//            }else{
+//                userProfileImage.imageObjectId = user.imageId
+//            }
         }else{
             userNameLabel?.text = nil
             userEmailLabel?.text = nil

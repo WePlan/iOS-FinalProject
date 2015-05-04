@@ -69,8 +69,8 @@ class ParseFriendAction : ParseFriend {
                 if error == nil {
                     if let objects = objects as? [PFUser] {
                         for object in objects {
-                            let imgId = object["imageId"] as? String
-                            var item = User(uid : object.objectId!, name: object.objectForKey(UserConstants.userNickname) as! String, uemail: object.email!, imageId: imgId)
+                            let imgFile = object["photo"] as? PFFile
+                            var item = User(uid : object.objectId!, name: object.objectForKey(UserConstants.userNickname) as! String, uemail: object.email!, imageFile: imgFile)
                             if !friendSet.contains(object.objectId!) {
                                 resultList.append(item)
                             }
@@ -93,8 +93,9 @@ class ParseFriendAction : ParseFriend {
             if error == nil{
                 if let objects = objects as? [PFUser] {
                     for object in objects {
-                        let imgId = object["imageId"] as? String
-                        var item = User(uid : object.objectId!, name: object.objectForKey(UserConstants.userNickname) as! String, uemail: object.email! , imageId: imgId)
+//                        let imgId = object["imageId"] as? String
+                        let imgFile = object["photo"] as? PFFile
+                        var item = User(uid : object.objectId!, name: object.objectForKey(UserConstants.userNickname) as! String, uemail: object.email! , imageFile: imgFile)
                         if !friendSet.contains(object.objectId!) {
                             resultList.append(item)
                         }
@@ -142,8 +143,9 @@ class ParseFriendAction : ParseFriend {
                                     if error == nil {
                                         if let objects = objects as? [PFUser] {
                                             for object in objects {
-                                                let imgId = object["imageId"] as? String
-                                                var item = User(uid : object.objectId!, name: object.objectForKey(UserConstants.userNickname) as! String, uemail: object.email!, imageId: imgId)
+//                                                let imgId = object["imageId"] as? String
+                                                let imgFile = object["photo"] as? PFFile
+                                                var item = User(uid : object.objectId!, name: object.objectForKey(UserConstants.userNickname) as! String, uemail: object.email!, imageFile: imgFile)
                                                 friendList.append(item)
                                             }
                                             complete(friendList)
