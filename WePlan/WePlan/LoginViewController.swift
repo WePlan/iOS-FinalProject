@@ -12,9 +12,18 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
 
     @IBOutlet weak var usernameText: UITextField!
     @IBOutlet weak var pwdText: UITextField!
-    
     @IBOutlet weak var errorLabel: UILabel!
+    
+    
+    @IBOutlet weak var BackgroundImage: UIImageView!
+    
     var displayed: Bool = false
+    enum UIBlurEffectStyle : Int {
+        case ExtraLight
+        case Light
+        case Dark
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +32,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
         // Do any additional setup after loading the view.
         self.usernameText.delegate=self
         self.pwdText.delegate=self
+        
+        //Add Background BlurEffect
+        
+        let blurEffect = UIBlurEffect(style: .Dark)
+        let blurView = UIVisualEffectView(effect: blurEffect)
+        view.addSubview(blurView)
+       // insertBlurView(BackgroundImage, style: UIBlurEffectStyle.Light)
     }
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
@@ -151,6 +167,23 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
+    
+    
+    //MARK: - Background Image Processing
+    
+//    
+//    func insertBlurView (view: UIView,  style: UIBlurEffectStyle) {
+//        view.backgroundColor = UIColor.clearColor()
+//        
+//        var blurEffect = UIBlurEffect(style: style)
+//        var blurEffectView = UIVisualEffectView(effect: blurEffect)
+//        blurEffectView.frame = view.bounds
+//        view.insertSubview(blurEffectView, atIndex: 0)
+//    }
+//
+//    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+//        return UIStatusBarStyle.LightContent
+//    }
 
 
 }
