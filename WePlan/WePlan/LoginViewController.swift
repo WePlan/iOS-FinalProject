@@ -53,6 +53,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
             UIView.animateWithDuration(0.3, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
                 let size = self.view.frame.size
                 self.view.frame = CGRectMake(0, -100, size.width, size.height)
+                self.view.layoutIfNeeded()
                 }, completion: { (finished:Bool) -> Void in
                 //
             })
@@ -78,6 +79,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
             let size = self.view.frame.size
             UIView.animateWithDuration(0.2, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
                 self.view.frame = CGRectMake(0, 0, size.width, size.height)
+                self.view.layoutIfNeeded()
                 }) { (finished:Bool) -> Void in
                     //
             }
