@@ -199,8 +199,7 @@ class TaskListTableViewController: UITableViewController, TasksTableViewCellDele
         let index = findIndexPath(task)
         println("Right move index: \(index.row)")
         let oldPath = index
-        var newPath = NSIndexPath(forRow: localTasks.count-1, inSection: 0)
-
+        var newPath = localTasks.getNewPathForRemove(task)
         tableView.moveRowAtIndexPath(oldPath, toIndexPath: newPath)
         self.tableView(self.tableView, moveRowAtIndexPath: oldPath, toIndexPath: newPath)
 //        tableView.reloadData()
@@ -212,7 +211,7 @@ class TaskListTableViewController: UITableViewController, TasksTableViewCellDele
         let index = findIndexPath(task)
         println("Left move index: \(index.row)")
         let oldPath = index
-        var newPath = NSIndexPath(forRow: 0, inSection: 0)
+        var newPath = localTasks.getNewPathForBack(task)
 
         tableView.moveRowAtIndexPath(oldPath, toIndexPath: newPath)
         self.tableView(self.tableView, moveRowAtIndexPath: oldPath, toIndexPath: newPath)
