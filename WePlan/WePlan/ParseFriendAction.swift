@@ -71,7 +71,7 @@ class ParseFriendAction : ParseFriend {
                         for object in objects {
                             let imgFile = object["photo"] as? PFFile
                             var item = User(uid : object.objectId!, name: object.objectForKey(UserConstants.userNickname) as! String, uemail: object.email!, imageFile: imgFile)
-                            if !friendSet.contains(object.objectId!) {
+                            if !friendSet.contains(object.objectId!) && object.objectId != PFUser.currentUser()?.objectId {
                                 resultList.append(item)
                             }
                         }
@@ -96,7 +96,7 @@ class ParseFriendAction : ParseFriend {
 //                        let imgId = object["imageId"] as? String
                         let imgFile = object["photo"] as? PFFile
                         var item = User(uid : object.objectId!, name: object.objectForKey(UserConstants.userNickname) as! String, uemail: object.email! , imageFile: imgFile)
-                        if !friendSet.contains(object.objectId!) {
+                        if !friendSet.contains(object.objectId!) && object.objectId != PFUser.currentUser()?.objectId {
                             resultList.append(item)
                         }
                     }
