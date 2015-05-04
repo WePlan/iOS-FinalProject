@@ -100,16 +100,17 @@ class TasksTableViewCell: UITableViewCell {
             if diffDays < 0 {
                 let diff = -diffDays
                 taskDueDate.text = "\(diff) days before"
+                taskDueDate.textColor = UIColor.redColor()
             }else if diffDays == 0 {
                 
                 taskDueDate.text = "Today at \(hourMins)"
             }else if diffDays == 1 {
                 taskDueDate.text = "Tomorrow at \(hourMins)"
             }else if diffDays >= 2 && diffDays <= 7 {
-                taskDueDate.text = "In \(diffDays) days at \(hourMins)"
+                taskDueDate.text = "In \(diffDays) days"
             }else if diffDays >= 8 && diffDays <= 30 {
                 let diffWeeks = item.dueTime.weeksDiff(currentDate)
-                taskDueDate.text = "In \(diffWeeks) weeks at \(hourMins)"
+                taskDueDate.text = "In \(diffWeeks) weeks"
             }else if diffDays >= 31 && diffDays <= 366 {
                 let diffMonths = item.dueTime.monthsDiff(currentDate)
                 taskDueDate.text = "In \(diffMonths) months"
