@@ -25,6 +25,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
     }
     
     
+    func textFieldDidBeginEditing(textField: UITextField) {
+        textField.text=""
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         errorLabel.text = ""
