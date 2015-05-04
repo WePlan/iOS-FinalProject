@@ -27,6 +27,18 @@ class LocalGroupList {
         }
     }
     
+    func getGroup(# objectId:String) -> Group{
+        var agroup: Group?
+        for group in groupList {
+            if group.id == objectId {
+                agroup = group
+                break
+            }
+        }
+        assert(agroup != nil, "group should exist")
+        return agroup!
+    }
+    
     func getGroupName(# objectId: String) -> String{
         var name:String?
         for group in groupList {

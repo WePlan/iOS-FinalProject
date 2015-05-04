@@ -12,7 +12,7 @@ enum TaskKind: Int {
 }
 
 //Task struture needs to be modified and updated, it's outdated.
-class TaskItem {
+class TaskItem : NSObject{
     //basic
     var taskName: String
     var dueTime: NSDate
@@ -39,5 +39,9 @@ class TaskItem {
         
         checked = false
     }
+//    
+//    override func isEqual(object: AnyObject?) -> Bool {
+//        
+//    }
     
 }

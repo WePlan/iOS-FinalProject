@@ -8,13 +8,25 @@
 
 import UIKit
 
-class GroupsTableVC: UITableViewController,UISearchBarDelegate,UISearchDisplayDelegate{
+class GroupsTableVC: UITableViewController,UISearchBarDelegate,UISearchDisplayDelegate,MBProgressHUDDelegate{
 
     @IBOutlet weak var searchBar: UISearchBar!
     var groups = LocalGroupList.sharedInstance
     
     @IBOutlet weak var refreshButton: UIBarButtonItem!
     @IBAction func clickRefresh(sender: AnyObject) {
+        var hud = MBProgressHUD(view: self.view)
+        self.view.addSubview(hud)
+        hud.delegate = self
+        hud.show(true)
+        hud.labelText = "Loading..."
+        refreshButton.enabled = false
+        groups.updateAll { () -> Void in
+            self.tableView.reloadData()
+            self.refreshButton.enabled = true
+            
+            hud.hide(true)
+        }
     }
     //SearchBar
     var Filtergroups:[Group]=[]

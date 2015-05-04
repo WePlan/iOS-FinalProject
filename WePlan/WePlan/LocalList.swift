@@ -27,8 +27,53 @@ class LocalList {
         }
     }
     
+    func getNewPathForRemove(task:TaskItem) -> NSIndexPath {
+        var index = 0
+        let due = task.dueTime
+        for var i=0; i < self.count;i++ {
+            if !taskList[i].checked || taskList[i].uniqueId == task.uniqueId{
+                index++
+                continue
+            }else{
+                let result = due.compare(taskList[i].dueTime)
+                if result == NSComparisonResult.OrderedDescending {
+                    //due is latter
+                    index++
+                    continue
+                }else{
+                    index--
+                    break
+                }
+            }
+        }
+        if index == self.count {
+            index--
+        }
+//        println("insert index is:\(index)" )
+        return NSIndexPath(forRow: index, inSection: 0)
+    }
 
-    
+    func getNewPathForBack(task: TaskItem) -> NSIndexPath {
+        var index = 0
+        let due = task.dueTime
+        for var i = 0; i < self.count;i++ {
+            if taskList[i].checked {
+                break
+            }else{
+                let result = due.compare(taskList[i].dueTime)
+                if result == NSComparisonResult.OrderedDescending {
+                    //due is latter
+                    index++
+                    continue
+                }else{
+                    break
+                }
+            }
+            
+        }
+//        println("insert index: \(index)")
+        return NSIndexPath(forRow: index, inSection: 0)
+    }
     
     func update() {
         //only insert new task
