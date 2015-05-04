@@ -18,7 +18,7 @@
                             <rect key="frame" x="0.0" y="64" width="600" height="200"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SignInImage4" translatesAutoresizingMaskIntoConstraints="NO" id="dFC-aH-JUb">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SignInImage3" translatesAutoresizingMaskIntoConstraints="NO" id="dFC-aH-JUb">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="200"/>
                                 </imageView>
                                 <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="npu-mg-jP2">
@@ -70,7 +70,6 @@
                                     <blurEffect style="light"/>
                                 </visualEffectView>
                             </subviews>
-                            <color key="backgroundColor" red="0.78039215689999997" green="0.1529411765" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstItem="dFC-aH-JUb" firstAttribute="leading" secondItem="Flm-D2-XIH" secondAttribute="leading" id="5Jg-i0-Vtj"/>
                                 <constraint firstAttribute="bottom" secondItem="dFC-aH-JUb" secondAttribute="bottom" id="659-dM-Csc"/>
@@ -141,8 +140,8 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CBQ-sb-1ID" id="Cex-V8-Gj6">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="About" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BMt-Pf-S3p">
-                                                    <rect key="frame" x="8" y="25" width="584" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BMt-Pf-S3p">
+                                                    <rect key="frame" x="8" y="26" width="584" height="20"/>
                                                     <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -256,7 +255,7 @@
     </scenes>
     <resources>
         <image name="DeleteButtonBorder" width="310" height="80"/>
-        <image name="SignInImage4" width="620" height="1101"/>
+        <image name="SignInImage3" width="640" height="1136"/>
         <image name="UserDefaultPic" width="1145" height="1054"/>
     </resources>
 </document>
