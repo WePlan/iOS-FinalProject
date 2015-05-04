@@ -1,15 +1,10 @@
 ###Bug and missing:
-- 3  sort in local list singleton?
 - 4. create task in grouplist view, than show task list, miss the new task.
-- 6. LocalTaskList singleton
-- 7. Refactoring the friend struct and database by PFfile
 
 # The functions or modules that need to be implemented or updated：
 
 ## Friend Module:
 ### UI Part :
-
-3. Search Bar for my friend list.
 
 ### Backend Part :
 
@@ -26,17 +21,6 @@
 
 2. Incoming task notification. Parse push?
 
-## Setting Module : (TBA)
-
-## Sign up && Sign in
-
-### UI Part :
-
-improve UI design
-
-## Advance and important:
-
-Local cache for Images.
 
 ###April 27th, 2015, By Mark
 
