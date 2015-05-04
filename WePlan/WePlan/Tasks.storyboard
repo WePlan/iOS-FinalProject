@@ -178,13 +178,20 @@
                                                 <constraint firstAttribute="height" constant="1" id="KXs-2D-Kfe"/>
                                             </constraints>
                                         </view>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="deleteCell" translatesAutoresizingMaskIntoConstraints="NO" id="Vh6-5S-mKM">
+                                            <rect key="frame" x="562" y="18" width="15" height="15"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="15" id="OJv-tc-HQM"/>
+                                                <constraint firstAttribute="height" constant="15" id="dNs-75-3aV"/>
+                                            </constraints>
+                                        </imageView>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hMD-89-ebo">
-                                            <rect key="frame" x="569" y="19" width="15" height="15"/>
+                                            <rect key="frame" x="554" y="11" width="30" height="30"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="hMD-89-ebo" secondAttribute="height" multiplier="1:1" id="cj3-eE-KXc"/>
-                                                <constraint firstAttribute="height" constant="15" id="vqD-Ht-lzL"/>
+                                                <constraint firstAttribute="height" constant="30" id="vqD-Ht-lzL"/>
                                             </constraints>
-                                            <state key="normal" backgroundImage="deleteCell">
+                                            <state key="normal">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                             <connections>
@@ -195,6 +202,7 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstItem="L4j-sD-Bng" firstAttribute="leading" secondItem="kkS-0K-EqF" secondAttribute="trailing" constant="8" id="0cE-wx-Jvd"/>
+                                        <constraint firstItem="hMD-89-ebo" firstAttribute="centerX" secondItem="Vh6-5S-mKM" secondAttribute="centerX" id="0i6-Bx-3IJ"/>
                                         <constraint firstItem="jsa-Oe-rEn" firstAttribute="leading" secondItem="kkS-0K-EqF" secondAttribute="trailing" constant="8" symbolic="YES" id="172-b6-2tm"/>
                                         <constraint firstItem="KPc-7m-c1m" firstAttribute="top" secondItem="1yi-Ke-GfN" secondAttribute="bottom" constant="8" symbolic="YES" id="2m1-jH-mFQ"/>
                                         <constraint firstItem="kkS-0K-EqF" firstAttribute="centerY" secondItem="L4j-sD-Bng" secondAttribute="centerY" id="3K2-eD-CLf"/>
@@ -241,6 +249,7 @@
                                         <constraint firstItem="7gL-gZ-YfQ" firstAttribute="height" secondItem="3XC-P8-cYC" secondAttribute="height" id="Yh6-es-zvM"/>
                                         <constraint firstItem="39u-3H-TvY" firstAttribute="centerX" secondItem="Vyd-N0-ib2" secondAttribute="centerX" id="Z5t-bZ-H8D"/>
                                         <constraint firstItem="anQ-rh-dMm" firstAttribute="centerY" secondItem="wB6-Fn-9bd" secondAttribute="centerY" id="ZNY-zk-Lo6"/>
+                                        <constraint firstItem="hMD-89-ebo" firstAttribute="centerY" secondItem="Vh6-5S-mKM" secondAttribute="centerY" id="apO-Ym-G4t"/>
                                         <constraint firstItem="Mac-zC-SoX" firstAttribute="centerY" secondItem="3qP-ZR-FBl" secondAttribute="centerY" id="dHy-Qb-46r"/>
                                         <constraint firstItem="qf2-2O-osX" firstAttribute="centerY" secondItem="Ulm-3S-etZ" secondAttribute="centerY" id="dQE-zl-Nd4"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="hMD-89-ebo" secondAttribute="trailing" constant="8" id="day-kV-2Q1"/>
@@ -296,6 +305,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="deleteCellButton" destination="hMD-89-ebo" id="IIw-SI-jxj"/>
+                                    <outlet property="deleteImage" destination="Vh6-5S-mKM" id="4V5-og-2WS"/>
                                     <outlet property="editButton" destination="Mac-zC-SoX" id="cSr-60-EUi"/>
                                     <outlet property="expandCellEditImage" destination="7gL-gZ-YfQ" id="3gU-mH-EDm"/>
                                     <outlet property="expandCellGroupImage" destination="3XC-P8-cYC" id="ck1-Qw-p8E"/>

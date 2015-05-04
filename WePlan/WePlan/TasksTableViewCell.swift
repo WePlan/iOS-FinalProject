@@ -33,6 +33,7 @@ class TasksTableViewCell: UITableViewCell {
     }
     var endIndex: Int!
     
+    @IBOutlet weak var deleteImage: UIImageView!
     @IBOutlet weak var taskDescribLabel: UILabel!
     @IBOutlet weak var taskDueDate: UILabel!
     
@@ -169,9 +170,11 @@ class TasksTableViewCell: UITableViewCell {
             
             if item.checked {
                 self.taskTitle.textColor = UIColor.grayColor()
+                self.deleteImage.hidden = false
                 self.deleteCellButton.hidden = false
             }else{
                 self.taskTitle.textColor = UIColor.blackColor()
+                self.deleteImage.hidden = true
                 self.deleteCellButton.hidden = true
             }
             
@@ -302,6 +305,7 @@ class TasksTableViewCell: UITableViewCell {
             self.layoutIfNeeded()
             }) { (finished:Bool) -> Void in
             self.deleteCellButton.hidden = false
+            self.deleteImage.hidden = false
             self.taskTitle.textColor = UIColor.grayColor()
 //                println("going to move")
             self.delegate?.moveToEnd(self.taskItem!)
@@ -310,6 +314,7 @@ class TasksTableViewCell: UITableViewCell {
     
     private func uncrossLine() {
         self.deleteCellButton.hidden = true
+        self.deleteImage.hidden = true
         UIView.animateWithDuration(0.6, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
             self.width.constant = 0
             self.layoutIfNeeded()
