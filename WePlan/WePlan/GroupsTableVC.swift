@@ -61,6 +61,10 @@ class GroupsTableVC: UITableViewController,UISearchBarDelegate,UISearchDisplayDe
 
     
     // MARK: - Search Bar
+    override func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+        searchBar.endEditing(true)
+    }
+    
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
         
         self.searchBar.showsCancelButton = true
@@ -149,7 +153,7 @@ class GroupsTableVC: UITableViewController,UISearchBarDelegate,UISearchDisplayDe
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if searchBar.isFirstResponder() {
-            searchState = false
+//            searchState = false
             self.searchBar.showsCancelButton = false
             searchBar.endEditing(true)
         }

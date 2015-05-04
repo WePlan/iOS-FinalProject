@@ -81,7 +81,7 @@ class FriendsTableVC: UITableViewController , FriendTableCellDeleget,UISearchBar
         cell.clipsToBounds = true;
         cell.selectionStyle = UITableViewCellSelectionStyle.None
         //Custom cell configure
-        println("loading friendcell at index: \(indexPath.row)")
+//        println("loading friendcell at index: \(indexPath.row)")
         cell.delegate = self
         if searchState {
             cell.friend = filterFriends[indexPath.row]
@@ -89,7 +89,7 @@ class FriendsTableVC: UITableViewController , FriendTableCellDeleget,UISearchBar
             cell.friend = localFriendList.getFriendAtIndex(indexPath.row)
         }
 //        println("with image: \(cell.friend!.imageId)")
-        NSLog("%p", cell.userProfileImage)
+//        NSLog("%p", cell.userProfileImage)
         return cell
     }
     
@@ -162,7 +162,7 @@ class FriendsTableVC: UITableViewController , FriendTableCellDeleget,UISearchBar
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
         if searchBar.isFirstResponder() {
-            searchState = false
+//            searchState = false
             self.searchBar.showsCancelButton = false
             searchBar.endEditing(true)
         }
@@ -170,7 +170,6 @@ class FriendsTableVC: UITableViewController , FriendTableCellDeleget,UISearchBar
         if selected == indexPath.row {
             selected = -1
             tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
-//            tableView.reloadData()
             return
         }
         else if selected != -1 {
@@ -270,6 +269,9 @@ class FriendsTableVC: UITableViewController , FriendTableCellDeleget,UISearchBar
     
     // MARK: - Search Bar
     
+    override func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+        searchBar.endEditing(true)
+    }
     var filterFriends:[User] = []
     var searchState: Bool = false
     
@@ -304,6 +306,15 @@ class FriendsTableVC: UITableViewController , FriendTableCellDeleget,UISearchBar
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         self.searchBar.showsCancelButton = false
         self.searchBar.resignFirstResponder()
+    }
+    
+    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+        //
+        selected = -1
+    }
+    
+    func searchBarTextDidEndEditing(searchBar: UISearchBar) {
+        //
     }
     
 }
