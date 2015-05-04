@@ -100,7 +100,7 @@
                                             </constraints>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We Plan" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0ex-4n-zy1">
-                                            <rect key="frame" x="209" y="109" width="183" height="56"/>
+                                            <rect key="frame" x="209" y="95" width="183" height="56"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="0ex-4n-zy1" secondAttribute="height" multiplier="183:56" id="JaH-vS-KnM"/>
                                             </constraints>
@@ -265,7 +265,7 @@
                                         <constraint firstItem="jJK-D1-tMv" firstAttribute="top" secondItem="W1U-Bf-pgH" secondAttribute="bottom" constant="8" symbolic="YES" id="UVM-zG-z9r"/>
                                         <constraint firstAttribute="centerX" secondItem="jJK-D1-tMv" secondAttribute="centerX" id="Uva-5F-7qN"/>
                                         <constraint firstAttribute="trailing" secondItem="1jo-AE-SzL" secondAttribute="trailing" constant="20" symbolic="YES" id="Vzi-eW-fE9"/>
-                                        <constraint firstItem="eZx-Ur-hk9" firstAttribute="top" secondItem="0ex-4n-zy1" secondAttribute="bottom" constant="60" id="WVR-gI-g8P"/>
+                                        <constraint firstItem="eZx-Ur-hk9" firstAttribute="top" secondItem="0ex-4n-zy1" secondAttribute="bottom" constant="74" id="WVR-gI-g8P"/>
                                         <constraint firstItem="gYf-KG-LjG" firstAttribute="width" secondItem="W1U-Bf-pgH" secondAttribute="width" id="ab5-fF-qf7"/>
                                         <constraint firstItem="jJK-D1-tMv" firstAttribute="width" secondItem="gYf-KG-LjG" secondAttribute="width" id="b0Y-f8-SVt"/>
                                         <constraint firstItem="ZAR-9G-ls4" firstAttribute="height" secondItem="gYf-KG-LjG" secondAttribute="height" id="dFf-EZ-m13"/>
@@ -347,7 +347,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X5M-1G-OmI">
-                                <rect key="frame" x="-21" y="49" width="0.0" height="0.0"/>
+                                <rect key="frame" x="-36" y="-46" width="0.0" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -667,11 +667,11 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ri9-A1-zrB" userLabel="TitleView">
-                                            <rect key="frame" x="150" y="97" width="300" height="54"/>
+                                            <rect key="frame" x="150" y="95" width="300" height="56"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We Plan" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="acc-2a-mDZ">
-                                                    <rect key="frame" x="63" y="0.0" width="175" height="54"/>
-                                                    <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="46"/>
+                                                    <rect key="frame" x="59" y="0.0" width="183" height="56"/>
+                                                    <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="48"/>
                                                     <color key="textColor" white="1" alpha="0.88" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
