@@ -48,6 +48,7 @@
 		6689E50C1ABCA23E0079C8ED /* AddTaskItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6689E50B1ABCA23E0079C8ED /* AddTaskItemViewController.swift */; };
 		6689E50E1ABCA3680079C8ED /* TaskListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6689E50D1ABCA3680079C8ED /* TaskListTableViewController.swift */; };
 		6689E5101ABCCD120079C8ED /* TaskItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6689E50F1ABCCD120079C8ED /* TaskItem.swift */; };
+		66A56D7E1AF74D5F007C9534 /* LocalList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A56D7D1AF74D5F007C9534 /* LocalList.swift */; };
 		66A792FE1AE392E7002DBA66 /* AsyncUIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A792FD1AE392E7002DBA66 /* AsyncUIImage.swift */; };
 		66AF5E001ACF2849006AA027 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66AF5DFF1ACF2849006AA027 /* LoginViewController.swift */; };
 		66BCE11D1AD84CB5009659EC /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66BCE11B1AD84CB5009659EC /* Bolts.framework */; };
@@ -142,6 +143,7 @@
 		6689E50B1ABCA23E0079C8ED /* AddTaskItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTaskItemViewController.swift; sourceTree = "<group>"; };
 		6689E50D1ABCA3680079C8ED /* TaskListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskListTableViewController.swift; sourceTree = "<group>"; };
 		6689E50F1ABCCD120079C8ED /* TaskItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskItem.swift; sourceTree = "<group>"; };
+		66A56D7D1AF74D5F007C9534 /* LocalList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalList.swift; sourceTree = "<group>"; };
 		66A792FD1AE392E7002DBA66 /* AsyncUIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncUIImage.swift; sourceTree = "<group>"; };
 		66AF5DFF1ACF2849006AA027 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		66BCE11B1AD84CB5009659EC /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
@@ -327,6 +329,7 @@
 				66A792FD1AE392E7002DBA66 /* AsyncUIImage.swift */,
 				6689E50F1ABCCD120079C8ED /* TaskItem.swift */,
 				6623372E1AD442B800CA9BBB /* LocalUser.swift */,
+				66A56D7D1AF74D5F007C9534 /* LocalList.swift */,
 				66C606061AEA18210096D3CF /* LocalFriendList.swift */,
 				66C6060C1AEB03000096D3CF /* LocalGroupList.swift */,
 				663053E41ACCC28A0073FB96 /* User.swift */,
@@ -585,6 +588,7 @@
 				663053E71ACCC4320073FB96 /* Group.swift in Sources */,
 				66D746491ACA53F30077290A /* DefaultSetting.swift in Sources */,
 				66D5AB261AC9EFB200C37F6E /* TasksTableViewCell.swift in Sources */,
+				66A56D7E1AF74D5F007C9534 /* LocalList.swift in Sources */,
 				663053DC1ACC83BF0073FB96 /* NSMutableArray+SWUtilityButtons.m in Sources */,
 				66C606121AEF4E140096D3CF /* FriendSelectTableViewCell.swift in Sources */,
 				546F2CCD1AE55BC900722AE7 /* AssignATaskToFriendTableViewController.swift in Sources */,

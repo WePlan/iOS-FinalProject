@@ -263,7 +263,6 @@ class TasksTableViewCell: UITableViewCell {
                 delegate?.swipeRight(taskItem!)
             }
 
-            
             checkState = true
         }
     }

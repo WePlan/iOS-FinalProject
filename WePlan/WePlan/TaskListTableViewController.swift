@@ -10,7 +10,8 @@ import UIKit
 
 
 class TaskListTableViewController: UITableViewController, TasksTableViewCellDelegate,MBProgressHUDDelegate,UpdateDelegate {
-    var tasks:[TaskItem] = []
+//    var tasks:[TaskItem] = []
+    var localTasks = LocalList.sharedInstance
     
     private func initialUISettings() {
         DefaultSetting.setNavigationBar(self.navigationController!)
@@ -53,12 +54,10 @@ class TaskListTableViewController: UITableViewController, TasksTableViewCellDele
             LocalGroupList.sharedInstance.updateAll { () -> Void in
                 //
                 println("grouplist initial at start")
-                ParseAction.getInitialDataFromParse { (data) -> Void in
-                    self.tasks = data
+                self.localTasks.updateAll({ () -> Void in
                     self.tableView.reloadData()
                     hud.hide(true)
-                }
-
+                })
             }
         }
         
@@ -84,7 +83,7 @@ class TaskListTableViewController: UITableViewController, TasksTableViewCellDele
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // Return the number of rows in the section.
-        return tasks.count + 1
+        return localTasks.count + 1
     }
     var selectedTask: Int = -1
     
@@ -97,7 +96,7 @@ class TaskListTableViewController: UITableViewController, TasksTableViewCellDele
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if indexPath.row == tasks.count {
+        if indexPath.row == localTasks.count {
             let cell =  tableView.dequeueReusableCellWithIdentifier("Empty", forIndexPath: indexPath) as! UITableViewCell
             cell.selectionStyle = UITableViewCellSelectionStyle.None
             return cell
@@ -106,11 +105,11 @@ class TaskListTableViewController: UITableViewController, TasksTableViewCellDele
 
         // Configure the cell...
         cell.selectionStyle = UITableViewCellSelectionStyle.None
-        let item = tasks[indexPath.row]
+        let item = localTasks.taskList[indexPath.row]
         cell.clipsToBounds = true
         cell.taskItem = item
         cell.checkState = item.checked
-        cell.endIndex = tasks.count-1
+        cell.endIndex = localTasks.count-1
 //        println("kind+\(item.kind.rawValue)")
         println("cell index: \(indexPath.row) is loading")
         cell.index = indexPath
@@ -141,14 +140,14 @@ class TaskListTableViewController: UITableViewController, TasksTableViewCellDele
     
     // MARK: - expanding cell button delegate
     func checkDeletePressed(indexPath:NSIndexPath) {
-        let deleteName = tasks[indexPath.row].taskName
-        let deleteId = self.tasks[indexPath.row].uniqueId
+        let deleteName = localTasks.taskList[indexPath.row].taskName
+        let deleteId = localTasks.taskList[indexPath.row].uniqueId
         //Alert
         var alert = UIAlertController(title: "Delete Task", message: "Are you sure you want to delete \(deleteName)", preferredStyle: UIAlertControllerStyle.Alert)
         // Delete the row from the data source
         alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default,handler: nil))
         alert.addAction(UIAlertAction(title: "Delete", style: UIAlertActionStyle.Default, handler: { action in
-            self.tasks.removeAtIndex(indexPath.row)
+            self.localTasks.removeAt(indexPath.row)
             self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
             ParseAction.deleteItem(deleteId)
             
@@ -158,14 +157,14 @@ class TaskListTableViewController: UITableViewController, TasksTableViewCellDele
     
 
     func checkButtonPressed(index: NSIndexPath) {
-        var tappedItem = tasks[index.row]
+        var tappedItem = localTasks.taskList[index.row]
         tappedItem.checked = !tappedItem.checked
         tableView.reloadRowsAtIndexPaths([index], withRowAnimation: UITableViewRowAnimation.Automatic)
     }
 
     func deleteCell(task: TaskItem) {
         let index = findIndexPath(task)
-        tasks.removeAtIndex(index.row)
+        localTasks.removeAt(index.row)
         tableView.deleteRowsAtIndexPaths([index], withRowAnimation: UITableViewRowAnimation.Automatic)
         ParseAction.deleteItem(task.uniqueId)
         
@@ -174,7 +173,7 @@ class TaskListTableViewController: UITableViewController, TasksTableViewCellDele
     func swipeLeft(task: TaskItem) {
         //
         let index = findIndexPath(task)
-        let swipedItem = tasks[index.row]
+        let swipedItem = localTasks.taskList[index.row]
         swipedItem.checked = false
         
         ParseAction.changeTaskCheck(swipedItem, checked: false)
@@ -184,7 +183,7 @@ class TaskListTableViewController: UITableViewController, TasksTableViewCellDele
     func swipeRight(task: TaskItem) {
         //
         let index = findIndexPath(task)
-        let swipedItem = tasks[index.row]
+        let swipedItem = localTasks.taskList[index.row]
         swipedItem.checked = true
         ParseAction.changeTaskCheck(swipedItem, checked: true)
         println("cell \(index.row) is checked now")
@@ -197,7 +196,7 @@ class TaskListTableViewController: UITableViewController, TasksTableViewCellDele
         let index = findIndexPath(task)
         println("Right move index: \(index.row)")
         let oldPath = index
-        var newPath = NSIndexPath(forRow: tasks.count-1, inSection: 0)
+        var newPath = NSIndexPath(forRow: localTasks.count-1, inSection: 0)
 
         tableView.moveRowAtIndexPath(oldPath, toIndexPath: newPath)
         self.tableView(self.tableView, moveRowAtIndexPath: oldPath, toIndexPath: newPath)
@@ -222,8 +221,8 @@ class TaskListTableViewController: UITableViewController, TasksTableViewCellDele
     }
     private func findIndexPath(task:TaskItem) -> NSIndexPath {
         var indexPath: NSIndexPath!
-        for var index = 0 ; index < tasks.count ; index++ {
-            if tasks[index].uniqueId == task.uniqueId {
+        for var index = 0 ; index < localTasks.count ; index++ {
+            if localTasks.taskList[index].uniqueId == task.uniqueId {
                 indexPath = NSIndexPath(forRow: index, inSection: 0)
                 break
             }
@@ -233,12 +232,13 @@ class TaskListTableViewController: UITableViewController, TasksTableViewCellDele
     // Override to support rearranging the table view.
     override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
         println("datasource func invoked")
-        for each in self.tasks {
+        for each in self.localTasks.taskList {
             println( each.taskName)
         }
-        let tmp = tasks[fromIndexPath.row]
-        tasks.removeAtIndex(fromIndexPath.row)
-        tasks.insert(tmp, atIndex: toIndexPath.row)
+        localTasks.swap(from: fromIndexPath.row, to: toIndexPath.row)
+//        let tmp = tasks[fromIndexPath.row]
+//        tasks.removeAtIndex(fromIndexPath.row)
+//        tasks.insert(tmp, atIndex: toIndexPath.row)
     }
     
     
@@ -275,7 +275,7 @@ class TaskListTableViewController: UITableViewController, TasksTableViewCellDele
         if segue.identifier == "SetUpScheduleIdentifier" {
             let dvc = segue.destinationViewController as! SetUpScheduleViewController
             dvc.delegate = self
-            dvc.task = tasks[selectedTask]
+            dvc.task = localTasks.taskList[selectedTask]
             
         }
         if segue.identifier == "EditTaskIdentifier" {
@@ -286,7 +286,7 @@ class TaskListTableViewController: UITableViewController, TasksTableViewCellDele
 //                first.newTask = tasks[indexPath.row]
 //                
 //            }
-            first.newTask = tasks[selectedTask]
+            first.newTask = localTasks.taskList[selectedTask]
             
             
             
@@ -299,10 +299,9 @@ class TaskListTableViewController: UITableViewController, TasksTableViewCellDele
         var task = src.newTask
         if let task = task {
             if task.kind != TaskKind.People {
-                ParseAction.getInitialDataFromParse { (data) -> Void in
-                    self.tasks = data
+                localTasks.updateAll({ () -> Void in
                     self.tableView.reloadData()
-                }
+                })
             }
         }
     }
