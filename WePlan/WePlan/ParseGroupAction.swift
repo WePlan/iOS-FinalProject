@@ -76,6 +76,7 @@ class ParseGroupAction : ParseGroup{
         query.whereKey("uid", equalTo: userId)
         query.getFirstObjectInBackgroundWithBlock { (object: PFObject?, error: NSError?) -> Void in
             if error == nil {
+                var result: [Group] = []
                 if let array = object!["groupIds"] as? [String] {
                     // find all groups belong to current user
                     let subQuery = PFQuery(className: GroupConstant.classname)
@@ -83,7 +84,7 @@ class ParseGroupAction : ParseGroup{
                     subQuery.findObjectsInBackgroundWithBlock({ (objects:[AnyObject]?, error: NSError?) -> Void in
                         let pfobjects = objects as! [PFObject]
                         var titles:[String] = []
-                        var result: [Group] = []
+                        
                         for pfobject in pfobjects {
                             let str = pfobject["gtitle"] as! String
                             titles.append(str)
@@ -98,6 +99,8 @@ class ParseGroupAction : ParseGroup{
                         }
                         completion(result)
                     })
+                }else{
+                        completion(result)
                 }
             }
         }
