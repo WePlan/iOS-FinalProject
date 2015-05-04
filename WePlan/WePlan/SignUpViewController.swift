@@ -80,6 +80,12 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    
+    func setTextFieldStyle(stringText:String,textField:UITextField){
+        var placeHolder=NSAttributedString(string: stringText, attributes:[NSForegroundColorAttributeName: UIColor(white: 1, alpha: 0.5)])
+        textField.attributedPlaceholder = placeHolder
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -89,6 +95,12 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         self.usernameTextField.delegate=self
         self.passwordTextField.delegate=self
         self.passwordRepeatTextField.delegate=self
+        
+        setTextFieldStyle("Nickname", textField: nicknameTextField)
+        setTextFieldStyle("Email", textField: emailTextField)
+        setTextFieldStyle("Username", textField: usernameTextField)
+        setTextFieldStyle("Password", textField: passwordTextField)
+        setTextFieldStyle("Confirm Password", textField: passwordRepeatTextField)
     }
     override func viewWillAppear(animated: Bool) {
         errorLabel.text = ""
