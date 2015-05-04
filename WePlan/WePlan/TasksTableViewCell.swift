@@ -210,6 +210,9 @@ class TasksTableViewCell: UITableViewCell {
 //            self.delegate!.checkButtonPressed(self.index!)
 //        }
 //    }
+    @IBAction func clickCheckButton(sender: AnyObject) {
+        swipeRight()
+    }
     
     @IBAction func clickCellDeleteButtonn(sender: AnyObject) {
         if delegate != nil {
@@ -238,6 +241,7 @@ class TasksTableViewCell: UITableViewCell {
         
         // Configure the view for the selected state
     }
+    // MARK: - Swipe
     
     func setupSwipeGesture() {
         var swipe: UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: "swipeRight")
