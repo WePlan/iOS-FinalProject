@@ -13,7 +13,20 @@ class ShowGroupMemberVC: UITableViewController {
     var group:Group!
     var MemberList:[User]!
     
-    
+    var groupId: String?{
+        didSet{
+            let group = LocalGroupList.sharedInstance.getGroup(objectId: groupId!)
+            ParseGroupAction.getGroupMembers(group.memberIds) { (userList:[User]) -> Void in
+                self.MemberList = userList
+                self.hasData = true
+                self.tableView.reloadData()
+                
+            }
+            
+        }
+    }
+    var hasData = false
+    var entry = 0
     override func viewDidLoad() {
         super.viewDidLoad()
         if let list=MemberList{
@@ -22,7 +35,7 @@ class ShowGroupMemberVC: UITableViewController {
         else{
             println("NothingT T")
         }
-        println("Get Member\(MemberList.count)")
+//        println("Get Member\(MemberList.count)")
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -46,7 +59,15 @@ class ShowGroupMemberVC: UITableViewController {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
-        return group.memberIds.count
+        if entry == 9 {
+            if hasData {
+                return MemberList.count
+            }else{
+                return 0
+            }
+        }else{
+            return group.memberIds.count
+        }
     }
 
     private struct StoryBoard{

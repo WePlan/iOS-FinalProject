@@ -508,10 +508,10 @@
             </objects>
             <point key="canvasLocation" x="2562" y="955"/>
         </scene>
-        <!--Group Name-->
+        <!--Members-->
         <scene sceneID="nyS-sa-G1h">
             <objects>
-                <tableViewController id="jYM-Cc-Ek1" customClass="ShowGroupMemberVC" customModule="WePlan" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="groupMembersTableVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="jYM-Cc-Ek1" customClass="ShowGroupMemberVC" customModule="WePlan" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Aj5-RF-CR1">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -587,7 +587,7 @@
                             <outlet property="delegate" destination="jYM-Cc-Ek1" id="6x8-kT-U0N"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Group Name" id="F8w-Ns-uW9"/>
+                    <navigationItem key="navigationItem" title="Members" id="F8w-Ns-uW9"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nrP-2u-EfP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

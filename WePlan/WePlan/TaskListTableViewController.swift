@@ -137,24 +137,35 @@ class TaskListTableViewController: UITableViewController, TasksTableViewCellDele
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
         if selectedTask == indexPath.row {
             selectedTask = -1
-            tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+            tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
             return
         }
         else if selectedTask != -1 {
             let prevIndexPath:NSIndexPath = NSIndexPath(forRow: selectedTask, inSection: 0)
             selectedTask = indexPath.row
-            tableView.reloadRowsAtIndexPaths([prevIndexPath], withRowAnimation: .Automatic)
-            self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+            tableView.reloadRowsAtIndexPaths([prevIndexPath], withRowAnimation: UITableViewRowAnimation.Fade)
+            self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
         }else{
             
             selectedTask = indexPath.row
-            tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+            tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         }
 
     }
     
     
     // MARK: - expanding cell button delegate
+    func clickGroupDetail(task:TaskItem) {
+        let groupSB = UIStoryboard(name: "Groups", bundle: NSBundle.mainBundle())
+        let vc = groupSB.instantiateViewControllerWithIdentifier("groupMembersTableVC") as! ShowGroupMemberVC
+        assert(task.kind == TaskKind.Group, "task sort should be 3")
+        let groupId = task.owner
+        
+        vc.entry = 9
+        vc.groupId = groupId
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
     func checkDeletePressed(indexPath:NSIndexPath) {
         let deleteName = localTasks.taskList[indexPath.row].taskName
         let deleteId = localTasks.taskList[indexPath.row].uniqueId

@@ -18,6 +18,8 @@ protocol TasksTableViewCellDelegate {
     func moveToFirst(task: TaskItem)
     
     func deleteCell(task:TaskItem)
+    
+    func clickGroupDetail(task:TaskItem)
 }
 
 class TasksTableViewCell: UITableViewCell {
@@ -210,6 +212,13 @@ class TasksTableViewCell: UITableViewCell {
 //            self.delegate!.checkButtonPressed(self.index!)
 //        }
 //    }
+    @IBAction func clickGroup(sender: AnyObject) {
+        if delegate != nil{
+            delegate!.clickGroupDetail(self.taskItem!)
+        }
+        
+        
+    }
     @IBAction func clickCheckButton(sender: AnyObject) {
         swipeRight()
     }
