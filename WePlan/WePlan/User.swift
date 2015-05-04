@@ -13,4 +13,5 @@ struct User {
     var name: String
     var uemail: String
     var imageId: String?
+//    var imageFile: PFFile?
 }

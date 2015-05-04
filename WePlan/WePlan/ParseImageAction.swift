@@ -41,39 +41,52 @@ class ParseImageAction : ImageAction{
 
     }
     
-    static func uploadImage(image: UIImage) {
+//    static func uploadImage(image: UIImage) {
+//        let imageData: NSData = UIImagePNGRepresentation(image)
+//        let imageFile = PFFile(name:"image.png", data:imageData)
+//        
+//        var userPhoto = PFObject(className: ParseContants.photosClass)
+//        userPhoto["imageName"] = "UserPhoto"
+//        userPhoto[ParseContants.colImageFile] = imageFile
+//        userPhoto["userId"] = PFUser.currentUser()?.objectId
+//        userPhoto.saveInBackgroundWithBlock { (successed: Bool, error:NSError?) -> Void in
+//            if error == nil {
+//                println("image saved with id:"+userPhoto.objectId!)
+//                self.changeImageId(newId: userPhoto.objectId!)
+//            }else {
+//                let errorString = error!.userInfo!["error"] as! String
+//                println(errorString)
+//            }
+//            
+//        }
+//    }
+    
+//    static func changeImageId(# newId: String) {
+//        let localUser = PFUser.currentUser()!
+//        let oldImageId = localUser["imageId"] as? String
+//        
+//        localUser["imageId"] = newId
+//        localUser.saveInBackground()
+//        
+//        if oldImageId != nil {
+//            ParseBaseAction.deleteItem(objectId: oldImageId!, inClass: ParseContants.photosClass)
+//        }
+//    }
+    
+    class func uploadImageToUser(image: UIImage) {
         let imageData: NSData = UIImagePNGRepresentation(image)
         let imageFile = PFFile(name:"image.png", data:imageData)
         
-        var userPhoto = PFObject(className: ParseContants.photosClass)
-        userPhoto["imageName"] = "UserPhoto"
-        userPhoto[ParseContants.colImageFile] = imageFile
-        userPhoto["userId"] = PFUser.currentUser()?.objectId
-        userPhoto.saveInBackgroundWithBlock { (successed: Bool, error:NSError?) -> Void in
-            if error == nil {
-                println("image saved with id:"+userPhoto.objectId!)
-                self.changeImageId(newId: userPhoto.objectId!)
-            }else {
-                let errorString = error!.userInfo!["error"] as! String
-                println(errorString)
-            }
-            
-        }
-    }
-    
-    
-    static func changeImageId(# newId: String) {
         let localUser = PFUser.currentUser()!
-        let oldImageId = localUser["imageId"] as? String
-        
-        localUser["imageId"] = newId
-        localUser.saveInBackground()
-        
-        if oldImageId != nil {
-            ParseBaseAction.deleteItem(objectId: oldImageId!, inClass: ParseContants.photosClass)
+        localUser["photo"] = imageFile
+        localUser.saveInBackgroundWithBlock { (success:Bool,error: NSError?) -> Void in
+            if success {
+                
+            }else{
+                println("##upload photo error: \(error?.userInfo)")
+            }
         }
     }
-    
 
     static func getImage(objectId: String, completion: (UIImage) -> Void) {
         var targer: PFFile?
