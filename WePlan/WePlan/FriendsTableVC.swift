@@ -161,6 +161,11 @@ class FriendsTableVC: UITableViewController , FriendTableCellDeleget,UISearchBar
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
+        if searchBar.isFirstResponder() {
+            searchState = false
+            self.searchBar.showsCancelButton = false
+            searchBar.endEditing(true)
+        }
         //selet the expanding row
         if selected == indexPath.row {
             selected = -1

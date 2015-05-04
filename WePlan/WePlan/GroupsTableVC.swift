@@ -148,6 +148,11 @@ class GroupsTableVC: UITableViewController,UISearchBarDelegate,UISearchDisplayDe
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if searchBar.isFirstResponder() {
+            searchState = false
+            self.searchBar.showsCancelButton = false
+            searchBar.endEditing(true)
+        }
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
         IndexChosen = indexPath.row
         performSegueWithIdentifier("GroupDetail", sender: self)
