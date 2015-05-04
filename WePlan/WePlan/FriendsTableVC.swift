@@ -76,7 +76,7 @@ class FriendsTableVC: UITableViewController , FriendTableCellDeleget,UISearchBar
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCellWithIdentifier(StoryBoardConstants.cell3, forIndexPath: indexPath) as! FriendTableViewCell
-        
+        cell.userProfileImage.image = UIImage(named: "UserDefaultPic")
         // Configure the cell...
         cell.clipsToBounds = true;
         cell.selectionStyle = UITableViewCellSelectionStyle.None
