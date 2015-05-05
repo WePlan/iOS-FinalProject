@@ -135,8 +135,7 @@ class TaskListTableViewController: UITableViewController, TasksTableViewCellDele
         cell.taskItem = item
         cell.checkState = item.checked
         cell.endIndex = localTasks.count-1
-//        println("kind+\(item.kind.rawValue)")
-        println("cell index: \(indexPath.row) is loading")
+        println("cell index: \(indexPath.row) is loading, due: \(item.dueTime)")
         cell.index = indexPath
         cell.delegate = self
         return cell

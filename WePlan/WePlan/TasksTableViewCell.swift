@@ -97,16 +97,17 @@ class TasksTableViewCell: UITableViewCell {
             let diffDays = item.dueTime.daysDiff(currentDate)
             let hourMins = format.stringFromDate(item.dueTime)
             
-            if diffDays < 0 {
+            let result = currentDate.compare(item.dueTime)
+            if result == NSComparisonResult.OrderedDescending {
                 let diff = -diffDays
-                taskDueDate.text = "\(diff) days before"
+                taskDueDate.text = "past"
                 taskDueDate.textColor = UIColor.redColor()
-            }else if diffDays == 0 {
+            }
+            else if diffDays == 0 {
                 
-                taskDueDate.text = "Today at \(hourMins)"
+                taskDueDate.text = "\(hourMins)"
             }else if diffDays == 1 {
                 taskDueDate.text = "Tomorrow"
-//                taskDueDate.text = "Tomorrow at \(hourMins)"
             }else if diffDays >= 2 && diffDays <= 7 {
                 taskDueDate.text = "In \(diffDays) days"
             }else if diffDays >= 8 && diffDays <= 30 {
@@ -116,6 +117,24 @@ class TasksTableViewCell: UITableViewCell {
                 let diffMonths = item.dueTime.monthsDiff(currentDate)
                 taskDueDate.text = "In \(diffMonths) months"
             }
+//            if diffDays < 0 {
+//                let diff = -diffDays
+//                taskDueDate.text = "\(diff) days before"
+//                taskDueDate.textColor = UIColor.redColor()
+//            }else if diffDays == 0 {
+//                
+//                taskDueDate.text = "Today at \(hourMins)"
+//            }else if diffDays == 1 {
+//                taskDueDate.text = "Tomorrow"
+//            }else if diffDays >= 2 && diffDays <= 7 {
+//                taskDueDate.text = "In \(diffDays) days"
+//            }else if diffDays >= 8 && diffDays <= 30 {
+//                let diffWeeks = item.dueTime.weeksDiff(currentDate)
+//                taskDueDate.text = "In \(diffWeeks) weeks"
+//            }else if diffDays >= 31 && diffDays <= 366 {
+//                let diffMonths = item.dueTime.monthsDiff(currentDate)
+//                taskDueDate.text = "In \(diffMonths) months"
+//            }
 //            switch (diffDays) {
 //            
 //            case 0:

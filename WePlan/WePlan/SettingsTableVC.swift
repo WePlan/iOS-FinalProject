@@ -14,6 +14,7 @@ class SettingsTableVC: UITableViewController , UIImagePickerControllerDelegate, 
 
     @IBOutlet weak var usernameLabel: UILabel!
     
+    @IBOutlet weak var about: UILabel!
     @IBOutlet weak var uidLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var photoImageView: AsyncUIImageView!
@@ -161,6 +162,8 @@ class SettingsTableVC: UITableViewController , UIImagePickerControllerDelegate, 
         usernameLabel.text = PFUser.currentUser()!["nickname"] as? String
 //        uidLabel.text = PFUser.currentUser()!.objectId!
         emailLabel.text = PFUser.currentUser()!.email!
+        uidLabel.textColor = WePlanColors.blueColor()
+        about.textColor = WePlanColors.blueColor()
     }
     
     override func viewWillAppear(animated: Bool) {
