@@ -61,6 +61,7 @@ class TaskListTableViewController: UITableViewController, TasksTableViewCellDele
         initialUISettings()
         if initialed {
 //            refreshList()
+            localTasks.sortByDue()
             tableView.reloadData()
         }
     }
