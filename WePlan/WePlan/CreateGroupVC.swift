@@ -103,6 +103,9 @@ class CreateGroupVC: UIViewController ,UITableViewDataSource, UITableViewDelegat
     }
     
     @IBAction func clickCreate(sender: AnyObject) {
+        if count(gruopNameTextField.text) < 1 {
+            return
+        }
         var hud = MBProgressHUD(view: self.view)
         self.view.addSubview(hud)
         hud.delegate = self

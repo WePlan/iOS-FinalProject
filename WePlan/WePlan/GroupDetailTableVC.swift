@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GroupDetailTableVC: UITableViewController {
+class GroupDetailTableVC: UITableViewController , MBProgressHUDDelegate{
 
     var user = PFUser.currentUser()!
     var group:Group!
@@ -108,9 +108,16 @@ class GroupDetailTableVC: UITableViewController {
             (action:UIAlertAction!) -> Void in
             println("choose yes!!")
             //Dismiss Group
-            ParseGroupAction.dismissGroup(self.group.id)
-//            self.performSegueWithIdentifier(StoryBoardConstant.DimissBack, sender: self)
-            self.navigationController?.popViewControllerAnimated(true)
+            var hud = MBProgressHUD(view: self.view)
+            self.view.addSubview(hud)
+            hud.delegate = self
+            hud.show(true)
+            hud.labelText = "Deleting..."
+            ParseGroupAction.dismissGroup(self.group.id, completion: { () -> Void in
+                hud.hide(true)
+                self.navigationController?.popViewControllerAnimated(true)
+            })
+            
         }))
 //        self.navigationController?.popViewControllerAnimated(true)
         self.presentViewController(DismissAlert, animated: true, completion: nil)
@@ -127,9 +134,16 @@ class GroupDetailTableVC: UITableViewController {
             (action:UIAlertAction!) -> Void in
             println("choose yes!!")
             //Quit Group
-            ParseGroupAction.quitGroup(self.group.id)
-            //self.performSegueWithIdentifier(StoryBoardConstant.QuitBack, sender: self)
-            self.navigationController?.popViewControllerAnimated(true)
+            var hud = MBProgressHUD(view: self.view)
+            self.view.addSubview(hud)
+            hud.delegate = self
+            hud.show(true)
+            hud.labelText = "Deleting..."
+            ParseGroupAction.quitGroup(self.group.id, completion: { () -> Void in
+                hud.hide(true)
+                self.navigationController?.popViewControllerAnimated(true)
+            })
+            
         }))
         self.presentViewController(QuitAlert, animated: true, completion: nil)
     }

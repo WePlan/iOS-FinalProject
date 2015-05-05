@@ -258,7 +258,7 @@ class ParseGroupAction : ParseGroup{
         }
     }
     
-    class func quitGroup (groupId : String) {
+    class func quitGroup (groupId : String, completion: ()-> Void) {
         var uid = PFUser.currentUser()?.objectId
         var query_Group = PFQuery(className: GroupConstant.classname)
         query_Group.getObjectInBackgroundWithId(groupId, block: { (object : PFObject?, error : NSError?) -> Void in
@@ -279,7 +279,8 @@ class ParseGroupAction : ParseGroup{
                     object.saveInBackgroundWithBlock({ (success : Bool, error : NSError?) -> Void in
                         if success {
                             println("User \(uid) has quit the group \(groupId)")
-                            self.handleUserGroupWhenQuit(groupId)
+                            self.handleUserGroupWhenQuit(groupId,
+                                completion: completion)
                         }
                         else{
                             println(error?.userInfo)
@@ -290,7 +291,7 @@ class ParseGroupAction : ParseGroup{
         })
     }
     
-    static func handleUserGroupWhenQuit (groupId : String) {
+    static func handleUserGroupWhenQuit (groupId : String, completion: ()-> Void) {
         var uid = PFUser.currentUser()?.objectId
         var query = PFQuery(className: GroupUserConstant.classname)
         query.whereKey(GroupUserConstant.userId, equalTo: uid!)
@@ -312,6 +313,7 @@ class ParseGroupAction : ParseGroup{
                     object[GroupUserConstant.groupIds] = groups
                     object.saveInBackgroundWithBlock({ (success : Bool, error : NSError?) -> Void in
                         if success {
+                            completion()
                             println("UG has been midified on user \(uid)")
                         }
                         else{
@@ -323,20 +325,20 @@ class ParseGroupAction : ParseGroup{
         }
     }
     
-    class func dismissGroup (groupId : String) {
+    class func dismissGroup (groupId : String, completion: () -> Void) {
         var query = PFQuery(className: GroupConstant.classname)
         query.getObjectInBackgroundWithId(groupId, block: { (object : PFObject?, error : NSError?) -> Void in
             if error == nil {
                 if let object = object {
                     var members = object[GroupConstant.groupMembers] as! [String]
                     object.deleteInBackground()
-                    self.handleUserGroupWhenDismiss(groupId, members : members)
+                    self.handleUserGroupWhenDismiss(groupId, members : members, completion: completion)
                 }
             }
         })
     }
     
-    static func handleUserGroupWhenDismiss(groupId : String, members : [String]) {
+    static func handleUserGroupWhenDismiss(groupId : String, members : [String], completion: () -> Void) {
         for member in members {
             var query = PFQuery(className: GroupUserConstant.classname)
             query.whereKey(GroupUserConstant.userId, equalTo: member)
@@ -357,6 +359,9 @@ class ParseGroupAction : ParseGroup{
                         object[GroupUserConstant.groupIds] = groups
                         object.saveInBackgroundWithBlock({ (success : Bool, error : NSError?) -> Void in
                             if success {
+                                if member == PFUser.currentUser()!.objectId! {
+                                    completion()
+                                }
                                 println("UG has been modified when group \(groupId) was dismissed")
                             }
                             else{
