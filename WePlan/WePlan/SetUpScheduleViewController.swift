@@ -61,6 +61,12 @@ class SetUpScheduleViewController: UIViewController {
         
 
     }
+    @IBAction func changToNextHalfYear(sender: UIButton) {
+        if let newDate = changeToToday?.addMonths(6) {
+            updateTask(newDate)
+        }
+
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
