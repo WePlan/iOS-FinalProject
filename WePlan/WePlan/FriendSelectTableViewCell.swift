@@ -11,6 +11,7 @@ import UIKit
 protocol FriendSelectTableDelegate {
     func selectFriend(uid: String)
     func deselectFriend(uid: String)
+    func clicked()
 }
 
 class FriendSelectTableViewCell: UITableViewCell {
@@ -47,6 +48,8 @@ class FriendSelectTableViewCell: UITableViewCell {
         }else{
             chose = true
         }
+        delegate?.clicked()
+        
     }
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

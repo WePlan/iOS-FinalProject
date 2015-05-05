@@ -32,6 +32,9 @@ class CreateGroupVC: UIViewController ,UITableViewDataSource, UITableViewDelegat
         self.gruopNameTextField.delegate = self
         self.descTextField.delegate = self
         memberNumLabel.text = "Members: 1 members"
+        
+        let tap:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "clicked")
+        friendsTableView.addGestureRecognizer(tap)
     }
     
     // MARK: - TableView
@@ -88,7 +91,10 @@ class CreateGroupVC: UIViewController ,UITableViewDataSource, UITableViewDelegat
         return false
     }
     // MARK: - Misc.
-    
+    func clicked() {
+        println("cl")
+        view.endEditing(true)
+    }
     
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     

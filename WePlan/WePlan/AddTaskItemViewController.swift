@@ -49,8 +49,8 @@ class AddTaskItemViewController: UIViewController, UITextFieldDelegate,AssignTas
         self.taskTitleTextField.delegate = self
         self.taskLocationTextField.delegate = self
         self.shortDescriptionTextField.delegate = self
-        
-        taskForMemberLabel.text = ""
+        taskForMemberLabel.text = PFUser.currentUser()!.username!
+//        taskForMemberLabel.text = ""
         if assignPeople != nil && "Friend" == entrypoint{
             mySelfButton.enabled = false
             groupButton.enabled = false
@@ -110,14 +110,6 @@ class AddTaskItemViewController: UIViewController, UITextFieldDelegate,AssignTas
     let buttonBackgroundImage = UIImage(named: StoryBoardConstants.backgroundImageName)
     @IBAction func mySelfButton(sender: UIButton) {
         assignTaskToMyself()
-//        taskFor = TaskKind(rawValue: 1)!
-////        taskUID = PFUser.currentUser()!.objectId!
-//        taskOwner = PFUser.currentUser()!.username!
-//        taskForMemberLabel.text = PFUser.currentUser()!.username!
-//        
-//       mySelfButton.setBackgroundImage(buttonBackgroundImage, forState: UIControlState.Normal)
-//        groupButton.setBackgroundImage(nil, forState: UIControlState.Normal)
-//        otherPeopleButton.setBackgroundImage(nil, forState: UIControlState.Normal)
         
     }
     func assignTaskToMyself(){
@@ -186,7 +178,9 @@ class AddTaskItemViewController: UIViewController, UITextFieldDelegate,AssignTas
     
     //MARK: - Misc
     
-    
+    func textFieldDidBeginEditing(textField: UITextField) {
+        hidePickerView()
+    }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         if textField == self.taskTitleTextField {

@@ -105,7 +105,8 @@ class TasksTableViewCell: UITableViewCell {
                 
                 taskDueDate.text = "Today at \(hourMins)"
             }else if diffDays == 1 {
-                taskDueDate.text = "Tomorrow at \(hourMins)"
+                taskDueDate.text = "Tomorrow"
+//                taskDueDate.text = "Tomorrow at \(hourMins)"
             }else if diffDays >= 2 && diffDays <= 7 {
                 taskDueDate.text = "In \(diffDays) days"
             }else if diffDays >= 8 && diffDays <= 30 {
