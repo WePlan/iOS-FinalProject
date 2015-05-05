@@ -262,6 +262,9 @@ class AddTaskItemViewController: UIViewController, UITextFieldDelegate,AssignTas
                 newTask!.owner = assignGroup!.id
                 ParseGroupAction.assignGroupTask(newTask!, groupId: assignGroup!.id, members: assignGroup!.memberIds, complete: { () -> Void in
                     //
+                    LocalList.sharedInstance.updateAll({ () -> Void in
+                        //
+                    })
                     hub.hide(true)
                     self.performUnwindSegue(self.addButton)
                 })

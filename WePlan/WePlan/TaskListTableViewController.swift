@@ -12,9 +12,13 @@ import UIKit
 class TaskListTableViewController: UITableViewController, TasksTableViewCellDelegate,MBProgressHUDDelegate,UpdateDelegate {
 //    var tasks:[TaskItem] = []
     var localTasks = LocalList.sharedInstance
-    
+    var initialed = false
     @IBOutlet weak var refreshButton: UIBarButtonItem!
     @IBAction func clickRefresh(sender: AnyObject) {
+        refreshList()
+    }
+    
+    func refreshList() {
         var hud = MBProgressHUD(view: self.view)
         self.view.addSubview(hud)
         hud.delegate = self
@@ -55,6 +59,10 @@ class TaskListTableViewController: UITableViewController, TasksTableViewCellDele
     
     override func viewWillAppear(animated: Bool) {
         initialUISettings()
+        if initialed {
+//            refreshList()
+            tableView.reloadData()
+        }
     }
     
     private func initialLocalFriendAndGroupandTask() {
@@ -73,6 +81,7 @@ class TaskListTableViewController: UITableViewController, TasksTableViewCellDele
                 self.localTasks.updateAll({ () -> Void in
                     self.tableView.reloadData()
                     hud.hide(true)
+                    self.initialed = true
                 })
             }
         }
