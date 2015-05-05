@@ -670,7 +670,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZFJ-VW-JQn">
-                                <rect key="frame" x="180" y="540" width="100" height="30"/>
+                                <rect key="frame" x="180" y="495" width="100" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="SQ6-ft-BIp"/>
                                     <constraint firstAttribute="height" constant="30" id="fzm-fI-9zb"/>
@@ -700,7 +700,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c66-TE-97s">
-                                <rect key="frame" x="320" y="540" width="100" height="30"/>
+                                <rect key="frame" x="320" y="495" width="100" height="30"/>
                                 <state key="normal" title="Add" backgroundImage="ButtonRoundBackground">
                                     <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -855,7 +855,7 @@
                             <constraint firstAttribute="centerX" secondItem="ZFJ-VW-JQn" secondAttribute="trailing" constant="20" id="ECT-bm-glP"/>
                             <constraint firstItem="NpP-15-TDQ" firstAttribute="top" secondItem="09O-cN-4jo" secondAttribute="bottom" constant="8" symbolic="YES" id="EiR-Me-uoc"/>
                             <constraint firstItem="ZFJ-VW-JQn" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="uq6-HR-59y" secondAttribute="leadingMargin" id="GrC-IT-fKh"/>
-                            <constraint firstItem="9I9-ZQ-ymL" firstAttribute="top" secondItem="ZFJ-VW-JQn" secondAttribute="bottom" constant="30" id="Hs0-VD-iPx"/>
+                            <constraint firstItem="9I9-ZQ-ymL" firstAttribute="top" secondItem="ZFJ-VW-JQn" secondAttribute="bottom" constant="75" id="Hs0-VD-iPx"/>
                             <constraint firstItem="09O-cN-4jo" firstAttribute="leading" secondItem="NpP-15-TDQ" secondAttribute="leading" id="JA1-kK-uao"/>
                             <constraint firstAttribute="trailingMargin" secondItem="KSC-rh-pAB" secondAttribute="trailing" constant="-16" id="JbO-Sy-fg2"/>
                             <constraint firstItem="Psi-VR-WtX" firstAttribute="trailing" secondItem="uq6-HR-59y" secondAttribute="trailingMargin" id="K9e-sK-SQc"/>
