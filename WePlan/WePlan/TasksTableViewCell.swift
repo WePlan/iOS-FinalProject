@@ -101,7 +101,7 @@ class TasksTableViewCell: UITableViewCell {
             if result == NSComparisonResult.OrderedDescending {
                 let diff = -diffDays
                 taskDueDate.text = "past"
-                taskDueDate.textColor = UIColor.redColor()
+//                taskDueDate.textColor = UIColor.redColor()
             }
             else if diffDays == 0 {
                 
