@@ -87,6 +87,18 @@ class ParseImageAction : ImageAction{
             }
         }
     }
+    
+    class func changeNickname(name: String) {
+        let localuser = PFUser.currentUser()!
+        localuser["nickname"] = name
+        localuser.saveInBackgroundWithBlock { (success:Bool, error:NSError?) -> Void in
+            if success {
+                println("nickname changed")
+            }else{
+                println("##changename error: \(error?.userInfo)")
+            }
+        }
+    }
 
 //    static func getImage(objectId: String, completion: (UIImage) -> Void) {
 //        var targer: PFFile?

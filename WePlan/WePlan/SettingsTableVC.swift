@@ -38,7 +38,9 @@ class SettingsTableVC: UITableViewController , UIImagePickerControllerDelegate, 
         // self.clearsSelectionOnViewWillAppear = false
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        
+        let tap = UITapGestureRecognizer(target: self, action: "changeName")
+        self.uidLabel.userInteractionEnabled = true
+        uidLabel.addGestureRecognizer(tap)
         
     }
     func initialPhotoView() {
@@ -92,6 +94,32 @@ class SettingsTableVC: UITableViewController , UIImagePickerControllerDelegate, 
         
     }
     
+    @IBAction func clickAbout(sender: AnyObject) {
+        let alert = UIAlertController(title: "About us", message: "Thanks for chosing WePlan \n Developer: \n Kan Chen\n Xi Su\nZhaonan Zhang\nHuibo Li\n@Copyright", preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    func changeName() {
+        let alert = UIAlertController(title: "Change your nickname", message: "please enter your new name", preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addTextFieldWithConfigurationHandler { (text:UITextField!) -> Void in
+            text.placeholder = "Enter your new name"
+        }
+        alert.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: nil))
+        alert.addAction(UIAlertAction(title: "Change", style: UIAlertActionStyle.Destructive, handler: { (action:UIAlertAction!) -> Void in
+            if let textFileds = alert.textFields{
+                let thetextFields = textFileds as! [UITextField]
+                let newname = thetextFields[0].text
+                println(newname)
+                if count(newname) > 0 {
+                    ParseImageAction.changeNickname(newname)
+                    self.usernameLabel.text = newname
+                }
+            }
+        }))
+        self.presentViewController(alert, animated: true, completion: nil)
+        
+    }
     // MARK: - ImagePickerController and delegate
     
     func prepareImagePicker(source: PhotoSource) {
@@ -131,7 +159,7 @@ class SettingsTableVC: UITableViewController , UIImagePickerControllerDelegate, 
     func setUserLabels () {
 //        usernameLabel.text = PFUser.currentUser()!.username!
         usernameLabel.text = PFUser.currentUser()!["nickname"] as? String
-        uidLabel.text = PFUser.currentUser()!.objectId!
+//        uidLabel.text = PFUser.currentUser()!.objectId!
         emailLabel.text = PFUser.currentUser()!.email!
     }
     
