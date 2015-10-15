@@ -46,7 +46,7 @@ class SearchFriendVC: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func addNewFriendWithId(id: String) {
         ParseFriendAction.addFriend(id, complete: { (successed:Bool) -> Void in
-            println(successed)
+            print(successed)
         })
     }
     

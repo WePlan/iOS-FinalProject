@@ -114,9 +114,9 @@ class AddPeopleToTaskTableViewController: UITableViewController {
                 
 //            let taskItemChecked = friendList[indexPath.row]
             
-            println("12")
+            print("12")
             if delegate != nil {
-                println("122")
+                print("122")
                 delegate!.assignTaskToOtherPeople(friendList[indexPath.row])
             }
             tableView.deselectRowAtIndexPath(indexPath, animated: true)

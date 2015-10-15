@@ -173,12 +173,12 @@ class TasksTableViewCell: UITableViewCell {
             case .People:
                 kindLabel.text = "Friend"
                 kindLabel.textColor = WePlanColors.otherPeopleColor()
-                taskKindLabel.text = LocalFriendList.sharedInstance.getFriendName(objectId: id)
+                taskKindLabel.text = LocalFriendList.sharedInstance.getFriendName(id)
                 taskKindLabel.textColor = WePlanColors.otherPeopleColor()
                 kindCircleView.backgroundColor = WePlanColors.otherPeopleColor()
             case .Group:
                 kindLabel.text = "Group"
-                taskKindLabel.text = LocalGroupList.sharedInstance.getGroupName(objectId: id)
+                taskKindLabel.text = LocalGroupList.sharedInstance.getGroupName(id)
                 if taskKindLabel.text == "dismissed" {
                     taskKindLabel.textColor = UIColor.redColor()
                 }else{
@@ -290,7 +290,7 @@ class TasksTableViewCell: UITableViewCell {
     
     func swipeRight() {
         if checkState == false {
-            println("swiped! right")
+            print("swiped! right")
             crossLine()
             if delegate != nil {
                 delegate?.swipeRight(taskItem!)
@@ -302,7 +302,7 @@ class TasksTableViewCell: UITableViewCell {
     
     func swipeLeft() {
         if checkState == true {
-            println("left")
+            print("left")
             uncrossLine()
             if delegate != nil {
                 delegate?.swipeLeft(taskItem!)

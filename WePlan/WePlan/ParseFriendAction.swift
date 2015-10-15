@@ -50,17 +50,17 @@ class ParseFriendAction : ParseFriend {
         
         pfTask.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
             if success {
-                println("Obj created with id: \(pfTask.objectId). Assigned to "+toFriendId)
+                print("Obj created with id: \(pfTask.objectId). Assigned to "+toFriendId)
                 completion(pfTask.objectId!)
             }else {
-                println("\(error)")
+                print("\(error)")
             }
         }
     }
     
     
     class func searchPeopleByNickname (nickname : String, friendSet : Set<String>, complete : ([User]) -> Void) {
-        if !nickname.isEmpty {
+        if nickname.characters.count > 0 {
             var resultList : [User] = []
             var query = PFQuery(className: UserConstants.userClass)
             query.whereKey(UserConstants.userNickname, hasPrefix: nickname)
@@ -78,7 +78,7 @@ class ParseFriendAction : ParseFriend {
                         complete(resultList)
                     }
                 }else {
-                    println("Error \(error) \(error!.userInfo)")
+                    print("Error \(error) \(error!.userInfo)")
                 }
             }
         }
@@ -104,7 +104,7 @@ class ParseFriendAction : ParseFriend {
                 }
             }
             else{
-                println("Error \(error) \(error!.userInfo)")
+                print("Error \(error) \(error!.userInfo)")
             }
         }
     }
@@ -152,19 +152,19 @@ class ParseFriendAction : ParseFriend {
                                         }
                                     }
                                     else{
-                                        println("Error \(error) \(error!.userInfo)")
+                                        print("Error \(error) \(error!.userInfo)")
                                     }
                                 }
                             }
                         }
                         else{
-                            println("Error \(error) \(error!.userInfo)")
+                            print("Error \(error) \(error!.userInfo)")
                         }
                     }
                 }
             }
             else{
-                println("Error \(error) \(error!.userInfo)")
+                print("Error \(error) \(error!.userInfo)")
             }
         }
     }
@@ -176,10 +176,10 @@ class ParseFriendAction : ParseFriend {
         addFriend[FriendConstants.friendVerified] = true
         addFriend.saveInBackgroundWithBlock { (success : Bool, error : NSError?) -> Void in
             if success {
-                println("Add friend successfully!")
+                print("Add friend successfully!")
                 complete(success)
             }else{
-                println("\(error)")
+                print("\(error)")
             }
         }
     }

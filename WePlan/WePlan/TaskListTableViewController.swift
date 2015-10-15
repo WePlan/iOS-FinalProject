@@ -77,10 +77,10 @@ class TaskListTableViewController: UITableViewController, TasksTableViewCellDele
         
         LocalFriendList.sharedInstance.getFriendListFromParse { () -> Void in
             //
-            println("friendlist initial at start")
+            print("friendlist initial at start")
             LocalGroupList.sharedInstance.updateAll { () -> Void in
                 //
-                println("grouplist initial at start")
+                print("grouplist initial at start")
                 self.localTasks.updateAll({ () -> Void in
                     self.tableView.reloadData()
                     hud.hide(true)
@@ -138,7 +138,7 @@ class TaskListTableViewController: UITableViewController, TasksTableViewCellDele
         cell.taskItem = item
         cell.checkState = item.checked
         cell.endIndex = localTasks.count-1
-        println("cell index: \(indexPath.row) is loading, due: \(item.dueTime)")
+        print("cell index: \(indexPath.row) is loading, due: \(item.dueTime)")
         cell.index = indexPath
         cell.delegate = self
         return cell
@@ -215,7 +215,7 @@ class TaskListTableViewController: UITableViewController, TasksTableViewCellDele
         swipedItem.checked = false
         
         ParseAction.changeTaskCheck(swipedItem, checked: false)
-        println("cell \(index.row) is unchecked now")
+        print("cell \(index.row) is unchecked now")
     }
     
     func swipeRight(task: TaskItem) {
@@ -224,7 +224,7 @@ class TaskListTableViewController: UITableViewController, TasksTableViewCellDele
         let swipedItem = localTasks.taskList[index.row]
         swipedItem.checked = true
         ParseAction.changeTaskCheck(swipedItem, checked: true)
-        println("cell \(index.row) is checked now")
+        print("cell \(index.row) is checked now")
 
     }
     
@@ -232,7 +232,7 @@ class TaskListTableViewController: UITableViewController, TasksTableViewCellDele
     func moveToEnd(task: TaskItem)
     {
         let index = findIndexPath(task)
-        println("Right move index: \(index.row)")
+        print("Right move index: \(index.row)")
         let oldPath = index
         var newPath = localTasks.getNewPathForRemove(task)
         tableView.moveRowAtIndexPath(oldPath, toIndexPath: newPath)
@@ -244,7 +244,7 @@ class TaskListTableViewController: UITableViewController, TasksTableViewCellDele
     func moveToFirst(task: TaskItem)
     {
         let index = findIndexPath(task)
-        println("Left move index: \(index.row)")
+        print("Left move index: \(index.row)")
         let oldPath = index
         var newPath = localTasks.getNewPathForBack(task)
 
@@ -268,11 +268,11 @@ class TaskListTableViewController: UITableViewController, TasksTableViewCellDele
     }
     // Override to support rearranging the table view.
     override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-        println("datasource func invoked")
+        print("datasource func invoked")
         for each in self.localTasks.taskList {
-            println( each.taskName)
+            print( each.taskName)
         }
-        localTasks.swap(from: fromIndexPath.row, to: toIndexPath.row)
+        localTasks.swap(fromIndexPath.row, to: toIndexPath.row)
 //        let tmp = tasks[fromIndexPath.row]
 //        tasks.removeAtIndex(fromIndexPath.row)
 //        tasks.insert(tmp, atIndex: toIndexPath.row)

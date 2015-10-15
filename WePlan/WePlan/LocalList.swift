@@ -83,7 +83,7 @@ class LocalList {
         taskList.removeAtIndex(index)
     }
     
-    func swap(# from: Int,  to:Int) {
+    func swap(from: Int,  to:Int) {
         let tmp = taskList[from]
         taskList.removeAtIndex(from)
         taskList.insert(tmp, atIndex: to)

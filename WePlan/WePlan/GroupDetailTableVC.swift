@@ -48,7 +48,7 @@ class GroupDetailTableVC: UITableViewController , MBProgressHUDDelegate{
         ImageProcess.changeImageViewRounded(self.GroupImage)
         
         var currentID=user.objectId
-        println("\(group.ownerId) and \(currentID)")
+        print("\(group.ownerId) and \(currentID)")
         //Button
         if group.ownerId == currentID{   //Owner of the group
             //QuitButton.hidden=true
@@ -77,7 +77,7 @@ class GroupDetailTableVC: UITableViewController , MBProgressHUDDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         self.getGroupMembersListFromParse { () -> Void in
-            println("Init current members")
+            print("Init current members")
         }
         
         // Uncomment the following line to preserve selection between presentations
@@ -106,7 +106,7 @@ class GroupDetailTableVC: UITableViewController , MBProgressHUDDelegate{
         DismissAlert.addAction(UIAlertAction(title: "Cancle", style: .Default, handler: nil))
         DismissAlert.addAction(UIAlertAction(title: "Yes", style: .Default, handler:{
             (action:UIAlertAction!) -> Void in
-            println("choose yes!!")
+            print("choose yes!!")
             //Dismiss Group
             var hud = MBProgressHUD(view: self.view)
             self.view.addSubview(hud)
@@ -132,7 +132,7 @@ class GroupDetailTableVC: UITableViewController , MBProgressHUDDelegate{
         QuitAlert.addAction(UIAlertAction(title: "Cancle", style: .Default, handler: nil))
         QuitAlert.addAction(UIAlertAction(title: "Yes", style: .Default, handler:{
             (action:UIAlertAction!) -> Void in
-            println("choose yes!!")
+            print("choose yes!!")
             //Quit Group
             var hud = MBProgressHUD(view: self.view)
             self.view.addSubview(hud)

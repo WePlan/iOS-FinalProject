@@ -68,11 +68,11 @@ class TabBarViewController: UITabBarController {
     private func initialLocalFriendAndGroup() {
         LocalFriendList.sharedInstance.getFriendListFromParse { () -> Void in
             //
-            println("friendlist initial at start")
+            print("friendlist initial at start")
         }
         LocalGroupList.sharedInstance.updateAll { () -> Void in
             //
-            println("grouplist initial at start")
+            print("grouplist initial at start")
 
         }
     }

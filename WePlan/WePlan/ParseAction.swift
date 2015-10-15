@@ -46,10 +46,10 @@ class ParseAction : ParseTask{
         
         pfTask.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
             if success {
-                println("self Task Obj created with id: \(pfTask.objectId)")
+                print("self Task Obj created with id: \(pfTask.objectId)")
                 completion(pfTask.objectId!)
             }else {
-                println("\(error)")
+                print("\(error)")
             }
         }
         
@@ -57,13 +57,14 @@ class ParseAction : ParseTask{
     }
     
     class func deleteItem(objectId: String) {
-        ParseBaseAction.deleteItem(objectId: objectId, inClass: TaskConstants.taskClass)
+        ParseBaseAction.deleteItem(objectId, inClass: TaskConstants.taskClass)
     }
     /**
     update self task
     */
     class func updateTask(newTask: TaskItem,completion: () -> Void) {
-        assert(count(newTask.uniqueId) > 0, "unvalid task id to update")
+        assert(newTask.uniqueId.characters.count > 0, "unvalid task id to update")
+        //assert(count(newTask.uniqueId) > 0, "unvalid task id to update")
         var query = PFQuery(className: TaskConstants.taskClass)
         query.getObjectInBackgroundWithId(newTask.uniqueId, block: { (updatingTask:PFObject?, error:NSError?) -> Void in
             if error == nil {
@@ -75,20 +76,21 @@ class ParseAction : ParseTask{
                     
                     updatingTask.saveInBackgroundWithBlock({ (success:Bool, error:NSError?) -> Void in
                         if success {
-                            println("update taskItem succeeded")
+                            print("update taskItem succeeded")
                             completion()
                         }
                     })
                 }
             }else{
-                println("Error \(error)     \(error!.userInfo)")
+                print("Error \(error)     \(error!.userInfo)")
 
             }
         })
         
     }
     class func changeTaskCheck(task: TaskItem, checked: Bool) {
-        assert(count(task.uniqueId) > 0, "unvalid task id to update")
+        assert(task.uniqueId.characters.count > 0, "unvalid task id to update")
+        //assert(count(task.uniqueId) > 0, "unvalid task id to update")
         var query = PFQuery(className: TaskConstants.taskClass)
         query.getObjectInBackgroundWithId(task.uniqueId, block: { (updatingTask:PFObject?, error: NSError?) -> Void in
             if error == nil {
@@ -96,13 +98,13 @@ class ParseAction : ParseTask{
                     updatingTask["checked"] = checked
                     updatingTask.saveInBackgroundWithBlock({ (success:Bool, error:NSError?) -> Void in
                         if success {
-                            println("check or unchecked taskItem succeeded")
+                            print("check or unchecked taskItem succeeded")
                             
                         }
                     })
                 }
             }else{
-                println("Error \(error)     \(error!.userInfo)")
+                print("Error \(error)     \(error!.userInfo)")
             }
         })
     }
@@ -144,7 +146,7 @@ class ParseAction : ParseTask{
                     completion(data)
                 }
             }else {
-                println("Error \(error)     \(error!.userInfo)")
+                print("Error \(error)     \(error!.userInfo)")
             }
         }
     }

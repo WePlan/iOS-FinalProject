@@ -21,7 +21,7 @@ class ParseImageAction : ImageAction{
     }
     
     static func uploadGroupImage(image: UIImage , groupId: String){
-        let imageData: NSData = UIImagePNGRepresentation(image)
+        let imageData: NSData = UIImagePNGRepresentation(image)!
         let imageFile = PFFile(name:"image.png", data:imageData)
         
         var groupImage = PFObject(className: ParseContants.groupImageClass)
@@ -30,11 +30,11 @@ class ParseImageAction : ImageAction{
         groupImage["groupId"] = groupId
         groupImage.saveInBackgroundWithBlock { (successed: Bool, error:NSError?) -> Void in
             if error == nil {
-                println("group image saved with id:"+groupImage.objectId!)
+                print("group image saved with id:"+groupImage.objectId!)
 //                self.changeImageId(newId: groupImage.objectId!)
             }else {
-                let errorString = error!.userInfo!["error"] as! String
-                println(errorString)
+                let errorString = error!.userInfo["error"] as! String
+                print(errorString)
             }
             
         }
@@ -74,7 +74,7 @@ class ParseImageAction : ImageAction{
 //    }
     
     class func uploadImageToUser(image: UIImage) {
-        let imageData: NSData = UIImagePNGRepresentation(image)
+        let imageData: NSData = UIImagePNGRepresentation(image)!
         let imageFile = PFFile(name:"image.png", data:imageData)
         
         let localUser = PFUser.currentUser()!
@@ -83,7 +83,7 @@ class ParseImageAction : ImageAction{
             if success {
                 
             }else{
-                println("##upload photo error: \(error?.userInfo)")
+                print("##upload photo error: \(error?.userInfo)")
             }
         }
     }
@@ -93,9 +93,9 @@ class ParseImageAction : ImageAction{
         localuser["nickname"] = name
         localuser.saveInBackgroundWithBlock { (success:Bool, error:NSError?) -> Void in
             if success {
-                println("nickname changed")
+                print("nickname changed")
             }else{
-                println("##changename error: \(error?.userInfo)")
+                print("##changename error: \(error?.userInfo)")
             }
         }
     }

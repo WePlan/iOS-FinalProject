@@ -60,11 +60,11 @@ class ParseGroupAction : ParseGroup{
         }
         PFObject.saveAllInBackground(objects) { (success : Bool, error : NSError?) -> Void in
             if success {
-                println("Group Task Added! Count: \(objects.count)")
+                print("Group Task Added! Count: \(objects.count)")
                 complete()
             }
             else{
-                println(error?.userInfo)
+                print(error?.userInfo)
             }
         }
     }
@@ -109,8 +109,8 @@ class ParseGroupAction : ParseGroup{
     class func createGroup(name:String, ownerId: String, members:[String], desc: String = "None",groupImage: UIImage?, completion: () -> Void) {
         let imageFile: PFFile?
         if groupImage != nil {
-            let data = UIImagePNGRepresentation(groupImage)
-            imageFile = PFFile(name: "GroupImage.png", data: data)
+            let data = UIImagePNGRepresentation(groupImage!)
+            imageFile = PFFile(name: "GroupImage.png", data: data!)
         }else{
             imageFile = nil
         }
@@ -128,11 +128,11 @@ class ParseGroupAction : ParseGroup{
         pfGroup.saveInBackgroundWithBlock { (success:Bool, error: NSError?) -> Void in
             if success {
                 let groupId = pfGroup.objectId!
-                println("group created with id: \(groupId)")
+                print("group created with id: \(groupId)")
                 
                 self.addGroupIdtoUsers(groupId, userIds: members, completion: completion)
             }else{
-                println("##create group error: \(error?.userInfo)")
+                print("##create group error: \(error?.userInfo)")
             }
         }
         
@@ -159,11 +159,11 @@ class ParseGroupAction : ParseGroup{
                     }
                     PFObject.saveAllInBackground(objects, block: { (success : Bool, error : NSError?) -> Void in
                         if success {
-                            println("groupIds update successfully")
+                            print("groupIds update successfully")
                             completion()
                         }
                         else{
-                            println(error?.userInfo)
+                            print(error?.userInfo)
                         }
                     })
                 }
@@ -193,10 +193,10 @@ class ParseGroupAction : ParseGroup{
         subquery[GroupUserConstant.groupIds] = newGroupIds
         subquery.saveInBackgroundWithBlock({ (success : Bool, error : NSError?) -> Void in
             if success {
-                println("Record with uid \(userId) has been added.")
+                print("Record with uid \(userId) has been added.")
             }
             else{
-                println("\(error?.userInfo)")
+                print("\(error?.userInfo)")
             }
         })
     }
@@ -247,10 +247,10 @@ class ParseGroupAction : ParseGroup{
                     object[GroupConstant.groupMembers] = members
                     object.saveInBackgroundWithBlock({ (success : Bool, error : NSError?) -> Void in
                         if success {
-                            println("Group with ID \(groupId) has been updated")
+                            print("Group with ID \(groupId) has been updated")
                         }
                         else{
-                            println("\(error?.userInfo)")
+                            print("\(error?.userInfo)")
                         }
                     })
                 }
@@ -278,12 +278,12 @@ class ParseGroupAction : ParseGroup{
                     object[GroupConstant.groupMembers] = members
                     object.saveInBackgroundWithBlock({ (success : Bool, error : NSError?) -> Void in
                         if success {
-                            println("User \(uid) has quit the group \(groupId)")
+                            print("User \(uid) has quit the group \(groupId)")
                             self.handleUserGroupWhenQuit(groupId,
                                 completion: completion)
                         }
                         else{
-                            println(error?.userInfo)
+                            print(error?.userInfo)
                         }
                     })
                 }
@@ -300,7 +300,7 @@ class ParseGroupAction : ParseGroup{
                 if let object = object {
                     var groups = object[GroupUserConstant.groupIds] as! [String]
                     var index = 0
-                    println("---------\(uid),")
+                    print("---------\(uid),")
                     for each in groups {
                         if each == groupId{
                             break
@@ -314,10 +314,10 @@ class ParseGroupAction : ParseGroup{
                     object.saveInBackgroundWithBlock({ (success : Bool, error : NSError?) -> Void in
                         if success {
                             completion()
-                            println("UG has been midified on user \(uid)")
+                            print("UG has been midified on user \(uid)")
                         }
                         else{
-                            println(error?.userInfo)
+                            print(error?.userInfo)
                         }
                     })
                 }
@@ -362,10 +362,10 @@ class ParseGroupAction : ParseGroup{
                                 if member == PFUser.currentUser()!.objectId! {
                                     completion()
                                 }
-                                println("UG has been modified when group \(groupId) was dismissed")
+                                print("UG has been modified when group \(groupId) was dismissed")
                             }
                             else{
-                                println(error?.userInfo)
+                                print(error?.userInfo)
                             }
                         })
                     }

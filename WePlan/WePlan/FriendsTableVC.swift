@@ -219,7 +219,7 @@ class FriendsTableVC: UITableViewController , FriendTableCellDeleget,UISearchBar
             if let atdvc = segue.destinationViewController as? AssignATaskToFriendTableViewController {
 //                let tmp1 = friendList[selected].name
                 let tmp = localFriendList.getFriendAtIndex(selected)?.name
-                println(tmp)
+                print(tmp)
                 atdvc.friend = localFriendList.getFriendAtIndex(selected)
 //                let a = friendList[selected]
             }
@@ -248,9 +248,9 @@ class FriendsTableVC: UITableViewController , FriendTableCellDeleget,UISearchBar
             // Delete the row from the data source
             ParseFriendAction.deleteFriend(deleteId, complete: { (result :Bool) -> Void in
                 if result == true {
-                    println("Deleted!")
+                    print("Deleted!")
                 }else {
-                    println("fail!")
+                    print("fail!")
                 }
             })
         }))
@@ -293,7 +293,7 @@ class FriendsTableVC: UITableViewController , FriendTableCellDeleget,UISearchBar
     
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
         searchBar.showsCancelButton = true
-        if count(searchText) == 0 {
+        if searchText.characters.count < 1 {
             self.searchState = false
             self.searchBar.showsCancelButton = false
             self.searchBar.endEditing(true)
@@ -301,8 +301,6 @@ class FriendsTableVC: UITableViewController , FriendTableCellDeleget,UISearchBar
             return
         }
         self.searchState = true
-        
-        var originArray = NSArray()
         filterFriends = []
         for var i = 0; i < localFriendList.count; i++ {
             let predicate: NSPredicate = NSPredicate(format:"self contains [cd] %@", searchText)

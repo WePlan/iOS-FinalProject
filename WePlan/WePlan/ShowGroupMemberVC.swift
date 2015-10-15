@@ -15,7 +15,7 @@ class ShowGroupMemberVC: UITableViewController {
     
     var groupId: String?{
         didSet{
-            let group = LocalGroupList.sharedInstance.getGroup(objectId: groupId!)
+            let group = LocalGroupList.sharedInstance.getGroup(groupId!)
             ParseGroupAction.getGroupMembers(group.memberIds) { (userList:[User]) -> Void in
                 self.MemberList = userList
                 self.hasData = true
@@ -30,10 +30,10 @@ class ShowGroupMemberVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         if let list=MemberList{
-            println("Nice!!")
+            print("Nice!!")
         }
         else{
-            println("NothingT T")
+            print("NothingT T")
         }
 //        println("Get Member\(MemberList.count)")
         // Uncomment the following line to preserve selection between presentations

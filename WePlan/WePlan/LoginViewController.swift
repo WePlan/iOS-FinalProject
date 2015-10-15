@@ -55,30 +55,30 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
         loginButton.readPermissions = ["public_profile","email"]
         loginButton.delegate = self
         if FBSDKAccessToken.currentAccessToken() != nil {
-            println("Already loggined in with facebook!")
-            println(self.returnUserData())
+            print("Already loggined in with facebook!")
+            print(self.returnUserData())
         }
         
         
        // insertBlurView(BackgroundImage, style: UIBlurEffectStyle.Light)
     }
     
-    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         pulldownView()
         view.endEditing(true)
     }
     
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
-        println("User Logged In")
+        print("User Logged In")
         
         if ((error) != nil)
         {
             // Process error
-            println("Error : \(error)")
+            print("Error : \(error)")
         }
         else if result.isCancelled {
             // Handle cancellations
-            println("User cancelled logging process.")
+            print("User cancelled logging process.")
         }
         else {
             if result.grantedPermissions.contains("email") {
@@ -88,7 +88,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
     }
     
     func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
-        println("User Logged Out")
+        print("User Logged Out")
     }
     
     func returnUserData(){
@@ -98,7 +98,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
             if ((error) != nil)
             {
                 // Process error
-                println("Error: \(error)")
+                print("Error: \(error)")
             }
             else
             {
@@ -108,7 +108,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
                 let userEmail : String = result.valueForKey("email") as! String
                 //println("User Email is: \(userEmail)")
                 self.signInWithThirdPartyAccount(userName, email: userEmail, complete: { (result : String) -> Void in
-                    println(result)
+                    print(result)
                 })
             }
         })
@@ -122,7 +122,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
                 }
             }
             else{
-                println(error?.userInfo)
+                print(error?.userInfo)
             }
         }
     }
@@ -151,7 +151,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
                         complete("New user created! For third party account.")
                     }
                     else{
-                        let ee = error!.userInfo!["error"] as? String
+                        let ee = error!.userInfo["error"] as? String
                         complete(ee!)
                     }
                 })
@@ -237,8 +237,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
     }
     
     private func signIn() {
-        let username = usernameText.text
-        let pwd = pwdText.text
+        let username : String = usernameText.text!
+        let pwd : String = pwdText.text!
         if !validEmail(username) {
         errorLabel.text = Login.notifyEmailInvalid
         return
@@ -255,19 +255,19 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
         self.performSegueWithIdentifier(Login.LoginSegueId, sender: self)
         }
         }else {
-        let errorString = error!.userInfo!["error"] as! String
+        let errorString = error!.userInfo["error"] as! String
         self.errorLabel.text = errorString
         }
         }
 
     }
     
-    private func validEmail(String) -> Bool {
+    private func validEmail(email : String) -> Bool {
         //TODO: test email
         return true
     }
     
-    private func validPassword(String) -> Bool {
+    private func validPassword(pwd : String) -> Bool {
         //TODO: test password
         return true
     }

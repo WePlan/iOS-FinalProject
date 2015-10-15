@@ -83,7 +83,7 @@ class GroupsTableVC: UITableViewController,UISearchBarDelegate,UISearchDisplayDe
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
         
         self.searchBar.showsCancelButton = true
-        if count(searchText) == 0 {
+        if searchText.characters.count < 1 {
             self.searchState = false
             self.searchBar.showsCancelButton = false
             self.searchBar.endEditing(true)
@@ -92,17 +92,17 @@ class GroupsTableVC: UITableViewController,UISearchBarDelegate,UISearchDisplayDe
         }
         self.searchState = true
         
-        var originArray = NSArray()
+        //var originArray = NSArray()
         self.Filtergroups = []
         for var i = 0; i < groups.count; i++ {
-            println("Runing search")
+            print("Runing search")
             let predicate: NSPredicate = NSPredicate(format:"self contains [cd] %@", searchText)
             if predicate.evaluateWithObject(groups.groupList[i].name){
                 self.Filtergroups.append(self.groups.groupList[i])
             }
         }
         for group in Filtergroups{
-            println(group.name)
+            print(group.name)
         }
         self.tableView.reloadData()
     }

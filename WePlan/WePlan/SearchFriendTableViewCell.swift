@@ -61,7 +61,7 @@ class SearchFriendTableViewCell: UITableViewCell {
             self.addButton.setTitleColor(UIColor.grayColor(), forState: UIControlState.Normal)
             addButton.setBackgroundImage(UIImage(named: "ButtonBorderGray"), forState: UIControlState.Normal)
             if user == nil {
-                println("user is nil!")
+                print("user is nil!")
             }else{
                 delegate!.addNewFriendWithId(user!.uid)
             }

@@ -50,7 +50,7 @@ class LocalFriendList {
         }
     }
     
-    func getFriendName(# objectId: String) -> String {
+    func getFriendName(objectId: String) -> String {
         var name:String?
         for friend in friendList {
             if friend.uid == objectId {

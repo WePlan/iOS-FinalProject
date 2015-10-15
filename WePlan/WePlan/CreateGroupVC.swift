@@ -76,8 +76,7 @@ class CreateGroupVC: UIViewController ,UITableViewDataSource, UITableViewDelegat
         }
     }
     // MARK: - TextFiled
-    
-    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         view.endEditing(true)
     }
     
@@ -92,7 +91,7 @@ class CreateGroupVC: UIViewController ,UITableViewDataSource, UITableViewDelegat
     }
     // MARK: - Misc.
     func clicked() {
-        println("cl")
+        print("cl")
         view.endEditing(true)
     }
     
@@ -103,7 +102,7 @@ class CreateGroupVC: UIViewController ,UITableViewDataSource, UITableViewDelegat
     }
     
     @IBAction func clickCreate(sender: AnyObject) {
-        if count(gruopNameTextField.text) < 1 {
+        if gruopNameTextField.text?.characters.count < 1 {
             return
         }
         var hud = MBProgressHUD(view: self.view)
@@ -112,9 +111,9 @@ class CreateGroupVC: UIViewController ,UITableViewDataSource, UITableViewDelegat
         hud.show(true)
         hud.labelText = "Creating..."
         
-        let groupName: String = self.gruopNameTextField.text
+        let groupName: String = self.gruopNameTextField.text!
         let creatorId = PFUser.currentUser()!.objectId!
-        let desc:String = self.descTextField.text
+        let desc:String = self.descTextField.text!
         let image: UIImage?
         if self.imageGiven {
             image = self.groupImageView.image
@@ -199,7 +198,7 @@ class CreateGroupVC: UIViewController ,UITableViewDataSource, UITableViewDelegat
     }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
-        println("image picked!")
+        print("image picked!")
         let newSize = CGSizeMake(300, 300)
         var newImage = ImageProcess.resizeImage(image, size: newSize)
         

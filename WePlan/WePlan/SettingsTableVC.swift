@@ -60,7 +60,7 @@ class SettingsTableVC: UITableViewController , UIImagePickerControllerDelegate, 
         if let imageFile = PFUser.currentUser()!["photo"] as? PFFile {
             self.photoImageView.imageFile = imageFile
         }else {
-            println("Could not find imageId")
+            print("Could not find imageId")
         }
     }
     
@@ -111,9 +111,9 @@ class SettingsTableVC: UITableViewController , UIImagePickerControllerDelegate, 
             if let textFileds = alert.textFields{
                 let thetextFields = textFileds as! [UITextField]
                 let newname = thetextFields[0].text
-                println(newname)
-                if count(newname) > 0 {
-                    ParseImageAction.changeNickname(newname)
+                print(newname)
+                if newname?.characters.count > 0 {
+                    ParseImageAction.changeNickname(newname!)
                     self.usernameLabel.text = newname
                 }
             }
@@ -143,7 +143,7 @@ class SettingsTableVC: UITableViewController , UIImagePickerControllerDelegate, 
     }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
-        println("image picked!")
+        print("image picked!")
         let newSize = CGSizeMake(180, 180)
         var newImage = ImageProcess.resizeImage(image, size: newSize)
         

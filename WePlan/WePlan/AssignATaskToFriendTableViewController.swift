@@ -70,7 +70,7 @@ class AssignATaskToFriendTableViewController: UITableViewController {
 //        // Configure the cell...
         
         //Configure default cell
-        cell.selectedBackgroundView.backgroundColor = UIColor.whiteColor()
+        cell.selectedBackgroundView!.backgroundColor = UIColor.whiteColor()
         cell.textLabel?.text = tasks[indexPath.row].taskName
         cell.detailTextLabel?.text = format.stringFromDate(tasks[indexPath.row].dueTime)
         

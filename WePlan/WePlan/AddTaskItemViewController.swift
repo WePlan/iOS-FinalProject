@@ -124,7 +124,7 @@ class AddTaskItemViewController: UIViewController, UITextFieldDelegate,AssignTas
     }
     
     func assignTaskToOtherPeople(assignPeople: User) {
-        println("123123123")
+        //print("123123123")
 //        taskFor = TaskKind(rawValue: 2)!   modified by ck
         taskFor = TaskKind.People
         taskOwner = PFUser.currentUser()!.username!
@@ -194,22 +194,26 @@ class AddTaskItemViewController: UIViewController, UITextFieldDelegate,AssignTas
         return true
     }
     
-    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
-//        let touch: UITouch = touches.first as! UITouch
-//        let touchPoint = touch.locationInView(self.view)
-//        let labelBounds = dateLabel.frame
-//        println(touchPoint)
-//        println(labelBounds)
-//        if labelBounds.contains(touchPoint){
-//            println("touched")
-//            tapDateLabel()
-//        }
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         view.endEditing(true)
     }
+    
+//    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+////        let touch: UITouch = touches.first as! UITouch
+////        let touchPoint = touch.locationInView(self.view)
+////        let labelBounds = dateLabel.frame
+////        println(touchPoint)
+////        println(labelBounds)
+////        if labelBounds.contains(touchPoint){
+////            println("touched")
+////            tapDateLabel()
+////        }
+//        view.endEditing(true)
+//    }
     // MARK: - Navigation
     @IBAction func clickAddButton(sender: AnyObject) {
         let updateTask = newTask
-        if count(taskTitleTextField.text) < 1 {
+        if taskTitleTextField.text?.characters.count < 1 {
             return
         }
         var hub = MBProgressHUD(view: self.view)
@@ -218,11 +222,12 @@ class AddTaskItemViewController: UIViewController, UITextFieldDelegate,AssignTas
         hub.show(true)
         hub.labelText = "Processing..."
         
-        newTask = TaskItem(name: taskTitleTextField.text, due: datePicker.date, descript: shortDescriptionTextField.text)
+        newTask = TaskItem(name: taskTitleTextField.text!, due: datePicker.date,
+            descript: shortDescriptionTextField.text!)
         switch self.taskFor {
             case .Individual:
                 if addButton.titleLabel?.text == "Save" {
-                    updateTask?.taskName = taskTitleTextField.text
+                    updateTask?.taskName = taskTitleTextField.text!
                     updateTask?.dueTime = datePicker.date
                     updateTask?.descript = shortDescriptionTextField.text ?? ""
                     
@@ -291,7 +296,7 @@ class AddTaskItemViewController: UIViewController, UITextFieldDelegate,AssignTas
         
         if segue.identifier == StoryBoardConstants.assignTaskToOtherPeopleSegue {
             if let vc = segue.destinationViewController as? AddPeopleToTaskTableViewController {
-                println("1234")
+                print("1234")
                 vc.delegate = self
                 if assignPeople != nil {
                     vc.alreadyAssignedPeople = assignPeople

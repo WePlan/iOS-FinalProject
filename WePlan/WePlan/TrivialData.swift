@@ -9,21 +9,21 @@
 import Foundation
 extension NSDate {
     func yearsDiff(date:NSDate) -> Int{
-        return NSCalendar.currentCalendar().components(NSCalendarUnit.CalendarUnitYear, fromDate: date, toDate: self, options: nil).year
+        return NSCalendar.currentCalendar().components(NSCalendarUnit.Year, fromDate: date, toDate: self, options: []).year
     }
     func monthsDiff(date:NSDate) -> Int{
-        return NSCalendar.currentCalendar().components(NSCalendarUnit.CalendarUnitMonth, fromDate: date, toDate: self, options: nil).month
+        return NSCalendar.currentCalendar().components(NSCalendarUnit.Month, fromDate: date, toDate: self, options: []).month
     }
     func weeksDiff(date:NSDate) -> Int{
-        return NSCalendar.currentCalendar().components(NSCalendarUnit.CalendarUnitWeekOfYear, fromDate: date, toDate: self, options: nil).weekOfYear
+        return NSCalendar.currentCalendar().components(NSCalendarUnit.WeekOfYear, fromDate: date, toDate: self, options: []).weekOfYear
     }
     func daysDiff(date:NSDate) -> Int{
-        return NSCalendar.currentCalendar().components(NSCalendarUnit.CalendarUnitDay, fromDate: date, toDate: self, options: nil).day
+        return NSCalendar.currentCalendar().components(NSCalendarUnit.Day, fromDate: date, toDate: self, options: []).day
     }
     func addDays(days:Int)-> NSDate {
-        return NSCalendar.currentCalendar().dateByAddingUnit(NSCalendarUnit.CalendarUnitDay, value: days, toDate: self, options: nil)!
+        return NSCalendar.currentCalendar().dateByAddingUnit(NSCalendarUnit.Day, value: days, toDate: self, options: [])!
     }
     func addMonths(months: Int) -> NSDate {
-        return NSCalendar.currentCalendar().dateByAddingUnit(NSCalendarUnit.CalendarUnitMonth, value: months, toDate: self, options: nil)!
+        return NSCalendar.currentCalendar().dateByAddingUnit(NSCalendarUnit.Month, value: months, toDate: self, options: [])!
     }
 }

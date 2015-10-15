@@ -10,7 +10,7 @@ import Foundation
 
 class ParseBaseAction {
     
-    class func deleteItem(#objectId: String, inClass classname: String) {
+    class func deleteItem(objectId: String, inClass classname: String) {
         var pfQuery = PFQuery(className: classname)
         
         pfQuery.getObjectInBackgroundWithId(objectId, block: { (result: PFObject? , error: NSError?) -> Void in
@@ -18,8 +18,8 @@ class ParseBaseAction {
                 result!.deleteInBackground()
             }else {
                 let str = error?.userInfo
-                println("### delete object in parse error")
-                println(str)
+                print("### delete object in parse error")
+                print(str)
             }
         })
     }

@@ -24,7 +24,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     }
     
     // MARK: - TextFiled
-    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         pulldownView()
         view.endEditing(true)
     }
@@ -146,7 +146,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         let password = passwordTextField.text
         let passwordRepeat = passwordRepeatTextField.text
         let nickname = nicknameTextField.text
-        if count(nickname) < 3 {
+        if nickname?.characters.count < 3 {
             errorLabel.text = "Nickname is too short."
             return
         }
@@ -173,7 +173,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                 }
            
             }else {
-                let errorString = error!.userInfo!["error"] as! String
+                let errorString = error!.userInfo["error"] as! String
                 self.errorLabel.text = errorString
             }
         }

@@ -27,7 +27,7 @@ class LocalGroupList {
         }
     }
     
-    func getGroup(# objectId:String) -> Group{
+    func getGroup(objectId:String) -> Group{
         var agroup: Group?
         for group in groupList {
             if group.id == objectId {
@@ -39,7 +39,7 @@ class LocalGroupList {
         return agroup!
     }
     
-    func getGroupName(# objectId: String) -> String{
+    func getGroupName(objectId: String) -> String{
         var name:String?
         for group in groupList {
             if group.id == objectId {

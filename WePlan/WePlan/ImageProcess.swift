@@ -30,7 +30,7 @@ class ImageProcess {
         if size.height == size.width {
             radius = size.height/radiusRatio
         }else{
-            println("Aspect ratio of image is not 1:1.")
+            print("Aspect ratio of image is not 1:1.")
             radius = 0
         }
         imageView.layer.cornerRadius = radius
